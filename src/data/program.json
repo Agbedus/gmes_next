@@ -1,0 +1,60 @@
+{
+  "program": {
+    "name": "GMES & Africa Support Programme",
+    "one_liner": "AU–EU programme adapting Copernicus Earth-observation services to African needs for land, water, coasts, biodiversity, and maritime security."
+  },
+  "kpis": [
+    {
+      "label": "Programme agreement",
+      "amount_eur_millions": 30
+    },
+    {
+      "label": "Phase 1 grant & coverage",
+      "amount_eur_millions": 17.5,
+      "institutions": 122,
+      "countries": 45
+    },
+    {
+      "label": "EO infrastructure",
+      "institutions_equipped": 12,
+      "estations_identified": 188
+    },
+    {
+      "label": "Capacity building",
+      "trained": 5000,
+      "degrees_supported": 46,
+      "internships": 11
+    }
+  ],
+  "timeline": [
+    { "year": 2006, "event": "Maputo Declaration affirms access to EU Copernicus infrastructure for ACP countries" },
+    { "year": 2007, "event": "GMES & Africa process launched at Lisbon EU–Africa Summit" },
+    { "year": 2016, "event": "Support programme signed (AUC–EC), €30M, 4 years" },
+    { "years": "2017–2021", "event": "Phase 1 delivered services, capacity, infrastructure" },
+    { "years": "2022–2026", "event": "Phase 2 (additional 4 years)" }
+  ],
+  "services": [
+    { "category": "Land & water", "items": ["Agriculture & food security", "Forest & wetland monitoring", "Water-balance/resource monitoring"] },
+    { "category": "Marine & coastal", "items": ["Daily ocean-state forecasts", "Potential fishing zones", "Aquaculture", "Oil-pollution monitoring"] },
+    { "category": "Conservation & wetlands", "items": ["Biodiversity & wildlife protection", "Support to 15 RAMSAR sites", "10 wetland Development/Management Plans (DMP)"] },
+    {
+      "category": "Disaster risk & early warning",
+      "items": [
+        "Flood forecasting & mapping",
+        "Drought monitoring & alerts",
+        "Wildfire detection & monitoring",
+        "Landslide susceptibility mapping"
+      ]
+    }
+  ],
+  "phase2": {
+    "focus": "Consolidate and expand 2017–2021 achievements; strengthen services in agriculture, forests/wetlands, water, biodiversity, fisheries, and maritime security; increase impact on decision-making for RECs, line ministries, scientific communities, and citizens.",
+    "pillars": ["Policy & institutional framework", "Access to EO data & information services"],
+    "cross_cutting": ["Capacity building", "Knowledge management", "Awareness, uptake & dissemination"]
+  },
+  "implementers_governance": {
+    "coordinator": "African Union Commission (AUC)",
+    "implementers_phase_2": ["CICOS", "CSE", "CSIR", "ICPAC", "OSS", "RCMRD", "SASSCAL", "University of Ghana"],
+    "monitoring_partners": ["DG INTPA", "DG DEFIS", "EU Delegation Addis Ababa", "EUMETSAT", "ESA"]
+  }
+}

@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"components/ui/summary/dashboardContainer.tsx -> @/data/program.json\":{\"id\":\"components/ui/summary/dashboardContainer.tsx -> @/data/program.json\",\"files\":[\"static/chunks/_app-pages-browser_src_data_program_json.js\"]}}"

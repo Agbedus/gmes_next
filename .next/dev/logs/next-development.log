@@ -1,0 +1,1133 @@
+[00:00:01.958] Server  LOG      ✓ Ready in 1730ms
+[00:00:08.222] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <RootLayout>
+                        <html
+                          lang="en"
+-                         crxlauncher=""
+                        >
+                  ...
+
+[00:33:38.914] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/phase_two" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <RootLayout>
+                        <html
+                          lang="en"
+-                         crxlauncher=""
+                        >
+                  ...
+
+[00:50:04.485] Server  ERROR    ⨯ ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[00:50:04.659] Server  ERROR    ⨯ ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[00:50:05.221] Browser ERROR   ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[00:50:51.034] Browser ERROR   ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[00:59:20.785] Server  ERROR    ⨯ ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[00:59:20.791] Browser ERROR   ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[00:59:20.870] Server  ERROR    ⨯ ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:08:59.236] Browser ERROR   ./src/components/ui/phase_two/OverviewPanel.tsx
+Error:   × Expected ']', got '<eof>'
+    ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/OverviewPanel.tsx:16:1]
+ 13 │ 
+ 14 │   const name = (pd['name'] as string | undefined) ?? 'Program';
+ 15 │   const description = (pd['description'] as string | undefined) ?? '';
+ 16 │   const timeline = (pd['timeline'
+    ·                                  ▲
+    ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/OverviewPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:30:32.899] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/phase_two" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <RootLayout>
+                        <html
+                          lang="en"
+-                         crxlauncher=""
+                        >
+                  ...
+
+[01:38:51.885] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:38:52.059] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:38:52.420] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:38:52.512] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:05.461] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:05.511] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:05.511] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:07.476] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:08.175] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:08.386] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:08.386] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:08.386] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:08.461] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:08.533] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:09.553] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:09.922] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:10.377] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:10.438] Server  LOG      ○ Compiling /_error ...
+[01:39:10.439] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:11.205] Browser ERROR   uncaughtError: ModuleBuildError: Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+
+Caused by:
+    Syntax Error
+[01:39:11.441] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+[01:39:16.891] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:17.137] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:17.182] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:39:17.232] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:48:54.274] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:48:54.398] Server  ERROR    ⨯ ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:52:28.498] Browser ERROR   ./src/components/ui/phase_two/ConsortiaPanel.tsx
+Error:   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:221:1]
+ 218 │              ) : null}
+ 219 │          </div>
+ 220 │      );
+ 221 │ }
+     · ▲
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+     ╰────
+  × Expected '</', got ':'
+     ╭─[/Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_two/ConsortiaPanel.tsx:223:1]
+ 220 │      );
+ 221 │ }
+ 222 │ 
+ 223 │ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
+     ·                                                                  ─
+ 224 │     const [activeConsortium, setActiveConsortium] = useState<string | undefined>(consortia[0]?.acronym);
+ 225 │ 
+ 226 │     if (!Array.isArray(consortia) || consortia.length === 0) {
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/ui/phase_two/ConsortiaPanel.tsx
+./src/components/ui/phase_two/phaseTwoDash.tsx
+./src/app/phase_two/page.tsx
+[01:52:29.312] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:52:30.069] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:52:30.889] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/summary" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <RootLayout>
+                        <html
+                          lang="en"
+-                         crxlauncher=""
+                        >
+                  ...
+
+[02:56:34.267] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/phase_two" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <RootLayout>
+                        <html
+                          lang="en"
+-                         crxlauncher=""
+                        >
+                  ...
+
