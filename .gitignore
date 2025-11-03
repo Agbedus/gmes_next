@@ -1,17 +1,18 @@
-# Dependencies
 node_modules/
-
-# Next.js
+**/node_modules/
 .next/
-out/
-.next-static/
-.next-turbo/
 .vercel/
-
-# Env & local config
+out/
 .env
 .env.*.local
 .env.local
+
+# Next.js
+.next-static/
+.next-turbo/
+
+
+# Env & local config
 *.local
 
 # Logs & OS junk
