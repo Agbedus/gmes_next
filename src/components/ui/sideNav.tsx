@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type NavItem = {
   label: string;
@@ -15,13 +16,16 @@ type SideNavProps = {
 };
 
 export default function SideNav({ items, className = '' }: SideNavProps) {
-  const [path, setPath] = React.useState<string>('');
+  const pathname = usePathname();
+  // pendingPath is set optimistically on mouseDown so the clicked link shows active state immediately
+  const [pendingPath, setPendingPath] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setPath(window.location.pathname);
+    // clear pending optimistic state once router has updated
+    if (pendingPath && pathname === pendingPath) {
+      setPendingPath(null);
     }
-  }, []);
+  }, [pathname, pendingPath]);
 
   return (
     <nav className={`py-12 px-6 h-screen bg-white overflow-y-auto ${className}`} aria-label="Main navigation">
@@ -34,35 +38,43 @@ export default function SideNav({ items, className = '' }: SideNavProps) {
       </div>
       <ul className="space-y-1 mt-24">
         {items.map((item) => {
-          const active = path === item.href;
-          return (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={`flex text-[10px] uppercase items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+          const active = (pathname === item.href) || (pendingPath === item.href);
+           return (
+             <li key={item.href}>
+               <Link
+                 href={item.href}
+                 className={`flex text-[10px] uppercase items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   active
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                }`}
-                aria-current={active ? 'page' : undefined}
-              >
-                {item.icon ? (
-                  <span
-                    className={`material-symbols-outlined mr-3 text-lg ${
-                      active ? 'text-white' : 'text-zinc-600'
-                    }`}
-                    aria-hidden="true"
-                  >
-                    {item.icon}
-                  </span>
-                ) : null}
+                 }`}
+                 aria-current={active ? 'page' : undefined}
+                 onMouseDown={() => setPendingPath(item.href)}
+                 onTouchStart={() => setPendingPath(item.href)}
+                 onKeyDown={(e) => {
+                   if (e.key === 'Enter' || e.key === ' ') {
+                     // mark optimistic pending path so keyboard users get immediate feedback
+                     setPendingPath(item.href);
+                   }
+                 }}
+               >
+                 {item.icon ? (
+                   <span
+                     className={`material-symbols-outlined mr-3 text-lg ${
+                       active ? 'text-white' : 'text-zinc-600'
+                     }`}
+                     aria-hidden="true"
+                   >
+                     {item.icon}
+                   </span>
+                 ) : null}
 
-                <span>{item.label}</span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
-}
+                 <span>{item.label}</span>
+               </Link>
+             </li>
+           );
+         })}
+       </ul>
+     </nav>
+   );
+ }

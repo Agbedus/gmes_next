@@ -46,7 +46,7 @@ export default function RootLayout({
                             {label: 'Phase 2', href: '/phase_two', icon: 'looks_two'},
                             {label: 'Phase 1', href: '/phase_one', icon: 'looks_one'},
                             {label: 'Reports', href: '/reports', icon: 'article'},
-                            {label: 'Settings', href: '/settings', icon: 'settings'},
+                            {label: 'Useful Links', href: '/settings', icon: 'link'},
 
                         ]}
                     />

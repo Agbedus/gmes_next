@@ -104,17 +104,6 @@ export default function DashboardContainer(): React.ReactElement {
     { id: "dz", name: "Algiers, Algeria", lat: 36.7538, lon: 3.0588, group: "North" },
   ];
 
-  const summaryData = {
-    regions: [
-      { name: "West", value: 35 },
-      { name: "East", value: 30 },
-      { name: "North", value: 20 },
-      { name: "South", value: 10 },
-    ],
-    servicesCount: (data?.services ?? []).reduce((s, c) => s + (c.items?.length ?? 0), 0),
-    trained: data?.kpis?.find((k) => (k.trained as number) > 0)?.trained ?? 5000,
-  };
-
   React.useEffect(() => {
     // Load local JSON data via dynamic import so this stays a client component
     setLoading(true);
@@ -323,7 +312,19 @@ export default function DashboardContainer(): React.ReactElement {
       </div>
       <SummaryChartsModal open={chartsOpen} onCloseAction={() => setChartsOpen(false)} />
 
-      <MapModal open={mapOpen} onCloseAction={() => setMapOpen(false)} points={samplePoints} />
+      <MapModal
+        open={mapOpen}
+        onCloseAction={() => setMapOpen(false)}
+        points={samplePoints}
+        groupsColor={{ West: '#06b6d4', East: '#34d399', North: '#f59e0b', South: '#ef4444', Central: '#a78bfa' }}
+        legendItems={[
+          { label: 'West', color: '#06b6d4' },
+          { label: 'East', color: '#34d399' },
+          { label: 'North', color: '#f59e0b' },
+          { label: 'South', color: '#ef4444' },
+          { label: 'Central', color: '#a78bfa' },
+        ]}
+      />
     </div>
   );
 }

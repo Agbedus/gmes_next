@@ -1,6 +1,12 @@
+import React from 'react';
+import DashboardContainer from '@/components/ui/summary/dashboardContainer';
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
+    <div className="min-h-screen">
+      <div className="p-6">
+        <DashboardContainer />
+      </div>
     </div>
   );
 }

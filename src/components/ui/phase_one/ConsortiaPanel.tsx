@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import DataTable from './DataTable';
+import DataTable from '../phase_two/DataTable';
 import MapModal from '../MapModal';
 
 type Member = { name?: string; country?: string };
@@ -43,28 +43,8 @@ function svgInitialsDataUrl(initials: string, bgColor: string) {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-// New helper: sanitize image/anchor srcs so they don't end with spaces or contain control characters
-function sanitizeSrc(raw?: string | null | undefined): string | undefined {
-  if (!raw && raw !== '') return undefined;
-  const s = String(raw ?? '').replace(/\u0000/g, ''); // remove nulls
-  // remove control chars and trim whitespace
-  const cleaned = s.replace(/[\u0000-\u001F\u007F]/g, '').trim();
-  if (!cleaned) return undefined;
-  // if it's a data: or absolute/relative path, leave as-is; otherwise encode to be safe
-  if (cleaned.startsWith('data:') || cleaned.startsWith('/') || cleaned.startsWith('http://') || cleaned.startsWith('https://') || cleaned.startsWith('mailto:') || cleaned.startsWith('//')) {
-    return cleaned;
-  }
-  try {
-    return encodeURI(cleaned);
-  } catch {
-    return cleaned;
-  }
-}
-
 function ConsortiaTab({ name, acronym, logo, active, onClick, onOpenMap }: { name: string; acronym?: string; logo?: string; active: boolean; onClick: () => void; onOpenMap?: (e: React.MouseEvent) => void }) {
-  // sanitize logo early to avoid trailing spaces breaking Image
-  const rawLogo = logo ? String(logo).replace(/\s+/g, ' ').trim() : undefined;
-  const preferredLogo = rawLogo && rawLogo.startsWith('http://') ? rawLogo.replace('http://', 'https://') : rawLogo;
+  const preferredLogo = logo && logo.startsWith('http://') ? logo.replace('http://', 'https://') : logo;
   const [fallbackSrc, setFallbackSrc] = useState<string | undefined>(undefined);
   const initials = initialsFrom(name, acronym);
   const bg = colorFromString(name ?? acronym);
@@ -72,10 +52,8 @@ function ConsortiaTab({ name, acronym, logo, active, onClick, onOpenMap }: { nam
 
   const preferred = preferredLogo ?? svgUrl;
   const imgSrc = fallbackSrc ?? preferred;
-  const safeImgSrc = imgSrc ? sanitizeSrc(imgSrc as string) ?? svgUrl : svgUrl;
 
   useEffect(() => {
-    // reset any previous fallback when the preferred src changes
     if (fallbackSrc !== undefined) setFallbackSrc(undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferred]);
@@ -87,9 +65,9 @@ function ConsortiaTab({ name, acronym, logo, active, onClick, onOpenMap }: { nam
         active ? 'bg-teal-50 text-teal-800 border border-teal-100' : 'text-zinc-700 hover:bg-zinc-50'
       }`}>
       <div className="flex-shrink-0">
-        {safeImgSrc ? (
+        {imgSrc ? (
           <Image
-            src={safeImgSrc}
+            src={imgSrc}
             alt={`${name} logo`}
             width={48}
             height={48}
@@ -98,8 +76,7 @@ function ConsortiaTab({ name, acronym, logo, active, onClick, onOpenMap }: { nam
             onError={(e) => {
               const target = (e?.target as HTMLImageElement | null);
               if (target) {
-                // always fall back to initials svg first
-                if (fallbackSrc !== svgUrl) {
+                if (target.src !== svgUrl) {
                   setFallbackSrc(svgUrl);
                 } else {
                   setFallbackSrc(LOGO_FALLBACK);
@@ -117,7 +94,6 @@ function ConsortiaTab({ name, acronym, logo, active, onClick, onOpenMap }: { nam
         <div className="text-xs font-normal text-zinc-500">{name}</div>
       </div>
 
-      {/* map icon to open modal; stopPropagation so clicking it doesn't select the tab */}
       <div className="ml-2 flex items-center">
         <span
           role="button"
@@ -136,7 +112,6 @@ function ConsortiaTab({ name, acronym, logo, active, onClick, onOpenMap }: { nam
           title="View countries on map"
           className="p-2 rounded-md hover:bg-zinc-100 text-zinc-500"
         >
-          {/* simple map pin / globe SVG */}
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
@@ -149,8 +124,7 @@ function ConsortiaTab({ name, acronym, logo, active, onClick, onOpenMap }: { nam
 
 function ConsortiaDetails({ consortium }: { consortium: Consortium }) {
   const { name, acronym, logo, leadInstitution, leadCountry, region, description, services, members, digitalPlatforms } = consortium;
-  const rawLogo = logo ? String(logo).replace(/\s+/g, ' ').trim() : undefined;
-  const preferredLogo = rawLogo && rawLogo.startsWith('http://') ? rawLogo.replace('http://', 'https://') : rawLogo;
+  const preferredLogo = logo && logo.startsWith('http://') ? logo.replace('http://', 'https://') : logo;
   const [fallbackSrc, setFallbackSrc] = useState<string | undefined>(undefined);
   const initials = initialsFrom(name, acronym);
   const bg = colorFromString(name ?? acronym);
@@ -158,8 +132,6 @@ function ConsortiaDetails({ consortium }: { consortium: Consortium }) {
 
   const preferred = preferredLogo ?? svgUrl;
   const imgSrc = fallbackSrc ?? preferred;
-  const safeImgSrc = imgSrc ? sanitizeSrc(imgSrc as string) ?? svgUrl : svgUrl;
-  const safeHref = sanitizeSrc(logo ?? imgSrc) ?? (imgSrc ?? '#');
 
   useEffect(() => {
     if (fallbackSrc !== undefined) setFallbackSrc(undefined);
@@ -190,12 +162,12 @@ function ConsortiaDetails({ consortium }: { consortium: Consortium }) {
     <div className="bg-white p-6 rounded-xl border border-zinc-200 h-full flex flex-col">
       <div className="flex items-start gap-4">
         <div>
-          {safeImgSrc ? (
-            <a href={safeHref} target="_blank" rel="noopener noreferrer" className="inline-block">
-              <Image src={safeImgSrc} alt={`${name} logo`} width={160} height={160} className="w-40 h-40 rounded-lg object-contain bg-white p-2" unoptimized onError={(e)=>{
+          {imgSrc ? (
+            <a href={logo ?? imgSrc} target="_blank" rel="noopener noreferrer" className="inline-block">
+              <Image src={imgSrc} alt={`${name} logo`} width={160} height={160} className="w-40 h-40 rounded-lg object-contain bg-white p-2" unoptimized onError={(e)=>{
                 const target = (e?.target as HTMLImageElement | null);
                 if (target) {
-                  if (fallbackSrc !== svgUrl) {
+                  if (target.src !== svgUrl) {
                     setFallbackSrc(svgUrl);
                   } else {
                     setFallbackSrc(LOGO_FALLBACK);
@@ -271,7 +243,6 @@ function ConsortiaDetails({ consortium }: { consortium: Consortium }) {
   );
 }
 
-// Add country name normalization map for African countries
 const COUNTRY_NAME_MAP: Record<string, string> = {
   "DRC": "Democratic Republic of the Congo",
   "Congo": "Republic of Congo",
@@ -324,12 +295,10 @@ const COUNTRY_NAME_MAP: Record<string, string> = {
 };
 
 function normalizeCountryName(name: string): string {
-  // Remove (Lead) suffix and trim
   const cleaned = String(name)
     .replace(/\s*\(Lead\)\s*/i, '')
     .trim();
 
-  // Look up standard name in our mapping
   return COUNTRY_NAME_MAP[cleaned] || cleaned;
 }
 
@@ -348,7 +317,6 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
 
     if (c.leadCountry) {
       const normalized = normalizeCountryName(c.leadCountry);
-      console.log(`Normalized lead country: ${c.leadCountry} -> ${normalized}`);
       set.add(normalized);
     }
 
@@ -356,15 +324,12 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
       c.members.forEach((m) => {
         if (m?.country) {
           const normalized = normalizeCountryName(m.country);
-          console.log(`Normalized member country: ${m.country} -> ${normalized}`);
           set.add(normalized);
         }
       });
     }
 
-    const countries = Array.from(set).filter(Boolean);
-    console.log('Final country list for consortium:', countries);
-    return countries;
+    return Array.from(set).filter(Boolean);
   }
 
   return (
@@ -383,13 +348,11 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
                 active={activeConsortium === c.acronym}
                 onClick={() => {
                   setActiveConsortium(c.acronym);
-                  // Reset map countries when changing consortium
                   setMapCountries([]);
                   setMapOpen(false);
                 }}
                 onOpenMap={() => {
                   const countries = getCountriesForConsortium(c);
-                  console.log(`Opening map for ${c.acronym} with countries:`, countries);
                   setMapCountries(countries);
                   setMapOpen(true);
                 }}

@@ -199,43 +199,63 @@
         "members": [
           {
             "name": "International Commission for the Congo-Oubangui-Sangha Basin (CICOS)",
-            "country": "Congo (Lead)"
+            "country": "Republic of Congo",
+            "iso_a2": "CG",
+            "iso_a3": "COG"
           },
           {
             "name": "Lake Chad Basin Commission",
-            "country": "Chad"
+            "country": "Chad",
+            "iso_a2": "TD",
+            "iso_a3": "TCD"
           },
           {
             "name": "Central African Forests Satellite Observatory",
-            "country": "Congo"
+            "country": "Republic of Congo",
+            "iso_a2": "CG",
+            "iso_a3": "COG"
           },
           {
             "name": "University of Kinshasa",
-            "country": "DRC"
+            "country": "Democratic Republic of the Congo",
+            "iso_a2": "CD",
+            "iso_a3": "COD"
           },
           {
             "name": "Central African Forest Commission",
-            "country": "Cameroon"
+            "country": "Cameroon",
+            "iso_a2": "CM",
+            "iso_a3": "CMR"
           },
           {
             "name": "Waterways Management Authority",
-            "country": "DRC"
+            "country": "Democratic Republic of the Congo",
+            "iso_a2": "CD",
+            "iso_a3": "COD"
           },
           {
             "name": "Center for Research on Water and Climate Change",
-            "country": "Cameroon"
+            "country": "Cameroon",
+            "iso_a2": "CM",
+            "iso_a3": "CMR"
           },
           {
             "name": "Burundi Geographic Institute",
-            "country": "Burundi"
+            "country": "Burundi",
+            "iso_a2": "BI",
+            "iso_a3": "BDI"
           },
           {
             "name": "National Institute for the Conservation of the Environment",
-            "country": "Equatorial Guinea"
+            "country": "Equatorial Guinea",
+            "iso_a2": "GQ",
+            "iso_a3": "GNQ"
           },
           {
             "name": "National Office of Technical Studies and Development",
-            "country": "Côte d'Ivoire"
+            "country": "Côte d'Ivoire",
+            "iso_a2": "CI",
+            "iso_a3": "CIV"
           }
         ],
         "logo": "https://www.cicos.int/wp-content/themes/cicos/images/logo-cicos-n.png"
@@ -248,93 +268,102 @@
         "region": "West Africa",
         "thematicFocus": "Water & Natural Resources",
         "description": "Provides tools and data to help decision-makers manage wetlands and floods in West Africa, utilizing EO data to increase ecosystem resilience and food security.",
-        "countriesCovered": "10 West African countries: Benin, Burkina Faso, Côte d'Ivoire, Gambia, Ghana, Guinea, Mali, Niger, Nigeria, and Senegal.",
-        "services": [
-          "Surface water dynamics (water bodies)",
-          "Surface water turbidity",
-          "Invasive aquatic vegetation",
-          "Dynamic mapping of mangroves",
-          "Monitoring and mapping of flood-prone and flooded areas",
-          "Early warning (floods)"
-        ],
-        "digitalPlatforms": {
-          "website": "https://www.cse.sn/gdzhiao",
-          "blog": "https://gdzhiao.blog.gmes.cse.sn",
-          "geoportal": "http://gdzhao.gmes.cse.sn",
-          "applications": [
-            {
-              "name": "Flood Event Database",
-              "url": "http://gmesmifmass.net"
-            },
-            {
-              "name": "Wetlands & Flood Management Network (AF-WEN)"
-            }
-          ]
-        },
         "members": [
           {
             "name": "Centre de Suivi Ecologique (CSE)",
-            "country": "Senegal (Lead)"
+            "country": "Senegal",
+            "iso_a2": "SN",
+            "iso_a3": "SEN"
           },
           {
             "name": "National Water Institute (NWI)",
-            "country": "Benin"
+            "country": "Benin",
+            "iso_a2": "BJ",
+            "iso_a3": "BEN"
           },
           {
             "name": "Institute of Geography of Burkina (IGB)",
-            "country": "Burkina-Faso"
+            "country": "Burkina Faso",
+            "iso_a2": "BF",
+            "iso_a3": "BFA"
           },
           {
             "name": "Volta Basin Authority (VBA)",
-            "country": "Burkina Faso"
+            "country": "Burkina Faso",
+            "iso_a2": "BF",
+            "iso_a3": "BFA"
           },
           {
             "name": "Higher Institute of Spatial and Telecommunications Studies (ISESTEL)",
-            "country": "Burkina Faso"
+            "country": "Burkina Faso",
+            "iso_a2": "BF",
+            "iso_a3": "BFA"
           },
           {
             "name": "University Research and Application Center in Remote Sensing (CURAT)",
-            "country": "Côte d'Ivoire"
+            "country": "Côte d'Ivoire",
+            "iso_a2": "CI",
+            "iso_a3": "CIV"
           },
           {
             "name": "Center for Remote Sensing and Geographic Information Services (CERSGIS)",
-            "country": "Ghana"
+            "country": "Ghana",
+            "iso_a2": "GH",
+            "iso_a3": "GHA"
           },
           {
             "name": "Center for Scientific and Industrial Research (CSIR)",
-            "country": "Ghana"
+            "country": "Ghana",
+            "iso_a2": "GH",
+            "iso_a3": "GHA"
           },
           {
             "name": "University of Ghana (UG)",
-            "country": "Ghana"
+            "country": "Ghana",
+            "iso_a2": "GH",
+            "iso_a3": "GHA"
           },
           {
             "name": "Department of Parks and Wildlife (DPW)",
-            "country": "Gambia"
+            "country": "Gambia",
+            "iso_a2": "GM",
+            "iso_a3": "GMB"
           },
           {
             "name": "National Directorate of Living Environment, Surveillance, and Environmental Observation (DNCSOE)",
-            "country": "Guinea"
+            "country": "Guinea",
+            "iso_a2": "GN",
+            "iso_a3": "GIN"
           },
           {
             "name": "National Directorate of Water and Forests (DNEF)",
-            "country": "Mali"
+            "country": "Mali",
+            "iso_a2": "ML",
+            "iso_a3": "MLI"
           },
           {
             "name": "Division of Wildlife, Hunting and Protected Areas (DFC/AP)",
-            "country": "Niger"
+            "country": "Niger",
+            "iso_a2": "NE",
+            "iso_a3": "NER"
           },
           {
             "name": "Space for Humanity Foundation",
-            "country": "Nigeria"
+            "country": "Nigeria",
+            "iso_a2": "NG",
+            "iso_a3": "NGA"
           },
           {
             "name": "National Parks Directorate",
-            "country": "Senegal"
+            "country": "Senegal",
+            "iso_a2": "SN",
+            "iso_a3": "SEN"
           },
           {
             "name": "Center for Space Science and Technology Education (CSSTE)",
-            "country": "Nigeria"
+            "country": "Nigeria",
+            "iso_a2": "NG",
+            "iso_a3": "NGA"
           }
         ],
         "logo": "data:image/png;base64,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"
@@ -346,79 +375,78 @@
         "leadCountry": "South Africa",
         "region": "Southern Africa & Indian Ocean",
         "thematicFocus": "Marine & Coastal",
-        "description": "Provides decision-making services to promote sustainable management of marine resources, improve marine governance, and stimulate the blue economy in South and East African regions.",
-        "services": [
-          "Marine and Maritime",
-          "Aquaculture and Fisheries",
-          "Coastal Services"
-        ],
-        "digitalPlatforms": {
-          "website": "https://marcosouth.org",
-          "blog": "https://blog.marcosouth.org",
-          "geoportal": "https://marcosouth.org/geoportal",
-          "applications": [
-            {
-              "name": "Marine Traffic Dashboard (AIS data)"
-            },
-            {
-              "name": "Sea Rescue Tool"
-            },
-            {
-              "name": "Coral Bleaching Service"
-            },
-            {
-              "name": "Aquaculture Site Monitoring"
-            }
-          ]
-        },
         "members": [
           {
             "name": "Council for Scientific and Industrial Research (CSIR)",
-            "country": "South Africa (Lead)"
+            "country": "South Africa",
+            "iso_a2": "ZA",
+            "iso_a3": "ZAF"
           },
           {
             "name": "ABALOBI research group",
-            "country": "South Africa"
+            "country": "South Africa",
+            "iso_a2": "ZA",
+            "iso_a3": "ZAF"
           },
           {
             "name": "Benguela Current Convention",
-            "country": "Namibia"
+            "country": "Namibia",
+            "iso_a2": "NA",
+            "iso_a3": "NAM"
           },
           {
             "name": "Coastal Oceans Research and Development Indian Ocean",
-            "country": "Kenya"
+            "country": "Kenya",
+            "iso_a2": "KE",
+            "iso_a3": "KEN"
           },
           {
             "name": "Institut Halieutique et des Sciences Marines",
-            "country": "Madagascar"
+            "country": "Madagascar",
+            "iso_a2": "MG",
+            "iso_a3": "MDG"
           },
           {
             "name": "Institute for Marine Science",
-            "country": "Tanzania"
+            "country": "Tanzania",
+            "iso_a2": "TZ",
+            "iso_a3": "TZA"
           },
           {
             "name": "Kenya Marine Fisheries Research Institute",
-            "country": "Kenya"
+            "country": "Kenya",
+            "iso_a2": "KE",
+            "iso_a3": "KEN"
           },
           {
             "name": "Mauritius Oceanography Institute",
-            "country": "Mauritius"
+            "country": "Mauritius",
+            "iso_a2": "MU",
+            "iso_a3": "MUS"
           },
           {
             "name": "National Sea Rescue Institute",
-            "country": "South Africa"
+            "country": "South Africa",
+            "iso_a2": "ZA",
+            "iso_a3": "ZAF"
           },
           {
             "name": "Tanzania Fisheries and Research Institute",
-            "country": "Tanzania"
+            "country": "Tanzania",
+            "iso_a2": "TZ",
+            "iso_a3": "TZA"
           },
           {
             "name": "University of Eduardo Mondlane",
-            "country": "Mozambique"
+            "country": "Mozambique",
+            "iso_a2": "MZ",
+            "iso_a3": "MOZ"
           },
           {
             "name": "West Indian Ocean Marine Science Association",
-            "country": "Tanzania"
+            "country": "Tanzania",
+            "iso_a2": "TZ",
+            "iso_a3": "TZA"
           }
         ],
         "logo": "https://marcosio.org/wp-content/uploads/2022/08/MarCoSio-Logo.png"
@@ -430,62 +458,48 @@
         "leadCountry": "Kenya",
         "region": "Eastern Africa",
         "thematicFocus": "Water & Natural Resources",
-        "description": "Facilitates access and utilization of EO data and technologies for sustainable development in Natural Resource and Food Security Management in the East Africa region.",
-        "services": [
-          "Natural Habitats Monitoring",
-          "Forest Monitoring",
-          "Agriculture Monitoring",
-          "Rangeland Monitoring"
-        ],
-        "digitalPlatforms": {
-          "website": "https://www.icpac.net/programmes/gmes-africa",
-          "blog": "https://blog.icpac.net",
-          "geoportal": "http://geoportal.icpac.net",
-          "applications": [
-            {
-              "name": "ICPAC Data Center",
-              "url": "http://gmes.icpac.net/datacenter"
-            },
-            {
-              "name": "Early Warning System",
-              "url": "https://cafws.africaeo-services.ma"
-            },
-            {
-              "name": "Drought & Seasonal Forecast Apps"
-            },
-            {
-              "name": "Forest Monitoring Dashboard"
-            }
-          ]
-        },
         "members": [
           {
             "name": "IGAD Climate Prediction & Applications Centre (ICPAC)",
-            "country": "Kenya (Lead)"
+            "country": "Kenya",
+            "iso_a2": "KE",
+            "iso_a3": "KEN"
           },
           {
             "name": "Wildlife Research and Training Institute (WRTI)",
-            "country": "Kenya"
+            "country": "Kenya",
+            "iso_a2": "KE",
+            "iso_a3": "KEN"
           },
           {
             "name": "Tanzania Forest Service Agency (TFS)",
-            "country": "Tanzania"
+            "country": "Tanzania",
+            "iso_a2": "TZ",
+            "iso_a3": "TZA"
           },
           {
             "name": "Makerere University",
-            "country": "Uganda"
+            "country": "Uganda",
+            "iso_a2": "UG",
+            "iso_a3": "UGA"
           },
           {
             "name": "Ministry of Land, Water and Environment",
-            "country": "Eritrea"
+            "country": "Eritrea",
+            "iso_a2": "ER",
+            "iso_a3": "ERI"
           },
           {
             "name": "Ministry of Livestock, Forestry and Range",
-            "country": "Somalia"
+            "country": "Somalia",
+            "iso_a2": "SO",
+            "iso_a3": "SOM"
           },
           {
             "name": "Uganda Wildlife Authority (UWA)",
-            "country": "Uganda"
+            "country": "Uganda",
+            "iso_a2": "UG",
+            "iso_a3": "UGA"
           }
         ],
         "logo": "https://www.icpac.net/media/images/ICPAC_LOGO_WithSLogan.width-800.png"
@@ -496,63 +510,54 @@
         "leadInstitution": "Sahara and Sahel Observatory (OSS)",
         "leadCountry": "Tunisia",
         "region": "North Africa",
-        "thematicFocus": "Water & Natural Resources",
-        "description": "Aims to improve water and natural resource management to combat drought, desertification, and land degradation, and to improve food security.",
-        "countriesCovered": "Algeria, Egypt, Libya, Morocco, and Tunisia.",
-        "services": [
-          "Seasonal Agriculture Monitoring and Early Warning",
-          "Estimating withdrawals and Water Use Monitoring in irrigated areas",
-          "Land Degradation Monitoring"
-        ],
-        "digitalPlatforms": {
-          "website": "https://www.oss-online.org/fr/terre/gmes-africa",
-          "blog": "https://oss-online.org/blog",
-          "geoportal": "MISBAR: http://misbar.oss-online.org, MISLAND: http://misland.oss-online.org",
-          "applications": [
-            {
-              "name": "GuetCrop App",
-              "url": "https://guetcrop.org"
-            },
-            {
-              "name": "MISLAND-Africa Land Degradation Platform"
-            },
-            {
-              "name": "Agriculture & Water Monitoring Dashboard"
-            }
-          ]
-        },
         "members": [
           {
             "name": "Observatoire du Sahara et du Sahel (OSS)",
-            "country": "Tunisia (Lead)"
+            "country": "Tunisia",
+            "iso_a2": "TN",
+            "iso_a3": "TUN"
           },
           {
             "name": "UN-affiliated African Regional Centre for Space Science and Technology Education- in French Language (CRASTE-LF)",
-            "country": "Morocco"
+            "country": "Morocco",
+            "iso_a2": "MA",
+            "iso_a3": "MAR"
           },
           {
             "name": "Regional Remote Sensing Center for North African States (CRTEAN)",
-            "country": "Tunisia"
+            "country": "Tunisia",
+            "iso_a2": "TN",
+            "iso_a3": "TUN"
           },
           {
             "name": "National Center for Cartography and Remote Sensing (CNCT)",
-            "country": "Tunisia"
+            "country": "Tunisia",
+            "iso_a2": "TN",
+            "iso_a3": "TUN"
           },
           {
             "name": "Desert Research Center (DRC)",
-            "country": "Egypt"
+            "country": "Egypt",
+            "iso_a2": "EG",
+            "iso_a3": "EGY"
           },
           {
             "name": "Libyan Center for Remote Sensing and Space Sciences",
-            "country": "Libya"
+            "country": "Libya",
+            "iso_a2": "LY",
+            "iso_a3": "LBY"
           },
           {
             "name": "University of Nouakchott Al-Aasriya",
-            "country": "Mauritania"
+            "country": "Mauritania",
+            "iso_a2": "MR",
+            "iso_a3": "MRT"
           },
           {
             "name": "TENMIYA NGO",
-            "country": "Mauritania"
+            "country": "Mauritania",
+            "iso_a2": "MR",
+            "iso_a3": "MRT"
           }
         ],
         "logo": "https://www.oss-online.org/sites/default/files/logo-h.png"
@@ -563,79 +568,78 @@
         "leadInstitution": "The Regional Centre for Mapping of Resources for Development (RCMRD)",
         "leadCountry": "Kenya (Nairobi)",
         "region": "Eastern Africa",
-        "thematicFocus": "Water & Natural Resources",
-        "description": "Aims to improve livelihoods by supporting decision-making processes using EO data, focusing on land degradation and wetlands.",
-        "countriesCovered": "Comoros, Djibouti, Eritrea, Ethiopia, Kenya, Rwanda, South Sudan, Sudan, and Uganda.",
-        "services": [
-          "Land Degradation Monitoring and Assessment",
-          "Wetlands Monitoring and Assessment",
-          "Open Geographical Regional Reference Vector Database for Water and Agro-Ecological Zonings"
-        ],
-        "digitalPlatforms": {
-          "website": "https://www.rcmrd.org/gmesafrica",
-          "blog": "https://blog.rcmrd.org",
-          "geoportal": "https://gmesgeoportal.rcmrd.org",
-          "e-learning": "https://learn.rcmrd.org",
-          "applications": [
-            {
-              "name": "Land Degradation Dashboard"
-            },
-            {
-              "name": "Wetland Assessment Tool"
-            },
-            {
-              "name": "Open Vector Database for Agro-ecological Zoning"
-            }
-          ]
-        },
         "members": [
           {
             "name": "Regional Centre for Mapping of Resources for Development (RCMRD)",
-            "country": "Kenya (Lead)"
+            "country": "Kenya",
+            "iso_a2": "KE",
+            "iso_a3": "KEN"
           },
           {
             "name": "Makerere University",
-            "country": "Uganda"
+            "country": "Uganda",
+            "iso_a2": "UG",
+            "iso_a3": "UGA"
           },
           {
             "name": "Ethiopia Space Technology and Geospatial Institute (ESTGI)",
-            "country": "Ethiopia"
+            "country": "Ethiopia",
+            "iso_a2": "ET",
+            "iso_a3": "ETH"
           },
           {
             "name": "Rwanda Water Resources Board",
-            "country": "Rwanda"
+            "country": "Rwanda",
+            "iso_a2": "RW",
+            "iso_a3": "RWA"
           },
           {
             "name": "Higher Council for Environment and Natural Resources (HCENR)",
-            "country": "Sudan"
+            "country": "Sudan",
+            "iso_a2": "SD",
+            "iso_a3": "SDN"
           },
           {
             "name": "Department of Resource Surveys and Remote Sensing (DRSRS)",
-            "country": "Kenya"
+            "country": "Kenya",
+            "iso_a2": "KE",
+            "iso_a3": "KEN"
           },
           {
             "name": "Ministry of Land, Water and Environment",
-            "country": "Eritrea"
+            "country": "Eritrea",
+            "iso_a2": "ER",
+            "iso_a3": "ERI"
           },
           {
             "name": "Department of GIS, Remote Sensing and Cartography",
-            "country": "South Sudan"
+            "country": "South Sudan",
+            "iso_a2": "SS",
+            "iso_a3": "SSD"
           },
           {
             "name": "National Bureau of Statistics (NBS)",
-            "country": "South Sudan"
+            "country": "South Sudan",
+            "iso_a2": "SS",
+            "iso_a3": "SSD"
           },
           {
             "name": "Cellule Cartograhie de la DATUH Mapping Unit",
-            "country": "Comoros"
+            "country": "Comoros",
+            "iso_a2": "KM",
+            "iso_a3": "COM"
           },
           {
             "name": "Ministry of Environment and Sustainable Development",
-            "country": "Djibouti"
+            "country": "Djibouti",
+            "iso_a2": "DJ",
+            "iso_a3": "DJI"
           },
           {
             "name": "Forest Services Agency (TFS) / Almaas University",
-            "country": "Tanzania / Somalia"
+            "country": "Somalia",
+            "iso_a2": "SO",
+            "iso_a3": "SOM"
           }
         ],
         "logo": "https://phosphor.utils.elfsightcdn.com/?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1580193677904863240%2FiKNVj99r_400x400.jpg"
@@ -646,63 +650,57 @@
         "leadInstitution": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
         "leadCountry": "Namibia",
         "region": "Southern Africa",
-        "thematicFocus": "Water & Natural Resources",
-        "description": "Aims to operationalize the WeMAST Geoportal to better manage wetlands in Southern Africa, supporting evidence-based decision-making for sustainable wetland management.",
-        "services": [
-          "Wetland Assessment and Monitoring"
-        ],
-        "digitalPlatforms": {
-          "website": "https://wemast.sasscal.org",
-          "blog": "https://blog.wemast.sasscal.org",
-          "geoportal": "https://wemast.sasscal.org/geoportal",
-          "e-learning": "https://training.sasscal.org",
-          "applications": [
-            {
-              "name": "WeMAST Mobile App (Android)"
-            },
-            {
-              "name": "Wetland Status & Trend Viewer"
-            },
-            {
-              "name": "Data Collection Framework for Field Teams"
-            }
-          ]
-        },
         "members": [
           {
             "name": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
-            "country": "Namibia (Lead)"
+            "country": "Namibia",
+            "iso_a2": "NA",
+            "iso_a3": "NAM"
           },
           {
             "name": "University of Western Cape",
-            "country": "South Africa"
+            "country": "South Africa",
+            "iso_a2": "ZA",
+            "iso_a3": "ZAF"
           },
           {
             "name": "University of Botswana",
-            "country": "Botswana"
+            "country": "Botswana",
+            "iso_a2": "BW",
+            "iso_a3": "BWA"
           },
           {
             "name": "University of Zambia",
-            "country": "Zambia"
+            "country": "Zambia",
+            "iso_a2": "ZM",
+            "iso_a3": "ZMB"
           },
           {
             "name": "University of Namibia",
-            "country": "Namibia"
+            "country": "Namibia",
+            "iso_a2": "NA",
+            "iso_a3": "NAM"
           },
           {
             "name": "Midlands State University",
-            "country": "Zimbabwe"
+            "country": "Zimbabwe",
+            "iso_a2": "ZW",
+            "iso_a3": "ZWE"
           },
           {
             "name": "National Remote Sensing Centre",
-            "country": "Zambia"
+            "country": "Zambia",
+            "iso_a2": "ZM",
+            "iso_a3": "ZMB"
           },
           {
             "name": "WaterNet, SADC",
-            "country": "Botswana"
+            "country": "Botswana",
+            "iso_a2": "BW",
+            "iso_a3": "BWA"
           }
         ],
-        "logo": "https://sasscal.org/wp-content/uploads/2023/02/sasscal.jpg"
+        "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkC_8XA8nwyybwHAwospvKhfgYuJuWLU9S3w&scd "
       },
       {
         "name": "Marine and Coastal Areas Management in North and West Africa",
@@ -710,70 +708,72 @@
         "leadInstitution": "University of Ghana (UG)",
         "leadCountry": "Ghana",
         "region": "North & West Africa",
-        "thematicFocus": "Marine & Coastal",
-        "description": "Provides decision-makers with EO information and tools to effectively manage regional marine and coastal resources, addressing challenges like illegal fishing, oil pollution, and coastal erosion.",
-        "countriesCovered": "18 coastal countries in West and North Africa.",
-        "services": [
-          "Coastline Changes",
-          "Oil Spills",
-          "Potential Fishing Zones (PFZs) & Vessel Traffic",
-          "Ocean Weather"
-        ],
-        "digitalPlatforms": {
-          "website": "httpsGmes.rmc.africa",
-          "blog": "https://blog.rmc.africa",
-          "geoportal": "https://geoportal.gmes.ug.edu.gh",
-          "applications": [
-            {
-              "name": "NAFCOAST Portal",
-              "url": "https://nafcoast.org"
-            }
-          ]
-        },
         "members": [
           {
             "name": "University of Ghana (UG)",
-            "country": "Ghana (Lead)"
+            "country": "Ghana",
+            "iso_a2": "GH",
+            "iso_a3": "GHA"
           },
           {
             "name": "Nigerian Institute for Oceanography and Marine Research (NIOMR)",
-            "country": "Nigeria"
+            "country": "Nigeria",
+            "iso_a2": "NG",
+            "iso_a3": "NGA"
           },
           {
             "name": "Centre Universitaire De Recherche d'Application en Télédétection (CURAT)",
-            "country": "Cote d'Ivoire"
+            "country": "Côte d'Ivoire",
+            "iso_a2": "CI",
+            "iso_a3": "CIV"
           },
           {
             "name": "Institut de Recherches Halieutiques et Océanologiques du Bénin (IRHOB)",
-            "country": "Benin"
+            "country": "Benin",
+            "iso_a2": "BJ",
+            "iso_a3": "BEN"
           },
           {
             "name": "Centre for Oceanographic Research of Dakar-Thiaroye (CRODT)",
-            "country": "Senegal"
+            "country": "Senegal",
+            "iso_a2": "SN",
+            "iso_a3": "SEN"
           },
           {
             "name": "Ghana Meteorological Agency (GMet)",
-            "country": "Ghana"
+            "country": "Ghana",
+            "iso_a2": "GH",
+            "iso_a3": "GHA"
           },
           {
             "name": "Centre for the Environment for Arab Region and Europe (CEDARE)",
-            "country": "Egypt"
+            "country": "Egypt",
+            "iso_a2": "EG",
+            "iso_a3": "EGY"
           },
           {
             "name": "Centre d'Etudes et de Recherche des Télécommunications (CERT)",
-            "country": "Tunisia"
+            "country": "Tunisia",
+            "iso_a2": "TN",
+            "iso_a3": "TUN"
           },
           {
             "name": "Chouaib Doukkali University (UCD)",
-            "country": "Morocco"
+            "country": "Morocco",
+            "iso_a2": "MA",
+            "iso_a3": "MAR"
           },
           {
             "name": "Nature Today (NT)",
-            "country": "Ghana"
+            "country": "Ghana",
+            "iso_a2": "GH",
+            "iso_a3": "GHA"
           },
           {
             "name": "Edenway Foundation",
-            "country": "Ghana"
+            "country": "Ghana",
+            "iso_a2": "GH",
+            "iso_a3": "GHA"
           }
         ],
         "logo": "https://geoportal.gmes.ug.edu.gh/assets/MarCNoWA_blue.509ffdfd.jpeg"

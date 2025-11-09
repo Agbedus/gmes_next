@@ -1,0 +1,515 @@
+{
+  "gmesAndAfricaPhase1": {
+    "programDetails": {
+      "name": "GMES & Africa Phase I",
+      "timeline": "Jan 2017 - Dec 2021",
+      "description": "Joint AU–EU programme leveraging Copernicus EO data to support sustainable management of natural, water, marine and coastal resources, and to strengthen African capacity for EO-informed policy and planning.",
+      "funders": [
+        {
+          "name": "African Union Commission",
+          "role": "Implementer / Co-funder"
+        },
+        {
+          "name": "European Union",
+          "role": "Co-funder"
+        }
+      ],
+      "budget": {
+        "total": "€ 21 M",
+        "euContribution": "N/A"
+      },
+      "thematicFocus": [
+        "Water & Natural Resources",
+        "Marine & Coastal"
+      ]
+    },
+    "strategicFramework": {
+      "pillars_LogFrame": [
+        { "id": "WP1", "name": "Policy & institutional framework" },
+        { "id": "WP2", "name": "EO data access" },
+        { "id": "WP3", "name": "EO operational framework / EO information services" },
+        { "id": "WP4", "name": "Capacity Building" },
+        { "id": "WP5", "name": "Knowledge mgt. & cross-fertilisation" },
+        { "id": "WP6", "name": "Outreach, uptake & dissemination" }
+      ],
+      "alignment": {
+        "continentalPolicies": [
+          "Agenda 2063",
+          "Science, Technology and Innovation Strategy for Africa (STISA)",
+          "African Space Policy and Strategy"
+        ],
+        "globalAgendas": {
+          "sdgs": [
+            "SDG 6",
+            "SDG 13",
+            "SDG 14",
+            "SDG 15"
+          ],
+          "agenda2063": []
+        }
+      }
+    },
+    "keyImpactMetrics": {
+      "snapshotDate": "Dec 2021",
+      "reach": {
+        "countriesInvolved": "45 African + 6 European",
+        "institutionsInvolved": "≥ 122 (incl. ~20 African private companies & ~20 universities/training centres)",
+        "policyAgreements": "EC–AUC Copernicus data access agreement (June 2018)"
+      },
+      "infrastructure": {
+        "eStationsOperational": "12 (newly delivered and installed)",
+        "legacySystemsMaintained": "188 (PUMA & MESA systems)",
+        "operationalGeoportals": "10"
+      },
+      "services": {
+        "totalOperationalServices": "30",
+        "applicationsAddressed": "≥ 31",
+        "examples": [
+          "Flood monitoring and assessment",
+          "Land degradation monitoring",
+          "Crop mapping",
+          "Oil spill detection",
+          "Coastal erosion assessment",
+          "Potential Fishing Zone (PFZ) bulletins"
+        ]
+      },
+      "capacityBuilding": {
+        "participantsTrained": "~5,000",
+        "totalTrainingDays": "~19,000",
+        "scholarshipsAwarded": "46+ graduate students sponsored; 9 internships",
+        "institutionsInvolved_GAAN": {
+          "universities": "27"
+        }
+      },
+      "engagementAndOutreach": {
+        "usersReached": "> 700,000",
+        "digitalPlatforms": "60+ (websites, social media)",
+        "blogWebMetrics": "26,500 users; 93,636 page views (as of 12/2021)"
+      },
+      "crossCutting": {}
+    },
+    "digitalEcosystem": {
+      "continentalPlatforms": [],
+      "socialMedia": {}
+    },
+    "consortia": [
+      {
+        "name": "Water and Natural Resources Management in Central Africa (GERNAC)",
+        "acronym": "GERNAC",
+        "leadInstitution": "International Commission for the Congo-Oubangui-Sangha Basin (CICOS)",
+        "leadCountry": "DRC",
+        "region": "Central Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "Integrated EO services for water and natural resources, focusing on navigation, hydrological balance and flooded areas dynamics.",
+        "services": [
+          "Monitoring of water levels for river navigation",
+          "Monitoring the hydrological balance",
+          "Monitoring the dynamics of flooded areas",
+          "Invasive aquatic vegetation mapping"
+        ],
+        "digitalPlatforms": {
+          "website": "https://www.cicos.int",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Lake Chad Basin Commission (CBLT)", "country": "Chad", "iso_a2": "TD", "iso_a3": "TCD" },
+          { "name": "Research Centre on Hydrology (CRH)", "country": "Cameroon", "iso_a2": "CM", "iso_a3": "CMR" },
+          { "name": "Central African Forests Satellite Observatory (OSFAC)", "country": "Democratic Republic of the Congo", "iso_a2": "CD", "iso_a3": "COD" },
+          { "name": "University of Kinshasa (UNIKIN-FACAGRO-GRN)", "country": "Democratic Republic of the Congo", "iso_a2": "CD", "iso_a3": "COD" },
+          { "name": "Waterways Management Authority (RVF)", "country": "Democratic Republic of the Congo", "iso_a2": "CD", "iso_a3": "COD" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Monitoring Natural Resources and Food Security in East Africa Region",
+        "acronym": "ICPAC Consortium",
+        "leadInstitution": "IGAD Climate Prediction and Applications Centre (ICPAC)",
+        "leadCountry": "Kenya",
+        "region": "Eastern Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "EO-based monitoring of natural habitats, forests, rangelands and seasonal crop conditions to strengthen regional food security.",
+        "services": [
+          "Natural Habitats monitoring",
+          "Tropical Forests monitoring",
+          "Rangelands monitoring",
+          "Seasonal crop conditions assessment"
+        ],
+        "digitalPlatforms": {
+          "website": "https://gmes.icpac.net",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Kenya Wildlife Service (KWS)", "country": "Kenya", "iso_a2": "KE", "iso_a3": "KEN" },
+          { "name": "Makerere University", "country": "Uganda", "iso_a2": "UG", "iso_a3": "UGA" },
+          { "name": "Sudan Meteorological Authority (SMAR)", "country": "Sudan", "iso_a2": "SD", "iso_a3": "SDN" },
+          { "name": "Tanzania Forest Services Agency (TFSA)", "country": "Tanzania", "iso_a2": "TZ", "iso_a3": "TZA" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Regional Centre for Mapping of Resources for Development",
+        "acronym": "RCMRD Consortium",
+        "leadInstitution": "Regional Centre for Mapping of Resources for Development (RCMRD)",
+        "leadCountry": "Kenya",
+        "region": "Eastern Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "EO services for land degradation and wetlands, plus an open regional reference vector database.",
+        "services": [
+          "Land degradation monitoring and assessment",
+          "Wetlands monitoring and assessment",
+          "Open Geographical Regional Reference Vector Database"
+        ],
+        "digitalPlatforms": {
+          "website": "https://gmes.rcmrd.org",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Ethiopian Mapping Agency", "country": "Ethiopia", "iso_a2": "ET", "iso_a3": "ETH" },
+          { "name": "Makerere University", "country": "Uganda", "iso_a2": "UG", "iso_a3": "UGA" },
+          { "name": "Rwanda Water and Forest Authority", "country": "Rwanda", "iso_a2": "RW", "iso_a3": "RWA" },
+          { "name": "Higher Council for Environment and Natural Resources (HCENR)", "country": "Sudan", "iso_a2": "SD", "iso_a3": "SDN" },
+          { "name": "National Bureau of Statistics (NBS)", "country": "South Sudan", "iso_a2": "SS", "iso_a3": "SSD" },
+          { "name": "Ministry of Land, Water and Environment", "country": "Eritrea", "iso_a2": "ER", "iso_a3": "ERI" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Wetland Assessment and Monitoring Platform for Transboundary River Basins in Southern Africa (WeMAST)",
+        "acronym": "WeMAST",
+        "leadInstitution": "Southern Africa Science Centre for Climate Change and Adaptive Land Management (SASSCAL)",
+        "leadCountry": "Namibia",
+        "region": "Southern Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "Platform for assessment and monitoring of wetlands in transboundary river basins (Cuvelai, Okavango, Limpopo, Zambezi).",
+        "services": [
+          "Wetland inventory and change analysis",
+          "Water quality monitoring",
+          "Early warning systems for wetlands"
+        ],
+        "digitalPlatforms": {
+          "website": "http://wemast.sasscal.org",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Midlands State University (MSU)", "country": "Zimbabwe", "iso_a2": "ZW", "iso_a3": "ZWE" },
+          { "name": "National Remote Sensing Centre (NRSC)", "country": "Zambia", "iso_a2": "ZM", "iso_a3": "ZMB" },
+          { "name": "South African National Space Agency (SANSA)", "country": "South Africa", "iso_a2": "ZA", "iso_a3": "ZAF" },
+          { "name": "University of Botswana", "country": "Botswana", "iso_a2": "BW", "iso_a3": "BWA" },
+          { "name": "University of the Western Cape (UWC)", "country": "South Africa", "iso_a2": "ZA", "iso_a3": "ZAF" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Land Degradation Monitoring and Assessment",
+        "acronym": "OSS Consortium",
+        "leadInstitution": "Observatoire du Sahara et du Sahel (OSS)",
+        "leadCountry": "Tunisia",
+        "region": "North Africa & Sahel",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "EO tools for monitoring land degradation and seasonal agriculture; water use monitoring in irrigated areas.",
+        "services": [
+          "Monitoring land degradation status and trends (MISLAND)",
+          "Seasonal Agriculture Monitoring and Early Warning (MISBAR)",
+          "Estimating withdrawals and water use in irrigated areas"
+        ],
+        "digitalPlatforms": {
+          "website": "http://gmes.oss-online.org",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Algerian Space Agency (ASA)", "country": "Algeria", "iso_a2": "DZ", "iso_a3": "DZA" },
+          { "name": "Centre for Environment and Development for the Arab Region and Europe (CEDARE)", "country": "Egypt", "iso_a2": "EG", "iso_a3": "EGY" },
+          { "name": "Centre National de la Cartographie et de la Télédétection (CNCT)", "country": "Tunisia", "iso_a2": "TN", "iso_a3": "TUN" },
+          { "name": "Royal Centre for Remote Sensing and Space Studies (CRTS)", "country": "Morocco", "iso_a2": "MA", "iso_a3": "MAR" },
+          { "name": "Chouaib Doukkali University (UCD)", "country": "Morocco", "iso_a2": "MA", "iso_a3": "MAR" },
+          { "name": "Libyan Center for Remote Sensing and Space Science (LCRSSS)", "country": "Libya", "iso_a2": "LY", "iso_a3": "LBY" },
+          { "name": "Centre d’Etudes et de Recherche des Télécommunications (CERT)", "country": "Tunisia", "iso_a2": "TN", "iso_a3": "TUN" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Multi-scale Flood Monitoring and Assessment Services for West Africa (MiFMASS)",
+        "acronym": "MiFMASS",
+        "leadInstitution": "University of Ghana",
+        "leadCountry": "Ghana",
+        "region": "West Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "Multi-scale flood monitoring, forecasting and damage assessment to reduce disaster risk in vulnerable countries.",
+        "services": [
+          "Flood Event Database development",
+          "Flood Forecasting and Assessment System",
+          "Flood extent mapping",
+          "Damage assessment module"
+        ],
+        "digitalPlatforms": {
+          "website": "http://gmes.ug.edu.gh",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "CURAT", "country": "Côte d'Ivoire", "iso_a2": "CI", "iso_a3": "CIV" },
+          { "name": "Institut Supérieur d'Études Spatiales et Télécommunications (ISESTEL)", "country": "Burkina Faso", "iso_a2": "BF", "iso_a3": "BFA" },
+          { "name": "National Water Institute (INE)", "country": "Benin", "iso_a2": "BJ", "iso_a3": "BEN" },
+          { "name": "Volta Basin Authority (VBA)", "country": "Burkina Faso", "iso_a2": "BF", "iso_a3": "BFA" },
+          { "name": "Water Research Institute, CSIR (WRI-CSIR)", "country": "Ghana", "iso_a2": "GH", "iso_a3": "GHA" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Water and Natural Resources Management in West Africa",
+        "acronym": "CSE Consortium",
+        "leadInstitution": "Centre de Suivi Ecologique (CSE)",
+        "leadCountry": "Senegal",
+        "region": "West Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "EO services for rangelands, agriculture, coastal erosion and water resources to support decision-making.",
+        "services": [
+          "Rangeland and pasture monitoring",
+          "Agricultural monitoring",
+          "Coastal erosion monitoring",
+          "Water resource applications"
+        ],
+        "digitalPlatforms": {
+          "website": "http://www.cse.sn/gmes-africa",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "CURAT", "country": "Côte d'Ivoire", "iso_a2": "CI", "iso_a3": "CIV" },
+          { "name": "CERSGIS", "country": "Ghana", "iso_a2": "GH", "iso_a3": "GHA" },
+          { "name": "Direction Nationale de l'Environnement et des Forêts (DNEF)", "country": "Mali", "iso_a2": "ML", "iso_a3": "MLI" },
+          { "name": "Institut de Géographie du Burkina (IGB)", "country": "Burkina Faso", "iso_a2": "BF", "iso_a3": "BFA" },
+          { "name": "Direction de la Planification et de la Modernisation des Services de l'Eau (DPMW)", "country": "Gambia", "iso_a2": "GM", "iso_a3": "GMB" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Marine and Coastal Operations for Southern Africa (MarCOSouth)",
+        "acronym": "MarCOSouth",
+        "leadInstitution": "Council for Scientific and Industrial Research (CSIR)",
+        "leadCountry": "South Africa",
+        "region": "Southern & Eastern Africa",
+        "thematicFocus": "Marine & Coastal",
+        "description": "Marine and coastal services supporting fisheries, maritime safety and socio-economic development.",
+        "services": [
+          "Monitoring and forecasting physical & biological oceanography variables",
+          "Coastal vulnerability indices mapping",
+          "Fisheries support tools (e.g., ABALOBI app)",
+          "Marine & Maritime Service (ship traffic, safety at sea)"
+        ],
+        "digitalPlatforms": {
+          "website": "http://gmes.sas.csir.co.za",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "ABALOBI (AI4F)", "country": "South Africa", "iso_a2": "ZA", "iso_a3": "ZAF" },
+          { "name": "Benguela Current Convention (BCC)", "country": "Namibia", "iso_a2": "NA", "iso_a3": "NAM" },
+          { "name": "CORDIO", "country": "Kenya", "iso_a2": "KE", "iso_a3": "KEN" },
+          { "name": "Eduardo Mondlane University (EMU)", "country": "Mozambique", "iso_a2": "MZ", "iso_a3": "MOZ" },
+          { "name": "Institute for Marine Science, University of Dar es Salaam (IMSUDS)", "country": "Tanzania", "iso_a2": "TZ", "iso_a3": "TZA" },
+          { "name": "National Sea Rescue Institute (NSRI)", "country": "South Africa", "iso_a2": "ZA", "iso_a3": "ZAF" },
+          { "name": "WIOMSA", "country": "Tanzania", "iso_a2": "TZ", "iso_a3": "TZA" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Coastal and Marine Services for the Indian Ocean",
+        "acronym": "MOI Consortium",
+        "leadInstitution": "Mauritius Oceanography Institute (MOI)",
+        "leadCountry": "Mauritius",
+        "region": "Western Indian Ocean & Eastern Africa",
+        "thematicFocus": "Marine & Coastal",
+        "description": "Operational marine and coastal services for Indian Ocean SIDS and neighbouring states.",
+        "services": [
+          "Mapping of Potential Fishing Zones (PFZ)",
+          "Coral reef and seagrass bed mapping",
+          "Coastal vulnerability assessment",
+          "Oil spill monitoring"
+        ],
+        "digitalPlatforms": {
+          "website": "https://www.moi.govmu.org",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Institut Halieutique et des Sciences Marines (IHSM)", "country": "Madagascar", "iso_a2": "MG", "iso_a3": "MDG" },
+          { "name": "Kenya Marine and Fisheries Research Institute (KMFRI)", "country": "Kenya", "iso_a2": "KE", "iso_a3": "KEN" },
+          { "name": "Seychelles Meteorological Authority (SMA)", "country": "Seychelles", "iso_a2": "SC", "iso_a3": "SYC" },
+          { "name": "Tanzania Fisheries Research Institute (TAFIRI)", "country": "Tanzania", "iso_a2": "TZ", "iso_a3": "TZA" },
+          { "name": "WIOMSA", "country": "Tanzania", "iso_a2": "TZ", "iso_a3": "TZA" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Developing an EO Operational Application for Coastal Ecosystems (NAfCOAST)",
+        "acronym": "NAfCOAST",
+        "leadInstitution": "National Authority for Remote Sensing and Space Science (NARSS)",
+        "leadCountry": "Egypt",
+        "region": "North Africa",
+        "thematicFocus": "Marine & Coastal",
+        "description": "EO tools for mapping, monitoring and assessing coastal ecosystems; oil spill monitoring; coastal vulnerability mapping.",
+        "services": [
+          "Coastal ecosystems mapping and monitoring",
+          "Assessment of coastal ecosystem status",
+          "Oil spill monitoring and assessment",
+          "Coastal vulnerability mapping"
+        ],
+        "digitalPlatforms": {
+          "website": "http://gmes.narss.sci.eg",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "CEDARE", "country": "Egypt", "iso_a2": "EG", "iso_a3": "EGY" },
+          { "name": "Chouaib Doukkali University (UCD)", "country": "Morocco", "iso_a2": "MA", "iso_a3": "MAR" },
+          { "name": "CERT", "country": "Tunisia", "iso_a2": "TN", "iso_a3": "TUN" },
+          { "name": "CRTS", "country": "Morocco", "iso_a2": "MA", "iso_a3": "MAR" },
+          { "name": "IMROP", "country": "Mauritania", "iso_a2": "MR", "iso_a3": "MRT" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Marine and Coastal Management in Western Africa (MarCNoWA)",
+        "acronym": "MarCNoWA",
+        "leadInstitution": "African Regional Centre for Space Science and Technology Education (CSSTE)",
+        "leadCountry": "Nigeria",
+        "region": "West Africa",
+        "thematicFocus": "Marine & Coastal",
+        "description": "Operational EO services to improve marine, fisheries and environmental policies in West Africa.",
+        "services": [
+          "Potential Fishing Zone charts (PFZ)",
+          "Monitoring and forecasting oceanographic variables",
+          "Coastal vulnerability indices",
+          "Coastal ecosystem/habitat mapping"
+        ],
+        "digitalPlatforms": {
+          "website": "http://gmes.csste-eapp.org",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Nigerian Institute for Oceanography and Marine Research (NIOMR)", "country": "Nigeria", "iso_a2": "NG", "iso_a3": "NGA" },
+          { "name": "CURAT", "country": "Côte d'Ivoire", "iso_a2": "CI", "iso_a3": "CIV" },
+          { "name": "Centre for Oceanographic Research of Dakar (CRODT)", "country": "Senegal", "iso_a2": "SN", "iso_a3": "SEN" },
+          { "name": "IRHOB", "country": "Benin", "iso_a2": "BJ", "iso_a3": "BEN" },
+          { "name": "Ghana Meteorological Agency (GMet)", "country": "Ghana", "iso_a2": "GH", "iso_a3": "GHA" },
+          { "name": "National Institute for Fisheries Development (INDP)", "country": "Cape Verde", "iso_a2": "CV", "iso_a3": "CPV" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Surveillance de la Forêt Equatoriale, Suivi et Evaluation (SEFAC)",
+        "acronym": "SEFAC",
+        "leadInstitution": "Agence Gabonaise d'Études et d'Observations Spatiales (AGEOS)",
+        "leadCountry": "Gabon",
+        "region": "Central Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "Operational EO services to monitor equatorial forest dynamics, illegal logging and land use/cover change.",
+        "services": [
+          "Forest cover change and logging activity monitoring",
+          "Protected areas and biodiversity hotspot mapping",
+          "Land use and land cover mapping"
+        ],
+        "digitalPlatforms": {
+          "website": "https://www.ageos.ga",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "COMIFAC", "country": "Cameroon", "iso_a2": "CM", "iso_a3": "CMR" },
+          { "name": "Office Burundais pour la Protection de l'Environnement (OBPE)", "country": "Burundi", "iso_a2": "BI", "iso_a3": "BDI" },
+          { "name": "Université de Yaoundé I", "country": "Cameroon", "iso_a2": "CM", "iso_a3": "CMR" },
+          { "name": "Ministère des Eaux et Forêts (MEF)", "country": "Gabon", "iso_a2": "GA", "iso_a3": "GAB" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "African Regional Centre for Space Science and Technology Education (EO-NA)",
+        "acronym": "CSSTE Consortium",
+        "leadInstitution": "African Regional Centre for Space Science and Technology Education (CSSTE)",
+        "leadCountry": "Nigeria",
+        "region": "North Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "Training and EO applications for water and land management across North African countries.",
+        "services": [
+          "Training and capacity building in EO applications",
+          "Water resource management applications",
+          "Land management applications"
+        ],
+        "digitalPlatforms": {
+          "website": "http://www.csste-eapp.org",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "NARSS", "country": "Egypt", "iso_a2": "EG", "iso_a3": "EGY" },
+          { "name": "CERT", "country": "Tunisia", "iso_a2": "TN", "iso_a3": "TUN" },
+          { "name": "CRTS", "country": "Morocco", "iso_a2": "MA", "iso_a3": "MAR" }
+        ],
+        "logo": ""
+      },
+      {
+        "name": "Water and Natural Resources Applications (SADC-CSC) — withdrew after 12 months",
+        "acronym": "SADC-CSC Consortium",
+        "leadInstitution": "SADC Climate Services Centre (SADC-CSC)",
+        "leadCountry": "Botswana",
+        "region": "Southern Africa",
+        "thematicFocus": "Water & Natural Resources",
+        "description": "EO applications for drought/flood monitoring, water resources and agriculture in Southern Africa. (Consortium withdrew after 12 months of Phase I.)",
+        "services": [
+          "Drought and flood monitoring",
+          "Water resource management tools",
+          "Agricultural monitoring and early warning"
+        ],
+        "digitalPlatforms": {
+          "website": "http://www.sadc.int/fanr/gmes-africa-sadc-csc",
+          "blog": "",
+          "geoportal": "",
+          "applications": []
+        },
+        "members": [
+          { "name": "Botswana University of Agriculture and Natural Resources (BUAN)", "country": "Botswana", "iso_a2": "BW", "iso_a3": "BWA" },
+          { "name": "National Remote Sensing Centre (NRSC)", "country": "Zambia", "iso_a2": "ZM", "iso_a3": "ZMB" },
+          { "name": "South African National Space Agency (SANSA)", "country": "South Africa", "iso_a2": "ZA", "iso_a3": "ZAF" },
+          { "name": "University of Zimbabwe", "country": "Zimbabwe", "iso_a2": "ZW", "iso_a3": "ZWE" }
+        ],
+        "logo": ""
+      }
+    ],
+    "networksAndPartnerships": {
+      "internalNetworks": [
+        {
+          "name": "GMES & Africa Academia Network (GAAN)",
+          "description": "Operational network of ~27 African universities advancing EO education and research."
+        }
+      ],
+      "strategicPartnerships": [
+        "European Commission (Copernicus data access agreement, June 2018)"
+      ],
+      "privateSectorEngagement": {
+        "serviceDevelopment": "≈ 20 African private companies involved within the >122 participating institutions",
+        "outreach": ""
+      },
+      "institutionTypesInvolved": []
+    }
+  }
+}

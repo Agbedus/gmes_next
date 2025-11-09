@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import ProgramHeader from "@/components/ui/programHeader";
 import DashboardToolbar from "@/components/ui/dashboardToolbar";
 import phaseTwoData from '@/data/phase_two_data.json';
@@ -8,6 +8,7 @@ import OverviewPanel from './OverviewPanel';
 import ImpactPanel from './ImpactPanel';
 import ConsortiaPanel from './ConsortiaPanel';
 import NetworksPanel from './NetworksPanel';
+import Tabs from '@/components/ui/Tabs';
 
 export default function PhaseTwoDash() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,6 +24,9 @@ export default function PhaseTwoDash() {
         console.log('phase2 search', q);
     }
 
+    // Tab state: 'overview' | 'consortia' | 'networks'
+    const [activeTab, setActiveTab] = useState<'overview' | 'consortia' | 'networks'>('overview');
+
     return (
         <div>
             <ProgramHeader name={programDetails?.name ?? 'GMES & Africa Phase 2'} oneLiner={programDetails?.description ?? ''} />
@@ -34,12 +38,39 @@ export default function PhaseTwoDash() {
             <main className="mt-6">
                 <ImpactPanel metrics={metrics} />
 
-                {/* Pass metrics so OverviewPanel can render reach (countries/institutions) */}
-                <OverviewPanel programDetails={programDetails} strategicFramework={strategicFramework} metrics={metrics} />
+                {/* Tab bar at the same level as Program Overview (keeps design mostly unchanged) */}
+                <div className="mt-12">
+                    <Tabs
+                        tabs={[
+                            { id: 'overview', label: 'Program Overview' },
+                            { id: 'consortia', label: 'Consortia' },
+                            { id: 'networks', label: 'Networks' },
+                        ]}
+                        activeId={activeTab}
+                        onChange={(id) => setActiveTab(id as 'overview' | 'consortia' | 'networks')}
+                        className="gap-2 w-full"
+                    />
 
-                <ConsortiaPanel consortia={consortia} />
+                    <div className="mt-4">
+                        {activeTab === 'overview' && (
+                            <div id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+                                <OverviewPanel programDetails={programDetails} strategicFramework={strategicFramework} metrics={metrics} />
+                            </div>
+                        )}
 
-                <NetworksPanel networks={networks} />
+                        {activeTab === 'consortia' && (
+                            <div id="panel-consortia" role="tabpanel" aria-labelledby="tab-consortia">
+                                <ConsortiaPanel consortia={consortia} />
+                            </div>
+                        )}
+
+                        {activeTab === 'networks' && (
+                            <div id="panel-networks" role="tabpanel" aria-labelledby="tab-networks">
+                                <NetworksPanel networks={networks} />
+                            </div>
+                        )}
+                    </div>
+                </div>
 
             </main>
         </div>
