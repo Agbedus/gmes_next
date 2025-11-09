@@ -152,8 +152,6 @@ export default function ReportsPage() {
             ))}
           </ul>
         </section>
-
-        <footer className="mt-8 text-sm text-zinc-500">If you need other formats or a different ordering, let me know.</footer>
       </div>
     </div>
   );
