@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { createPortal } from 'react-dom';
 import Tooltip from './Tooltip';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
@@ -132,8 +131,10 @@ export default function MapModal({
     });
 
     // React-based tooltip: show on pointerover/move, hide on pointerout
+    // amCharts event object typing is dynamic; allow `any` for the handler param
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onPolygonPointerOver = (ev: any) => {
-      const target = ev.target as any;
+      const target = ev.target as unknown as { dataItem?: { dataContext?: Record<string, unknown> } };
       const dc = target.dataItem?.dataContext as Record<string, unknown> | undefined;
       if (!dc) return;
       const countryName = String(dc.name ?? '');
@@ -165,6 +166,7 @@ export default function MapModal({
       setTooltipVisible(true);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onPolygonPointerMove = (ev: any) => {
       const original = ev.originalEvent as MouseEvent | undefined;
       if (!original) return;
@@ -176,9 +178,13 @@ export default function MapModal({
       setTooltipContent(null);
     };
 
-    polygonSeries.mapPolygons.template.events.on("pointerover", onPolygonPointerOver);
-    polygonSeries.mapPolygons.template.events.on("pointermove", onPolygonPointerMove);
-    polygonSeries.mapPolygons.template.events.on("pointerout", onPolygonPointerOut);
+    // amCharts event typings are strict; cast to any to allow pointermove/pointerover/pointerout
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (polygonSeries.mapPolygons.template.events as any).on("pointerover", onPolygonPointerOver);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (polygonSeries.mapPolygons.template.events as any).on("pointermove", onPolygonPointerMove);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (polygonSeries.mapPolygons.template.events as any).on("pointerout", onPolygonPointerOut);
 
     // Graticule
     const graticuleSeries = chart.series.push(am5map.GraticuleSeries.new(root, {}));
@@ -202,6 +208,7 @@ export default function MapModal({
         return hex ? am5.color(hex) : am5.color(0x60a5fa);
       });
       // bullets: show React tooltip for points as well
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       circle.events.on('pointerover', (ev: any) => {
         const dc = ev.target.dataItem?.dataContext as Record<string, unknown> | undefined;
         if (!dc) return;
@@ -257,7 +264,7 @@ export default function MapModal({
             }
           }
         }
-      } catch (e) {
+      } catch {
         // ignore if isoMap lookup fails
       }
 
@@ -272,8 +279,9 @@ export default function MapModal({
 
         const rawName = String(dc.name || '');
         const rawId = String(dc.id || '');
-        const rawIso2 = String((dc.properties && (dc.properties as any).iso_a2) || '');
-        const rawIso3 = String((dc.properties && (dc.properties as any).iso_a3) || '');
+        const props = (dc.properties as Record<string, unknown> | undefined) || undefined;
+        const rawIso2 = String((props && props['iso_a2']) || '');
+        const rawIso3 = String((props && props['iso_a3']) || '');
 
         const candidates = [rawName, rawId, rawIso2, rawIso3].map((x) => normalize(x)).filter(Boolean);
         candidates.forEach((c) => available.add(c));
@@ -299,7 +307,7 @@ export default function MapModal({
         console.log('Map matched identifiers:', matchedArr);
         console.log('Map available polygon identifiers sample:', availableArr.slice(0, 20));
         if (unmatched.length) console.log('Map unmatched identifiers:', unmatched);
-      } catch (e) {
+      } catch {
         // ignore logging errors
       }
     }
@@ -311,9 +319,12 @@ export default function MapModal({
     }
 
     return () => {
-      polygonSeries.mapPolygons.template.events.off("pointerover", onPolygonPointerOver);
-      polygonSeries.mapPolygons.template.events.off("pointermove", onPolygonPointerMove);
-      polygonSeries.mapPolygons.template.events.off("pointerout", onPolygonPointerOut);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (polygonSeries.mapPolygons.template.events as any).off("pointerover", onPolygonPointerOver);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (polygonSeries.mapPolygons.template.events as any).off("pointermove", onPolygonPointerMove);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (polygonSeries.mapPolygons.template.events as any).off("pointerout", onPolygonPointerOut);
       chartRef.current = null;
       root.dispose();
       rootRef.current = null;
