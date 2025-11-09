@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 
-import SideNav from "@/components/ui/sideNav";
+import Sidebar from "@/components/ui/Sidebar";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -38,19 +38,13 @@ export default function RootLayout({
         >
         <div className="min-h-screen bg-zinc-50 font-sans">
             <div className="flex">
-                <aside className="w-64 min-h-screen border-r border-zinc-200">
-                    {/* Global SideNav - client component */}
-                    <SideNav
-                        items={[
-                            {label: 'Summary', href: '/summary', icon: 'insights'},
-                            {label: 'Phase 2', href: '/phase_two', icon: 'looks_two'},
-                            {label: 'Phase 1', href: '/phase_one', icon: 'looks_one'},
-                            {label: 'Reports', href: '/reports', icon: 'article'},
-                            {label: 'Useful Links', href: '/settings', icon: 'link'},
-
-                        ]}
-                    />
-                </aside>
+                <Sidebar items={[
+                    {label: 'Summary', href: '/summary', icon: 'insights'},
+                    {label: 'Phase 2', href: '/phase_two', icon: 'looks_two'},
+                    {label: 'Phase 1', href: '/phase_one', icon: 'looks_one'},
+                    {label: 'Reports', href: '/reports', icon: 'article'},
+                    {label: 'Useful Links', href: '/settings', icon: 'link'},
+                ]} />
 
                 <main className="flex-1 h-screen overflow-y-auto p-4">
                     {children}
