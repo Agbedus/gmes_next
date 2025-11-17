@@ -45,11 +45,7 @@
   "South Sudan": { "iso_a2": "SS", "iso_a3": "SSD" },
   "Guinea": { "iso_a2": "GN", "iso_a3": "GIN" },
   "Mali": { "iso_a2": "ML", "iso_a3": "MLI" },
-  "Niger": { "iso_a2": "NE", "iso_a3": "NER" },
-  "Senegal": { "iso_a2": "SN", "iso_a3": "SEN" },
   "Gabon": { "iso_a2": "GA", "iso_a3": "GAB" },
-  "Comoros": { "iso_a2": "KM", "iso_a3": "COM" },
-  "Rwanda": { "iso_a2": "RW", "iso_a3": "RWA" },
-  "Ethiopia": { "iso_a2": "ET", "iso_a3": "ETH" }
+  "Comoros": { "iso_a2": "KM", "iso_a3": "COM" }
 }
 
