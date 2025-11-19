@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import DataTable from './DataTable';
 import MapModal from '../MapModal';
+import ConsortiumDetail from './ConsortiumDetail';
 
-type Member = { name?: string; country?: string; role?: string };
-type DigitalPlatforms = Record<string, unknown> | undefined;
+export type Member = { name?: string; country?: string; role?: string };
+export type DigitalPlatforms = Record<string, unknown> | undefined;
 
 // Extended Consortium type to support both legacy and new phase two schema
-type Consortium = {
+export type Consortium = {
   // legacy
   name?: string;
   acronym?: string;
@@ -356,235 +357,6 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
   );
 }
 
-function ConsortiaDetails({ consortium }: { consortium: Consortium }) {
-  const { name, acronym, logo, leadInstitution, leadCountry, region, description, services, members, digitalPlatforms } = consortium;
-  // include phase-two specific fields as well
-  const project_title = (consortium as any).project_title ?? undefined;
-  const coordinator = (consortium as any).coordinator ?? undefined;
-  const period_months = (consortium as any).period_months ?? undefined;
-  const budget = (consortium as any).budget ?? undefined;
-  const locations = (consortium as any).locations ?? undefined;
-  const programme_priorities = (consortium as any).programme_priorities ?? undefined;
-
-  const rawLogo = logo ? String(logo).replace(/\s+/g, ' ').trim() : undefined;
-  const preferredLogo = rawLogo && rawLogo.startsWith('http://') ? rawLogo.replace('http://', 'https://') : rawLogo;
-  const [fallbackSrc, setFallbackSrc] = useState<string | undefined>(undefined);
-  const initials = initialsFrom(name, acronym);
-  const bg = colorFromString(name ?? acronym);
-  const svgUrl = svgInitialsDataUrl(initials, bg);
-
-  const preferred = preferredLogo ?? svgUrl;
-  const imgSrc = fallbackSrc ?? preferred;
-  const safeImgSrc = imgSrc ? sanitizeSrc(imgSrc as string) ?? svgUrl : svgUrl;
-  const safeHref = sanitizeSrc(logo ?? imgSrc) ?? (imgSrc ?? '#');
-
-  useEffect(() => {
-    if (fallbackSrc !== undefined) setFallbackSrc(undefined);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [preferred]);
-
-  const memberColumns = [
-    { key: 'name', label: 'Name' },
-    { key: 'country', label: 'Country' },
-  ];
-
-  const memberRows = Array.isArray(members)
-    ? members.map((m) => {
-        const initialsInner = String(m.name ?? '').split(/\s+/).map((p) => p[0]).slice(0, 2).join('').toUpperCase() || 'NM';
-        return {
-          name: (
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-xs font-semibold text-zinc-700">{initialsInner}</div>
-              <div className="text-sm font-medium text-zinc-900">{m.name ?? '\u2014'}</div>
-            </div>
-          ),
-          country: m.country ?? '\u2014',
-        } as Record<string, React.ReactNode>;
-      })
-    : [];
-
-  return (
-    <div className="bg-white p-6 rounded-xl border border-zinc-200 h-full flex flex-col">
-      <div className="flex items-start gap-4">
-        <div>
-          {safeImgSrc ? (
-            <a href={safeHref} target="_blank" rel="noopener noreferrer" className="inline-block">
-              <Image src={safeImgSrc} alt={`${name} logo`} width={160} height={160} className="w-40 h-40 rounded-lg object-contain bg-white p-2" unoptimized onError={(e)=>{
-                const target = (e?.target as HTMLImageElement | null);
-                if (target) {
-                  if (fallbackSrc !== svgUrl) {
-                    setFallbackSrc(svgUrl);
-                  } else {
-                    setFallbackSrc(LOGO_FALLBACK);
-                  }
-                }
-              }} />
-            </a>
-          ) : (
-            <Image src={svgUrl} alt={`${initials} logo`} width={160} height={160} className="w-40 h-40 rounded-lg object-contain bg-white p-2" unoptimized />
-          )}
-        </div>
-
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold text-zinc-900">{project_title ?? name} {acronym ? `(${acronym})` : ''}</h3>
-          <p className="mt-1 text-sm text-zinc-600">{coordinator?.name ?? leadInstitution ?? ''} {coordinator?.city ? `, ${coordinator.city}` : ''} {coordinator?.country ? `— ${coordinator.country}` : leadCountry ? `— ${leadCountry}` : ''} {region ? `— ${region}` : ''}</p>
-
-          {/* period and budget */}
-          <div className="mt-3 text-sm text-zinc-700 flex flex-wrap gap-4">
-            <div className="flex items-center gap-2"><strong className="text-zinc-800">Period:</strong> <span className="text-zinc-600">{formatPeriod(period_months)}</span></div>
-            <div className="flex items-center gap-2"><strong className="text-zinc-800">Budget:</strong> <span className="text-zinc-600">{budget ? formatCurrencyEUR(budget.total_eur) : '—'}</span></div>
-            {budget ? (
-              <div className="flex items-center gap-2 text-xs text-zinc-600">
-                <span className="text-zinc-500">(Grant: {formatCurrencyEUR(budget.grant_eur)} · Contribution: {formatCurrencyEUR(budget.contribution_eur)})</span>
-              </div>
-            ) : null}
-            {consortium.sector ? (<div className="flex items-center gap-2"><strong className="text-zinc-800">Sector:</strong> <span className="text-zinc-600">{consortium.sector}</span></div>) : null}
-            {Array.isArray(locations) && locations.length > 0 ? (<div className="flex items-center gap-2"><strong className="text-zinc-800">Locations:</strong> <span className="text-zinc-600">{locations.join(', ')}</span></div>) : null}
-          </div>
-        </div>
-      </div>
-
-      {description ? <p className="mt-4 text-sm text-zinc-700 whitespace-pre-line">{description}</p> : null}
-
-      {Array.isArray(programme_priorities) && programme_priorities.length > 0 ? (
-        <div className="mt-4">
-          <h4 className="text-sm font-semibold text-zinc-800">Programme priorities</h4>
-          <div className="mt-2 text-sm text-zinc-700">
-            <ul className="list-disc pl-5">
-              {programme_priorities.map((p: any, idx: number) => (
-                <li key={idx}>{p}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ) : null}
-
-      <div className="mt-6 flex-1 overflow-hidden">
-        <div className="flex flex-col h-full">
-          <h4 className="text-sm font-semibold text-zinc-800">Services</h4>
-
-          <div className="mt-3 border border-transparent rounded-lg overflow-hidden">
-            {Array.isArray(services) && services.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {services.map((s, i) => (
-                  <span key={i} className="inline-flex items-center gap-4 px-3 py-1 text-sm rounded-full bg-accent-50 text-accent-700 max-w-full">
-                    <span className="material-symbols-outlined text-teal-600 text-[10px] leading-none" aria-hidden>fiber_manual_record</span>
-                    <span className="truncate block max-w-xs">{s}</span>
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <div className="text-sm text-zinc-500">—</div>
-            )}
-
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold text-zinc-800">Partners</h4>
-              <div className="mt-3 text-sm text-zinc-700">
-                <div className="mb-2">Total partners: <strong>{Array.isArray(members) ? members.length : 0}</strong></div>
-                <div className="overflow-auto hide-scrollbar max-h-48">
-                  <DataTable columns={memberColumns} rows={memberRows} compact />
-                </div>
-              </div>
-            </div>
-
-            {/* additional fields: contacts, websites, outputs */}
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold text-zinc-800">Contact persons</h4>
-              <div className="mt-2 text-sm text-zinc-700 space-y-2">
-                {Array.isArray((consortium as any).contact_persons) && (consortium as any).contact_persons.length > 0 ? (
-                  (consortium as any).contact_persons.map((cp: any, i: number) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-xs font-semibold text-zinc-700">{String(cp.name ?? '').split(/\s+/).map((p:any)=>p[0]).slice(0,2).join('').toUpperCase() || 'CP'}</div>
-                      <div>
-                        <div className="text-sm font-medium text-zinc-900">{cp.name ?? '\u2014'} {cp.role ? `— ${cp.role}` : ''}</div>
-                        {cp.email ? <div className="text-xs text-zinc-500"><a href={`mailto:${cp.email}`} className="text-blue-600 hover:underline">{cp.email}</a></div> : null}
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-sm text-zinc-500">—</div>
-                )}
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold text-zinc-800">Websites</h4>
-              <div className="mt-2 text-sm text-zinc-700 space-y-1">
-                {Array.isArray((consortium as any).website) && (consortium as any).website.length > 0 ? (
-                  (consortium as any).website.map((w: any, i: number) => (
-                    <div key={i}><a href={sanitizeSrc(w) ?? '#'} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{w}</a></div>
-                  ))
-                ) : (
-                  <div className="text-sm text-zinc-500">—</div>
-                )}
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold text-zinc-800">Key outputs</h4>
-              <div className="mt-2 text-sm text-zinc-700 space-y-1">
-                {Array.isArray((consortium as any).outputs) && (consortium as any).outputs.length > 0 ? (
-                  <ul className="list-disc pl-5">
-                    {(consortium as any).outputs.map((o: any, idx: number) => (
-                      <li key={idx}>{o}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="text-sm text-zinc-500">—</div>
-                )}
-              </div>
-            </div>
-
-            {/* images / photographs preview (if any) */}
-            {consortium.images ? (
-              <div className="mt-6">
-                <h4 className="text-sm font-semibold text-zinc-800">Images</h4>
-                <div className="mt-2 flex gap-2 flex-wrap">
-                  {Array.isArray((consortium as any).images.logos) && (consortium as any).images.logos.map((l:any, idx:number)=>(
-                    <div key={`logo-${idx}`} className="w-20 h-20 rounded overflow-hidden bg-white border border-zinc-100 p-1 flex items-center justify-center">
-                      <img src={sanitizeSrc(l.path ?? l.url) ?? ''} alt={String(l.partner ?? 'logo')} className="max-w-full max-h-full object-contain" />
-                    </div>
-                  ))}
-                  {Array.isArray((consortium as any).images.photographs) && (consortium as any).images.photographs.map((p:any, idx:number)=>(
-                    <div key={`photo-${idx}`} className="w-28 h-20 rounded overflow-hidden bg-white border border-zinc-100 p-1">
-                      <img src={sanitizeSrc(p.path ?? p.url) ?? ''} alt={String(p.description ?? 'photo')} className="w-full h-full object-cover" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-          </div>
-        </div>
-      </div>
-
-      {digitalPlatforms ? (
-        <div className="mt-6">
-          <h4 className="text-sm font-semibold text-zinc-800">Digital Platforms</h4>
-          <div className="mt-2 text-sm text-zinc-700 space-y-2 bg-zinc-50 p-4 rounded-lg">
-            {Object.entries(digitalPlatforms).map(([k, v]) => (
-              <div key={k} className="capitalize">
-                <strong className="font-medium">{k.replace(/([A-Z])/g, ' $1')}:</strong>
-                {Array.isArray(v) ? (
-                  <span className="ml-2">{(v as unknown[]).map(x => {
-                    if (typeof x === 'object' && x !== null) {
-                      const obj = x as Record<string, unknown>;
-                      return String(obj['name'] ?? obj['url'] ?? JSON.stringify(obj));
-                    }
-                    return String(x);
-                  }).join(', ')}</span>
-                ) : (
-                  <a href={String(v)} target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-600 hover:underline">{String(v)}</a>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
 // Add country name normalization map for African countries
 const COUNTRY_NAME_MAP: Record<string, string> = {
   "DRC": "Democratic Republic of the Congo",
@@ -748,7 +520,7 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
            </div>
          </div>
 
-         <div className="md:col-span-9 lg:col-span-9">{selectedConsortium && <ConsortiaDetails consortium={selectedConsortium} />}</div>
+         <div className="md:col-span-9 lg:col-span-9">{selectedConsortium && <ConsortiumDetail consortium={selectedConsortium} />}</div>
        </div>
 
       <MapModal
@@ -769,3 +541,5 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
     </section>
   );
 }
+
+export { formatCurrencyEUR, formatPeriod, sanitizeSrc };

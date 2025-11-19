@@ -62,11 +62,17 @@ const africaBounds: [[number, number], [number, number]] = [
 const mapOptions = {
     center,
     zoom,
-    maxBounds: africaBounds,
-    maxBoundsViscosity: 1.0, // prevents panning outside bounds
+    // removed hard bounds to allow free panning/movement across the map
     minZoom: 2,
-    maxZoom: 6, // optional
+    maxZoom: 8, // allow more zoom in
     zoomControl: true,
+    // enable interaction controls explicitly
+    dragging: true,
+    scrollWheelZoom: true,
+    doubleClickZoom: true,
+    touchZoom: true,
+    boxZoom: true,
+    keyboard: true,
 };
 
 export default function MapModal({
