@@ -220,7 +220,7 @@ function normalizeConsortium(raw: any): Consortium {
 
     // locations: might be an object mapping region keys to arrays — flatten to a simple list of countries
     // Build locations list from explicit cons.locations AND regional_coverage country entries
-    let locationsList: string | undefined = undefined;
+    let locationsList: string[] | undefined = undefined;
     const explicitLocations: string[] = [];
     if (cons.locations && typeof cons.locations === 'object' && !Array.isArray(cons.locations)) {
       explicitLocations.push(...Object.values(cons.locations).flatMap((v: any) => (Array.isArray(v) ? v : [])).map((s:any) => String(s).trim()).filter(Boolean));

@@ -2,21 +2,13 @@
 
 import React from "react";
 import isoMapJson from '@/data/country_iso_map.json';
-import { MapContainer, TileLayer, Marker, Popup, Tooltip, GeoJSON  } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L, {PathOptions} from 'leaflet';
-import Control from 'react-leaflet-custom-control'
+// Note: react-leaflet and leaflet are dynamically imported at runtime to avoid server-side errors
 import africanCountriesData from "@/data/africa_boundaries.geo.json";
 const basePath = "/leaflet_assets/";
+
 import { GeoJsonObject, Feature, GeoJsonProperties } from "geojson";
 
 const africanCountriesObject: GeoJsonObject = africanCountriesData as GeoJsonObject;
-
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: basePath + "marker-icon-2x.png",
-    iconUrl: basePath + "marker-icon.png",
-    shadowUrl: basePath + "marker-shadow.png",
-});
 
 type Point = {
   id: string;
@@ -32,7 +24,7 @@ type CountryMap = Record<
     string,
     { iso_a2: string; iso_a3: string }
 >;
-const isoMap: CountryMap = isoMapJson;
+const isoMap: CountryMap = isoMapJson as any;
 
 type Props = {
   open: boolean;
@@ -66,7 +58,7 @@ const africaBounds: [[number, number], [number, number]] = [
     [38.0, 55.0],   // NE: northernmost tip, easternmost point
 ];
 
-// Leaflet map options
+// Leaflet map options (kept simple and serializable)
 const mapOptions = {
     center,
     zoom,
@@ -88,11 +80,12 @@ export default function MapModal({
                                    groupsColor = DEFAULT_GROUPS_COLOR,
                                    polygonGeoJSON,
                                  }: Props) {
+    // matched/unmatched mapping
     let filteredMap: Record<string, { iso_a2: string; iso_a3: string }> = {};
 
     if (Array.isArray(highlightCountries) && highlightCountries.length > 0) {
         filteredMap = highlightCountries.reduce((acc, name) => {
-            if (isoMap[name]) acc[name] = isoMap[name];
+            if ((isoMap as any)[name]) acc[name] = (isoMap as any)[name];
             return acc;
         }, {} as Record<string, { iso_a2: string; iso_a3: string }>);
     }
@@ -100,44 +93,16 @@ export default function MapModal({
     // Base layer state: 'satellite' | 'light' | 'dark'
     const [baseLayer, setBaseLayer] = React.useState<'satellite' | 'light' | 'dark'>('satellite');
 
-    const renderTileLayer = () => {
-        if (baseLayer === 'satellite') {
-            return (
-                <TileLayer
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                    attribution='&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP'
-                />
-            );
-        }
-        if (baseLayer === 'dark') {
-            return (
-                <TileLayer
-                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-                    attribution='&copy; OpenStreetMap contributors &copy; CARTO'
-                    />
-            );
-        }
-        // default: light / standard OSM
-        return (
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; OpenStreetMap contributors'
-            />
-        );
-    };
-
     type IsoEntry = { iso_a2: string; iso_a3: string };
     const matched: Record<string, IsoEntry> = {};
     const unmatched: string[] = [];
     const consortiumDefaultColor = "#ff5833"
 
-    const geoStyle: L.StyleFunction = (
+    const geoStyle = (_L: any) => (
         feature?: Feature<GeoJSON.Geometry, GeoJsonProperties>
     ) => {
-
         let fill = "#3388ff";
         let fillOpacity = 0.2
-        // Leaflet might call style() with undefined
         if (!feature) {
             return {
                 color: "#000",
@@ -155,8 +120,7 @@ export default function MapModal({
             fill =isHighlighted? consortiumDefaultColor : "#3388ff"; // default
             fillOpacity = isHighlighted? 0.6:0
         }else{
-
-        const region = feature.properties?.subregion as string | undefined;
+            const region = feature.properties?.subregion as string | undefined;
             if (region === "Northern Africa") fill = DEFAULT_GROUPS_COLOR['North'];
             if (region === "Southern Africa") fill = DEFAULT_GROUPS_COLOR['South'];
             if (region === "Eastern Africa") fill = DEFAULT_GROUPS_COLOR['East'];
@@ -169,46 +133,113 @@ export default function MapModal({
             weight: 1,
             fillColor: fill,
             fillOpacity: fillOpacity,
-        } as L.PathOptions;
+        } as any;
     };
 
 
     if(highlightCountries){
         highlightCountries.forEach((name) => {
-        if (isoMap[name]) {
-            matched[name] = isoMap[name];
+        if ((isoMap as any)[name]) {
+            matched[name] = (isoMap as any)[name];
         } else {
             unmatched.push(name);
         }
     });
-        console.log(Object.values(matched))
-        console.log(unmatched)
+        // avoid console spamming during SSR/build
+        if (typeof window !== 'undefined') {
+          console.log(Object.values(matched))
+          console.log(unmatched)
+        }
     }
+
+  // We will dynamically import leaflet/react-leaflet on the client to avoid server-side errors
+  const [MapLib, setMapLib] = React.useState<any | null>(null);
+
+  React.useEffect(() => {
+    let mounted = true;
+    // Only load in browser
+    if (typeof window === 'undefined') return;
+
+    (async () => {
+      try {
+        const [L, RL, customControl] = await Promise.all([
+          import('leaflet'),
+          import('react-leaflet'),
+          import('react-leaflet-custom-control').catch(() => ({})),
+        ] as any);
+
+        // configure default marker icons
+        try {
+          L.Icon.Default.mergeOptions({
+            iconRetinaUrl: basePath + "marker-icon-2x.png",
+            iconUrl: basePath + "marker-icon.png",
+            shadowUrl: basePath + "marker-shadow.png",
+          });
+        } catch (e) {
+          // ignore
+        }
+
+        if (mounted) {
+          setMapLib({ ...RL, L, Control: (customControl && customControl.default) ? customControl.default : (RL as any).Control });
+        }
+      } catch (e) {
+        // dynamic import failed; leave MapLib null and fallback UI will render
+        // eslint-disable-next-line no-console
+        console.error('Failed to load map libraries', e);
+      }
+    })();
+
+    return () => { mounted = false; };
+  }, []);
 
   // Escape key closes modal
   React.useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") onCloseAction();
     }
-    if (open) window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    if (typeof window !== 'undefined' && open) window.addEventListener("keydown", onKey);
+    return () => { if (typeof window !== 'undefined') window.removeEventListener("keydown", onKey); };
   }, [open, onCloseAction]);
 
   if (!open) return null;
+
+  // Render a lightweight fallback while map libraries load
+  if (!MapLib) {
+    return (
+      <div role="dialog" aria-modal="true" className="fixed inset-0 z-[10000] flex items-stretch justify-center bg-black/60">
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="bg-white p-4 rounded shadow">Loading map…</div>
+        </div>
+      </div>
+    );
+  }
+
+  const { MapContainer, TileLayer, Marker, Popup, Tooltip: RLTooltip, GeoJSON, Control } = MapLib;
+  const L = MapLib.L;
 
   return (
       <div role="dialog" aria-modal="true" className="fixed inset-0 z-[10000] flex items-stretch justify-center bg-black/60">
         <div className="relative w-full h-full">
             <MapContainer {...mapOptions} style={{ height: '100%', width: '100%' }}>
-                {renderTileLayer()}
+                {baseLayer === 'satellite' ? (
+                    <TileLayer
+                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                        attribution='&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP'
+                    />
+                ) : baseLayer === 'dark' ? (
+                    <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" attribution='&copy; OpenStreetMap contributors &copy; CARTO' />
+                ) : (
+                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution='&copy; OpenStreetMap contributors' />
+                )}
+
                 {points?.map((p, i) => (
                     <Marker key={i} position={[p.lat, p.lon]}>
-                        <Tooltip >{p.name}</Tooltip>
+                        <RLTooltip>{p.name}</RLTooltip>
                     </Marker>
                 ))}
+
                 <Control position='topright' >
                     <button className="rounded-lg bg-white/90 px-3 py-2 text-sm text-zinc-800 hover:bg-white" onClick={onCloseAction} aria-label="Close map">Close</button>
-
                 </Control>
 
                 <Control position='topright' >
@@ -232,16 +263,15 @@ export default function MapModal({
                 </Control>
 
                 <Control position='bottomleft' >
-                    <img src={"/GMES.png"} width={"200px"}/>
+                    <img src={"/GMES.png"} width={200} />
                 </Control>
 
-                {/* Render legend only if parent provided legendItems */}
                 {Array.isArray(legendItems) && legendItems.length > 0 ? (
                         <Control position='topleft' >
                     <div className="bg-white/90 rounded-md px-3 py-2 text-sm text-zinc-800" style={{ maxWidth:'400px' }}>
                         <strong>Legend</strong>
                         <div className="mt-2 flex flex-col gap-1">
-                            {!consortiumName ?legendItems.map((li) => (
+                            {!consortiumName ?legendItems.map((li:any) => (
                                 <div key={li.label} className="flex items-center gap-2 text-xs">
                                     <span style={{ width: 12, height: 12, background: li.color, borderRadius: 6, display: "inline-block" }} />
                                     <span>{li.label}</span>
@@ -256,10 +286,11 @@ export default function MapModal({
                     </div>
                         </Control>
                 ) : null}
+
                 <GeoJSON
                     data={africanCountriesObject}
-                    style={geoStyle}
-                    onEachFeature={(feature, layer) => {
+                    style={geoStyle(L)}
+                    onEachFeature={(feature: any, layer: any) => {
                         if (feature.properties?.name) {
                             layer.bindTooltip(`<strong>${feature.properties.name}</strong>`);
                         }
