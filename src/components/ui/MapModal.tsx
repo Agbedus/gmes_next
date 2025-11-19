@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from "react";
 import isoMapJson from '@/data/country_iso_map.json';
@@ -77,11 +77,6 @@ const mapOptions = {
     zoomControl: true,
 };
 
-type IsoEntry = { iso_a2: string; iso_a3: string };
-const matched: Record<string, IsoEntry> = {};
-const unmatched: string[] = [];
-const consortiumDefaultColor = "#ff5833"
-
 export default function MapModal({
                                    open,
                                    onCloseAction,
@@ -101,6 +96,41 @@ export default function MapModal({
             return acc;
         }, {} as Record<string, { iso_a2: string; iso_a3: string }>);
     }
+
+    // Base layer state: 'satellite' | 'light' | 'dark'
+    const [baseLayer, setBaseLayer] = React.useState<'satellite' | 'light' | 'dark'>('satellite');
+
+    const renderTileLayer = () => {
+        if (baseLayer === 'satellite') {
+            return (
+                <TileLayer
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                    attribution='&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP'
+                />
+            );
+        }
+        if (baseLayer === 'dark') {
+            return (
+                <TileLayer
+                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                    attribution='&copy; OpenStreetMap contributors &copy; CARTO'
+                    />
+            );
+        }
+        // default: light / standard OSM
+        return (
+            <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; OpenStreetMap contributors'
+            />
+        );
+    };
+
+    type IsoEntry = { iso_a2: string; iso_a3: string };
+    const matched: Record<string, IsoEntry> = {};
+    const unmatched: string[] = [];
+    const consortiumDefaultColor = "#ff5833"
+
     const geoStyle: L.StyleFunction = (
         feature?: Feature<GeoJSON.Geometry, GeoJsonProperties>
     ) => {
@@ -170,10 +200,7 @@ export default function MapModal({
       <div role="dialog" aria-modal="true" className="fixed inset-0 z-[10000] flex items-stretch justify-center bg-black/60">
         <div className="relative w-full h-full">
             <MapContainer {...mapOptions} style={{ height: '100%', width: '100%' }}>
-                <TileLayer
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
+                {renderTileLayer()}
                 {points?.map((p, i) => (
                     <Marker key={i} position={[p.lat, p.lon]}>
                         <Tooltip >{p.name}</Tooltip>
@@ -183,15 +210,31 @@ export default function MapModal({
                     <button className="rounded-lg bg-white/90 px-3 py-2 text-sm text-zinc-800 hover:bg-white" onClick={onCloseAction} aria-label="Close map">Close</button>
 
                 </Control>
+
+                <Control position='topright' >
+                    <div className="bg-white/90 rounded-md px-2 py-2 flex gap-2">
+                        <button
+                            onClick={() => setBaseLayer('light')}
+                            className={`px-2 py-1 text-xs rounded ${baseLayer === 'light' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-800'}`}>
+                            Light
+                        </button>
+                        <button
+                            onClick={() => setBaseLayer('dark')}
+                            className={`px-2 py-1 text-xs rounded ${baseLayer === 'dark' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-800'}`}>
+                            Dark
+                        </button>
+                        <button
+                            onClick={() => setBaseLayer('satellite')}
+                            className={`px-2 py-1 text-xs rounded ${baseLayer === 'satellite' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-800'}`}>
+                            Satellite
+                        </button>
+                    </div>
+                </Control>
+
                 <Control position='bottomleft' >
                     <img src={"/GMES.png"} width={"200px"}/>
                 </Control>
 
-                {/*<Control position='bottomleft' >*/}
-                {/*    <div className="bg-white/90 rounded-md px-3 py-2 text-sm text-zinc-800 text-primary">*/}
-                {/*        {consortiumName} polygonGeoJSON:{JSON.stringify(polygonGeoJSON)}*/}
-                {/*    </div>*/}
-                {/*</Control>*/}
                 {/* Render legend only if parent provided legendItems */}
                 {Array.isArray(legendItems) && legendItems.length > 0 ? (
                         <Control position='topleft' >

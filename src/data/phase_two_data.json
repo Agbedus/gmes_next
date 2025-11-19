@@ -174,614 +174,2077 @@
     },
     "consortia": [
       {
-        "name": "Water Management and Natural Resources in Central Africa",
-        "acronym": "GERNAC",
-        "leadInstitution": "International Commission for the Congo-Oubangui-Sangha Basin (CICOS)",
-        "leadCountry": "Congo",
-        "region": "Central Africa",
-        "thematicFocus": "Water & Natural Resources",
-        "description": "Aims to monitor the impacts of flooded area dynamics on runoff, climate change, and biodiversity, and improve management of water and natural resources.",
-        "services": [
-          "Monitoring of water resources (river navigation)",
-          "Monitoring the hydrological balance",
-          "Monitoring the dynamics of flooded areas"
+        "project_title": "Natural Resources and Water Management in North Africa",
+        "consortium": {
+          "coordinator": "Observatoire du Sahara et du Sahel (OSS), Tunis",
+          "partners": [
+            "UN-affiliated African Regional Centre for Space Science and Technology Education- in French Language (CRASTE-LF) (Morocco)",
+            "Regional Remote Sensing Center for North African States (CRTEAN) (Tunisia)",
+            "National Center for Cartography and Remote Sensing (CNCT) (Tunisia)",
+            "Desert Research Center (DRC) (Egypt)",
+            "Libyan Center for Remote Sensing and Space Sciences (Libya)",
+            "University of Nouakchott Al-Aasriya, (Mauritania)",
+            "TENMIYA NGO (Mauritania)"
+          ],
+          "period_months": 44,
+          "total_budget_eur": 2302900,
+          "grant_eur": 1700000,
+          "contribution_eur": 602900,
+          "locations": {
+            "north_africa": [
+              "Egypt",
+              "Libya",
+              "Mauritania",
+              "Morocco",
+              "Tunisia",
+                "Algeria"
+            ]
+          },
+          "programme_priorities": [
+            "Developing and sustaining decision support services for natural resource and water managers.",
+            "Boosting regional cooperation and promoting the exchange of knowledge and know-how on natural resources and water management in North Africa.",
+            "Capacity building and awareness raising for all partners and end-users involved in the generation of technical data and Earth Observation applications."
+          ],
+          "sector": "Water and Natural Resources Service",
+          "contact_persons": [
+            {
+              "name": "Mr. Mustapha MIMOUNI",
+              "email": "mustapha.mimouni@oss.org.tn"
+            }
+          ],
+          "office_address": "Observatoire du Sahara et du Sahel (OSS), Tunis",
+          "website": [
+            "https://www.oss-online.org/"
+          ],
+          "regional_coverage": {
+            "north_africa": {
+              "countries": [
+                {
+                  "name": "Egypt",
+                  "partners": [
+                    {
+                      "name": "Desert Research Center (DRC)",
+                      "description": "",
+                      "logo": "images/DRC_Egypt_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Libya",
+                  "partners": [
+                    {
+                      "name": "Libyan Center for Remote Sensing and Space Sciences",
+                      "description": "",
+                      "logo": "images/LCRSS_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Mauritania",
+                  "partners": [
+                    {
+                      "name": "University of Nouakchott Al-Aasriya,",
+                      "description": "",
+                      "logo": "images/University_of_Nouakchott_Logo.png"
+                    },
+                    {
+                      "name": "TENMIYA NGO",
+                      "description": "",
+                      "logo": "images/TENMIYA_NGO_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Morocco",
+                  "partners": [
+                    {
+                      "name": "UN-affiliated African Regional Centre for Space Science and Technology Education- in French Language (CRASTE-LF)",
+                      "description": "",
+                      "logo": "images/CRASTE_LF_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Tunisia",
+                  "partners": [
+                    {
+                      "name": "Regional Remote Sensing Center for North African States (CRTEAN)",
+                      "description": "",
+                      "logo": "images/CRTEAN_Logo.png"
+                    },
+                    {
+                      "name": "National Center for Cartography and Remote Sensing (CNCT)",
+                      "description": "",
+                      "logo": "images/CNCT_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Algeria",
+                  "partners": []
+                }
+              ]
+            }
+          }
+        },
+        "keywords": [
+          "EO data",
+          "Agriculture monitoring",
+          "Land degradation assessment",
+          "Water abstractions for agriculture",
+          "Copernicus",
+          "Sentinel 2",
+          "End-users needs"
         ],
-        "digitalPlatforms": {
-          "website": "https://cicos.int",
-          "geoportal": "https://gmesafrica.cicos.int",
-          "applications": [
+        "challenges": [
+          "Setting up a platform for the exchange of experience between the countries in the region, with the objective of setting up an agreement and collaborating between themselves"
+        ],
+        "focus": [
+          "Increasingly of the resilience of end users and farmers, especially in rural areas, to climate variability by management crop monitoring and irrigated area monitoring",
+          "Increase the resilience of communities and social organizations, as well as decision-makers, in the framework of climate change adaptation and land degradation"
+        ],
+        "rationale": [
+          "The rationale is built on the need to improve water and natural resources management in North Africa using Earth Observation data and applications."
+        ],
+        "work_packages": [
+          {
+            "wp_number": 1,
+            "title": "Improved policy and institutional framework for sustainable development, environment and climate change based on Space Science and Technology applications."
+          },
+          {
+            "wp_number": 2,
+            "title": "Improved access to Earth Observation data and information for sustainable development, environment and climate change in relevant African institutions."
+          },
+          {
+            "wp_number": 3,
+            "title": "Information services are operational for policy makers and planners in the fields of: 1. Water and Natural Resources; 2. Marine and Coastal Areas."
+          },
+          {
+            "wp_number": 4,
+            "title": "Capacities of African public institutions, users of water and natural resources and marine and coastal applications are enhanced at regional and national level."
+          },
+          {
+            "wp_number": 5,
+            "title": "Knowledge management, including cross fertilization, is improved."
+          },
+          {
+            "wp_number": 6,
+            "title": "Outreach, uptake and dissemination is enhanced."
+          }
+        ],
+        "outcomes": [
+          {
+            "description": "Setting up a platform for the exchange of experience between the countries in the region, with the objective of setting up an agreement and collaborating between themselves"
+          },
+          {
+            "description": "Increasingly of the resilience of end users and farmers, especially in rural areas, to climate variability by managing crop monitoring and irrigated area monitoring"
+          },
+          {
+            "description": "Increase the resilience of communities and social organizations, as well as decision-makers, in the framework of climate change adaptation and land degradation"
+          }
+        ],
+        "impacts": [
+          "The project aims to improve sustainable management of natural resources and water, and enhance climate change monitoring in North Africa through the use of Earth Observation data."
+        ],
+        "outputs": [
+          "Output 1: Improved policy and institutional framework for sustainable development, environment and climate change based on Space Science and Technology applications.",
+          "Output 2: Improved access to Earth Observation data and information for sustainable development, environment and climate change in relevant African institutions.",
+          "Output 3: Information services are operational for policy makers and planners in the fields of: 1. Water and Natural Resources; 2. Marine and Coastal Areas.",
+          "Output 4: Capacities of African public institutions, users of water and natural resources and marine and coastal applications are enhanced at regional and national level.",
+          "Output 5: Knowledge management, including cross fertilization, is improved.",
+          "Output 6: Outreach, uptake and dissemination is enhanced."
+        ],
+        "images": {
+          "logos": [
             {
-              "name": "Hydro-Data Visualization Dashboard"
+              "partner": "Observatoire du Sahara et du Sahel (OSS)",
+              "path": "images/OSS_Logo.png"
             },
             {
-              "name": "Navigation & Flood Monitoring Tool"
+              "partner": "African Regional Centre for Space Science and Technology Education- in French Language (CRASTE-LF)",
+              "path": "images/CRASTE_LF_Logo.png"
             },
             {
-              "name": "Regional Water Information System"
+              "partner": "Regional Remote Sensing Center for North African States (CRTEAN)",
+              "path": "images/CRTEAN_Logo.png"
+            },
+            {
+              "partner": "National Center for Cartography and Remote Sensing (CNCT)",
+              "path": "images/CNCT_Logo.png"
+            },
+            {
+              "partner": "Desert Research Center (DRC) Egypt",
+              "path": "images/DRC_Egypt_Logo.png"
+            },
+            {
+              "partner": "Libyan Center for Remote Sensing and Space Sciences",
+              "path": "images/LCRSS_Logo.png"
+            },
+            {
+              "partner": "University of Nouakchott Al-Aasriya, Mauritania",
+              "path": "images/University_of_Nouakchott_Logo.png"
+            },
+            {
+              "partner": "TENMIYA NGO, Mauritania",
+              "path": "images/TENMIYA_NGO_Logo.png"
+            }
+          ],
+          "photographs": [
+            {
+              "description": "Photo illustrating water abstraction for irrigation.",
+              "path": "images/Irrigation_Water_Abstraction_Photo.jpg"
+            }
+          ],
+          "charts": [
+            {
+              "description": "A visit to the Banc d'Arguin National Park",
+              "path": "images/National_Park.jpg"
             }
           ]
+        }
+      },
+      {
+        "project_title": "WeMAST: Upscaling and Operationalization of the Earth Observati...Monitoring Services for Transboundary Basins in Southern Africa",
+        "consortium": {
+          "coordinator": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL), Windhoek",
+          "partners": [
+            "University of Botswana (Botswana)",
+            "University of Western Cape (South Africa)",
+            "University of Zambia (Zambia)",
+            "University of Namibia (Namibia)",
+            "Midlands State University (Zimbabwe)",
+            "National Remote Sensing Centre (Zambia)",
+            "WaterNet, SADC (Botswana)"
+          ],
+          "period_months": 36,
+          "total_budget_eur": 1383538,
+          "grant_eur": 1200000,
+          "contribution_eur": 183538,
+          "locations": {
+            "southern_africa": [
+              "Botswana",
+              "Namibia",
+              "South Africa",
+              "Zambia",
+              "Zimbabwe"
+            ]
+          },
+          "programme_priorities": [
+            "Upscale and operationalize the Geopor...for management and monitoring of Wetlands in Southern Africa."
+          ],
+          "sector": "Water & Natural Resources (WNR)",
+          "contact": {
+            "name": "Dr Jane Olwoch",
+            "role": "Project contact",
+            "affiliation": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
+            "email": "jane.olwoch@sasscal.org"
+          },
+          "website": [
+            "http://gmes-wemast.sasscal.org/",
+            "http://gmes-geoportal.sasscal.org/#/"
+          ],
+          "regional_coverage": {
+            "southern_africa": {
+              "countries": [
+                {
+                  "name": "Botswana",
+                  "partners": [
+                    {
+                      "name": "University of Botswana",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "WaterNet, SADC",
+                      "description": "",
+                      "logo": "images/SADC.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Namibia",
+                  "partners": [
+                    {
+                      "name": "University of Namibia",
+                      "description": "",
+                      "logo": "images/University_of_Namibia_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "South Africa",
+                  "partners": [
+                    {
+                      "name": "University of Western Cape",
+                      "description": "",
+                      "logo": "images/Western_Cape_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Zambia",
+                  "partners": [
+                    {
+                      "name": "University of Zambia",
+                      "description": "",
+                      "logo": "images/University_of_Zambia_Logo.png"
+                    },
+                    {
+                      "name": "National Remote Sensing Centre",
+                      "description": "",
+                      "logo": "images/NRSC.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Zimbabwe",
+                  "partners": [
+                    {
+                      "name": "Midlands State University",
+                      "description": "",
+                      "logo": "images/Midlands_Logo.png"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
         },
-        "members": [
+        "keywords": [
+          "Wetlands monitoring & assessment",
+          "sustainability",
+          "Earth Observation",
+          "decision making"
+        ],
+        "challenges": [
+          "The uptake of the services offered in the developed WeMAST geopo...onitoring and assessment of transboundary basins in SADC is low.",
+          "Wetlands are undergoing significant pressure from both human act...station, climate change and unsustainable development practices.",
+          "The future of these wetlands is dependent on effective assessmen...rm policy and decision making to promote sustainable management."
+        ],
+        "focus": [
+          "To operationalise the WEMAST Geoportal developed in phase 1 in o...researchers and industry in order to manage the wetlands better.",
+          "By so doing, improve their livelihoods."
+        ],
+        "rationale": [
+          "The WeMAST Phase II action is informed by AU Agenda 2063 and the...t in sustainable management of natural resources and ecosystems.",
+          "The proposed action will address SADC policy priorities and stra...ed youth empowerment) and 5 (improved disaster risk management).",
+          "The SADC Vision 2050 emphasis is on capacity building, outreach ...ave material impacts on the well-being of people and the planet.",
+          "The proposed action will upscale the WeMAST geoportal to enhance...inable management of wetlands within the SADC region and beyond.",
+          "The WeMAST Phase II action will strengthen decision making proce...located in Southern Africa \u2013 CUVECOM, LIMCOM, OKACOM and ZAMCOM."
+        ],
+        "work_packages": [
           {
-            "name": "International Commission for the Congo-Oubangui-Sangha Basin (CICOS)",
-            "country": "Republic of Congo",
-            "iso_a2": "CG",
-            "iso_a3": "COG"
+            "wp_number": "1",
+            "title": "Establishment of Wetland Assessment and Monitoring Requirements"
           },
           {
-            "name": "Lake Chad Basin Commission",
-            "country": "Chad",
-            "iso_a2": "TD",
-            "iso_a3": "TCD"
+            "wp_number": "2",
+            "title": "Data Harvesting and Models Integration (Pre-Development Phase)"
           },
           {
-            "name": "Central African Forests Satellite Observatory",
-            "country": "Republic of Congo",
-            "iso_a2": "CG",
-            "iso_a3": "COG"
+            "wp_number": "3",
+            "title": "Platform Design, Development, and Operationalisation"
           },
           {
-            "name": "University of Kinshasa",
-            "country": "Democratic Republic of the Congo",
-            "iso_a2": "CD",
-            "iso_a3": "COD"
-          },
-          {
-            "name": "Central African Forest Commission",
-            "country": "Cameroon",
-            "iso_a2": "CM",
-            "iso_a3": "CMR"
-          },
-          {
-            "name": "Waterways Management Authority",
-            "country": "Democratic Republic of the Congo",
-            "iso_a2": "CD",
-            "iso_a3": "COD"
-          },
-          {
-            "name": "Center for Research on Water and Climate Change",
-            "country": "Cameroon",
-            "iso_a2": "CM",
-            "iso_a3": "CMR"
-          },
-          {
-            "name": "Burundi Geographic Institute",
-            "country": "Burundi",
-            "iso_a2": "BI",
-            "iso_a3": "BDI"
-          },
-          {
-            "name": "National Institute for the Conservation of the Environment",
-            "country": "Equatorial Guinea",
-            "iso_a2": "GQ",
-            "iso_a3": "GNQ"
-          },
-          {
-            "name": "National Office of Technical Studies and Development",
-            "country": "Côte d'Ivoire",
-            "iso_a2": "CI",
-            "iso_a3": "CIV"
+            "wp_number": "4",
+            "title": "Continuous Capacity Building, Services Demonstration, and Dissemination"
           }
         ],
-        "logo": "https://www.cicos.int/wp-content/themes/cicos/images/logo-cicos-n.png"
+        "outcomes": [
+          {
+            "description": "Improved policy and institutional framework for sustainable man...er & natural resources based on Earth Observation applications."
+          },
+          {
+            "description": "Information services are upscaled & operational...rs for management and monitoring of water & natural resources."
+          },
+          {
+            "description": "Strengthened engagement & collaboration with re...vices in decision making (policy coherence and harmonization)."
+          },
+          {
+            "description": "Outreach, uptake, and dissemination is enhanced."
+          }
+        ],
+        "impacts": [
+          "The WeMAST Phase II project proposes an impactful course of acti... assessment in four key transboundary basins in Southern Africa.",
+          "This course of action builds on experiences and lessons learnt f...ch, service development, data access and stakeholder engagement.",
+          "This will be realized through cross fertilization with other GME...ter/environmental authorities within the SADC region and beyond."
+        ],
+        "outputs": [
+          "Upscaling and operationalization of the WeMAST Geoportal services.",
+          "Increased number of users using the products & services of WeMAST geoportal for decision-making processes.",
+          "Improved number of publicity and information products disseminated to stakeholders and audiences.",
+          "Increased number of developed women-oriented working group on EO-based services.",
+          "Improved Knowledge sharing through cross fertilization and build...g synergies with stakeholders and other GMES & Africa Consortia."
+        ],
+        "images": {
+          "logos": [
+            {
+              "partner": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
+              "path": "images/SASSCAL_Logo.png"
+            },
+            {
+              "partner": "University of Zambia",
+              "path": "images/University_of_Zambia_Logo.png"
+            },
+            {
+              "partner": "University of Namibia",
+              "path": "images/University_of_Namibia_Logo.png"
+            },
+            {
+              "partner": "University of the Western Cape",
+              "path": "images/Western_Cape_Logo.png"
+            },
+            {
+              "partner": "Midlands State University",
+              "path": "images/Midlands_Logo.png"
+            },
+            {
+              "partner": "Building Capacity for Water Resources Management in Southern Africa",
+              "path": "images/SADC.png"
+            },
+            {
+              "partner": "National Remote Sensing Centre",
+              "path": "images/NRSC.png"
+            }
+          ],
+          "photographs": [
+            {
+              "description": "Group of project partners on a field visit to a wetland area.",
+              "path": "images/Photograph_1_Field_Visit.jpg"
+            }
+          ],
+          "charts": [
+            {
+              "description": "Map showing WeMAST partner location... and study areas (Zambezi, Cuvelai, Okavango, Limpopo basins).",
+              "path": "images/WeMAST_Partners_Study_Areas_Map.png"
+            }
+          ]
+        }
       },
       {
-        "name": "Sustainable Wetlands and Flood Management for Enhanced Food Security and Ecosystem Resilience in West Africa",
-        "acronym": "GDZHIAO",
-        "leadInstitution": "Centre de Suivi Ecologique (CSE)",
-        "leadCountry": "Senegal",
-        "region": "West Africa",
-        "thematicFocus": "Water & Natural Resources",
-        "description": "Provides tools and data to help decision-makers manage wetlands and floods in West Africa, utilizing EO data to increase ecosystem resilience and food security.",
-        "members": [
+        "project_title": "Marine and Coastal Areas Management in North and West Africa (MarCNoWA)",
+        "consortium": {
+          "coordinator": "University of Ghana (Regional Marine Centre), Accra",
+          "partners": [
+            "University of Ghana (Regional Marine Centre) (Ghana)",
+            "Nigerian Institute for Oceanography and Marine Research (Nigeria)",
+            "Centre Universitaire De Recherche d'Application en T\u00e9l\u00e9d\u00e9tection (Cote d\u2019Ivoire)",
+            "Institut de Recherches Halieutiques et Oc\u00e9anologiques du B\u00e9nin",
+            "Centre for Oceanographic Research of Dakar-Thiaroye (Senegal)",
+            "Ghana Meteorological Agency (Ghana)",
+            "Centre for the Environment for Arab Region and Europe (Egypt) Intergovernmental Organization for Arab region and North Africa (Egypt)",
+            "Centre d'Etudes et de Recherche des Te\u0301le\u0301communications (Tunisia)",
+            "Chouaib Doukkali University (Morocco)",
+            "Nature Today Ghana"
+          ],
+          "period_months": 48,
+          "total_budget_eur": 2568000,
+          "grant_eur": 2400000,
+          "contribution_eur": 168000,
+          "locations": {
+            "west_africa": [
+              "Benin",
+              "Cape Verde",
+              "Côte d'Ivoire",
+              "Ghana",
+              "Gambia",
+              "Guinea",
+              "Guinea Bissau",
+              "Liberia",
+              "Senegal",
+              "Sierra Leone",
+              "Togo",
+              "Nigeria"
+            ],
+            "north_africa": [
+              "Mauritania",
+              "Morocco",
+              "Tunisia",
+              "Algeria",
+              "Egypt",
+              "Libya",
+              "Western Sahara"
+            ]
+          },
+          "programme_priorities": [
+            "In line with the overall objective for the GMES & Africa Phase 2 programme to support sustainable development in West and North Africa. The specific objectives are, to:",
+            "Promoting the development of local capacities, institutional, human and technical resources to ensure the operational provision of EO services on an operational basis for sustainable development of Africa,",
+            "Supporting the implementation of the African Space Policy and Strategy, on Earth Observation,",
+            "Providing decision-makers with information and tools needed for the implementation of sustainable environmental policies at continental, regional and national levels through their Regional Economic Communities (RECs) and",
+            "Maintaining, improving, and sustaining access to EO data."
+          ],
+          "sector": "Marine and Coastal areas management",
+          "contact": {
+            "name": "Mr. Kwame Adu Agyekum, PhD",
+            "role": "Project Coordinator",
+            "title": "Lecturer / Earth Observation Scientist (Marine Remote Sensing)",
+            "affiliation": "Dept. Marine & Fisheries Sciences/ Regional Marine Centre",
+            "program": "Global Monitoring for Environment & Security - Africa (GMES-Africa)",
+            "address": "P.O. Box LG 99, Legon.",
+            "country": "Ghana"
+          },
+          "website": [
+            "https://gmes.ug.edu.gh/",
+            "www.ug.edu.gh"
+          ],
+          "regional_coverage": {
+            "west_africa": {
+              "countries": [
+                {
+                  "name": "Benin",
+                  "partners": [
+                    {
+                      "name": "Institut de Recherches Halieutiques et Oc\u00e9anologiques du B\u00e9nin",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Cape Verde",
+                  "partners": []
+                },
+                {
+                  "name": "Côte d'Ivoire",
+                  "partners": [
+                    {
+                      "name": "Centre Universitaire De Recherche d'Application en Télédétection (Cote d’Ivoire)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Ghana",
+                  "partners": [
+                    {
+                      "name": "University of Ghana (Regional Marine Centre) (Ghana)",
+                      "description": "",
+                      "logo": "images/logos/university_of_ghana_logo.png"
+                    },
+                    {
+                      "name": "Ghana Meteorological Agency (Ghana)",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "Nature Today Ghana",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Gambia",
+                  "partners": []
+                },
+                {
+                  "name": "Guinea",
+                  "partners": []
+                },
+                {
+                  "name": "Guinea Bissau",
+                  "partners": []
+                },
+                {
+                  "name": "Liberia",
+                  "partners": []
+                },
+                {
+                  "name": "Senegal",
+                  "partners": [
+                    {
+                      "name": "Centre for Oceanographic Research of Dakar-Thiaroye (Senegal)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Sierra Leone",
+                  "partners": []
+                },
+                {
+                  "name": "Togo",
+                  "partners": []
+                },
+                {
+                  "name": "Nigeria",
+                  "partners": [
+                    {
+                      "name": "Nigerian Institute for Oceanography and Marine Research (Nigeria)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                }
+              ]
+            },
+            "north_africa": {
+              "countries": [
+                {
+                  "name": "Mauritania",
+                  "partners": []
+                },
+                {
+                  "name": "Morocco",
+                  "partners": [
+                    {
+                      "name": "Chouaib Doukkali University (Morocco)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Western Sahara",
+                  "partners": []
+                },
+                {
+                  "name": "Tunisia",
+                  "partners": [
+                    {
+                      "name": "Centre d'Etudes et de Recherche des Te\u0301le\u0301communications (Tunisia)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Algeria",
+                  "partners": []
+                },
+                {
+                  "name": "Egypt",
+                  "partners": [
+                    {
+                      "name": "Centre for the Environment for Arab Region and Europe (Egypt) Intergovernmental Organization for Arab region and North Africa (Egypt)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Libya",
+                  "partners": []
+                }
+              ]
+            }
+          }
+        },
+        "keywords": [
+          "Marine resources management",
+          "Coastal observation",
+          "Earth Observation",
+          "GMES & Africa",
+          "West Africa",
+          "North Africa",
+          "Marine and coastal areas",
+          "Blue economy"
+        ],
+        "challenges": [
+          "Limited access to accurate, timely and spatially explicit information on the state of marine and coastal environments in West and North Africa.",
+          "Increasing pressure on marine and coastal resources due to population growth, urbanisation, industrialisation, and climate change impacts.",
+          "Inadequate local capacity, infrastructure and coordination mechanisms to generate, disseminate and use Earth Observation-based marine and coastal information services.",
+          "Fragmented data and knowledge across institutions and countries, limiting effective regional marine and coastal governance.",
+          "Need to support regional and national efforts to achieve sustainable development goals related to oceans, coasts and climate resilience."
+        ],
+        "focus": [
+          "Development and provision of Earth Observation-based marine and coastal information services to support sustainable management of marine and coastal resources in North and West Africa.",
+          "Strengthening institutional, human and technical capacities for operational marine and coastal EO services.",
+          "Supporting implementation of policies and strategies related to marine and coastal management, climate change and blue economy at regional and national levels.",
+          "Enhancing data sharing, knowledge exchange and collaboration among marine and coastal institutions in West and North Africa."
+        ],
+        "rationale": [
+          "Marine and coastal areas in North and West Africa are critical for food security, livelihoods, trade, biodiversity and climate regulation.",
+          "These areas face significant threats from overexploitation, pollution, habitat degradation and climate change impacts such as sea level rise and coastal erosion.",
+          "Earth Observation provides a powerful tool to monitor, assess and manage marine and coastal environments over large areas and time scales.",
+          "The MarCNoWA project aims to build on the achievements of GMES & Africa Phase 1 to deliver operational, user-driven marine and coastal EO services.",
+          "The project will contribute to regional and continental priorities related to sustainable blue economy, climate resilience and environmental governance."
+        ],
+        "work_packages": [
           {
-            "name": "Centre de Suivi Ecologique (CSE)",
-            "country": "Senegal",
-            "iso_a2": "SN",
-            "iso_a3": "SEN"
+            "wp_number": 1,
+            "title": "Project Management and Coordination"
           },
           {
-            "name": "National Water Institute (NWI)",
-            "country": "Benin",
-            "iso_a2": "BJ",
-            "iso_a3": "BEN"
+            "wp_number": 2,
+            "title": "User Engagement and Service Co-design"
           },
           {
-            "name": "Institute of Geography of Burkina (IGB)",
-            "country": "Burkina Faso",
-            "iso_a2": "BF",
-            "iso_a3": "BFA"
+            "wp_number": 3,
+            "title": "Marine and Coastal EO Information Services Development"
           },
           {
-            "name": "Volta Basin Authority (VBA)",
-            "country": "Burkina Faso",
-            "iso_a2": "BF",
-            "iso_a3": "BFA"
+            "wp_number": 4,
+            "title": "Capacity Building and Training"
           },
           {
-            "name": "Higher Institute of Spatial and Telecommunications Studies (ISESTEL)",
-            "country": "Burkina Faso",
-            "iso_a2": "BF",
-            "iso_a3": "BFA"
+            "wp_number": 5,
+            "title": "Communication, Dissemination and Outreach"
           },
           {
-            "name": "University Research and Application Center in Remote Sensing (CURAT)",
-            "country": "Côte d'Ivoire",
-            "iso_a2": "CI",
-            "iso_a3": "CIV"
-          },
-          {
-            "name": "Center for Remote Sensing and Geographic Information Services (CERSGIS)",
-            "country": "Ghana",
-            "iso_a2": "GH",
-            "iso_a3": "GHA"
-          },
-          {
-            "name": "Center for Scientific and Industrial Research (CSIR)",
-            "country": "Ghana",
-            "iso_a2": "GH",
-            "iso_a3": "GHA"
-          },
-          {
-            "name": "University of Ghana (UG)",
-            "country": "Ghana",
-            "iso_a2": "GH",
-            "iso_a3": "GHA"
-          },
-          {
-            "name": "Department of Parks and Wildlife (DPW)",
-            "country": "Gambia",
-            "iso_a2": "GM",
-            "iso_a3": "GMB"
-          },
-          {
-            "name": "National Directorate of Living Environment, Surveillance, and Environmental Observation (DNCSOE)",
-            "country": "Guinea",
-            "iso_a2": "GN",
-            "iso_a3": "GIN"
-          },
-          {
-            "name": "National Directorate of Water and Forests (DNEF)",
-            "country": "Mali",
-            "iso_a2": "ML",
-            "iso_a3": "MLI"
-          },
-          {
-            "name": "Division of Wildlife, Hunting and Protected Areas (DFC/AP)",
-            "country": "Niger",
-            "iso_a2": "NE",
-            "iso_a3": "NER"
-          },
-          {
-            "name": "Space for Humanity Foundation",
-            "country": "Nigeria",
-            "iso_a2": "NG",
-            "iso_a3": "NGA"
-          },
-          {
-            "name": "National Parks Directorate",
-            "country": "Senegal",
-            "iso_a2": "SN",
-            "iso_a3": "SEN"
-          },
-          {
-            "name": "Center for Space Science and Technology Education (CSSTE)",
-            "country": "Nigeria",
-            "iso_a2": "NG",
-            "iso_a3": "NGA"
+            "wp_number": 6,
+            "title": "Sustainability, Policy Uptake and Scaling"
           }
         ],
-        "logo": "data:image/png;base64,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"
+        "outcomes": [
+          {
+            "description": "Operational EO-based marine and coastal information services established and used by decision-makers in North and West Africa.",
+            "service": "Marine and coastal monitoring and forecasting services"
+          },
+          {
+            "description": "Improved capacity of regional and national institutions to generate, interpret and apply marine and coastal EO information.",
+            "service": "Capacity building and training services"
+          },
+          {
+            "description": "Strengthened policy and decision-making for sustainable management of marine and coastal resources at regional and national levels.",
+            "service": "Policy support and advisory services"
+          },
+          {
+            "description": "Enhanced regional cooperation and knowledge exchange on marine and coastal EO applications.",
+            "service": "Networking and knowledge sharing services"
+          }
+        ],
+        "impacts": [
+          "Contributes to sustainable management and conservation of marine and coastal ecosystems in North and West Africa.",
+          "Supports climate-resilient livelihoods and blue economy development in coastal communities.",
+          "Enhances the capacity of African institutions to use space-based technologies for environmental monitoring and governance.",
+          "Contributes to the implementation of the African Space Policy and Strategy and Agenda 2063 aspirations related to oceans and blue economy.",
+          "Provides a model for regional marine and coastal EO service development that can be scaled and replicated in other regions."
+        ],
+        "outputs": [
+          "Operational EO-based marine and coastal monitoring products and services for North and West Africa.",
+          "Capacity building programmes, training materials and toolkits on marine and coastal EO applications.",
+          "Technical reports, guidelines and policy briefs on marine and coastal EO services and their use in decision-making.",
+          "Data portals, geoportals or platforms for accessing marine and coastal EO information.",
+          "Communication and outreach materials showcasing the value of EO for marine and coastal management."
+        ],
+        "images": {
+          "logos": [
+            {
+              "partner": "University of Ghana",
+              "path": "images/logos/university_of_ghana_logo.png"
+            },
+            {
+              "partner": "GMES & Africa",
+              "path": "images/logos/gmes_africa_logo.png"
+            }
+          ],
+          "photographs": [
+            {
+              "description": "Coastal zone in West Africa",
+              "path": "images/photos/west_africa_coast.jpg"
+            },
+            {
+              "description": "Marine observation activities",
+              "path": "images/photos/marine_observation.jpg"
+            }
+          ],
+          "charts": [
+            {
+              "description": "Map of project countries in North and West Africa",
+              "path": "images/charts/marcnowa_countries_map.png"
+            }
+          ]
+        }
       },
       {
-        "name": "Marine and Coastal Observations for Southern Africa and the Indian Ocean",
-        "acronym": "MarCOSIO",
-        "leadInstitution": "Council for Scientific and Industrial Research (CSIR)",
-        "leadCountry": "South Africa",
-        "region": "Southern Africa & Indian Ocean",
-        "thematicFocus": "Marine & Coastal",
-        "members": [
+        "project_title": "Gestion Durables des Zones Humides et de.../ Sustainable Management of Wetlands and Floods in West Africa",
+        "consortium": {
+          "coordinator": "Centre de Suivi Ecologique (CSE), Dakar",
+          "partners": [
+            "INE-National Water Institute (NWI) (Benin)",
+            "Institut de G\u00e9ographie du Burkina (IGB) (Burkina Faso)",
+            "Volta Basin Authority (VBA) (Burkina Faso)",
+            "Institut Sup\u00e9rieur D\u2019\u00e9tudes Spatiales et T\u00e9l\u00e9communication (ISESTEL) (Burkina Faso)",
+            "Centre Universitaire de Recherche et d\u2019Applications en T\u00e9l\u00e9d\u00e9tection (CURAT) (Côte d'Ivoire)",
+            "Centre for Remote Sensing and Geographic Information Services (CERSGIS) (Ghana)",
+            "Centre for Scientific and Industrial Research (CSIR) (Ghana)",
+            "University of Ghana (UG) (Ghana)",
+            "D\u00e9partement des Parcs et de la Faune (DPW) (Gambia)",
+            "Direction Nationale du Cadre de Vie, Surveillance et Observation Environnementales (DNCSOE) (Guinea)",
+            "Direction Nationale des Eaux et For\u00eats (DNEF) (Mali)",
+            "Direction de la Faune de la Chasse et des Aires Prot\u00e9g\u00e9es (DFC/AP) (Niger)",
+            "Space for Humanity Foundation (Nigeria)",
+            "Direction des Parcs nationaux (Senegal)"
+          ],
+          "period_months": 48,
+          "total_budget_eur": 3590474,
+          "grant_eur": 2850000,
+          "contribution_eur": 740474,
+          "locations": {
+            "west_africa": [
+              "Benin",
+              "Burkina Faso",
+              "Côte d'Ivoire",
+              "Gambia",
+              "Ghana",
+              "Guinea",
+              "Mali",
+              "Niger",
+              "Senegal",
+              "Nigeria"
+            ]
+          },
+          "programme_priorities": [
+            "Sustainable Management of Wetlands and Floods in West Africa using Earth Observation data."
+          ],
+          "sector": "Environment and Water Resources",
+          "contact_persons": [],
+          "office_address": "Centre de Suivi Ecologique (CSE), Dakar",
+          "website": [],
+          "regional_coverage": {
+            "west_africa": {
+              "countries": [
+                {
+                  "name": "Benin",
+                  "partners": [
+                    {
+                      "name": "INE-National Water Institute (NWI)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Burkina Faso",
+                  "partners": [
+                    {
+                      "name": "Institut de G\u00e9ographie du Burkina (IGB)",
+                      "description": "",
+                      "logo": "images/IGB.png"
+                    },
+                    {
+                      "name": "Volta Basin Authority (VBA)",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "Institut Sup\u00e9rieur D\u2019\u00e9tudes Spatiales et T\u00e9l\u00e9communication (ISESTEL)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Côte d'Ivoire",
+                  "partners": [
+                    {
+                      "name": "Centre Universitaire de Recherche et d\u2019Applications en T\u00e9l\u00e9d\u00e9tection (CURAT)",
+                      "description": "",
+                      "logo": "images/CURAT.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Gambia",
+                  "partners": [
+                    {
+                      "name": "D\u00e9partement des Parcs et de la Faune (DPW)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Ghana",
+                  "partners": [
+                    {
+                      "name": "Centre for Remote Sensing and Geographic Information Services (CERSGIS)",
+                      "description": "",
+                      "logo": "images/CERSGIS_Logo.png"
+                    },
+                    {
+                      "name": "Centre for Scientific and Industrial Research (CSIR)",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "University of Ghana (UG)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Guinea",
+                  "partners": [
+                    {
+                      "name": "Direction Nationale du Cadre de Vie, Surveillance et Observation Environnementales (DNCSOE)",
+                      "description": "",
+                      "logo": "images/DNCSOE_Guinea_Logo.jpg"
+                    }
+                  ]
+                },
+                {
+                  "name": "Mali",
+                  "partners": [
+                    {
+                      "name": "Direction Nationale des Eaux et For\u00eats (DNEF)",
+                      "description": "",
+                      "logo": "images/DNEF.jpg"
+                    }
+                  ]
+                },
+                {
+                  "name": "Niger",
+                  "partners": [
+                    {
+                      "name": "Direction de la Faune de la Chasse et des Aires Prot\u00e9g\u00e9es (DFC/AP)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Senegal",
+                  "partners": [
+                    {
+                      "name": "Direction des Parcs nationaux",
+                      "description": "",
+                      "logo": "images/DPN.jpg"
+                    }
+                  ]
+                },
+                {
+                  "name": "Nigeria",
+                  "partners": [
+                    {
+                      "name": "Space for Humanity Foundation",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "Centre for Space Science and Technology Education (CSSTE)",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "keywords": [
+          "Wetlands",
+          "Floods",
+          "Flood management",
+          "West Africa",
+          "Earth Observation",
+          "Sustainable management"
+        ],
+        "challenges": [
+          "Scaling challenge with new sites: The project monit... basins for flood monitoring and aims to scale up to new sites."
+        ],
+        "focus": [
+          "Operationalize Earth Observation services for susta...nd technology transfer to national institutions in West Africa."
+        ],
+        "rationale": [
+          "To provide decision-makers with tools and informati...olicy coherence, and boost regional cooperation in West Africa."
+        ],
+        "work_packages": [
           {
-            "name": "Council for Scientific and Industrial Research (CSIR)",
-            "country": "South Africa",
-            "iso_a2": "ZA",
-            "iso_a3": "ZAF"
+            "wp_number": 1,
+            "title": "EO-based Services Provision for Wetland and Flood Management"
           },
           {
-            "name": "ABALOBI research group",
-            "country": "South Africa",
-            "iso_a2": "ZA",
-            "iso_a3": "ZAF"
+            "wp_number": 2,
+            "title": "Knowledge and Technology Transfer, and Capacity Building"
           },
           {
-            "name": "Benguela Current Convention",
-            "country": "Namibia",
-            "iso_a2": "NA",
-            "iso_a3": "NAM"
+            "wp_number": 3,
+            "title": "Awareness, Communication, and Dissemination"
           },
           {
-            "name": "Coastal Oceans Research and Development Indian Ocean",
-            "country": "Kenya",
-            "iso_a2": "KE",
-            "iso_a3": "KEN"
-          },
-          {
-            "name": "Institut Halieutique et des Sciences Marines",
-            "country": "Madagascar",
-            "iso_a2": "MG",
-            "iso_a3": "MDG"
-          },
-          {
-            "name": "Institute for Marine Science",
-            "country": "Tanzania",
-            "iso_a2": "TZ",
-            "iso_a3": "TZA"
-          },
-          {
-            "name": "Kenya Marine Fisheries Research Institute",
-            "country": "Kenya",
-            "iso_a2": "KE",
-            "iso_a3": "KEN"
-          },
-          {
-            "name": "Mauritius Oceanography Institute",
-            "country": "Mauritius",
-            "iso_a2": "MU",
-            "iso_a3": "MUS"
-          },
-          {
-            "name": "National Sea Rescue Institute",
-            "country": "South Africa",
-            "iso_a2": "ZA",
-            "iso_a3": "ZAF"
-          },
-          {
-            "name": "Tanzania Fisheries and Research Institute",
-            "country": "Tanzania",
-            "iso_a2": "TZ",
-            "iso_a3": "TZA"
-          },
-          {
-            "name": "University of Eduardo Mondlane",
-            "country": "Mozambique",
-            "iso_a2": "MZ",
-            "iso_a3": "MOZ"
-          },
-          {
-            "name": "West Indian Ocean Marine Science Association",
-            "country": "Tanzania",
-            "iso_a2": "TZ",
-            "iso_a3": "TZA"
+            "wp_number": 4,
+            "title": "Private Sector Engagement and Gender Inclusion"
           }
         ],
-        "logo": "https://marcosio.org/wp-content/uploads/2022/08/MarCoSio-Logo.png"
+        "outcomes": [
+          {
+            "description": "Knowledge and technology transfe...ment of additional Communities of Practice (2 new, 8 existing).",
+            "service": "Knowledge and technology transfer services"
+          },
+          {
+            "description": "Awareness, communication, and di...anced (4 forums, 14 documentaries, platform visitors tracking).",
+            "service": "Awareness, communication and dissemination services"
+          },
+          {
+            "description": "Private sector contribution to s...(2 forums for private sector, 5 startups/incubators supported).",
+            "service": "Private sector engagement services"
+          },
+          {
+            "description": "Gender inclusion is systematical...ender strategy document, 10 women and girls clubs established).",
+            "service": "Gender inclusion and empowerment services"
+          }
+        ],
+        "impacts": [
+          "Improved decision-making processes for the sustaina...tural resources by promoting the use of GMES & Africa services."
+        ],
+        "outputs": [
+          "10 Communities of Practice (CoPs) established and supported (2 additional to 8 existing ones).",
+          "10,000 communication materials produced and distributed.",
+          "1 document on good practices and 1 document on knowledge management produced.",
+          "4 forums organized to promote the use of GMES & Africa services.",
+          "14 documentary films produced.",
+          "2 dedicated forums for private sector participation organized.",
+          "5 startups and incubators supported.",
+          "1 document of engagement strategy including the gender approach produced.",
+          "10 women and girls clubs established."
+        ],
+        "images": {
+          "logos": [
+            {
+              "partner": "Centre de Suivi Ecologique (CSE)",
+              "path": "images/CSE_Logo.png"
+            },
+            {
+              "partner": "Institut de G\u00e9ographie du Burkina (IGB)",
+              "path": "images/IGB.png"
+            },
+            {
+              "partner": "Centre Universitaire de Recherche et d\u2019Applications en T\u00e9l\u00e9d\u00e9tection (CURAT)",
+              "path": "images/CURAT.png"
+            },
+            {
+              "partner": "Centre for Remote Sensing and Geographic Information Services (CERSGIS), Ghana",
+              "path": "images/CERSGIS_Logo.png"
+            },
+            {
+              "partner": "D\u00e9partement des Parcs et de la Faune (DPW), Gambia",
+              "path": ""
+            },
+            {
+              "partner": "Direction Nationale du Cadre de ...Surveillance et Observation Environnementales (DNCSOE), Guinea",
+              "path": "images/DNCSOE_Guinea_Logo.jpg"
+            },
+            {
+              "partner": "Direction Nationale des Eaux et For\u00eats (DNEF)",
+              "path": "images/DNEF.jpg"
+            },
+            {
+              "partner": "Direction des Parcs Nationaux du S\u00e9n\u00e9gal (DPN)",
+              "path": "images/DPN.jpg"
+            }
+          ],
+          "photographs": [],
+          "charts": [
+            {
+              "description": "Flood Reporter Mobile App",
+              "path": "images/Flood_Reporter.png"
+            }
+          ]
+        }
       },
       {
-        "name": "Monitoring Natural Resources and Food Security in Eastern Africa",
-        "acronym": "ICPAC Consortium",
-        "leadInstitution": "IGAD Climate Prediction & Applications Centre (ICPAC)",
-        "leadCountry": "Kenya",
-        "region": "Eastern Africa",
-        "thematicFocus": "Water & Natural Resources",
-        "members": [
+        "project_title": "Gestion de l\u2019Eau et Ressources Naturelles en Afrique Centrale (...NAC) / Water and Natural Resources Management in Central Africa",
+        "consortium": {
+          "coordinator": "Commission Internationale du bassin Congo-Oubangui-Sangha (CICOS), Kinshasa",
+          "partners": [
+            "Commission du Bassin du Lac Tchad (Chad)",
+            "Observatoire Satellital des For\u00eats de l\u2019Afrique centrale (Republic of Congo)",
+            "Universit\u00e9 de Kinshasa (DRC)",
+            "Commission des Foret d'Afrique centrale (Cameroon)",
+            "R\u00e9gie des Voies Fluviales (DRC)",
+            "Centre de Recherche sur l\u2019Eau et les Changements Climatiques (Cameroon)",
+            "Institut G\u00e9ographique du Burundi (Burundi)",
+            "Institut National pour la Conservation de l'Environnement (Equatorial Guinea)",
+            "Bureau National d'\u00c9tudes Techniques et de D\u00e9veloppement (C\u00f4te d'Ivoire)"
+          ],
+          "period_months": 44,
+          "total_budget_eur": 1839980,
+          "grant_eur": 1600000,
+          "contribution_eur": 239980,
+          "locations": {
+            "central_africa": [
+              "Chad",
+              "Republic of Congo",
+              "DRC",
+              "Cameroon",
+              "Burundi",
+              "Equatorial Guinea",
+              "Cote d'Ivoire",
+              "Gabon",
+              "Central African Republic",
+              "Sao Tome and Principe"
+            ]
+          },
+          "programme_priorities": [
+            "Monitoring of water resources, with a focus on water level evolution for river navigation",
+            "Monitoring of the hydrological balance of sub-basins of major rivers in the Congo basin and connected basins",
+            "Monitoring of the hydrological behavior of wetlands, the flooded forest areas of the central African region, and flooded forest areas in the central basin",
+            "Capacity building",
+            "Awareness",
+            "Training"
+          ],
+          "sector": "Water, Natural Resources",
+          "contact_persons": [],
+          "office_address": "Commission Internationale du bassin Congo-Oubangui-Sangha (CICOS), Kinshasa",
+          "website": [],
+          "regional_coverage": {
+            "central_africa": {
+              "countries": [
+                {
+                  "name": "Chad",
+                  "partners": [
+                    {
+                      "name": "Commission du Bassin du Lac Tchad",
+                      "description": "",
+                      "logo": "images/LCBC_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Republic of Congo",
+                  "partners": [
+                    {
+                      "name": "Observatoire Satellital des For\u00eats de l\u2019Afrique centrale",
+                      "description": "",
+                      "logo": "images/OSFAC_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "DRC",
+                  "partners": [
+                    {
+                      "name": "Universit\u00e9 de Kinshasa",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "R\u00e9gie des Voies Fluviales",
+                      "description": "",
+                      "logo": "images/RVF.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Cameroon",
+                  "partners": [
+                    {
+                      "name": "Commission des Foret d'Afrique centrale",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "Centre de Recherche sur l\u2019Eau et les Changements Climatiques",
+                      "description": "",
+                      "logo": "images/CRECC_Logo.png"
+                    }
+                  ]
+                },
+                {
+                    "name": "Gabon",
+                    "partners": []
+                    },
+                    {
+                    "name": "Central African Republic",
+                    "partners": []
+                    },
+                    {
+                    "name": "Sao Tome and Principe",
+                    "partners": []
+                },
+                {
+                  "name": "Burundi",
+                  "partners": [
+                    {
+                      "name": "Institut G\u00e9ographique du Burundi",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Equatorial Guinea",
+                  "partners": [
+                    {
+                      "name": "Institut National pour la Conservation de l'Environnement",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Côte d'Ivoire",
+                  "partners": [
+                    {
+                      "name": "Bureau National d'\u00c9tudes Techniques et de D\u00e9veloppement",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "keywords": [
+          "Water resources",
+          "Natural Resources",
+          "Central Africa",
+          "Congo-Oubangui-Sangha basin",
+          "Flooded forests",
+          "River navigation"
+        ],
+        "challenges": [
+          "Need to monitor water resources and their evolution for river navigation.",
+          "Need to monitor the hydrological balance of sub-basins of major rivers in the Congo basin and connected basins.",
+          "Need to monitor hydrological behavior of wetlands and flooded forest areas in the central African region.",
+          "Limited technical and institutional capacities to fully use satellite-based Earth Observation for integrated water resource management.",
+          "Need to strengthen regional cooperation and data sharing between countries that share transboundary water resources."
+        ],
+        "focus": [
+          "Development of operational EO-based services for monitoring water levels, river navigation conditions, and hydrological balance in the Congo-Oubangui-Sangha basin and connected basins.",
+          "Monitoring of wetlands and flooded forest dynamics in the central African region using satellite data.",
+          "Capacity building of regional and national institutions in the use of EO data and tools for water resource management.",
+          "Support to decision-making for integrated water resource management and climate resilience.",
+          "Awareness raising and training of stakeholders on the benefits of EO for water and natural resource management."
+        ],
+        "rationale": [
+          "The Congo-Oubangui-Sangha basin and connected basins play a critical role in regional hydrology, ecosystems, and livelihoods in Central Africa.",
+          "River navigation, fisheries, agriculture, and ecosystems depend on the availability and dynamics of surface water and wetlands.",
+          "Climate change and human activities are affecting hydrological regimes, increasing the need for better monitoring and management.",
+          "Earth Observation offers unique capabilities to monitor large and often inaccessible areas on a regular basis.",
+          "The project aims to provide decision-makers with reliable, spatially explicit information on water resources, navigation conditions, and wetlands to support sustainable management and adaptation to climate change."
+        ],
+        "work_packages": [
           {
-            "name": "IGAD Climate Prediction & Applications Centre (ICPAC)",
-            "country": "Kenya",
-            "iso_a2": "KE",
-            "iso_a3": "KEN"
+            "wp_number": 1,
+            "title": "Project coordination and management"
           },
           {
-            "name": "Wildlife Research and Training Institute (WRTI)",
-            "country": "Kenya",
-            "iso_a2": "KE",
-            "iso_a3": "KEN"
+            "wp_number": 2,
+            "title": "User engagement and co-design of services"
           },
           {
-            "name": "Tanzania Forest Service Agency (TFS)",
-            "country": "Tanzania",
-            "iso_a2": "TZ",
-            "iso_a3": "TZA"
+            "wp_number": 3,
+            "title": "Development of EO-based services for water resources, navigation and wetlands monitoring"
           },
           {
-            "name": "Makerere University",
-            "country": "Uganda",
-            "iso_a2": "UG",
-            "iso_a3": "UGA"
+            "wp_number": 4,
+            "title": "Capacity building, training and technology transfer"
           },
           {
-            "name": "Ministry of Land, Water and Environment",
-            "country": "Eritrea",
-            "iso_a2": "ER",
-            "iso_a3": "ERI"
+            "wp_number": 5,
+            "title": "Communication, dissemination and awareness"
           },
           {
-            "name": "Ministry of Livestock, Forestry and Range",
-            "country": "Somalia",
-            "iso_a2": "SO",
-            "iso_a3": "SOM"
-          },
-          {
-            "name": "Uganda Wildlife Authority (UWA)",
-            "country": "Uganda",
-            "iso_a2": "UG",
-            "iso_a3": "UGA"
+            "wp_number": 6,
+            "title": "Sustainability, policy integration and upscaling"
           }
         ],
-        "logo": "https://www.icpac.net/media/images/ICPAC_LOGO_WithSLogan.width-800.png"
+        "outcomes": [
+          {
+            "description": "Operational EO-based monitoring services for water levels, river navigation and wetlands established and used by regional and national institutions.",
+            "service": "EO-based water and wetlands monitoring services"
+          },
+          {
+            "description": "Improved technical and institutional capacities for using EO data in integrated water resource management.",
+            "service": "Capacity building and training services"
+          },
+          {
+            "description": "Enhanced use of EO-derived information in policies and plans related to water resources, navigation, wetlands and climate resilience.",
+            "service": "Policy support and decision-making services"
+          },
+          {
+            "description": "Strengthened regional cooperation and data sharing for the management of transboundary water resources in Central Africa.",
+            "service": "Regional coordination and information-sharing services"
+          }
+        ],
+        "impacts": [
+          "Improved integrated water resource management in the Congo-Oubangui-Sangha basin and connected basins.",
+          "Reduced vulnerability of river users and riparian populations to navigation hazards and hydrological extremes.",
+          "Better protection and management of wetlands and flooded forests of high ecological and socio-economic importance.",
+          "Strengthened capacity of African institutions to use space-based technologies for water and natural resource management and climate adaptation.",
+          "Contribution to regional and global commitments related to water, ecosystems and climate action."
+        ],
+        "outputs": [
+          "Operational EO-based products and services for monitoring water levels, hydrological balance, river navigation and wetlands.",
+          "Technical reports, methodologies and guidelines on the use of EO for water and wetlands monitoring.",
+          "Training sessions, workshops and educational materials on EO for water resource management in Central Africa.",
+          "Data platforms or portals for accessing and sharing EO-based water and wetlands information.",
+          "Communication and awareness materials showcasing the benefits of EO for water and natural resource management."
+        ],
+        "images": {
+          "logos": [
+            {
+              "partner": "Commission Internationale du bassin Congo-Oubangui-Sangha (CICOS)",
+              "path": "images/CICOS_Logo.png"
+            },
+            {
+              "partner": "Commission du Bassin du Lac Tchad",
+              "path": "images/LCBC_Logo.png"
+            },
+            {
+              "partner": "Observatoire Satellital des For\u00eats de l\u2019Afrique centrale",
+              "path": "images/OSFAC_Logo.png"
+            },
+            {
+              "partner": "Centre de Recherche sur l\u2019Eau et les Changements Climatiques (CRECC)",
+              "path": "images/CRECC_Logo.png"
+            },
+            {
+              "partner": "Commission du Bassin du Lac Tchad",
+              "path": "images/CB.png"
+            },
+            {
+              "partner": "R\u00e9gie des Voies Fluviales",
+              "path": "images/RVF.png"
+            }
+          ],
+          "photographs": [
+            {
+              "description": "Photo of a major river in the Congo-Oubangui-Sangha basin.",
+              "path": "images/Photo_River_Basin.jpg"
+            },
+            {
+              "description": "Photo of a river/vessel in the Congo Basin (River Navigation/Water Monitoring).",
+              "path": "images/Photo_River_Navigation.jpg"
+            },
+            {
+              "description": "Photo of a flooded forest area in the central basin.",
+              "path": "images/Photo_Flooded_Forest.jpg"
+            }
+          ],
+          "charts": [
+            {
+              "description": "Map of the Central Africa region showing the Congo-Oubangui-Sangha basin and partner locations.",
+              "path": "images/Central_Africa_Basin_Map.png"
+            }
+          ]
+        }
       },
       {
-        "name": "Earth Observation for Sustainable Management of Water and Natural Resources in North Africa",
-        "acronym": "OSS Consortium",
-        "leadInstitution": "Sahara and Sahel Observatory (OSS)",
-        "leadCountry": "Tunisia",
-        "region": "North Africa",
-        "members": [
+        "project_title": "Marine and Coastal Observations for Southern Africa and the Indian Ocean (MarCOSIO)",
+        "consortium": {
+          "coordinator": "Council for Scientific and Industrial Research (CSIR), Pretoria",
+          "partners": [
+            "ABALOBI research group (South Africa)",
+            "Benguela Current Convention (Namibia)",
+            "Coastal Oceans Research and Development Indian Ocean (Kenya)",
+            "Institut Halieutique et des Sciences Marines (Madagascar)",
+            "Institute for Marine Science (Tanzania)",
+            "Kenya Marine Fisheries Research Institute (Kenya)",
+            "Mauritius Oceanography Institute (Mauritius)",
+            "National Sea Rescue Institute (South Africa)",
+            "Tanzania Fisheries and Research Institute (Tanzania)",
+            "University of Eduardo Mondlane (Mozambique)",
+            "West Indian Ocean Marine Science Association (Tanzania)"
+          ],
+          "period_months": 45,
+          "total_budget_eur": 2626400,
+          "grant_eur": 2200000,
+          "contribution_eur": 426400,
+          "locations": {
+            "southern_africa_and_indian_ocean": [
+              "Kenya",
+              "Madagascar",
+              "Mauritius",
+              "Mozambique",
+              "Namibia",
+              "South Africa",
+              "Tanzania"
+            ]
+          },
+          "programme_priorities": [
+            "Ship Traffic Monitoring and surveillance and decision support",
+            "Sea Rescue Application and decision support",
+            "Aquaculture and Fisheries decision support and community empowerment",
+            "Coastal Ecosystem monitoring and decision support",
+            "Coral Bleaching monitoring and decision support"
+          ],
+          "sector": "Maritime and coastal, IT",
+          "contact_persons": [
+            {
+              "name": "Ms. Ri\u00ebtte Pretorius"
+            }
+          ],
+          "office_address": "P.O. Box 395, Pretoria",
+          "website": [],
+          "regional_coverage": {
+            "southern_africa_and_indian_ocean": {
+              "countries": [
+                {
+                  "name": "Kenya",
+                  "partners": [
+                    {
+                      "name": "Coastal Oceans Research and Development Indian Ocean",
+                      "description": "",
+                      "logo": "images/CORDIO_Logo.png"
+                    },
+                    {
+                      "name": "Kenya Marine Fisheries Research Institute",
+                      "description": "",
+                      "logo": "images/KMFRI_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Madagascar",
+                  "partners": [
+                    {
+                      "name": "Institut Halieutique et des Sciences Marines",
+                      "description": "",
+                      "logo": "images/IHSM_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Mauritius",
+                  "partners": [
+                    {
+                      "name": "Mauritius Oceanography Institute",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Mozambique",
+                  "partners": [
+                    {
+                      "name": "University of Eduardo Mondlane",
+                      "description": "",
+                      "logo": "images/UEM_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Namibia",
+                  "partners": [
+                    {
+                      "name": "Benguela Current Convention",
+                      "description": "",
+                      "logo": "images/BCC_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "South Africa",
+                  "partners": [
+                    {
+                      "name": "ABALOBI research group",
+                      "description": "",
+                      "logo": "images/ABALOBI_Logo.png"
+                    },
+                    {
+                      "name": "National Sea Rescue Institute",
+                      "description": "",
+                      "logo": "images/NSRI_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Tanzania",
+                  "partners": [
+                    {
+                      "name": "Institute for Marine Science",
+                      "description": "",
+                      "logo": null
+                    },
+                    {
+                      "name": "Tanzania Fisheries and Research Institute",
+                      "description": "",
+                      "logo": "images/TAFIRI_Logo.png"
+                    },
+                    {
+                      "name": "West Indian Ocean Marine Science Association",
+                      "description": "",
+                      "logo": "images/WIOMSA_Logo.png"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "keywords": [
+          "Fishing",
+          "ship tracking",
+          "water quality",
+          "coastal ecosystems",
+          "coral bleaching",
+          "sea rescue",
+          "aquaculture",
+          "remote sensing",
+          "earth observation",
+          "communities"
+        ],
+        "challenges": [
+          "Environmental risks/threats and illegal behaviour (i.e., IUU fishing and other maritime crimes) pose major risks to marine resources, coastal ecosystems and livelihoods in the region.",
+          "Limited in-situ observations and sparse monitoring infrastructure make it difficult to obtain accurate, near-real-time data for effective monitoring and enforcement.",
+          "Small-scale fishers and coastal communities often lack access to trusted, localized information and tools that can support sustainable fishing and safer operations at sea.",
+          "Coastal ecosystems, including coral reefs, seagrass beds and mangroves, are under pressure from climate change, pollution and unsustainable use and need improved monitoring.",
+          "Operational sea rescue and maritime safety services require better integrated information on sea state, vessel activity and risk conditions."
+        ],
+        "focus": [
+          "Development and provision of EO-based services for ship traffic monitoring, surveillance and maritime situational awareness.",
+          "Design and implementation of sea rescue applications that support decision-making and incident response.",
+          "Support to aquaculture and fisheries decision-making, with a strong emphasis on community empowerment and co-designed information services.",
+          "Operational monitoring of coastal ecosystems and water quality, including coral bleaching risk and impacts.",
+          "Integration of satellite data, in-situ observations and user knowledge into decision-support tools for a wide range of marine and coastal stakeholders."
+        ],
+        "rationale": [
+          "Southern Africa and the Western Indian Ocean are home to highly productive fisheries, rich marine biodiversity and critical maritime transport routes.",
+          "Climate change, overfishing, pollution and illegal activities are increasingly threatening marine ecosystems, food security and coastal livelihoods.",
+          "Earth Observation can provide frequent, synoptic and objective information on ocean conditions, ship traffic, coastal ecosystems and extreme events.",
+          "There is a need to translate EO data into user-friendly applications, mobile tools and dashboards that can be used by decision-makers, operational agencies and communities.",
+          "The MarCOSIO project builds on regional partnerships to deliver operational, user-driven marine and coastal EO services for Southern Africa and the Indian Ocean region."
+        ],
+        "work_packages": [
           {
-            "name": "Observatoire du Sahara et du Sahel (OSS)",
-            "country": "Tunisia",
-            "iso_a2": "TN",
-            "iso_a3": "TUN"
+            "wp_number": 1,
+            "title": "Project management and coordination"
           },
           {
-            "name": "UN-affiliated African Regional Centre for Space Science and Technology Education- in French Language (CRASTE-LF)",
-            "country": "Morocco",
-            "iso_a2": "MA",
-            "iso_a3": "MAR"
+            "wp_number": 2,
+            "title": "User engagement, co-design and service requirements"
           },
           {
-            "name": "Regional Remote Sensing Center for North African States (CRTEAN)",
-            "country": "Tunisia",
-            "iso_a2": "TN",
-            "iso_a3": "TUN"
+            "wp_number": 3,
+            "title": "Ship traffic monitoring and sea rescue decision-support services"
           },
           {
-            "name": "National Center for Cartography and Remote Sensing (CNCT)",
-            "country": "Tunisia",
-            "iso_a2": "TN",
-            "iso_a3": "TUN"
+            "wp_number": 4,
+            "title": "Aquaculture, fisheries and community-oriented information services"
           },
           {
-            "name": "Desert Research Center (DRC)",
-            "country": "Egypt",
-            "iso_a2": "EG",
-            "iso_a3": "EGY"
+            "wp_number": 5,
+            "title": "Coastal ecosystem and coral bleaching monitoring services"
           },
           {
-            "name": "Libyan Center for Remote Sensing and Space Sciences",
-            "country": "Libya",
-            "iso_a2": "LY",
-            "iso_a3": "LBY"
-          },
-          {
-            "name": "University of Nouakchott Al-Aasriya",
-            "country": "Mauritania",
-            "iso_a2": "MR",
-            "iso_a3": "MRT"
-          },
-          {
-            "name": "TENMIYA NGO",
-            "country": "Mauritania",
-            "iso_a2": "MR",
-            "iso_a3": "MRT"
+            "wp_number": 6,
+            "title": "Capacity building, communication and sustainability"
           }
         ],
-        "logo": "https://www.oss-online.org/sites/default/files/logo-h.png"
+        "outcomes": [
+          {
+            "description": "Operational EO-based ship traffic monitoring and sea rescue support services used by maritime authorities and operational agencies in the region.",
+            "service": "Ship traffic and sea rescue information services"
+          },
+          {
+            "description": "Improved access to tailored information services for small-scale fishers, aquaculture operators and coastal communities.",
+            "service": "Fisheries, aquaculture and community information services"
+          },
+          {
+            "description": "Enhanced monitoring and reporting on coastal ecosystem health, including coral bleaching and water quality.",
+            "service": "Coastal ecosystem and coral bleaching monitoring services"
+          },
+          {
+            "description": "Strengthened capacities in partner institutions to generate, interpret and apply marine and coastal EO products.",
+            "service": "Capacity building and training services"
+          }
+        ],
+        "impacts": [
+          "Improved maritime safety and response capacity through better situational awareness and sea rescue decision support.",
+          "More sustainable fisheries and aquaculture practices supported by accessible, trusted information services for communities and local authorities.",
+          "Better protection and management of coastal ecosystems and coral reefs in Southern Africa and the Western Indian Ocean.",
+          "Increased use of EO-based services by African institutions, contributing to regional blue economy and climate resilience objectives.",
+          "Strengthened regional collaboration on marine and coastal monitoring and service provision."
+        ],
+        "outputs": [
+          "EO-based ship traffic, sea state and sea rescue decision-support products and applications.",
+          "Mobile and web-based tools providing fisheries and aquaculture information to coastal communities.",
+          "Regular EO-derived products on coastal ecosystem status, coral bleaching risk and water quality.",
+          "Training materials, workshops and documentation on marine and coastal EO service development and use.",
+          "Communication and outreach materials showcasing MarCOSIO services and their benefits to users."
+        ],
+        "images": {
+          "logos": [
+            {
+              "partner": "Council for Scientific and Industrial Research (CSIR)",
+              "path": "images/CSIR_Logo.png"
+            },
+            {
+              "partner": "National Sea Rescue Institute (NSRI)",
+              "path": "images/NSRI_Logo.png"
+            },
+            {
+              "partner": "Benguela Current Convention (BCC)",
+              "path": "images/BCC_Logo.png"
+            },
+            {
+              "partner": "Coastal Oceans Research and Development Indian Ocean (CORDIO)",
+              "path": "images/CORDIO_Logo.png"
+            },
+            {
+              "partner": "Reef Conservation",
+              "path": "images/Reef_Conservation_Logo.png"
+            },
+            {
+              "partner": "University of Eduardo Mondlane (UEM)",
+              "path": "images/UEM_Logo.png"
+            },
+            {
+              "partner": "ABALOBI research group",
+              "path": "images/ABALOBI_Logo.png"
+            },
+            {
+              "partner": "Tanzania Fisheries and Research Institute (TAFIRI)",
+              "path": "images/TAFIRI_Logo.png"
+            },
+            {
+              "partner": "Institut Halieutique et des Sciences Marines (IHSM)",
+              "path": "images/IHSM_Logo.png"
+            },
+            {
+              "partner": "Kenya Marine Fisheries Research Institute (KMFRI)",
+              "path": "images/KMFRI_Logo.png"
+            },
+            {
+              "partner": "West Indian Ocean Marine Science Association (WIOMSA)",
+              "path": "images/WIOMSA_Logo.png"
+            }
+          ],
+          "photographs": [],
+          "charts": []
+        }
       },
       {
-        "name": "Land Degradation and Wetland Monitoring and Assessment in Eastern Africa",
-        "acronym": "RCMRD Consortium",
-        "leadInstitution": "The Regional Centre for Mapping of Resources for Development (RCMRD)",
-        "leadCountry": "Kenya (Nairobi)",
-        "region": "Eastern Africa",
-        "members": [
+        "project_title": "Land Degradation Monitoring and Assessment, Wetlands Monitoring... Reference Vector Database for water and Agro-Ecological Zonings",
+        "consortium": {
+          "coordinator": "Regional Centre for Mapping of Resources for Development (RCMRD), Nairobi",
+          "partners": [
+            "Geospatial Information Institute (Ethiopia)",
+            "Rwanda Water Resources Board (Rwanda)",
+            "Makerere University (Uganda)",
+            "Department of Resource Surveys and Remote Sensing (Kenya)",
+            "National Environmental Management Authority (Djibouti)",
+            "Ministry of Environment (Eritrea)",
+            "Ministry of Environment (Sudan)",
+            "National Bureau of Statistics (South Sudan)"
+          ],
+          "period_months": 44,
+          "total_budget_eur": 1764706,
+          "grant_eur": 1500000,
+          "contribution_eur": 264706,
+          "locations": {
+            "eastern_africa": [
+              "Comoros",
+              "Djibouti",
+              "Eritrea",
+              "Ethiopia",
+              "Kenya",
+              "Rwanda",
+              "South Sudan",
+              "Sudan",
+              "Uganda"
+            ]
+          },
+          "programme_priorities": [
+            "Land Degradation Monitoring and Assessment",
+            "Wetlands Monitoring and Assessment",
+            "Open Geographical Regional Reference Vector Database for water and Agro-Ecological Zonings"
+          ],
+          "sector": "Natural resources and water",
+          "contact_persons": [
+            {
+              "name": "Dr. Emmanuel Nkurunziza",
+              "role": "Manager"
+            },
+            {
+              "name": "Mr. Degelo Sendabo",
+              "role": "Project Coordinator"
+            }
+          ],
+          "office_address": "Regional Centre for Mapping of Resources for Development P.O Box 632-00618 Ruaraka, Nairobi, Kenya",
+          "website": [
+            "https://gmes.rcmrd.org/",
+            "http://www.rcmrd.org",
+            "http://gmes.rcmrd.org"
+          ],
+          "regional_coverage": {
+            "eastern_africa": {
+              "countries": [
+                {
+                  "name": "Comoros",
+                  "partners": []
+                },
+                {
+                  "name": "Djibouti",
+                  "partners": [
+                    {
+                      "name": "National Environmental Management Authority",
+                      "description": "",
+                      "logo": "images/NEMA_Djibouti_Emblem.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Eritrea",
+                  "partners": [
+                    {
+                      "name": "Ministry of Environment",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Ethiopia",
+                  "partners": [
+                    {
+                      "name": "Geospatial Information Institute",
+                      "description": "",
+                      "logo": "images/Geospatial_Information_Institute_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Kenya",
+                  "partners": [
+                    {
+                      "name": "Department of Resource Surveys and Remote Sensing",
+                      "description": "",
+                      "logo": "images/Department_of_Resource_Surveys_and_Remote_Sensing_(DRSRS)_Kenya.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Rwanda",
+                  "partners": [
+                    {
+                      "name": "Rwanda Water Resources Board",
+                      "description": "",
+                      "logo": "images/Rwanda_Water_Resources_Board_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "South Sudan",
+                  "partners": [
+                    {
+                      "name": "National Bureau of Statistics",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Sudan",
+                  "partners": [
+                    {
+                      "name": "Ministry of Environment",
+                      "description": "",
+                      "logo": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Uganda",
+                  "partners": [
+                    {
+                      "name": "Makerere University",
+                      "description": "",
+                      "logo": "images/Makerere_University_Crest.png"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "keywords": [
+          "Land degradation",
+          "wetlands",
+          "vector data",
+          "land productivity"
+        ],
+        "challenges": [
+          "Accessibility to some of the hotspots of Land Degradation and Wetlands.",
+          "Non-willingness of most of the vector data providers and inaccessibility to the data"
+        ],
+        "focus": [
+          "Main focus area is use of earth observation data and their products for different applications in Africa and availing to the decision makers and end users in such a way that the community can change their livelihood."
+        ],
+        "rationale": [
+          "The rationale behind is to improve the livelihood of African co...rting the decision-making process using earth observation data."
+        ],
+        "work_packages": [
           {
-            "name": "Regional Centre for Mapping of Resources for Development (RCMRD)",
-            "country": "Kenya",
-            "iso_a2": "KE",
-            "iso_a3": "KEN"
+            "title": "Land Degradation Monitoring and Assessment"
           },
           {
-            "name": "Makerere University",
-            "country": "Uganda",
-            "iso_a2": "UG",
-            "iso_a3": "UGA"
+            "title": "Wetlands Monitoring and Assessment"
           },
           {
-            "name": "Ethiopia Space Technology and Geospatial Institute (ESTGI)",
-            "country": "Ethiopia",
-            "iso_a2": "ET",
-            "iso_a3": "ETH"
-          },
-          {
-            "name": "Rwanda Water Resources Board",
-            "country": "Rwanda",
-            "iso_a2": "RW",
-            "iso_a3": "RWA"
-          },
-          {
-            "name": "Higher Council for Environment and Natural Resources (HCENR)",
-            "country": "Sudan",
-            "iso_a2": "SD",
-            "iso_a3": "SDN"
-          },
-          {
-            "name": "Department of Resource Surveys and Remote Sensing (DRSRS)",
-            "country": "Kenya",
-            "iso_a2": "KE",
-            "iso_a3": "KEN"
-          },
-          {
-            "name": "Ministry of Land, Water and Environment",
-            "country": "Eritrea",
-            "iso_a2": "ER",
-            "iso_a3": "ERI"
-          },
-          {
-            "name": "Department of GIS, Remote Sensing and Cartography",
-            "country": "South Sudan",
-            "iso_a2": "SS",
-            "iso_a3": "SSD"
-          },
-          {
-            "name": "National Bureau of Statistics (NBS)",
-            "country": "South Sudan",
-            "iso_a2": "SS",
-            "iso_a3": "SSD"
-          },
-          {
-            "name": "Cellule Cartograhie de la DATUH Mapping Unit",
-            "country": "Comoros",
-            "iso_a2": "KM",
-            "iso_a3": "COM"
-          },
-          {
-            "name": "Ministry of Environment and Sustainable Development",
-            "country": "Djibouti",
-            "iso_a2": "DJ",
-            "iso_a3": "DJI"
-          },
-          {
-            "name": "Forest Services Agency (TFS) / Almaas University",
-            "country": "Somalia",
-            "iso_a2": "SO",
-            "iso_a3": "SOM"
+            "title": "Open Geographical Regional Reference Vector Database for water and Agro-Ecological Zonings"
           }
         ],
-        "logo": "https://phosphor.utils.elfsightcdn.com/?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1580193677904863240%2FiKNVj99r_400x400.jpg"
+        "outcomes": [
+          {
+            "description": "The outcomes here include improved decision making through using earth observation data processed outputs."
+          }
+        ],
+        "impacts": [
+          "Major impacts here include improvement of the community, increased knowledge and skilled rational and scientific decision making."
+        ],
+        "outputs": [
+          "Different outputs including maps, statistical data, graphical presentations will be derived from the Eos.",
+          "Further there will be skilled manpower using the Eos for the benefit of the community or end users."
+        ],
+        "images": {
+          "logos": [
+            {
+              "partner": "RCMRD / GMES and Africa",
+              "path": "images/RCMRD_GMES_Africa_Logo.png"
+            },
+            {
+              "partner": "Geospatial Information Institute (Ethiopia)",
+              "path": "images/Geospatial_Information_Institute_Logo.png"
+            },
+            {
+              "partner": "Makerere University (Uganda)",
+              "path": "images/Makerere_University_Crest.png"
+            },
+            {
+              "partner": "Comoros (Location)",
+              "path": "images/Comoros_Coat_of_Arms.png"
+            },
+            {
+              "partner": "Rwanda Water Resources Board",
+              "path": "images/Rwanda_Water_Resources_Board_Logo.png"
+            },
+            {
+              "partner": "National Environmental Management Authority (Djibouti)",
+              "path": "images/NEMA_Djibouti_Emblem.png"
+            },
+            {
+              "partner": "National Environmental Management Authority (NEMA) & DRSRS Composite",
+              "path": "images/NEMA_DRSRS_Composite_Logo.png"
+            },
+            {
+              "partner": "Department of Resource Surveys and Remote Sensing (DRSRS) Kenya",
+              "path": "images/DRSRS_Kenya_Crest.png"
+            },
+            {
+              "partner": "Unidentified East Africa Crest 1",
+              "path": "images/East_Africa_Crest_1.png"
+            },
+            {
+              "partner": "Unidentified East Africa Crest 2",
+              "path": "images/East_Africa_Crest_2.png"
+            }
+          ],
+          "photographs": [
+            {
+              "description": "Deep gullies forming in Tambai Alabar, Sudan.",
+              "path": "images/Land_Degradation_Sudan_Gullies.jpg"
+            },
+            {
+              "description": "Abjata Lake shore with diminishing water levels.",
+              "path": "images/Abjata_Lake_Shore_Dry.jpg"
+            }
+          ],
+          "charts": [
+            {
+              "description": "Lake Abijata - Water Balance Chart.",
+              "path": "images/Lake_Abijata_Water_Balance_Chart.png"
+            }
+          ]
+        }
       },
       {
-        "name": "Wetland Assessment and Monitoring Services for Transboundary Basins in Southern Africa",
-        "acronym": "WeMAST",
-        "leadInstitution": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
-        "leadCountry": "Namibia",
-        "region": "Southern Africa",
-        "members": [
+        "project_title": "Monitoring Natural Resources and Food Security in the Eastern Africa Region",
+        "consortium": {
+          "coordinator": "IGAD Climate Prediction & Applications Centre (ICPAC), Kenya",
+          "partners": [
+            "Wildlife Research and Training institute (WRTI) (Kenya)",
+            "Tanzania Forest Service Agency (TFS) (Tanzania)",
+            "Makerere University (Uganda)",
+            "Ministry of Land, Water and Environment (Eritrea)",
+            "Ministry of Livestock, Forestry and Range (Somalia)",
+            "Uganda Wildlife Authority (UWA) (Uganda)"
+          ],
+          "period_months": 44,
+          "total_budget_eur": 1491120,
+          "grant_eur": 1200000,
+          "contribution_eur": 291120,
+          "locations": {
+            "eastern_africa": [
+              "Kenya",
+              "Tanzania",
+              "Uganda",
+              "Eritrea",
+              "Somalia"
+            ]
+          },
+          "programme_priorities": [
+            "Earth Observation data access",
+            "Earth observation services provision",
+            "Capacity building",
+            "Communication, and outreach"
+          ],
+          "sector": "Natural habitats, rangelands and forests",
+          "contact_persons": [
+            {
+              "name": "Mr. Eugene Kayijamahe",
+              "affiliation": "IGAD Climate Prediction & Applications Centre (ICPAC)",
+              "email": "eugene.kayijamahe@igad.int"
+            }
+          ],
+          "website": [
+            "www.gmes.icpac.net",
+            "www.icpac.net"
+          ],
+          "regional_coverage": {
+            "eastern_africa": {
+              "countries": [
+                {
+                  "name": "Kenya",
+                  "partners": [
+                    {
+                      "name": "Wildlife Research and Training institute (WRTI)",
+                      "description": "",
+                      "logo": "images/WRTI_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Tanzania",
+                  "partners": [
+                    {
+                      "name": "Tanzania Forest Service Agency (TFS)",
+                      "description": "",
+                      "logo": "images/TFS_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Uganda",
+                  "partners": [
+                    {
+                      "name": "Makerere University",
+                      "description": "",
+                      "logo": "images/Makerere_University_Logo.png"
+                    },
+                    {
+                      "name": "Uganda Wildlife Authority (UWA)",
+                      "description": "",
+                      "logo": "images/UWA_Logo.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Eritrea",
+                  "partners": [
+                    {
+                      "name": "Ministry of Land, Water and Environment",
+                      "description": "",
+                      "logo": "images/Min_Land_Water_Eritrea_Crest.png"
+                    }
+                  ]
+                },
+                {
+                  "name": "Somalia",
+                  "partners": [
+                    {
+                      "name": "Ministry of Livestock, Forestry and Range",
+                      "description": "",
+                      "logo": "images/Min_Livestock_Somalia_Crest.png"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "keywords": [
+          "East Africa",
+          "earth observation",
+          "climate",
+          "food security",
+          "rangelands",
+          "natural habitats",
+          "forests and monitoring"
+        ],
+        "challenges": [
+          "The Eastern Africa region is largely arid and semi-arid with h...region dependant for their livelihoods on rain-fed agriculture.",
+          "The frequency and magnitude of the climatic extremes in EA reg...rism, infrastructure, conflicts and security among many others.",
+          "Natural resources are under increasing threat emanating largel...alien invasive species; and legal and institutional weaknesses."
+        ],
+        "focus": [
+          "GMES & Africa aims at promoting the development of local capac...source and Food Security Management in the East Africa region."
+        ],
+        "rationale": [
+          "The Eastern Africa region remains one of the most vulnerable w...of the continent to impacts of climate change and variability."
+        ],
+        "work_packages": [
           {
-            "name": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
-            "country": "Namibia",
-            "iso_a2": "NA",
-            "iso_a3": "NAM"
+            "title": "Earth Observation data access"
           },
           {
-            "name": "University of Western Cape",
-            "country": "South Africa",
-            "iso_a2": "ZA",
-            "iso_a3": "ZAF"
+            "title": "Earth observation services provision"
           },
           {
-            "name": "University of Botswana",
-            "country": "Botswana",
-            "iso_a2": "BW",
-            "iso_a3": "BWA"
+            "title": "Capacity building"
           },
           {
-            "name": "University of Zambia",
-            "country": "Zambia",
-            "iso_a2": "ZM",
-            "iso_a3": "ZMB"
-          },
-          {
-            "name": "University of Namibia",
-            "country": "Namibia",
-            "iso_a2": "NA",
-            "iso_a3": "NAM"
-          },
-          {
-            "name": "Midlands State University",
-            "country": "Zimbabwe",
-            "iso_a2": "ZW",
-            "iso_a3": "ZWE"
-          },
-          {
-            "name": "National Remote Sensing Centre",
-            "country": "Zambia",
-            "iso_a2": "ZM",
-            "iso_a3": "ZMB"
-          },
-          {
-            "name": "WaterNet, SADC",
-            "country": "Botswana",
-            "iso_a2": "BW",
-            "iso_a3": "BWA"
+            "title": "Communication, and outreach"
           }
         ],
-        "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkC_8XA8nwyybwHAwospvKhfgYuJuWLU9S3w&scd "
-      },
-      {
-        "name": "Marine and Coastal Areas Management in North and West Africa",
-        "acronym": "MarCNOWA",
-        "leadInstitution": "University of Ghana (UG)",
-        "leadCountry": "Ghana",
-        "region": "North & West Africa",
-        "members": [
+        "outcomes": [
           {
-            "name": "University of Ghana (UG)",
-            "country": "Ghana",
-            "iso_a2": "GH",
-            "iso_a3": "GHA"
-          },
-          {
-            "name": "Nigerian Institute for Oceanography and Marine Research (NIOMR)",
-            "country": "Nigeria",
-            "iso_a2": "NG",
-            "iso_a3": "NGA"
-          },
-          {
-            "name": "Centre Universitaire De Recherche d'Application en Télédétection (CURAT)",
-            "country": "Côte d'Ivoire",
-            "iso_a2": "CI",
-            "iso_a3": "CIV"
-          },
-          {
-            "name": "Institut de Recherches Halieutiques et Océanologiques du Bénin (IRHOB)",
-            "country": "Benin",
-            "iso_a2": "BJ",
-            "iso_a3": "BEN"
-          },
-          {
-            "name": "Centre for Oceanographic Research of Dakar-Thiaroye (CRODT)",
-            "country": "Senegal",
-            "iso_a2": "SN",
-            "iso_a3": "SEN"
-          },
-          {
-            "name": "Ghana Meteorological Agency (GMet)",
-            "country": "Ghana",
-            "iso_a2": "GH",
-            "iso_a3": "GHA"
-          },
-          {
-            "name": "Centre for the Environment for Arab Region and Europe (CEDARE)",
-            "country": "Egypt",
-            "iso_a2": "EG",
-            "iso_a3": "EGY"
-          },
-          {
-            "name": "Centre d'Etudes et de Recherche des Télécommunications (CERT)",
-            "country": "Tunisia",
-            "iso_a2": "TN",
-            "iso_a3": "TUN"
-          },
-          {
-            "name": "Chouaib Doukkali University (UCD)",
-            "country": "Morocco",
-            "iso_a2": "MA",
-            "iso_a3": "MAR"
-          },
-          {
-            "name": "Nature Today (NT)",
-            "country": "Ghana",
-            "iso_a2": "GH",
-            "iso_a3": "GHA"
-          },
-          {
-            "name": "Edenway Foundation",
-            "country": "Ghana",
-            "iso_a2": "GH",
-            "iso_a3": "GHA"
+            "description": "Eastern African organizations, policymakers and communities have access to and use ICPAC\u2019s EO-based natural resources and food security information services at national, regional, and continental levels."
           }
         ],
-        "logo": "https://geoportal.gmes.ug.edu.gh/assets/MarCNoWA_blue.509ffdfd.jpeg"
+        "impacts": [
+          "Contribute to a more sustainable management of resources based on Earth Observation applications."
+        ],
+        "outputs": [
+          "Improved policy and institutional framework for sustainable management of natural resources and food security in Eastern Africa.",
+          "Earth Observation-based information services on natural resources and food security developed and operationalized.",
+          "Capacity of regional and national institutions to access, interpret and use EO-based information products strengthened.",
+          "Communication, outreach and uptake of EO-based information and services improved.",
+          "Outreach, uptake and dissemination is enhanced."
+        ],
+        "images": {
+          "logos": [
+            {
+              "partner": "IGAD Climate Prediction and Applications Centre (ICPAC)",
+              "path": "images/ICPAC_IGAD_Logo.png"
+            },
+            {
+              "partner": "Makerere University",
+              "path": "images/Makerere_University_Logo.png"
+            },
+            {
+              "partner": "Tanzania Forest Service Agency (TFS)",
+              "path": "images/TFS_Logo.png"
+            },
+            {
+              "partner": "Wildlife Research and Training institute (WRTI)",
+              "path": "images/WRTI_Logo.png"
+            },
+            {
+              "partner": "Uganda Wildlife Authority (UWA)",
+              "path": "images/UWA_Logo.png"
+            },
+            {
+              "partner": "Ministry of Land, Water and Environment, Eritrea",
+              "path": "images/Min_Land_Water_Eritrea_Crest.png"
+            },
+            {
+              "partner": "Ministry of Livestock, Forestry and Range, Somalia",
+              "path": "images/Min_Livestock_Somalia_Crest.png"
+            }
+          ],
+          "photographs": [
+            {
+              "description": "Satellite image showing Mt. Kenya fires as of 22nd March 2022.",
+              "path": "images/Mt_Kenya_Fires_Satellite_Image.jpg"
+            }
+          ],
+          "charts": [
+            {
+              "description": "Map from East African Hazards Watch show...ing acute food insecurity in the region as of 12th April 2022.",
+              "path": "images/Food_Insecurity_Map_April_2022.png"
+            }
+          ]
+        }
       }
     ],
     "networksAndPartnerships": {
