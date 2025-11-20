@@ -9,7 +9,10 @@ const basePath = "/leaflet_assets/";
 import { GeoJsonObject, Feature, GeoJsonProperties } from "geojson";
 
 const africanCountriesObject: GeoJsonObject = africanCountriesData as GeoJsonObject;
-
+// const countries = africanCountriesObject.features
+//     .map(f => f.properties.name)    // or NAME, name_en, etc.
+//     .filter(Boolean);
+// console.log(countries)
 type Point = {
   id: string;
   name: string;
