@@ -17,15 +17,15 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
   const [expanded, setExpanded] = React.useState<Record<number, boolean>>({});
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-4">
-      <h3 className="text-sm font-semibold text-zinc-900">Timeline</h3>
-      <ol className="mt-3 space-y-3">
+    <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+      <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">Timeline</h3>
+      <ol className="mt-4 space-y-4">
         {items.map((it, idx) => {
           const isExpanded = !!expanded[idx];
           const contentId = `timeline-${idx}-content`;
           return (
-            <li key={idx} className="flex gap-3">
-              <div className="flex-shrink-0 w-24 text-xs text-amber-600 font-semibold">{it.year ?? it.years}</div>
+            <li key={idx} className="flex gap-4 group">
+              <div className="flex-shrink-0 w-24 text-xs text-blue-600 font-bold pt-1">{it.year ?? it.years}</div>
 
               <div className="flex-1">
                 <button
@@ -39,9 +39,9 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
                       setExpanded((s) => ({ ...s, [idx]: !s[idx] }));
                     }
                   }}
-                  className="w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 rounded-md"
+                  className="w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-200 rounded-lg transition-colors"
                 >
-                  <div id={contentId} className="text-sm text-zinc-700">
+                  <div id={contentId} className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors leading-relaxed">
                     {isExpanded ? it.event : truncate(it.event, 140)}
                   </div>
                 </button>

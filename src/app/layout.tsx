@@ -3,6 +3,7 @@ import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 
 import Sidebar from "@/components/ui/Sidebar";
+import { LayoutDashboard, Layers, Clock, FileText, Link as LinkIcon } from "lucide-react";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -39,11 +40,11 @@ export default function RootLayout({
         <div className="min-h-screen bg-zinc-50 font-sans">
             <div className="flex">
                 <Sidebar items={[
-                    {label: 'Overview', href: '/summary', icon: 'insights'},
-                    {label: 'Phase 2', href: '/phase_two', icon: 'looks_two'},
-                    {label: 'Phase 1', href: '/phase_one', icon: 'looks_one'},
-                    {label: 'Reports', href: '/reports', icon: 'article'},
-                    {label: 'Useful Links', href: '/settings', icon: 'link'},
+                    {label: 'Overview', href: '/summary', icon: <LayoutDashboard size={20} />},
+                    {label: 'Phase 2', href: '/phase_two', icon: <Layers size={20} />},
+                    {label: 'Phase 1', href: '/phase_one', icon: <Clock size={20} />},
+                    {label: 'Reports', href: '/reports', icon: <FileText size={20} />},
+                    {label: 'Useful Links', href: '/settings', icon: <LinkIcon size={20} />},
                 ]} />
 
                 <main className="flex-1 h-screen overflow-y-auto p-4">

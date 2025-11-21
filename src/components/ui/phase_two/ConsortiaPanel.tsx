@@ -328,8 +328,24 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferred]);
 
+  // Accessible key handler so the div behaves like a button
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  }
+
   return (
-    <button onClick={onClick} className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-md ${active ? 'bg-teal-50' : 'hover:bg-zinc-50'}`}>
+    // replace outer <button> with a focusable div that has button semantics
+    <div
+      role="button"
+      tabIndex={0}
+      aria-pressed={active}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-md ${active ? 'bg-teal-50' : 'hover:bg-zinc-50'} cursor-pointer`}
+    >
       <div className="flex-shrink-0">
         <Image src={safeImgSrc} alt={`${name} logo`} width={40} height={40} className="w-10 h-10 rounded-md object-contain bg-white p-1" unoptimized onError={(e)=>{
           const target = (e?.target as HTMLImageElement | null);
@@ -353,7 +369,7 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
           </svg>
         </button>
       </div>
-    </button>
+    </div>
   );
 }
 

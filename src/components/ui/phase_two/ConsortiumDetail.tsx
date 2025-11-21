@@ -174,14 +174,26 @@ export default function ConsortiumDetail({ consortium }: { consortium: Consortiu
                     <div className="text-lg font-semibold text-zinc-900">{locations.length}</div>
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* New Locations card placed below the metrics grid */}
+          {active === 'Metrics' && (
+            <div className="mt-4">
+              <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="text-sm font-semibold text-zinc-900">Locations</h4>
+                  <div className="text-xs text-zinc-500">{locations.length} total</div>
+                </div>
                 <div className="flex flex-wrap gap-2">
                   {locations.length > 0 ? locations.map((loc, idx) => (
-                    <span key={idx} className="inline-flex items-center gap-2 px-3 py-1 text-sm rounded-full bg-accent-50 text-accent-700 shadow-sm">
+                    <span key={idx} className="inline-flex items-center gap-2 px-3 py-1 text-sm rounded-full bg-accent-50 text-accent-700">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="text-zinc-600">
                         <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                       </svg>
-                      <span className="max-w-[10rem] truncate">{String(loc)}</span>
+                      <span className="max-w-[12rem] truncate">{String(loc)}</span>
                     </span>
                   )) : (
                     <div className="text-sm text-zinc-500">—</div>

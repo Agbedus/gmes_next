@@ -213,9 +213,16 @@
             }
           ],
           "office_address": "Observatoire du Sahara et du Sahel (OSS), Tunis",
-          "website": [
-            "https://www.oss-online.org/"
-          ],
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://www.oss-online.org",
+            "Geoportal_Data_Platforms": [
+              "http://misbar.oss-online.org",
+              "http://misland.oss-online.org"
+            ],
+            "Digital_Learning_Platform_DLP": null,
+            "Blogs_Social_Media_Presence": "https://oss-online.org/blog",
+            "Innovative_Applications_Tools": "https://guetcrop.org"
+          },
           "regional_coverage": {
             "north_africa": {
               "countries": [
@@ -439,10 +446,16 @@
             "affiliation": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
             "email": "jane.olwoch@sasscal.org"
           },
-          "website": [
-            "http://gmes-wemast.sasscal.org/",
-            "http://gmes-geoportal.sasscal.org/#/"
-          ],
+          "useful_likns": {
+            "Official_Website_Main_Portal": [
+              "https://wemast.sasscal.org",
+              "https://www.sasscal.org"
+            ],
+            "Geoportal_Data_Platforms": "https://wemast.sasscal.org/geoportal",
+            "Digital_Learning_Platform_DLP": "https://training.sasscal.org",
+            "Blogs_Social_Media_Presence": "https://blog.wemast.sasscal.org",
+            "Innovative_Applications_Tools": null
+          },
           "regional_coverage": {
             "southern_africa": {
               "countries": [
@@ -683,10 +696,16 @@
             "address": "P.O. Box LG 99, Legon.",
             "country": "Ghana"
           },
-          "website": [
-            "https://gmes.ug.edu.gh/",
-            "www.ug.edu.gh"
-          ],
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://gmes.rmc.africa",
+            "Geoportal_Data_Platforms": [
+              "https://geoportal.gmes.ug.edu.gh",
+              "https://nafcoast.org"
+            ],
+            "Digital_Learning_Platform_DLP": null,
+            "Blogs_Social_Media_Presence": "https://blog.rmc.africa",
+            "Innovative_Applications_Tools": null
+          },
           "regional_coverage": {
             "west_africa": {
               "countries": [
@@ -993,7 +1012,16 @@
           "sector": "Environment and Water Resources",
           "contact_persons": [],
           "office_address": "Centre de Suivi Ecologique (CSE), Dakar",
-          "website": [],
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://www.cse.sn/gdzhiao",
+            "Geoportal_Data_Platforms": [
+              "http://gdzhao.gmes.cse.sn",
+              "http://gmesmifmass.net"
+            ],
+            "Digital_Learning_Platform_DLP": null,
+            "Blogs_Social_Media_Presence": "https://gdzhiao.blog.gmes.cse.sn",
+            "Innovative_Applications_Tools": null
+          },
           "regional_coverage": {
             "west_africa": {
               "countries": [
@@ -1281,7 +1309,13 @@
           "sector": "Water, Natural Resources",
           "contact_persons": [],
           "office_address": "Commission Internationale du bassin Congo-Oubangui-Sangha (CICOS), Kinshasa",
-          "website": [],
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://cicos.int",
+            "Geoportal_Data_Platforms": "https://gmesafrica.cicos.int",
+            "Digital_Learning_Platform_DLP": null,
+            "Blogs_Social_Media_Presence": null,
+            "Innovative_Applications_Tools": null
+          },
           "regional_coverage": {
             "central_africa": {
               "countries": [
@@ -1563,7 +1597,13 @@
             }
           ],
           "office_address": "P.O. Box 395, Pretoria",
-          "website": [],
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://marcosouth.org",
+            "Geoportal_Data_Platforms": "https://marcosouth.org/geoportal",
+            "Digital_Learning_Platform_DLP": null,
+            "Blogs_Social_Media_Presence": "https://blog.marcosouth.org",
+            "Innovative_Applications_Tools": null
+          },
           "regional_coverage": {
             "southern_africa_and_indian_ocean": {
               "countries": [
@@ -1851,11 +1891,13 @@
             }
           ],
           "office_address": "Regional Centre for Mapping of Resources for Development P.O Box 632-00618 Ruaraka, Nairobi, Kenya",
-          "website": [
-            "https://gmes.rcmrd.org/",
-            "http://www.rcmrd.org",
-            "http://gmes.rcmrd.org"
-          ],
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://www.rcmrd.org/gmesafrica",
+            "Geoportal_Data_Platforms": "https://gmesgeoportal.rcmrd.org",
+            "Digital_Learning_Platform_DLP": "https://learn.rcmrd.org",
+            "Blogs_Social_Media_Presence": "https://blog.rcmrd.org",
+            "Innovative_Applications_Tools": null
+          },
           "regional_coverage": {
             "eastern_africa": {
               "countries": [
@@ -2086,10 +2128,16 @@
               "email": "eugene.kayijamahe@igad.int"
             }
           ],
-          "website": [
-            "www.gmes.icpac.net",
-            "www.icpac.net"
-          ],
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://www.icpac.net/programmes/gmes-africa",
+            "Geoportal_Data_Platforms": [
+              "http://geoportal.icpac.net",
+              "http://gmes.icpac.net/datacenter"
+            ],
+            "Digital_Learning_Platform_DLP": null,
+            "Blogs_Social_Media_Presence": "https://blog.icpac.net",
+            "Innovative_Applications_Tools": "https://cafws.africaeo-services.ma"
+          },
           "regional_coverage": {
             "eastern_africa": {
               "countries": [

@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 type NavItem = {
   label: string;
   href: string;
-  icon?: string; // optional Material Symbol name
+  icon?: React.ReactNode; // Changed to ReactNode for Lucide icons
 };
 
 type SideNavProps = {
@@ -56,53 +56,56 @@ export default function SideNav({ items, className = '', collapsed: controlledCo
 
   return (
       <nav
-          className={`py-12 h-screen bg-white overflow-y-auto transition-all duration-300 flex-shrink-0 ${
-              collapsed ? 'w-20 px-2' : 'w-64 px-6'
+          className={`py-6 h-screen overflow-y-auto transition-all duration-300 flex-shrink-0 flex flex-col ${
+              collapsed ? 'px-2' : 'px-4'
           } ${className}`}
           aria-label="Main navigation"
       >
 
-        <button
-            type="button"
-            aria-expanded={!collapsed}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-            onClick={() => {
-              const next = !collapsed;
-              if (isControlled) {
-                onCollapseChangeAction?.(next);
-              } else {
-                setInternalCollapsed(next);
-              }
-            }}
-            className="px-3 py-2 mb-8 hover:bg-gray-100 focus:outline-none focus:ring-transparent block flex items-center justify-center rounded"
-        >
-            <span className={`material-symbols-outlined`}>menu</span>
-        </button>
-
-        <div>
-          <div className="flex mb-6">
+        {/* Logo and Toggle Section - Always aligned */}
+        <div className={`flex items-center ${collapsed ? 'justify-center flex-col gap-4' : 'justify-between'} mb-12 px-2`}>
+           <div className={`transition-all duration-300 flex items-center justify-center`}>
             <Image
                 src={collapsed ? '/logos/collapsed_logo.png' : '/logos/expanded_logo.png'}
                 alt="Logo"
-                width={collapsed ? 32 : 128}
-                height={collapsed ? 32 : 32}
+                width={collapsed ? 40 : 130}
+                height={collapsed ? 40 : 40}
                 unoptimized
-                className={collapsed ? 'h-12 w-12 object-contain mx-auto' : 'h-auto w-32'}
+                className={`object-contain transition-all duration-300 ${collapsed ? 'h-10 w-10' : 'h-auto w-32'}`}
             />
-          </div>
+           </div>
+           
+           <button
+              type="button"
+              onClick={() => {
+                  const next = !collapsed;
+                  if (isControlled) {
+                      onCollapseChangeAction?.(next);
+                  } else {
+                      setInternalCollapsed(next);
+                  }
+              }}
+              className={`p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 ${collapsed ? '' : ''}`}
+              aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+           >
+               {/* Using Material Symbol for toggle as it's a UI control, or could switch to Lucide Chevron/Menu */}
+               <span className="material-symbols-outlined text-xl">{collapsed ? 'last_page' : 'first_page'}</span>
+           </button>
+        </div>
 
-          <ul className="space-y-1 mt-24">
+        <div className="flex-1">
+          <ul className="space-y-3">
             {items.map((item) => {
               const active = pathname === item.href || pendingPath === item.href;
               return (
                   <li key={item.href}>
                     <Link
                         href={item.href}
-                        className={`flex items-center ${collapsed ? 'justify-center' : ''} text-[10px] uppercase px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        className={`group flex items-center relative px-3 py-3 rounded-xl transition-all duration-200 ease-out ${
                             active
-                                ? 'bg-blue-600 text-white'
-                                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                        }`}
+                                ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
+                                : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900 hover:translate-x-1'
+                        } ${collapsed ? 'justify-center' : ''}`}
                         aria-current={active ? 'page' : undefined}
                         onMouseDown={() => setPendingPath(item.href)}
                         onTouchStart={() => setPendingPath(item.href)}
@@ -111,28 +114,58 @@ export default function SideNav({ items, className = '', collapsed: controlledCo
                         }}
                         title={collapsed ? item.label : undefined}
                     >
+
                       {item.icon ? (
                           <span
-                              className={`material-symbols-outlined text-lg ${collapsed ? '' : 'mr-3'} ${active ? 'text-white' : 'text-zinc-600'}`}
+                              className={`flex items-center justify-center transition-transform duration-200 ${
+                                  collapsed ? '' : 'mr-3'
+                              } ${active ? 'text-white' : 'text-slate-400 group-hover:text-blue-500 group-hover:scale-110'}`}
                               aria-hidden="true"
                           >
-                    {item.icon}
-                  </span>
+                            {/* Icon is now a ReactNode, so we just render it */}
+                            {item.icon}
+                          </span>
                       ) : null}
 
-                      {/* animate label visibility */}
-                      <span
-                          className={`transition-all duration-300 ease-in-out ${
-                              collapsed ? 'opacity-0 translate-x-[-6px] max-w-0 overflow-hidden' : 'opacity-100 translate-x-0 max-w-full'
-                          }`}
-                      >
-                  {!collapsed ? item.label : null}
-                </span>
+                      {!collapsed && (
+                          <span
+                              className={`text-sm font-medium tracking-wide transition-all duration-300 ${
+                                  active ? 'font-semibold' : ''
+                              }`}
+                          >
+                            {item.label}
+                          </span>
+                      )}
+                      
+                      {/* Active state right chevron */}
+                      {!collapsed && active && (
+                          <span className="ml-auto material-symbols-outlined text-lg text-blue-200 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                              chevron_right
+                          </span>
+                      )}
                     </Link>
                   </li>
               );
             })}
           </ul>
+        </div>
+        
+        {/* User Profile / Bottom Section */}
+        <div className={`mt-auto pt-6 border-t border-slate-100 ${collapsed ? 'flex justify-center' : 'px-2'}`}>
+            <div className={`flex items-center ${collapsed ? 'justify-center' : 'gap-3'} p-2 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer group`}>
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs border-2 border-white shadow-sm">
+                    YD
+                </div>
+                {!collapsed && (
+                    <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-slate-800 truncate">Yaw Donkor</p>
+                        <p className="text-xs text-slate-500 truncate">Admin Workspace</p>
+                    </div>
+                )}
+                 {!collapsed && (
+                    <span className="material-symbols-outlined text-slate-400 group-hover:text-slate-600">more_vert</span>
+                 )}
+            </div>
         </div>
 
       </nav>
