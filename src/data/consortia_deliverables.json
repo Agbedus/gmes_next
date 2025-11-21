@@ -1,0 +1,882 @@
+[
+  {
+    "Institution": "CICOS",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 2
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 2
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 4
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 1
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 3
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 0
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 3
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 17
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 900
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 900
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 0
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 12
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 4
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 10
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 19
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 4
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 1
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 2
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 80
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 2
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 2
+      }
+    ]
+  },
+  {
+    "Institution": "CSIE",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 5
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 14
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 10
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 1
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 17
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 0
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 2
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 20
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 3000
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 1191
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 0
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 12
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 1
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 8
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 13
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 10
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 2
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 3
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 10
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 10
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 10
+      }
+    ]
+  },
+  {
+    "Institution": "ICPAC",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 10
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 29
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 20
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 3
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 20
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 3
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 6
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 17
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 293
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 353
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 3
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 18
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 23
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 14
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 24
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 3
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 3
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 2
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 23
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 19
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 19
+      }
+    ]
+  },
+  {
+    "Institution": "OSS",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 12
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 23
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 15
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 2
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 480
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 0
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 3
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 8
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 480
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 1051
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 1
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 14
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 2
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 8
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 6
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 5
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 2
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 2
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 30
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 10
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 10
+      }
+    ]
+  },
+  {
+    "Institution": "RCMRED",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 4
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 7
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 21
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 3
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 24
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 3
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 2
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 17.9
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 60
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 715
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 1
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 24
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 15
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 11.6
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 21
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 2
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 4
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 9
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 43
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 11.3
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 11.3
+      }
+    ]
+  },
+  {
+    "Institution": "SASCAL",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 10
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 9
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 35
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 1
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 9
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 1
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 3
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 22
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 9
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 2246
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 1
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 19
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 4
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 8
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 11
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 7
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 3
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 8
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 23
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 23
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 23
+      }
+    ]
+  },
+  {
+    "Institution": "University of Ghana",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 3
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 17
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 2
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 1
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 40
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 4
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 1
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 20
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 90
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 300
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 1
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 7
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 6
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 10
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 9
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 3
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 2
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 3
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 14
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 17
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 17
+      }
+    ]
+  },
+  {
+    "Institution": "Overall",
+    "Indicators": [
+      {
+        "Result": "1.1",
+        "Indicator": "Number of national or regional policy initiatives and programmes using GMES & Africa products and",
+        "Value": 59
+      },
+      {
+        "Result": "1.2",
+        "Indicator": "Number of national or regional institutions actively engaged in design or implementation of services on",
+        "Value": 112
+      },
+      {
+        "Result": "2.1",
+        "Indicator": "GMES & Africa Technical Expert meetings are regularly held on data access established",
+        "Value": 117
+      },
+      {
+        "Result": "2.2",
+        "Indicator": "GMES & Africa continental and existing/new regional geo-portals are functional",
+        "Value": 13
+      },
+      {
+        "Result": "2.3",
+        "Indicator": "Number of institutions accessing EO Data through GMES and Africa",
+        "Value": 713
+      },
+      {
+        "Result": "2.4",
+        "Indicator": "Number of e-station that are functional under GMES and Africa",
+        "Value": 11
+      },
+      {
+        "Result": "3.1",
+        "Indicator": "Number of functioning African WNR and CMA information services",
+        "Value": 26
+      },
+      {
+        "Result": "3.2",
+        "Indicator": "Percentage of the Grant amount allocated to the African EO private sector",
+        "Value": 135.9
+      },
+      {
+        "Result": "3.3",
+        "Indicator": "Number of End-Users using GMES and Africa products and services",
+        "Value": 21832
+      },
+      {
+        "Result": "4.1",
+        "Indicator": "Number of trainees through workshops and trainings disaggregated by Gender",
+        "Value": 7114
+      },
+      {
+        "Result": "4.2",
+        "Indicator": "Number of digital learning tools that are functional",
+        "Value": 7
+      },
+      {
+        "Result": "4.3",
+        "Indicator": "Number of trainings conducted by the consortia and PMU disaggregated by type.",
+        "Value": 120
+      },
+      {
+        "Result": "4.4",
+        "Indicator": "Number of Courses uploaded on the AUC Digital Learning Platform (DLP)",
+        "Value": 56
+      },
+      {
+        "Result": "4.5",
+        "Indicator": "Percentage of the Grant amount allocated to training",
+        "Value": 89.6
+      },
+      {
+        "Result": "4.6",
+        "Indicator": "Number of students disaggregated by Gender supported by GMES and Africa.",
+        "Value": 119
+      },
+      {
+        "Result": "5.1",
+        "Indicator": "Number of EO thematic communities of practice operational",
+        "Value": 36
+      },
+      {
+        "Result": "5.2",
+        "Indicator": "Number of cooperation frameworks in force with other Consortia or partners in other regions on",
+        "Value": 20
+      },
+      {
+        "Result": "5.3",
+        "Indicator": "Number of institutions (universities, specialized centres) members of the Network of Academia",
+        "Value": 32
+      },
+      {
+        "Result": "6.1",
+        "Indicator": "Number of events with involvement of national and regional policy institutions initiative and programmes to promote usage of GMES & Africa services into decision making processes for WNR and CMA sustainable management",
+        "Value": 238
+      },
+      {
+        "Result": "6.2",
+        "Indicator": "Percentage of the Grant amount allocated to Communication",
+        "Value": 102.3
+      },
+      {
+        "Result": "6.3",
+        "Indicator": "Number of publicity and information products developed by Consortia that have been effectively disseminated to stakeholders and audiences",
+        "Value": 102.3
+      }
+    ]
+  }
+]
