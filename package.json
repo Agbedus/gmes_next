@@ -12,7 +12,6 @@
     "@amcharts/amcharts5": "^5.14.3",
     "@amcharts/amcharts5-geodata": "^5.1.5",
     "leaflet": "^1.9.4",
-    "lucide-react": "^0.554.0",
     "material-symbols": "^0.38.0",
     "next": "16.0.1",
     "react": "19.2.0",

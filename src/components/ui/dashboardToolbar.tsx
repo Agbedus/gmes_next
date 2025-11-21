@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Search, Filter, Calendar, Plus } from "lucide-react";
 
 export default function DashboardToolbar({
   onSearch,
@@ -15,9 +14,9 @@ export default function DashboardToolbar({
   const [q, setQ] = React.useState("");
 
   return (
-    <div className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
       <div className="flex items-center gap-3 w-full sm:w-auto">
-        <label className="relative flex-1 sm:flex-none group">
+        <label className="relative flex-1 sm:flex-none">
           <input
             data-dashboard-search
             value={q}
@@ -28,20 +27,22 @@ export default function DashboardToolbar({
             onKeyDown={(e) => {
               if (e.key === "Enter") onSearch?.(q);
             }}
-            placeholder="Search reports, metrics..."
+            placeholder="Search reports, metrics... (press / to focus)"
             aria-label="Search reports and metrics"
-            className="w-full sm:w-80 rounded-xl border border-gray-200 bg-white px-4 py-2.5 pl-10 text-sm placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
+            className="w-full sm:w-80 rounded-md border border-zinc-200 px-3 py-2 text-sm placeholder:text-zinc-400"
           />
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors" size={18} />
+          <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500">
+            search
+          </span>
         </label>
 
         <button
           type="button"
           aria-label="Open filters"
           onClick={() => onFilterClick?.()}
-          className="hidden sm:inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all"
+          className="hidden sm:inline-flex items-center gap-2 rounded-md border border-zinc-200 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
         >
-          <Filter size={16} />
+          <span className="material-symbols-outlined">filter_list</span>
           Filter
         </button>
 
@@ -49,9 +50,9 @@ export default function DashboardToolbar({
           type="button"
           aria-label="Choose date range"
           onClick={() => onDateClick?.()}
-          className="hidden sm:inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all"
+          className="hidden sm:inline-flex items-center gap-2 rounded-md border border-zinc-200 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50"
         >
-          <Calendar size={16} />
+          <span className="material-symbols-outlined">calendar_month</span>
           Date
         </button>
       </div>
@@ -60,9 +61,9 @@ export default function DashboardToolbar({
         <button
           type="button"
           aria-label="Create new report"
-          className="inline-flex items-center gap-2 rounded-xl bg-blue-600 text-white px-4 py-2.5 text-sm font-medium hover:bg-blue-700 shadow-sm shadow-blue-200 transition-all hover:shadow-md"
+          className="inline-flex items-center gap-2 rounded-md bg-blue-600 text-white px-3 py-2 text-sm hover:bg-blue-700"
         >
-          <Plus size={18} />
+          <span className="material-symbols-outlined">add</span>
           New Report
         </button>
       </div>
