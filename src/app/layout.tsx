@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 
-import Sidebar from "@/components/ui/Sidebar";
+import Sidebar from '@/components/ui/Sidebar';
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -38,12 +38,13 @@ export default function RootLayout({
         >
         <div className="min-h-screen bg-zinc-50 font-sans">
             <div className="flex">
+                {/* Keep items serializable (strings) - `SideNav` maps these to Lucide icons client-side */}
                 <Sidebar items={[
-                    {label: 'Overview', href: '/summary', icon: 'insights'},
-                    {label: 'Phase 2', href: '/phase_two', icon: 'looks_two'},
-                    {label: 'Phase 1', href: '/phase_one', icon: 'looks_one'},
-                    {label: 'Reports', href: '/reports', icon: 'article'},
-                    {label: 'Useful Links', href: '/settings', icon: 'link'},
+                    { label: 'Overview', href: '/summary', icon: 'overview' },
+                    { label: 'Phase 2', href: '/phase_two', icon: 'phase_two' },
+                    { label: 'Phase 1', href: '/phase_one', icon: 'phase_one' },
+                    { label: 'Reports', href: '/reports', icon: 'reports' },
+                    { label: 'Useful Links', href: '/useful_links', icon: 'links' },
                 ]} />
 
                 <main className="flex-1 h-screen overflow-y-auto p-4">

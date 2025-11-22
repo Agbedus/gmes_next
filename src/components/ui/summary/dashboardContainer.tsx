@@ -1,4 +1,3 @@
-// filepath: /Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/dashboardContainer.tsx
 "use client";
 
 import React from "react";
@@ -12,6 +11,19 @@ import ImplementersList from "../implementersList";
 import PhaseSummary from "./phaseSummary";
 import MapModal from "../MapModal";
 import SummaryChartsModal from "../../charts/summaryChartsModal";
+import { 
+  Landmark, 
+  School, 
+  Globe, 
+  Settings, 
+  Cable, 
+  Trophy, 
+  Zap, 
+  Users, 
+  DollarSign, 
+  AlertCircle, 
+  BarChart 
+} from "lucide-react";
 
 // Define precise types instead of `any`
 type KPI = {
@@ -76,7 +88,7 @@ type Stat = {
   value: string | number;
   delta?: string;
   deltaType?: "positive" | "negative" | "neutral";
-  icon?: string;
+  icon?: React.ReactNode;
 };
 
 // Helper type for modules that may export default
@@ -141,15 +153,15 @@ export default function DashboardContainer(): React.ReactElement {
   }, []);
 
   if (loading) {
-    return <div className="p-6">Loading dashboard…</div>;
+    return <div className="p-8 text-center text-zinc-500 animate-pulse">Loading dashboard…</div>;
   }
 
   if (!data) {
-    return <div className="p-6 text-sm text-red-600">Failed to load dashboard data.</div>;
+    return <div className="p-8 text-center text-rose-600 bg-rose-50 rounded-xl">Failed to load dashboard data.</div>;
   }
 
   // Build impact array from data.kpis
-  const impact: { label: string; number: string; icon?: string; colorClass?: string }[] = [];
+  const impact: { label: string; number: string; icon?: React.ReactNode; colorClass?: string }[] = [];
   // we'll extract programme agreement into a stat and not show it in impact
   let programmeAgreementStat: Stat | null = null;
   (data.kpis ?? []).forEach((k: KPI) => {
@@ -163,28 +175,28 @@ export default function DashboardContainer(): React.ReactElement {
           title: "Programme agreement",
           // show only the number as requested (no citation), e.g. €30M
           value: `€${num}${Number.isInteger(num) ? "M" : "M"}`,
-          icon: "account_balance",
+          icon: <Landmark size={20} />,
         };
       } else {
-        programmeAgreementStat = { title: "Programme agreement", value: "Signed Dec 2016", icon: "account_balance" };
+        programmeAgreementStat = { title: "Programme agreement", value: "Signed Dec 2016", icon: <Landmark size={20} /> };
       }
       return; // skip adding to impact
     }
     if (k.amount_eur_millions !== undefined) {
       const num = Number(k.amount_eur_millions);
-      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: "account_balance", colorClass: "bg-blue-50 text-blue-600" });
+      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: "bg-blue-50 text-blue-600" });
     }
-    if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: "school", colorClass: "bg-emerald-50 text-emerald-600" });
-    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: "public", colorClass: "bg-amber-50 text-amber-600" });
-    if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: "settings", colorClass: "bg-violet-50 text-violet-600" });
-    if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: "settings_input_hdmi", colorClass: "bg-violet-50 text-violet-600" });
-    if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: "emoji_events", colorClass: "bg-amber-50 text-amber-600" });
+    if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "bg-emerald-50 text-emerald-600" });
+    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Globe size={24} />, colorClass: "bg-amber-50 text-amber-600" });
+    if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "bg-violet-50 text-violet-600" });
+    if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "bg-violet-50 text-violet-600" });
+    if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "bg-amber-50 text-amber-600" });
   });
 
   // Add Users and Active as impact cards (moved from stats)
   // Inserted at the front so they appear at the top of the impact grid
-  impact.unshift({ label: "Active", number: "89%", icon: "bolt", colorClass: "bg-emerald-50 text-emerald-600" });
-  impact.unshift({ label: "Users", number: "12,450", icon: "people", colorClass: "bg-sky-50 text-sky-600" });
+  impact.unshift({ label: "Active", number: "89%", icon: <Zap size={24} />, colorClass: "bg-emerald-50 text-emerald-600" });
+  impact.unshift({ label: "Users", number: "12,450", icon: <Users size={24} />, colorClass: "bg-sky-50 text-sky-600" });
 
   // Reorder impact so specific items appear at the bottom (keep rest at top)
   // programme agreement has been removed from impact and will be shown as a stat
@@ -212,8 +224,8 @@ export default function DashboardContainer(): React.ReactElement {
 
   const stats: Stat[] = [
     // Users and Active have been moved to impact cards above
-    { title: "Revenue", value: "$32,400", delta: "+2.1%", deltaType: "positive", icon: "paid" },
-    { title: "Errors", value: 12, delta: "-1", deltaType: "negative", icon: "error" },
+    { title: "Revenue", value: "$32,400", delta: "+2.1%", deltaType: "positive", icon: <DollarSign size={20} /> },
+    { title: "Errors", value: 12, delta: "-1", deltaType: "negative", icon: <AlertCircle size={20} /> },
   ];
 
   // Append programme agreement stat at the bottom if we extracted it
@@ -222,10 +234,13 @@ export default function DashboardContainer(): React.ReactElement {
   }
 
   return (
-    <div>
+    <div className="pb-24 relative">
+        {/* Subtle background gradient for the dashboard area */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/30 via-white to-blue-50/30 pointer-events-none -z-10" />
+
       <ProgramHeader name={String(data.program?.name ?? "")} oneLiner={String(data.program?.one_liner ?? "")} />
 
-      <div className="mt-4">
+      <div className="mt-8">
         <DashboardToolbar
           onSearch={(q: string) => setQuery(q)}
           onFilterClick={() => alert("Filter panel not implemented yet")}
@@ -233,9 +248,12 @@ export default function DashboardContainer(): React.ReactElement {
         />
       </div>
 
-      <section className="mt-6">
-        <h2 className="text-lg font-semibold text-zinc-900">Impact overview</h2>
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="mt-10">
+        <h2 className="text-lg font-bold text-zinc-900 tracking-tight mb-6 flex items-center gap-2">
+            <span className="material-symbols-outlined text-indigo-500">insights</span>
+            Impact Overview
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {reorderedImpact.map((i) => (
             <ImpactCard key={i.label} label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} />
           ))}
@@ -246,30 +264,32 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
       </section>
 
-      <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 space-y-4">
+      <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 space-y-8">
           <Timeline items={filteredTimeline} />
 
           <div>
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-zinc-900">Services</h3>
-              <label className="text-sm text-zinc-500">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-zinc-900 tracking-tight flex items-center gap-2">
+                  <span className="material-symbols-outlined text-indigo-500">grid_view</span>
+                  Services
+              </h3>
+              <label className="text-sm text-zinc-500 group relative">
                 <input
                   aria-label="Search services"
-                  className="ml-2 rounded-md border border-zinc-200 px-2 py-1 text-sm"
+                  className="ml-2 rounded-lg border border-zinc-200/60 bg-white/50 px-3 py-1.5 pl-8 text-sm focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 outline-none transition-all"
                   placeholder="Filter services"
                   value={serviceQuery}
                   onChange={(e) => setServiceQuery(e.target.value)}
                 />
+                <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-[16px]">search</span>
               </label>
             </div>
-            <div className="mt-3">
-              <ServicesList services={filteredServices} query={serviceQuery} />
-            </div>
+            <ServicesList services={filteredServices} query={serviceQuery} />
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-8">
           <ImplementersList
             coordinator={String(data.implementers_governance?.coordinator ?? "")}
             implementers={data.implementers_governance?.implementers_phase_2 ?? []}
@@ -284,29 +304,29 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {stats.map((s) => (
           <StatCard key={s.title} title={s.title} value={s.value} delta={s.delta} deltaType={s.deltaType} icon={s.icon} />
         ))}
       </div>
 
-      <div className="w-auto h-auto p-1.5 rounded-[24px] border-[1px] border-slate-200 fixed bottom-10 bg-white right-12 flex justify-center items-center">
+      <div className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg shadow-indigo-100/20 z-50">
         <button
-            className="w-12 h-12 rounded-[18px] bg-blue-100 text-blue-600 flex justify-center items-center hover:bg-blue-200"
+            className="w-12 h-12 rounded-[18px] bg-indigo-50 text-indigo-600 flex justify-center items-center hover:bg-indigo-100 hover:scale-105 transition-all shadow-sm"
             id="mapButton"
             aria-label="Open program map"
             onClick={() => setMapOpen(true)}
         >
-          <span className="material-symbols-outlined text-3xl" aria-hidden>globe</span>
+          <Globe size={24} />
         </button>
 
         <button
-            className="w-12 h-12 rounded-[18px] bg-green-100 text-green-600 flex justify-center items-center ml-4 hover:bg-green-200"
+            className="w-12 h-12 rounded-[18px] bg-emerald-50 text-emerald-600 flex justify-center items-center ml-3 hover:bg-emerald-100 hover:scale-105 transition-all shadow-sm"
             id="chartsButton"
             aria-label="Open charts summary"
             onClick={() => setChartsOpen(true)}
         >
-          <span className="material-symbols-outlined text-3xl" aria-hidden>bar_chart</span>
+          <BarChart size={24} />
         </button>
 
       </div>

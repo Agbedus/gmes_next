@@ -197,7 +197,7 @@
               "Mauritania",
               "Morocco",
               "Tunisia",
-                "Algeria"
+              "Algeria"
             ]
           },
           "programme_priorities": [
@@ -446,12 +446,9 @@
             "affiliation": "Southern African Science Service Centre for Climate Change and Adaptive Land Management (SASSCAL)",
             "email": "jane.olwoch@sasscal.org"
           },
-          "useful_likns": {
-            "Official_Website_Main_Portal": [
-              "https://wemast.sasscal.org",
-              "https://www.sasscal.org"
-            ],
-            "Geoportal_Data_Platforms": "https://wemast.sasscal.org/geoportal",
+          "useful_links": {
+            "Official_Website_Main_Portal": "https://wemast.sasscal.org",
+            "Geoportal_Data_Platforms": ["https://wemast.sasscal.org/geoportal"],
             "Digital_Learning_Platform_DLP": "https://training.sasscal.org",
             "Blogs_Social_Media_Presence": "https://blog.wemast.sasscal.org",
             "Innovative_Applications_Tools": null
@@ -465,7 +462,7 @@
                     {
                       "name": "University of Botswana",
                       "description": "",
-                      "logo": null
+                      "logo": "images/Uni_Botswana.jpeg"
                     },
                     {
                       "name": "WaterNet, SADC",
@@ -739,7 +736,7 @@
                     {
                       "name": "University of Ghana (Regional Marine Centre) (Ghana)",
                       "description": "",
-                      "logo": "images/logos/university_of_ghana_logo.png"
+                      "logo": "images/logos/University_of_Ghana_Logo.png"
                     },
                     {
                       "name": "Ghana Meteorological Agency (Ghana)",
@@ -941,6 +938,26 @@
         ],
         "images": {
           "logos": [
+            {
+              "partner": "Marine and Coastal Areas Management in North and West Africa (MarCNoWA)",
+              "path": "images/MarCNoWA_Logo.png"
+            },
+            {
+              "partner": "Nigerian Institute for Oceanography and Marine Research",
+              "path": "images/logos/nigerian_institute_for_oceanography_logo.png"
+            },
+            {
+              "partner": "Centre Universitaire De Recherche d'Application en Télédétection",
+              "path": "images/logos/curat_logo.png"
+            },
+            {
+              "partner": "Institut de Recherches Halieutiques et Océanologiques du Bénin",
+              "path": "images/logos/irhob_logo.png"
+            },
+            {
+              "partner": "Centre for Oceanographic Research of Dakar-Thiaroye",
+              "path": "images/logos/crodt_logo.png"
+            },
             {
               "partner": "University of Ghana",
               "path": "images/logos/university_of_ghana_logo.png"
@@ -1370,16 +1387,16 @@
                   ]
                 },
                 {
-                    "name": "Gabon",
-                    "partners": []
-                    },
-                    {
-                    "name": "Central African Republic",
-                    "partners": []
-                    },
-                    {
-                    "name": "Sao Tome and Principe",
-                    "partners": []
+                  "name": "Gabon",
+                  "partners": []
+                },
+                {
+                  "name": "Central African Republic",
+                  "partners": []
+                },
+                {
+                  "name": "Sao Tome and Principe",
+                  "partners": []
                 },
                 {
                   "name": "Burundi",

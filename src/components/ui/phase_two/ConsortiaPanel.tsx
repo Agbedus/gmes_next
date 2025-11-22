@@ -5,7 +5,7 @@ import DataTable from './DataTable';
 import MapModal from '../MapModal';
 import ConsortiumDetail from './ConsortiumDetail';
 
-export type Member = { name?: string; country?: string; role?: string };
+export type Member = { name?: string; country?: string; role?: string; logo?: string };
 export type DigitalPlatforms = Record<string, unknown> | undefined;
 
 // Extended Consortium type to support both legacy and new phase two schema
@@ -35,6 +35,13 @@ export type Consortium = {
   website?: string[];
   outputs?: string[];
   images?: any;
+  useful_links?: any;
+  challenges?: string[];
+  focus?: string[];
+  rationale?: string[];
+  outcomes?: Array<{ description?: string; service?: string }>;
+  impacts?: string[];
+  keywords?: string[];
 };
 
 const LOGO_FALLBACK = '/file.svg';
@@ -188,7 +195,8 @@ function normalizeConsortium(raw: any): Consortium {
                   regionalMembers.push({ name: parsed.name, country: countryName ?? parsed.country });
                  } else if (p && typeof p === 'object') {
                   const pname = p.name ?? p.partner ?? undefined;
-                  regionalMembers.push({ name: String(pname ?? '').trim() || undefined, country: countryName });
+                  const plogo = p.logo ?? undefined;
+                  regionalMembers.push({ name: String(pname ?? '').trim() || undefined, country: countryName, logo: plogo });
                  }
                });
              }
@@ -211,11 +219,14 @@ function normalizeConsortium(raw: any): Consortium {
       if (!key) return;
       if (!seen.has(key)) {
         seen.add(key);
-        mergedMembers.push({ name: m.name, country: m.country });
+        mergedMembers.push({ name: m.name, country: m.country, logo: m.logo });
       } else {
         // if already seen, fill missing country info from later source
         const idx = mergedMembers.findIndex(mm => (String(mm.name ?? '').toLowerCase().replace(/\s+/g,' ').trim()) === key);
-        if (idx > -1 && !mergedMembers[idx].country && m.country) mergedMembers[idx].country = m.country;
+        if (idx > -1) {
+          if (!mergedMembers[idx].country && m.country) mergedMembers[idx].country = m.country;
+          if (!mergedMembers[idx].logo && m.logo) mergedMembers[idx].logo = m.logo;
+        }
       }
     });
 
@@ -303,6 +314,13 @@ function normalizeConsortium(raw: any): Consortium {
       images: images,
       // preserve raw regional coverage so we can later extract countries directly for mapping
       regional_coverage: cons.regional_coverage ?? raw.regional_coverage ?? undefined,
+      useful_links: cons.useful_links ?? raw.useful_links ?? undefined,
+      challenges: cons.challenges ?? raw.challenges ?? undefined,
+      focus: cons.focus ?? raw.focus ?? undefined,
+      rationale: cons.rationale ?? raw.rationale ?? undefined,
+      outcomes: cons.outcomes ?? raw.outcomes ?? undefined,
+      impacts: cons.impacts ?? raw.impacts ?? undefined,
+      keywords: cons.keywords ?? raw.keywords ?? undefined,
     } as Consortium;
   }
 
@@ -328,8 +346,24 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferred]);
 
+  // Accessible key handler so the div behaves like a button
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  }
+
   return (
-    <button onClick={onClick} className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-md ${active ? 'bg-teal-50' : 'hover:bg-zinc-50'}`}>
+    // replace outer <button> with a focusable div that has button semantics
+    <div
+      role="button"
+      tabIndex={0}
+      aria-pressed={active}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-md ${active ? 'bg-teal-50' : 'hover:bg-zinc-50'} cursor-pointer`}
+    >
       <div className="flex-shrink-0">
         <Image src={safeImgSrc} alt={`${name} logo`} width={40} height={40} className="w-10 h-10 rounded-md object-contain bg-white p-1" unoptimized onError={(e)=>{
           const target = (e?.target as HTMLImageElement | null);
@@ -353,7 +387,7 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
           </svg>
         </button>
       </div>
-    </button>
+    </div>
   );
 }
 
