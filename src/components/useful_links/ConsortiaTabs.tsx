@@ -20,7 +20,7 @@ export function ConsortiaTabs() {
             let logo: string | undefined = undefined;
             if (c.images && Array.isArray(c.images.logos) && c.images.logos.length > 0) {
                 const l = c.images.logos[0];
-                logo = l.path ?? l.url ?? undefined;
+                logo = l.path ?? undefined;
             }
 
             if (rawLinks) {
