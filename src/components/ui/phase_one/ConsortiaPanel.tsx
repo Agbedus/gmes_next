@@ -370,6 +370,8 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
         highlightCountries={mapCountries}
         members={selectedConsortium?.members}
         consortiumName={selectedConsortium?.name}
+        consortiumLogo={selectedConsortium?.logo}
+        consortiumDescription={selectedConsortium?.description}
         groupsColor={{ West: '#06b6d4', East: '#34d399', North: '#f59e0b', South: '#ef4444', Central: '#a78bfa' }}
         legendItems={[
           { label: 'West', color: '#06b6d4' },

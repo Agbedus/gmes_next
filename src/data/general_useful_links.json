@@ -1,0 +1,186 @@
+{
+  "continental_policies": [
+    {
+      "id": 1,
+      "title": "Science, Technology and Innovation Strategy for Africa 2024 (STISA-2024)",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website",
+          "url": "https://au.int/en/documents/20241007/science-technology-and-innovation-strategy-africa-2024"
+        },
+        {
+          "type": "pdf",
+          "description": "PDF Download",
+          "url": "https://hsrc.ac.za/uploads/pageContent/5424/STISA%202024%20Revised%20May%202014%20Final.pdf"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Agenda 2063: The Africa We Want",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website",
+          "url": "https://au.int/en/agenda2063"
+        },
+        {
+          "type": "pdf",
+          "description": "Framework Document PDF Download",
+          "url": "https://www.nepad.org/publication/agenda-2063-framework-document"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Abidjan Declaration (Abidjan Convention)",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website (UNEP)",
+          "url": "https://www.unep.org/unepmap/who-we-are/contracting-parties/abidjan-convention"
+        },
+        {
+          "type": "pdf",
+          "description": "PDF Download (FAOLEG)",
+          "url": "https://faolex.fao.org/docs/pdf/mul118163ENG.pdf"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "African Union Blue Economy Strategy",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website (AU-IBAR)",
+          "url": "https://www.au-ibar.org/au-blue-economy-strategy"
+        },
+        {
+          "type": "pdf",
+          "description": "PDF Download (FAOLEG)",
+          "url": "https://faolex.fao.org/docs/pdf/au228027.pdf"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Africa Integrated Maritime Strategy (2050 AIM Strategy)",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website (AU)",
+          "url": "https://au.int/en/documents/20130225/2050-aim-strategy"
+        },
+        {
+          "type": "pdf",
+          "description": "PDF Download",
+          "url": "https://au.int/sites/default/files/documents/30929-doc-2050_aim_strategy_en.pdf"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "African Strategy for Disaster Risk Reduction (DRR)",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website (UNDRR)",
+          "url": "https://www.undrr.org/region/africa"
+        },
+        {
+          "type": "pdf",
+          "description": "Programme of Action PDF Download",
+          "url": "https://www.undrr.org/publication/programme-action-implementation-sendai-framework-disaster-risk-reduction-2015-2030"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "African Strategy on Climate Change",
+      "links": [
+        {
+          "type": "website",
+          "description": "Website (Strategy and Action Plan)",
+          "url": "https://au.int/en/documents/20220628/african-union-climate-change-and-resilient-development-strategy-and-action-plan"
+        },
+        {
+          "type": "pdf",
+          "description": "PDF Download (Strategy and Action Plan 2022-2032)",
+          "url": "https://au.int/sites/default/files/documents/41959-doc-CC_Strategy_and_Action_Plan_2022-2032_08_02_23_Single_Print_Ready.pdf"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "African Space Policy and Strategy",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website (Flagship)",
+          "url": "https://au.int/en/flagships/africa-outer-space-strategy"
+        },
+        {
+          "type": "pdf",
+          "description": "Statute PDF Download (African Space Agency)",
+          "url": "https://au.int/sites/default/files/treaties/36198-treaty-statute_african_space_agency_e.pdf"
+        }
+      ]
+    }
+  ],
+  "global_agendas": [
+    {
+      "id": 9,
+      "title": "SDGs (Sustainable Development Goals)",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website",
+          "url": "https://sdgs.un.org/goals"
+        },
+        {
+          "type": "website",
+          "description": "Goal 6 (Water)",
+          "url": "https://sdgs.un.org/goals/goal6"
+        },
+        {
+          "type": "website",
+          "description": "Goal 13 (Climate)",
+          "url": "https://sdgs.un.org/goals/goal13"
+        },
+        {
+          "type": "website",
+          "description": "Goal 14 (Life Below Water)",
+          "url": "https://sdgs.un.org/goals/goal14"
+        },
+        {
+          "type": "website",
+          "description": "Goal 15 (Life on Land)",
+          "url": "https://sdgs.un.org/goals/goal15"
+        },
+        {
+          "type": "pdf",
+          "description": "PDF Download (UN Resolution 70/1)",
+          "url": "https://digitallibrary.un.org/record/3923923/files/A_RES_70_1-EN.pdf"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Agenda 2063 Goals (First Ten-Year Plan)",
+      "links": [
+        {
+          "type": "website",
+          "description": "General Website (Goals)",
+          "url": "https://au.int/en/agenda2063/goals"
+        },
+        {
+          "type": "pdf",
+          "description": "PDF Download (First Ten-Year Implementation Plan 2014-2023)",
+          "url": "https://www.nepad.org/agenda-2063/publication/agenda-2063-first-ten-year-implementation-plan-2014-2023-0"
+        }
+      ]
+    }
+  ]
+}

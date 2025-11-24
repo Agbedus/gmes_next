@@ -6,6 +6,67 @@ import MapModal from '../MapModal';
 import ConsortiumDetail from './ConsortiumDetail';
 
 export type Member = { name?: string; country?: string; role?: string; logo?: string };
+
+const COUNTRY_NAME_MAP: Record<string, string> = {
+  "DRC": "Democratic Republic of the Congo",
+  "Congo": "Republic of Congo",
+  "Burkina-Faso": "Burkina Faso",
+  "Burkina Faso": "Burkina Faso",
+  "CAR": "Central African Republic",
+  "Congo (Lead)": "Republic of Congo",
+  "Tanzania": "United Republic of Tanzania",
+  "Ivory Coast": "Ivory Coast",
+  "Gambia": "The Gambia",
+  "The Gambia": "The Gambia",
+  "South Africa (Lead)": "South Africa",
+  "Republic of Congo": "Congo",
+  "Democratic Republic of the Congo": "Democratic Republic of the Congo",
+  "Equatorial Guinea": "Equatorial Guinea",
+  "Cote d'Ivoire": "Ivory Coast",
+  "Somalia": "Somalia",
+  "South Sudan": "South Sudan",
+  "Guinea": "Guinea",
+  "Mauritania": "Mauritania",
+  "Madagascar": "Madagascar",
+  "Mozambique": "Mozambique",
+  "Namibia": "Namibia",
+  "Botswana": "Botswana",
+  "Zimbabwe": "Zimbabwe",
+  "Zambia": "Zambia",
+  "Cameroon": "Cameroon",
+  "Gabon": "Gabon",
+  "Burundi": "Burundi",
+  "Tunisia": "Tunisia",
+  "Morocco": "Morocco",
+  "Egypt": "Egypt",
+  "Libya": "Libya",
+  "Algeria": "Algeria",
+  "Kenya (Lead)": "Kenya",
+  "Kenya": "Kenya",
+  "Rwanda": "Rwanda",
+  "Eritrea": "Eritrea",
+  "Djibouti": "Djibouti",
+  "Comoros": "Comoros",
+  "Ethiopia": "Ethiopia",
+  "Uganda": "Uganda",
+  "Sudan": "Sudan",
+  "Senegal": "Senegal",
+  "Niger": "Niger",
+  "Nigeria": "Nigeria",
+  "Ghana": "Ghana",
+  "Benin": "Benin",
+  "Namibia (Lead)": "Namibia",
+};
+
+function normalizeCountryName(name: string): string {
+  // Remove (Lead) suffix and trim
+  const cleaned = String(name)
+    .replace(/\s*\(Lead\)\s*/i, '')
+    .trim();
+
+  // Look up standard name in our mapping
+  return COUNTRY_NAME_MAP[cleaned] || cleaned;
+}
 export type DigitalPlatforms = Record<string, unknown> | undefined;
 
 // Extended Consortium type to support both legacy and new phase two schema
@@ -219,12 +280,12 @@ function normalizeConsortium(raw: any): Consortium {
       if (!key) return;
       if (!seen.has(key)) {
         seen.add(key);
-        mergedMembers.push({ name: m.name, country: m.country, logo: m.logo });
+        mergedMembers.push({ name: m.name, country: m.country ? normalizeCountryName(m.country) : undefined, logo: m.logo });
       } else {
         // if already seen, fill missing country info from later source
         const idx = mergedMembers.findIndex(mm => (String(mm.name ?? '').toLowerCase().replace(/\s+/g,' ').trim()) === key);
         if (idx > -1) {
-          if (!mergedMembers[idx].country && m.country) mergedMembers[idx].country = m.country;
+          if (!mergedMembers[idx].country && m.country) mergedMembers[idx].country = normalizeCountryName(m.country);
           if (!mergedMembers[idx].logo && m.logo) mergedMembers[idx].logo = m.logo;
         }
       }
@@ -392,66 +453,9 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
 }
 
 // Add country name normalization map for African countries
-const COUNTRY_NAME_MAP: Record<string, string> = {
-  "DRC": "Democratic Republic of the Congo",
-  "Congo": "Republic of Congo",
-  "Burkina-Faso": "Burkina Faso",
-  "Burkina Faso": "Burkina Faso",
-  "CAR": "Central African Republic",
-  "Congo (Lead)": "Republic of Congo",
-  "Tanzania": "United Republic of Tanzania",
-  "Ivory Coast": "Ivory Coast",
-  "Gambia": "The Gambia",
-  "The Gambia": "The Gambia",
-  "South Africa (Lead)": "South Africa",
-  "Republic of Congo": "Congo",
-  "Democratic Republic of the Congo": "Democratic Republic of the Congo",
-  "Equatorial Guinea": "Equatorial Guinea",
-  "Cote d'Ivoire": "Ivory Coast",
-  "Somalia": "Somalia",
-  "South Sudan": "South Sudan",
-  "Guinea": "Guinea",
-  "Mauritania": "Mauritania",
-  "Madagascar": "Madagascar",
-  "Mozambique": "Mozambique",
-  "Namibia": "Namibia",
-  "Botswana": "Botswana",
-  "Zimbabwe": "Zimbabwe",
-  "Zambia": "Zambia",
-  "Cameroon": "Cameroon",
-  "Gabon": "Gabon",
-  "Burundi": "Burundi",
-  "Tunisia": "Tunisia",
-  "Morocco": "Morocco",
-  "Egypt": "Egypt",
-  "Libya": "Libya",
-  "Algeria": "Algeria",
-  "Kenya (Lead)": "Kenya",
-  "Kenya": "Kenya",
-  "Rwanda": "Rwanda",
-  "Eritrea": "Eritrea",
-  "Djibouti": "Djibouti",
-  "Comoros": "Comoros",
-  "Ethiopia": "Ethiopia",
-  "Uganda": "Uganda",
-  "Sudan": "Sudan",
-  "Senegal": "Senegal",
-  "Niger": "Niger",
-  "Nigeria": "Nigeria",
-  "Ghana": "Ghana",
-  "Benin": "Benin",
-  "Namibia (Lead)": "Namibia",
-};
 
-function normalizeCountryName(name: string): string {
-  // Remove (Lead) suffix and trim
-  const cleaned = String(name)
-    .replace(/\s*\(Lead\)\s*/i, '')
-    .trim();
 
-  // Look up standard name in our mapping
-  return COUNTRY_NAME_MAP[cleaned] || cleaned;
-}
+
 
 export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
   // normalize all consortia so the rest of the component can rely on a consistent shape
@@ -563,6 +567,9 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
         highlightCountries={mapCountries}
         members={selectedConsortium?.members}
         consortiumName={selectedConsortium?.name}
+        consortiumLogo={selectedConsortium?.logo}
+        consortiumKeywords={selectedConsortium?.keywords}
+        consortiumDescription={selectedConsortium?.description}
         groupsColor={{ West: '#06b6d4', East: '#34d399', North: '#f59e0b', South: '#ef4444', Central: '#a78bfa' }}
         legendItems={[
           { label: 'West', color: '#06b6d4' },

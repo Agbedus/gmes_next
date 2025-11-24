@@ -5,6 +5,7 @@ import * as am5xy from "@amcharts/amcharts5/xy";
 import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import programData from '@/data/program.json';
+import consortiaData from '@/data/consortia_deliverables.json';
 
 // --- Types & Palette ---
 type BaseChartProps = {
@@ -350,6 +351,38 @@ export default function SummaryChartsModal({ open, onCloseAction }: Props) {
         };
     });
 
+    // 7. Consortia Comparison Data
+    
+    type Indicator = {
+        Result: string;
+        Indicator: string;
+        Value: number;
+    };
+
+    type Consortium = {
+        Institution: string;
+        Indicators: Indicator[];
+    };
+
+    // Helper to extract specific indicator values for all institutions (excluding "Overall")
+    const getConsortiaData = (resultCode: string) => {
+        return (consortiaData as Consortium[])
+            .filter((c: Consortium) => c.Institution !== "Overall")
+            .map((c: Consortium) => {
+                const indicator = c.Indicators.find((i: Indicator) => i.Result === resultCode);
+                return {
+                    category: c.Institution,
+                    value: indicator ? indicator.Value : 0
+                };
+            })
+            .sort((a: { value: unknown }, b: { value: unknown }) => ((b.value as number) - (a.value as number))); // Sort descending
+    };
+
+    const consortiaTrainingData = getConsortiaData("4.1"); // Number of trainees
+    const consortiaAccessData = getConsortiaData("2.3");   // Institutions accessing EO Data
+    const consortiaServicesData = getConsortiaData("3.1"); // Functioning services
+    const consortiaCommsData = getConsortiaData("6.3");    // Publicity products
+
     return (
         <div role="dialog" aria-modal="true" className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/60">
             <div className="relative w-full h-full bg-zinc-50 shadow-xl flex flex-col">
@@ -421,6 +454,29 @@ export default function SummaryChartsModal({ open, onCloseAction }: Props) {
                                 <div className="chart-card">
                                     <GanttChart chartId="timeline-chart" data={timelineData} categoryField="category" 
                                                 startField="start" endField="end" title="Key Milestones" icon="history" />
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Consortia Performance Comparison Section */}
+                        <section>
+                            <h3 className="mb-4 text-sm font-semibold text-zinc-700">Consortia Performance Comparison</h3>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div className="chart-card">
+                                    <BarChart chartId="consortia-training-chart" data={consortiaTrainingData} categoryField="category"
+                                              valueField="value" title="Training Impact (Trainees)" icon="school" />
+                                </div>
+                                <div className="chart-card">
+                                    <BarChart chartId="consortia-access-chart" data={consortiaAccessData} categoryField="category"
+                                              valueField="value" title="Data Access (Institutions)" icon="cloud_download" />
+                                </div>
+                                <div className="chart-card">
+                                    <BarChart chartId="consortia-services-chart" data={consortiaServicesData} categoryField="category"
+                                              valueField="value" title="Service Implementation" icon="settings_suggest" />
+                                </div>
+                                <div className="chart-card">
+                                    <BarChart chartId="consortia-comms-chart" data={consortiaCommsData} categoryField="category"
+                                              valueField="value" title="Communication Products" icon="campaign" />
                                 </div>
                             </div>
                         </section>

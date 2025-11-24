@@ -34,8 +34,11 @@ type Props = {
   onCloseAction: () => void;
   points?: Point[];
   highlightCountries?: string[];
-  members?: { name?: string; country?: string }[];
+  members?: { name?: string; country?: string; logo?: string }[];
   consortiumName?: string;
+  consortiumLogo?: string;
+  consortiumKeywords?: string[];
+  consortiumDescription?: string;
   legendItems?: LegendItem[];
   groupsColor?: Record<string, string>;
   polygonGeoJSON?: unknown;
@@ -85,6 +88,9 @@ export default function MapModal({
                                    highlightCountries,
                                    members,
                                    consortiumName,
+                                   consortiumLogo,
+                                   consortiumKeywords,
+                                   consortiumDescription,
                                    legendItems,
                                    groupsColor = DEFAULT_GROUPS_COLOR,
                                    polygonGeoJSON,
@@ -275,33 +281,98 @@ export default function MapModal({
                     <img src={"/GMES.png"} width={200} />
                 </Control>
 
-                {Array.isArray(legendItems) && legendItems.length > 0 ? (
-                        <Control position='topleft' >
-                    <div className="bg-white/90 rounded-md px-3 py-2 text-sm text-zinc-800" style={{ maxWidth:'400px' }}>
-                        <strong>Legend</strong>
-                        <div className="mt-2 flex flex-col gap-1">
-                            {!consortiumName ?legendItems.map((li:any) => (
-                                <div key={li.label} className="flex items-center gap-2 text-xs">
-                                    <span style={{ width: 12, height: 12, background: li.color, borderRadius: 6, display: "inline-block" }} />
-                                    <span>{li.label}</span>
+                {consortiumName ? (
+                    <Control position='topleft'>
+                        <div className="bg-white/95 backdrop-blur rounded-xl shadow-lg p-5 text-zinc-800 max-w-sm border border-zinc-100/50">
+                            <div className="flex items-start gap-4">
+                                {consortiumLogo && (
+                                    <div className="shrink-0 bg-white rounded-lg p-1 border border-zinc-100 shadow-sm">
+                                        <img 
+                                            src={consortiumLogo} 
+                                            alt={`${consortiumName} logo`} 
+                                            className="w-16 h-16 object-contain"
+                                        />
+                                    </div>
+                                )}
+                                <div>
+                                    <h3 className="text-lg font-bold leading-tight text-zinc-900">{consortiumName}</h3>
+                                    {consortiumKeywords && consortiumKeywords.length > 0 && (
+                                        <div className="mt-2 flex flex-wrap gap-1.5">
+                                            {consortiumKeywords.map((keyword, idx) => (
+                                                <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 text-zinc-600 border border-zinc-200">
+                                                    {keyword}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+                                    {consortiumDescription && (
+                                        <p className="mt-2 text-sm text-zinc-600 line-clamp-4 leading-relaxed">
+                                            {consortiumDescription}
+                                        </p>
+                                    )}
                                 </div>
-                            )):
-                                <div className="flex items-center gap-2 text-xs">
-                                    <span style={{ width: 12, height: 12, background: consortiumDefaultColor, borderRadius: 6, display: "inline-block" }} />
-                                    <span>{consortiumName}</span>
-                                </div>
-                            }
+                            </div>
+                            <div className="mt-4 flex items-center gap-2 text-xs font-medium text-zinc-500 bg-zinc-50 px-3 py-2 rounded-lg">
+                                <span style={{ width: 10, height: 10, background: consortiumDefaultColor, borderRadius: '50%', display: "inline-block" }} />
+                                <span>Member Countries Highlighted</span>
+                            </div>
                         </div>
-                    </div>
+                    </Control>
+                ) : (
+                    Array.isArray(legendItems) && legendItems.length > 0 ? (
+                        <Control position='topleft' >
+                            <div className="bg-white/90 rounded-md px-3 py-2 text-sm text-zinc-800" style={{ maxWidth:'400px' }}>
+                                <strong>Legend</strong>
+                                <div className="mt-2 flex flex-col gap-1">
+                                    {legendItems.map((li:any) => (
+                                        <div key={li.label} className="flex items-center gap-2 text-xs">
+                                            <span style={{ width: 12, height: 12, background: li.color, borderRadius: 6, display: "inline-block" }} />
+                                            <span>{li.label}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </Control>
-                ) : null}
+                    ) : null
+                )}
 
                 <GeoJSON
                     data={africanCountriesObject}
                     style={geoStyle(L)}
                     onEachFeature={(feature: any, layer: any) => {
-                        if (feature.properties?.name) {
-                            layer.bindTooltip(`<strong>${feature.properties.name}</strong>`);
+                        const iso2 = feature.properties?.iso_a2;
+                        const iso3 = feature.properties?.iso_a3;
+                        const countryName = feature.properties?.name;
+
+                        // Find members for this country
+                        const countryMembers = members?.filter(m => {
+                            if (!m.country) return false;
+                            // Check against ISO map if possible, or direct name match
+                            const entry = (isoMap as any)[m.country];
+                            if (entry) {
+                                return entry.iso_a2 === iso2 || entry.iso_a3 === iso3;
+                            }
+                            // Fallback to name match (loose)
+                            return m.country === countryName; 
+                        }) || [];
+
+                        if (countryMembers.length > 0) {
+                             const tooltipContent = `
+                                <div class="p-2 w-64">
+                                    <div class="font-bold text-sm border-b border-zinc-200 pb-1 mb-2">${countryName}</div>
+                                    <div class="space-y-2">
+                                        ${countryMembers.map(m => `
+                                            <div class="flex items-start gap-2">
+                                                ${m.logo ? `<img src="${m.logo}" class="w-6 h-6 object-contain bg-white rounded-full p-0.5 border border-zinc-100 shrink-0 mt-0.5" />` : ''}
+                                                <span class="text-xs font-medium text-zinc-700 whitespace-normal break-words leading-tight">${m.name || 'Partner'}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            `;
+                            layer.bindTooltip(tooltipContent, { sticky: true, className: 'custom-tooltip-html', opacity: 1 });
+                        } else if (countryName) {
+                            layer.bindTooltip(`<strong>${countryName}</strong>`, { sticky: true });
                         }
                     }}
                 />
