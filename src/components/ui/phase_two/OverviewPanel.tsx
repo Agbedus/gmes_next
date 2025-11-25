@@ -2,10 +2,9 @@
 import React from "react";
 import Image from 'next/image';
 import OverviewCard from './OverviewCard';
-import DataTable from './DataTable';
 
 type Funder = { name: string; role?: string; logo?: string };
-type Pillar = { id?: string; name?: string };
+type Pillar = { id?: string; name?: string; description?: string };
 
 export default function OverviewPanel({ programDetails, strategicFramework, metrics }: { programDetails: Record<string, unknown>; strategicFramework: Record<string, unknown>; metrics?: Record<string, unknown> }) {
   const pd = programDetails as Record<string, unknown>;
@@ -15,14 +14,11 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
   const description = (pd['description'] as string | undefined) ?? '';
   const timeline = (pd['timeline'] as string | undefined) ?? '\u2014';
   const budgetTotal = ((pd['budget'] as Record<string, unknown> | undefined)?.['total'] as string | undefined) ?? '\u2014';
-  const budgetEU = ((pd['budget'] as Record<string, unknown> | undefined)?.['euContribution'] as string | undefined) ?? '\u2014';
   const thematic = pd['thematicFocus'];
 
   const funders = Array.isArray(pd['funders']) ? (pd['funders'] as unknown as Funder[]) : [];
   const pillars = Array.isArray(sf['pillars_LogFrame']) ? (sf['pillars_LogFrame'] as unknown as Pillar[]) : [];
   const alignment = sf['alignment'] as Record<string, unknown> | undefined;
-
-  // reach data is available from metrics or program details but not used in this panel yet
 
   // helper to pick a material symbol for a thematic item
   const iconForTheme = (t?: string) => {
@@ -34,13 +30,10 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
     return 'public';
   };
 
-  // helpers to produce compact chip labels including numbers
   const sdgChipLabel = (s?: string) => {
     if (!s) return '';
-    // try to extract digits (e.g., 'SDG 6' -> 'SDG 6')
     const digits = s.match(/\d+/g);
     if (digits && digits.length > 0) return `SDG ${digits.join(',')}`;
-    // fallback to the original short token
     return s.split(/\s+/)[0];
   };
 
@@ -50,12 +43,6 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
     if (digits && digits.length > 0) return `Goal ${digits.join(',')}`;
     return g.split(/\s+/)[0];
   };
-
-  const pillarColumns = [
-    { key: 'id', label: 'Pillar' },
-    { key: 'name', label: 'Description' },
-  ];
-  const pillarRows = pillars.map((p) => ({ id: p.id ?? '-', name: p.name ?? '-' }));
 
   // prepare alignment arrays for safer rendering
   const continentalPoliciesArr = alignment && Array.isArray(alignment['continentalPolicies']) ? (alignment['continentalPolicies'] as unknown as string[]) : [];
@@ -74,10 +61,22 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             <p className="mt-2 text-sm text-zinc-700">{description}</p>
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <OverviewCard title="Timeline" value={timeline} icon="calendar_month" />
-              <OverviewCard title="Budget (total)" value={budgetTotal} subtitle={`EU: ${budgetEU}`} icon="account_balance" />
-              <OverviewCard title="Thematic focus" value={Array.isArray(thematic) ? (thematic as unknown as string[]).join(', ') : String(thematic ?? '\u2014')} icon="public" />
-              <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" />
+              <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#0ea5a4" iconBg="#ecfeff" />
+              <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#a21caf" iconBg="#f5e6f8" />
+
+              <div className="rounded-xl border border-zinc-200 bg-white p-4">
+                <h4 className="text-xs font-semibold text-zinc-700">Thematic focus</h4>
+                <div className="mt-2 text-sm text-zinc-700">
+                  {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
+                    <div key={i} className="py-1 flex items-center gap-2">
+                      <span className="material-symbols-outlined text-zinc-500 text-sm" aria-hidden>{iconForTheme(t)}</span>
+                      <div className="text-sm">{t}</div>
+                    </div>
+                  )) : String(thematic ?? '\u2014')}
+                </div>
+              </div>
+
+              <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#f59e0b" iconBg="#fff7ed" />
             </div>
 
           </div>
@@ -93,7 +92,6 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
               ) : (
                 funders.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    {/** logo area: use provided logo if available, otherwise initials circle */}
                     {typeof f.logo === 'string' && f.logo ? (
                       <Image src={f.logo} alt={`${f.name} logo`} width={64} height={64} className="w-16 h-16 rounded-md object-center object-cover bg-white p-1 border border-zinc-100" unoptimized />
                     ) : (
@@ -127,13 +125,37 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
          </aside>
        </div>
 
-      {/* make pillars and alignment share a row on md+ screens */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch mt-4">
         <div className="h-full">
           <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Strategic pillars</h3>
             <div className="mt-2 flex-1">
-              <DataTable columns={pillarColumns} rows={pillarRows} compact />
+              {pillars.length > 0 ? (
+                <>
+                  <div className="space-y-2">
+                    {pillars.map((p, idx) => (
+                      <details key={p.id ?? idx} className="rounded-md border border-zinc-100 p-3 bg-accent-50">
+                        <summary className="cursor-pointer list-none text-sm font-medium text-zinc-900">
+                          <div className="flex items-center gap-2">
+                            <span className="material-symbols-outlined text-zinc-500 text-base" aria-hidden>layers</span>
+                            <span>{p.name ?? '-'}</span>
+                          </div>
+                          <span className="chev material-symbols-outlined text-zinc-500 text-base" aria-hidden>chevron_right</span>
+                        </summary>
+                        <div className="mt-2 text-sm text-zinc-700 whitespace-pre-line">{p.description ?? '—'}</div>
+                      </details>
+                    ))}
+                  </div>
+
+                  <style jsx>{`
+                    details > summary { display: flex; align-items: center; justify-content: space-between; }
+                    details > summary .chev { transition: transform .18s ease; }
+                    details[open] > summary .chev { transform: rotate(90deg); }
+                  `}</style>
+                </>
+              ) : (
+                <div className="text-sm text-zinc-500">—</div>
+              )}
             </div>
           </div>
         </div>

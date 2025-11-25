@@ -24,19 +24,19 @@ function svgInitialsDataUrl(initials: string, bgColor: string) {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-const TABS = ['Metrics', 'Overview', 'Partners', 'Documents', 'Contacts'] as const;
+const TABS = ['Overview', 'Metrics', 'Partners', 'Documents', 'Contacts'] as const;
 type TabKey = typeof TABS[number];
 
 const TAB_STYLES: Record<string, { text: string; bg: string; ring: string }> = {
-  Metrics: { text: 'text-teal-700', bg: 'bg-gradient-to-r from-teal-50 to-white', ring: 'ring-teal-200' },
   Overview: { text: 'text-indigo-700', bg: 'bg-gradient-to-r from-indigo-50 to-white', ring: 'ring-indigo-200' },
+  Metrics: { text: 'text-teal-700', bg: 'bg-gradient-to-r from-teal-50 to-white', ring: 'ring-teal-200' },
   Partners: { text: 'text-emerald-700', bg: 'bg-gradient-to-r from-emerald-50 to-white', ring: 'ring-emerald-200' },
   Documents: { text: 'text-amber-700', bg: 'bg-gradient-to-r from-amber-50 to-white', ring: 'ring-amber-200' },
   Contacts: { text: 'text-rose-700', bg: 'bg-gradient-to-r from-rose-50 to-white', ring: 'ring-rose-200' },
 };
 
 export default function ConsortiumDetail({ consortium }: { consortium: Consortium }) {
-  const [active, setActive] = useState<TabKey>('Metrics');
+  const [active, setActive] = useState<TabKey>('Overview');
 
   // derive metrics
   const partnerCount = Array.isArray(consortium.members) ? consortium.members.length : (Array.isArray(consortium.partners) ? consortium.partners.length : 0);
@@ -130,11 +130,11 @@ export default function ConsortiumDetail({ consortium }: { consortium: Consortiu
                 className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium ${activeStyle} focus:outline-none focus:ring-2 ${active ? 'focus:ring-offset-1' : ''}`}
               >
                 {/* small icons per tab */}
+                {t === 'Overview' && (
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a7 7 0 0 0 0-6"/></svg>
+                )}
                 {t === 'Metrics' && (
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="M9 17V9" /><path d="M13 17V5" /><path d="M17 17v-3" /></svg>
-                )}
-                {t === 'Overview' && (
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a7 7 0 0 0 0-6"/></svg>
                 )}
                 {t === 'Partners' && (
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>

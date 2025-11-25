@@ -1,22 +1,23 @@
 "use client";
 import React from "react";
 
-export default function OverviewCard({ title, value, subtitle, icon }: { title: string; value?: React.ReactNode; subtitle?: React.ReactNode; icon?: string }) {
+export default function OverviewCard({ title, value, subtitle, icon, iconColor, iconBg }: { title: string; value?: React.ReactNode; subtitle?: React.ReactNode; icon?: string; iconColor?: string; iconBg?: string }) {
+  const iconStyle: React.CSSProperties | undefined = (iconColor || iconBg) ? { color: iconColor, backgroundColor: iconBg, borderRadius: 8 } : undefined;
+
   return (
     <div className="rounded-xl border border-zinc-200 bg-white p-4">
       <div className="flex items-start justify-between">
         <div>
           <h4 className="text-xs font-semibold text-zinc-700">{title}</h4>
-          <div className="mt-2 text-sm font-semibold text-zinc-900">{value ?? '—'}</div>
+          <div className="mt-2 text-2xl md:text-3xl font-extrabold text-zinc-900">{value ?? '—'}</div>
           {subtitle ? <div className="mt-1 text-xs text-zinc-500">{subtitle}</div> : null}
         </div>
         {icon ? (
-          <div className="rounded-md p-2 bg-zinc-50 text-zinc-600 flex items-center justify-center">
-            <span className="material-symbols-outlined">{icon}</span>
+          <div className="rounded-md p-2 flex items-center justify-center" style={iconStyle}>
+            <span className="material-symbols-outlined text-xl" aria-hidden>{icon}</span>
           </div>
         ) : null}
       </div>
     </div>
   );
 }
-

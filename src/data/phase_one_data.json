@@ -3,7 +3,7 @@
     "programDetails": {
       "name": "GMES & Africa Phase I",
       "timeline": "Jan 2017 - Dec 2021",
-      "description": "Joint AU–EU programme leveraging Copernicus EO data to support sustainable management of natural, water, marine and coastal resources, and to strengthen African capacity for EO-informed policy and planning.",
+      "description": "GMES and Africa Phase 1 (2017–2021) marked the launch of a truly pan-African Earth-Observation partnership between the African Union Commission and the European Commission, establishing two core services — Natural & Water Resources and Marine & Coastal Areas — delivered through 12 (13) consortia spanning 45–51 African countries and over 120 institutions, with the aim of strengthening institutional, human and technical capacities, improving access to and sharing of EO data and services, implementing geo-portals and training programmes, and contributing to sustainable development and policy-making across the continent.",
       "funders": [
         {
           "name": "African Union Commission",
@@ -25,12 +25,30 @@
     },
     "strategicFramework": {
       "pillars_LogFrame": [
-        { "id": "WP1", "name": "Policy & institutional framework" },
-        { "id": "WP2", "name": "EO data access" },
-        { "id": "WP3", "name": "EO operational framework / EO information services" },
-        { "id": "WP4", "name": "Capacity Building" },
-        { "id": "WP5", "name": "Knowledge mgt. & cross-fertilisation" },
-        { "id": "WP6", "name": "Outreach, uptake & dissemination" }
+        {
+          "id": "WP1",
+          "name": "Infrastructure and Data",
+          "description": "Focused on setting up e-Stations, data access agreements (e.g. Copernicus, EUMETSAT), and supporting tools like geoportals for service delivery across the continent. Trained staff and ensured access to real-time satellite data streams."
+        },
+        {
+          "id": "WP2",
+          "name": "Service Delivery",
+          "description": "Covered the development and operationalization of EO-based services, such as flood monitoring, crop mapping, aquaculture forecasting, and coastal vulnerability assessments, tailored to regional needs."
+        },
+        {
+          "id": "WP3",
+          "name": "Capacity Development",
+          "description": "Emphasized training through the Digital Learning Platform (DLP), university networks, scholarships, internships, and regional workshops—spanning Infrastructure, Services, Communication, and EO Management."
+        },
+        { "id": "WP4",
+          "name": "Awareness Raising and Outreach",
+          "description": "Included multi-platform communication (social media, websites, newsletters), public engagement at exhibitions and forums, policy briefs, and media campaigns to promote the programme’s results and EO applications."
+        },
+        {
+          "id": "WP5",
+          "name": "Cross-Fertilization and Knowledge Management",
+          "description": "Although not always listed as a standalone workstream, it was widely practiced via Technical Expert Groups, joint service exchanges, and consortium collaboration meetings to ensure learning across regions"
+        }
       ],
       "alignment": {
         "continentalPolicies": [
@@ -385,8 +403,8 @@
         "logo": ""
       },
       {
-        "name": "Marine and Coastal Management in Western Africa (MarCNoWA)",
-        "acronym": "MarCNoWA",
+        "name": "University of Ghana",
+        "acronym": "UG",
         "leadInstitution": "African Regional Centre for Space Science and Technology Education (CSSTE)",
         "leadCountry": "Nigeria",
         "region": "West Africa",

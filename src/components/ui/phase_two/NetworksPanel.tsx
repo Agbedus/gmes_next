@@ -68,13 +68,19 @@ function RadialDonut({ size = 80, stroke = 20, value = 0, color = '#0ea5a1', lab
   );
 }
 
-export default function NetworksPanel({ networks }: { networks: Record<string, unknown> | undefined }) {
-  if (!networks) return null;
+export default function NetworksPanel({ networks, crossCutting }: { networks: Record<string, unknown> | undefined; crossCutting?: Record<string, unknown> | undefined }) {
+  if (!networks && !crossCutting) return null;
 
-  const internal = Array.isArray(networks['internalNetworks']) ? (networks['internalNetworks'] as unknown as InternalNetwork[]) : [];
+  const internal = networks && Array.isArray(networks['internalNetworks']) ? (networks['internalNetworks'] as unknown as InternalNetwork[]) : [];
   const strategic = Array.isArray(networks['strategicPartnerships']) ? (networks['strategicPartnerships'] as unknown as string[]) : [];
   const privateSector = (networks['privateSectorEngagement'] as unknown as PrivateSector) ?? undefined;
   const types = Array.isArray(networks['institutionTypesInvolved']) ? (networks['institutionTypesInvolved'] as unknown as InstitutionType[]) : [];
+
+  // crossCutting may contain GAIA clubs info (youthInnovation_GAIAClubs)
+  const gaia = crossCutting && (crossCutting['youthInnovation_GAIAClubs'] as Record<string, unknown> | undefined);
+  const gaiaUniversities = gaia && (gaia['universities'] ?? gaia['universitiesList'] ?? undefined);
+  const gaiaCountries = gaia && (gaia['countries'] ?? undefined);
+  const gaiaPresent = Boolean(gaiaUniversities || gaiaCountries);
 
   // metrics
   const metricInternal = String(internal.length);
@@ -149,7 +155,7 @@ export default function NetworksPanel({ networks }: { networks: Record<string, u
             {privateSector ? (
               <div className="mt-4">
                 <h4 className="text-xs font-medium text-zinc-800">Private sector engagement</h4>
-                <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
                     <div className="flex items-center gap-2">
                       <span className="material-symbols-outlined text-teal-600 text-sm">engineering</span>
@@ -165,24 +171,54 @@ export default function NetworksPanel({ networks }: { networks: Record<string, u
                     </div>
                     <div className="mt-2 text-sm font-semibold text-zinc-900">{String(privateSector.outreach ?? '—')}</div>
                   </div>
+                </div>
+              </div>
+            ) : null}
 
-                  <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
-                    <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-teal-600 text-sm">inventory_2</span>
-                      <div className="text-xs text-zinc-500">Examples</div>
+            {/* GAIA youth info (from crossCutting) */}
+            {gaiaPresent ? (
+              <div className="mt-4">
+                <h4 className="text-xs font-medium text-zinc-800">GAIA youth innovation clubs</h4>
+                <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {gaiaUniversities && (
+                    <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
+                      <div className="flex items-center gap-2">
+                        <span className="material-symbols-outlined text-teal-600 text-sm">school</span>
+                        <div className="text-xs text-zinc-500">Universities</div>
+                      </div>
+                      <div className="mt-2 text-sm font-semibold text-zinc-900">
+                        {Array.isArray(gaiaUniversities) && gaiaUniversities.length > 0 ? (
+                          <div className="flex flex-wrap gap-2">
+                            {(gaiaUniversities as string[]).map((uni, i) => (
+                              <span key={i} className="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-white/50 text-zinc-800 border border-zinc-100" title={uni}>
+                                {uni.length > 20 ? `${uni.slice(0,18)}…` : uni}
+                              </span>
+                            ))}
+                          </div>
+                        ) : '—'}
+                      </div>
                     </div>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {Array.isArray(privateSector.examples) && privateSector.examples.length > 0 ? (
-                        (privateSector.examples as string[]).map((ex, i) => (
-                          <span key={i} className="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-white/50 text-zinc-800 border border-zinc-100" title={ex}>
-                            {ex.length > 20 ? `${ex.slice(0,18)}…` : ex}
-                          </span>
-                        ))
-                      ) : (
-                        <div className="text-sm text-zinc-500">—</div>
-                      )}
+                  )}
+
+                  {gaiaCountries && (
+                    <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
+                      <div className="flex items-center gap-2">
+                        <span className="material-symbols-outlined text-teal-600 text-sm">public</span>
+                        <div className="text-xs text-zinc-500">Countries</div>
+                      </div>
+                      <div className="mt-2 text-sm font-semibold text-zinc-900">
+                        {Array.isArray(gaiaCountries) && gaiaCountries.length > 0 ? (
+                          <div className="flex flex-wrap gap-2">
+                            {(gaiaCountries as string[]).map((country, i) => (
+                              <span key={i} className="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-white/50 text-zinc-800 border border-zinc-100" title={country}>
+                                {country.length > 20 ? `${country.slice(0,18)}…` : country}
+                              </span>
+                            ))}
+                          </div>
+                        ) : '—'}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             ) : null}
@@ -221,4 +257,3 @@ export default function NetworksPanel({ networks }: { networks: Record<string, u
     </section>
   );
 }
-

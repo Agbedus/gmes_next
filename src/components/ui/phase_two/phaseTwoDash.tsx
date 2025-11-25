@@ -8,6 +8,7 @@ import OverviewPanel from './OverviewPanel';
 import ImpactPanel from './ImpactPanel';
 import ConsortiaPanel from './ConsortiaPanel';
 import NetworksPanel from './NetworksPanel';
+import ImpactReportsPanel from './ImpactReportsPanel';
 import Tabs from '@/components/ui/Tabs';
 
 export default function PhaseTwoDash() {
@@ -24,8 +25,8 @@ export default function PhaseTwoDash() {
         console.log('phase2 search', q);
     }
 
-    // Tab state: 'overview' | 'consortia' | 'networks'
-    const [activeTab, setActiveTab] = useState<'overview' | 'consortia' | 'networks'>('overview');
+    // Tab state: 'overview' | 'consortia' | 'networks' | 'reports'
+    const [activeTab, setActiveTab] = useState<'overview' | 'consortia' | 'networks' | 'reports'>('overview');
 
     return (
         <div>
@@ -45,9 +46,10 @@ export default function PhaseTwoDash() {
                             { id: 'overview', label: 'Program Overview' },
                             { id: 'consortia', label: 'Consortia' },
                             { id: 'networks', label: 'Networks' },
+                            { id: 'reports', label: 'Impact Reports' },
                         ]}
                         activeId={activeTab}
-                        onChange={(id) => setActiveTab(id as 'overview' | 'consortia' | 'networks')}
+                        onChange={(id) => setActiveTab(id as 'overview' | 'consortia' | 'networks' | 'reports')}
                         className="gap-2 w-full"
                     />
 
@@ -66,7 +68,13 @@ export default function PhaseTwoDash() {
 
                         {activeTab === 'networks' && (
                             <div id="panel-networks" role="tabpanel" aria-labelledby="tab-networks">
-                                <NetworksPanel networks={networks} />
+                                <NetworksPanel networks={networks} crossCutting={metrics?.crossCutting} />
+                            </div>
+                        )}
+
+                        {activeTab === 'reports' && (
+                            <div id="panel-reports" role="tabpanel" aria-labelledby="tab-reports">
+                                <ImpactReportsPanel />
                             </div>
                         )}
                     </div>

@@ -43,7 +43,6 @@ export default function RootLayout({
                     { label: 'Overview', href: '/summary', icon: 'overview' },
                     { label: 'Phase 2', href: '/phase_two', icon: 'phase_two' },
                     { label: 'Phase 1', href: '/phase_one', icon: 'phase_one' },
-                    { label: 'Reports', href: '/reports', icon: 'reports' },
                     { label: 'Useful Links', href: '/useful_links', icon: 'links' },
                 ]} />
 

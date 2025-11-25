@@ -66,7 +66,6 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
     { name: 'Infrastructure', icon: 'dns' },
     { name: 'Capacity Building', icon: 'school' },
     { name: 'Engagement & Outreach', icon: 'campaign' },
-    { name: 'Cross Cutting', icon: 'cut' },
   ];
 
   const cardGrid = (items: { metric?: string; value?: any; icon?: string; colorClass?: string }[]) => (
@@ -108,24 +107,6 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
       case 'Engagement & Outreach':
         return cardGrid(engagementItems.map(s => ({ metric: s.metric, value: s.value, icon: 'campaign', colorClass: 'bg-rose-50 text-rose-600' })));
 
-      case 'Cross Cutting':
-        return (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-zinc-200 bg-white p-3">
-              <h4 className="text-xs font-medium text-zinc-800">Participation</h4>
-              <div className="mt-2 text-sm text-zinc-700">
-                <div><strong>Female participation:</strong> {cross?.femaleParticipation ?? '—'}</div>
-                <div className="mt-1"><strong>GAIA clubs (universities):</strong> {cross?.youthInnovation_GAIAClubs?.universities ?? '—'}</div>
-              </div>
-            </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-3">
-              <h4 className="text-xs font-medium text-zinc-800">Youth</h4>
-              <div className="mt-2 text-sm text-zinc-700">
-                <div><strong>Countries:</strong> {cross?.youthInnovation_GAIAClubs?.countries ?? '—'}</div>
-              </div>
-            </div>
-          </div>
-        );
 
       default:
         return null;
