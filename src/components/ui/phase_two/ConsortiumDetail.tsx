@@ -40,7 +40,8 @@ export default function ConsortiumDetail({ consortium }: { consortium: Consortiu
 
   // derive metrics
   const partnerCount = Array.isArray(consortium.members) ? consortium.members.length : (Array.isArray(consortium.partners) ? consortium.partners.length : 0);
-  const totalBudget = (consortium.budget && (consortium.budget.total_eur ?? consortium.budget.total_eur === 0)) ? consortium.budget.total_eur : undefined;
+  // prefer explicit presence check for total_eur to avoid mixing `??` with logical operators
+  const totalBudget = (consortium.budget && (consortium.budget.total_eur !== undefined && consortium.budget.total_eur !== null)) ? consortium.budget.total_eur : undefined;
   const periodMonths = consortium.period_months ?? undefined;
   const locations = Array.isArray(consortium.locations) ? consortium.locations : [];
 
