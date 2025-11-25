@@ -72,9 +72,9 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
   if (!networks && !crossCutting) return null;
 
   const internal = networks && Array.isArray(networks['internalNetworks']) ? (networks['internalNetworks'] as unknown as InternalNetwork[]) : [];
-  const strategic = Array.isArray(networks['strategicPartnerships']) ? (networks['strategicPartnerships'] as unknown as string[]) : [];
-  const privateSector = (networks['privateSectorEngagement'] as unknown as PrivateSector) ?? undefined;
-  const types = Array.isArray(networks['institutionTypesInvolved']) ? (networks['institutionTypesInvolved'] as unknown as InstitutionType[]) : [];
+  const strategic = networks && Array.isArray(networks['strategicPartnerships']) ? (networks['strategicPartnerships'] as unknown as string[]) : [];
+  const privateSector = networks && (networks['privateSectorEngagement'] as unknown as PrivateSector) ?? undefined;
+  const types = networks && Array.isArray(networks['institutionTypesInvolved']) ? (networks['institutionTypesInvolved'] as unknown as InstitutionType[]) : [];
 
   // crossCutting may contain GAIA clubs info (youthInnovation_GAIAClubs)
   const gaia = crossCutting && (crossCutting['youthInnovation_GAIAClubs'] as Record<string, unknown> | undefined);
