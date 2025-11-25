@@ -13,7 +13,9 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
   const name = (pd['name'] as string | undefined) ?? 'Program';
   const description = (pd['description'] as string | undefined) ?? '';
   const timeline = (pd['timeline'] as string | undefined) ?? '\u2014';
-  const budgetTotal = ((pd['budget'] as Record<string, unknown> | undefined)?.['total'] as string | undefined) ?? '\u2014';
+  // budget: show total only — previously included currency label 'EU'; remove that
+  const budgetTotalRaw = ((pd['budget'] as Record<string, unknown> | undefined)?.['total'] as string | undefined) ?? '\u2014';
+  const budgetTotal = budgetTotalRaw?.replace(/\s*EU\b/gi, '').trim();
   const thematic = pd['thematicFocus'];
 
   const funders = Array.isArray(pd['funders']) ? (pd['funders'] as unknown as Funder[]) : [];
@@ -61,22 +63,26 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             <p className="mt-2 text-sm text-zinc-700">{description}</p>
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#0ea5a4" iconBg="#ecfeff" />
-              <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#a21caf" iconBg="#f5e6f8" />
+              {/* Increase the visual weight of values by passing a larger font size via className prop on OverviewCard */}
+              <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#0ea5a4" iconBg="#ecfeff" valueClassName="text-2xl font-semibold" />
+              <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#a21caf" iconBg="#f5e6f8" valueClassName="text-2xl font-semibold" />
 
+              {/* Replace the small left thematic box with the thematic block that previously lived under the logos on the aside (i.e. show the concise themed list here with colored icons) */}
               <div className="rounded-xl border border-zinc-200 bg-white p-4">
                 <h4 className="text-xs font-semibold text-zinc-700">Thematic focus</h4>
                 <div className="mt-2 text-sm text-zinc-700">
                   {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
                     <div key={i} className="py-1 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-zinc-500 text-sm" aria-hidden>{iconForTheme(t)}</span>
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{background: '#eef2ff'}} aria-hidden>
+                        <span className="material-symbols-outlined text-indigo-600 text-base">{iconForTheme(t)}</span>
+                      </span>
                       <div className="text-sm">{t}</div>
                     </div>
                   )) : String(thematic ?? '\u2014')}
                 </div>
               </div>
 
-              <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#f59e0b" iconBg="#fff7ed" />
+              <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#f59e0b" iconBg="#fff7ed" valueClassName="text-2xl font-semibold" />
             </div>
 
           </div>
@@ -110,17 +116,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             </div>
           </div>
 
-          <div className="rounded-xl border border-zinc-200 bg-white p-3">
-            <h4 className="text-xs font-medium text-zinc-800">Thematic focus</h4>
-            <div className="mt-2 text-sm text-zinc-700">
-              {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
-                <div key={i} className="py-1 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-zinc-500 text-sm" aria-hidden>{iconForTheme(t)}</span>
-                  <div className="text-sm">{t}</div>
-                </div>
-              )) : String(thematic ?? '\u2014')}
-            </div>
-          </div>
+          {/* Remove the duplicate thematic block from the aside (we moved it into the left card). If required elsewhere, we can keep a short summary here. */}
 
          </aside>
        </div>
@@ -137,7 +133,9 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                       <details key={p.id ?? idx} className="rounded-md border border-zinc-100 p-3 bg-accent-50">
                         <summary className="cursor-pointer list-none text-sm font-medium text-zinc-900">
                           <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-zinc-500 text-base" aria-hidden>layers</span>
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-50 text-indigo-600" aria-hidden>
+                              <span className="material-symbols-outlined text-base">layers</span>
+                            </span>
                             <span>{p.name ?? '-'}</span>
                           </div>
                           <span className="chev material-symbols-outlined text-zinc-500 text-base" aria-hidden>chevron_right</span>
