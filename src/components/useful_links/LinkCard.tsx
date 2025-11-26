@@ -9,7 +9,8 @@ export type LinkItem = {
 export type LinkCardProps = {
     title: string;
     links: LinkItem[];
-    colorTheme: 'blue' | 'green' | 'purple';
+    // allow additional theme names (gold, burgundy) or any string; we'll fallback safely
+    colorTheme?: string;
 };
 
 export function LinkCard({ title, links, colorTheme }: LinkCardProps) {
@@ -31,10 +32,31 @@ export function LinkCard({ title, links, colorTheme }: LinkCardProps) {
             iconBg: 'bg-purple-50 text-purple-600',
             linkHover: 'hover:bg-purple-50 hover:text-purple-700',
             iconHover: 'group-hover:text-purple-600'
+        },
+        gold: {
+            hoverBorder: 'group-hover:border-amber-200',
+            iconBg: 'bg-amber-50 text-amber-600',
+            linkHover: 'hover:bg-amber-50 hover:text-amber-700',
+            iconHover: 'group-hover:text-amber-600'
+        },
+        burgundy: {
+            // use a conservative rose variant for burgundy-ish theme
+            hoverBorder: 'group-hover:border-rose-200',
+            iconBg: 'bg-rose-50 text-rose-700',
+            linkHover: 'hover:bg-rose-50 hover:text-rose-700',
+            iconHover: 'group-hover:text-rose-700'
         }
     };
 
-    const theme = themeStyles[colorTheme];
+    // pick theme if available, otherwise fall back to a neutral theme
+    const defaultTheme = {
+        hoverBorder: '',
+        iconBg: 'bg-zinc-50 text-zinc-600',
+        linkHover: 'hover:bg-zinc-50 hover:text-zinc-700',
+        iconHover: ''
+    };
+
+    const theme = (colorTheme && (themeStyles as any)[colorTheme]) ? (themeStyles as any)[colorTheme] : defaultTheme;
 
     return (
         <div className={`bg-white rounded-2xl border border-zinc-200 p-5 flex flex-col h-full transition-colors duration-200 group ${theme.hoverBorder}`}>

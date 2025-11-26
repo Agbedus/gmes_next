@@ -42,36 +42,41 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
   const outreach = metrics?.engagementAndOutreach ?? {};
   const cross = metrics?.crossCutting ?? {};
 
+  // icon background: full #952038; icon foreground (glyph) use full gold #FABC0C
+  const pastelBg = { backgroundColor: '#952038' };
+  const pastelFg = 'text-[#FABC0C]';
+
+  // Use validated Material Symbols icon names to ensure they render correctly
   const infraItems = [
-    { metric: 'eStations operational', value: infra?.eStationsOperational ?? '—' },
-    { metric: 'Legacy systems maintained', value: infra?.legacySystemsMaintained ?? '—' },
-    { metric: 'Operational geoportals', value: infra?.operationalGeoportals ?? '—' },
-    { metric: 'Data volume handled annually', value: infra?.dataVolumeHandledAnnually ?? '—' },
-    { metric: 'Geoportal registered users', value: infra?.geoportalRegisteredUsers ?? '—' },
+    { metric: 'eStations operational', value: infra?.eStationsOperational ?? '—', icon: 'sensors', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Legacy systems maintained', value: infra?.legacySystemsMaintained ?? '—', icon: 'history', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Operational geoportals', value: infra?.operationalGeoportals ?? '—', icon: 'public', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Data volume handled annually', value: infra?.dataVolumeHandledAnnually ?? '—', icon: 'storage', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Geoportal registered users', value: infra?.geoportalRegisteredUsers ?? '—', icon: 'groups', style: pastelBg, colorClass: pastelFg },
   ];
 
   const servicesItems = [
-    { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—' },
-    { metric: 'Terrestrial services', value: services?.terrestrialServices ?? '—' },
-    { metric: 'Marine services', value: services?.marineServices ?? '—' },
-    { metric: 'Private sector engagement', value: services?.privateSectorEngagement_ServiceDev ?? '—' },
+    { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'inventory_2', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Terrestrial services', value: services?.terrestrialServices ?? '—', icon: 'park', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Marine services', value: services?.marineServices ?? '—', icon: 'water_drop', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Private sector engagement', value: services?.privateSectorEngagement_ServiceDev ?? '—', icon: 'business_center', style: pastelBg, colorClass: pastelFg },
   ];
 
   const capacityItems = [
-    { metric: 'Participants trained', value: capacity?.participantsTrained ?? '—' },
-    { metric: 'Total training days', value: capacity?.totalTrainingDays ?? '—' },
-    { metric: 'Courses delivered', value: capacity?.coursesDelivered ?? '—' },
-    { metric: 'Scholarships awarded', value: capacity?.scholarshipsAwarded ?? '—' },
-    { metric: 'Hackathons', value: capacity?.hackathons ?? '—' },
+    { metric: 'Participants trained', value: capacity?.participantsTrained ?? '—', icon: 'school', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Total training days', value: capacity?.totalTrainingDays ?? '—', icon: 'calendar_today', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Courses delivered', value: capacity?.coursesDelivered ?? '—', icon: 'menu_book', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Scholarships awarded', value: capacity?.scholarshipsAwarded ?? '—', icon: 'emoji_events', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Hackathons', value: capacity?.hackathons ?? '—', icon: 'bolt', style: pastelBg, colorClass: pastelFg },
   ];
 
   const engagementItems = [
-    { metric: 'Knowledge products', value: outreach?.knowledgeProducts ?? '—' },
-    { metric: 'Digital platforms', value: outreach?.digitalPlatforms ?? '—' },
-    { metric: 'Communication strategies', value: outreach?.communicationStrategies ?? '—' },
-    { metric: 'Visibility outputs', value: outreach?.visibilityOutputs ?? '—' },
-    { metric: 'Media coverage', value: outreach?.mediaCoverage ?? '—' },
-    { metric: 'Public events', value: outreach?.publicEvents ?? '—' },
+    { metric: 'Knowledge products', value: outreach?.knowledgeProducts ?? '—', icon: 'description', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Digital platforms', value: outreach?.digitalPlatforms ?? '—', icon: 'devices', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Communication strategies', value: outreach?.communicationStrategies ?? '—', icon: 'campaign', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Visibility outputs', value: outreach?.visibilityOutputs ?? '—', icon: 'visibility', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Media coverage', value: outreach?.mediaCoverage ?? '—', icon: 'article', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Public events', value: outreach?.publicEvents ?? '—', icon: 'event', style: pastelBg, colorClass: pastelFg },
   ];
 
   const tabs = [
@@ -82,10 +87,10 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
     { name: 'Engagement & Outreach', icon: 'campaign' },
   ];
 
-  const cardGrid = (items: { metric?: string; value?: any; icon?: string; colorClass?: string }[]) => (
+  const cardGrid = (items: { metric?: string; value?: any; icon?: string; colorClass?: string; style?: React.CSSProperties }[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {items.map((it, idx) => (
-        <PhaseTwoImpactCard key={`${it.metric ?? 'it'}-${idx}`} label={it.metric} value={it.value} icon={it.icon} colorClass={it.colorClass} />
+        <PhaseTwoImpactCard key={`${it.metric ?? 'it'}-${idx}`} label={it.metric} value={it.value} icon={it.icon} colorClass={it.colorClass} style={it.style} />
       ))}
     </div>
   );
@@ -94,33 +99,25 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
     switch (activeTab) {
       case 'General': {
         const general = [
-          { metric: 'Countries involved', value: reach?.countriesInvolved ?? '—', icon: 'public', colorClass: 'text-white', style: { backgroundColor: '#e0c063' } },
-          { metric: 'Institutions', value: reach?.institutionsInvolved ?? '—', icon: 'school', colorClass: 'text-white', style: { backgroundColor: '#009639' } },
-          { metric: 'Snapshot date', value: metrics?.snapshotDate ?? '—', icon: 'schedule', colorClass: 'text-white', style: { backgroundColor: '#038a36' } },
-          { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'layers', colorClass: 'text-white', style: { backgroundColor: '#009639' } },
+          { metric: 'Countries involved', value: reach?.countriesInvolved ?? '—', icon: 'public', colorClass: pastelFg, style: pastelBg },
+          { metric: 'Institutions', value: reach?.institutionsInvolved ?? '—', icon: 'groups', colorClass: pastelFg, style: pastelBg },
+          { metric: 'Snapshot date', value: metrics?.snapshotDate ?? '—', icon: 'schedule', colorClass: pastelFg, style: pastelBg },
+          { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'layers', colorClass: pastelFg, style: pastelBg },
         ];
         return cardGrid(general);
       }
 
-      case 'Services': {
-        const serviceIcons: { [key: string]: string } = {
-          'Total operational services': 'apps',
-          'Terrestrial services': 'grass',
-          'Marine services': 'waves',
-          'Private sector engagement': 'business_center',
-        };
-        return cardGrid(servicesItems.map(s => ({ metric: s.metric, value: s.value, icon: serviceIcons[s.metric] || 'room_service', colorClass: 'text-white', style: { backgroundColor: '#038a36' } })));
-      }
+      case 'Services':
+        return cardGrid(servicesItems);
 
       case 'Infrastructure':
-        return cardGrid(infraItems.map(s => ({ metric: s.metric, value: s.value, icon: 'sensors', colorClass: 'text-white', style: { backgroundColor: '#e0c063' } })));
+        return cardGrid(infraItems);
 
       case 'Capacity Building':
-        return cardGrid(capacityItems.map(s => ({ metric: s.metric, value: s.value, icon: 'school', colorClass: 'text-white', style: { backgroundColor: '#009639' } })));
+        return cardGrid(capacityItems);
 
       case 'Engagement & Outreach':
-        return cardGrid(engagementItems.map(s => ({ metric: s.metric, value: s.value, icon: 'campaign', colorClass: 'text-white', style: { backgroundColor: '#dc2626' } })));
-
+        return cardGrid(engagementItems);
 
       default:
         return null;

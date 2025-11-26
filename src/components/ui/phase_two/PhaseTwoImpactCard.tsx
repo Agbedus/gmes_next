@@ -12,7 +12,7 @@ type Props = {
 
 const ValueDisplay = ({ value }: { value?: React.ReactNode }) => {
   if (typeof value !== 'string') {
-    return <div className="text-4xl font-bold text-zinc-900 truncate">{value ?? '—'}</div>;
+    return <div className="text-4xl font-bold text-zinc-900 truncate">{value ?? '\u2014'}</div>;
   }
 
   const match = value.match(/([≈>≥~]?\s*[\d,.]+)(.*)/);
@@ -49,20 +49,25 @@ export default function PhaseTwoImpactCard({ label, value, icon, colorClass = "b
            e.currentTarget.style.boxShadow = '0 1px 2px 0 rgba(3, 138, 54, 0.05)';
          }}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0">
+      {/* Leading icon (rounded square) with value to the right */}
+      <div className="flex items-start gap-4">
+        {icon ? (
+          <div className={`flex-shrink-0 rounded-md p-2 w-12 h-12 flex items-center justify-center ${colorClass}`} style={style}>
+            <span
+              className="material-symbols-outlined text-2xl"
+              aria-hidden={true}
+              style={{ fontFamily: "'Material Symbols Outlined', sans-serif", fontVariationSettings: `"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24` }}
+            >
+              {icon}
+            </span>
+          </div>
+        ) : null}
+
+        <div className="min-w-0 flex-1">
           <ValueDisplay value={value} />
           {label ? <div className="mt-2 text-sm font-medium text-zinc-600 truncate">{label}</div> : null}
         </div>
-
-        {icon ? (
-          <div className={`flex-shrink-0 rounded-lg p-3 ${colorClass} flex items-center justify-center`} style={style}>
-            <span className="material-symbols-outlined text-2xl" aria-hidden>{icon}</span>
-          </div>
-        ) : null}
       </div>
     </div>
   );
 }
-
-

@@ -6,8 +6,30 @@ import { LinkCard, LinkItem } from './LinkCard';
 
 type ConsortiumData = typeof phaseTwoData.gmesAndAfricaPhase2.consortia[0];
 
-export function ConsortiaTabs() {
+export function ConsortiaTabs({ colorTheme = 'purple' }: { colorTheme?: string }) {
     const [activeTab, setActiveTab] = useState<string>("");
+
+    // Local mapping for button classes per theme - keep in sync with LinkCard theme names
+    const buttonThemeClasses: Record<string, { active: string; inactive: string }> = {
+        purple: {
+            active: 'bg-purple-600 text-white shadow-md pl-2',
+            inactive: 'bg-white text-purple-600 hover:bg-purple-50 hover:text-purple-700 border border-zinc-200 pl-2'
+        },
+        burgundy: {
+            active: 'bg-rose-700 text-white shadow-md pl-2',
+            inactive: 'bg-white text-rose-700 hover:bg-rose-50 hover:text-rose-700 border border-zinc-200 pl-2'
+        },
+        green: {
+            active: 'bg-green-600 text-white shadow-md pl-2',
+            inactive: 'bg-white text-green-600 hover:bg-green-50 hover:text-green-700 border border-zinc-200 pl-2'
+        },
+        gold: {
+            active: 'bg-amber-600 text-white shadow-md pl-2',
+            inactive: 'bg-white text-amber-600 hover:bg-amber-50 hover:text-amber-700 border border-zinc-200 pl-2'
+        }
+    };
+
+    const btnTheme = buttonThemeClasses[colorTheme] ?? buttonThemeClasses['purple'];
 
     // Process and memoize the consortia data
     const consortia = useMemo(() => {
@@ -76,9 +98,7 @@ export function ConsortiaTabs() {
                         onClick={() => setActiveTab(c.name)}
                         className={`
                             whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2
-                            ${activeTab === c.name 
-                                ? 'bg-purple-600 text-white shadow-md pl-2' 
-                                : 'bg-white text-zinc-600 hover:bg-purple-50 hover:text-purple-700 border border-zinc-200 pl-2'}
+                            ${activeTab === c.name ? btnTheme.active : btnTheme.inactive}
                         `}
                     >
                         {c.logo && (
@@ -97,7 +117,7 @@ export function ConsortiaTabs() {
                     <LinkCard 
                         title={activeConsortium.fullTitle} 
                         links={activeConsortium.links} 
-                        colorTheme="purple" 
+                        colorTheme={colorTheme}
                     />
                 </div>
             )}
@@ -123,5 +143,7 @@ function getConsortiumName(c: ConsortiumData): string {
     }
 
     // 3. Fallback: First few words of coordinator
-    return coordinator.split('(')[0].split(',')[0].trim().substring(0, 15) + '...';
+    const fallback = coordinator.split('(')[0].split(',')[0].trim();
+    if (fallback.length === 0) return 'Consortium';
+    return fallback.length > 15 ? fallback.substring(0, 15) + '...' : fallback;
 }

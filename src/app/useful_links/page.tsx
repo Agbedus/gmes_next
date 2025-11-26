@@ -24,6 +24,21 @@ type Tab = 'policies' | 'agendas' | 'consortia';
 export default function UsefulLinksPage() {
     const [activeTab, setActiveTab] = useState<Tab>('policies');
 
+    // Theme color map for tabs (policy/agendas/consortia)
+    const tabColors: Record<Tab, string> = {
+        policies: '#009639', // green
+        agendas: '#c9b33a',  // gold
+        consortia: '#952038' // deep red
+    };
+
+    const getButtonStyle = (tab: Tab) => {
+        const color = tabColors[tab];
+        if (activeTab === tab) {
+            return { backgroundColor: color, color: '#ffffff', boxShadow: '0 1px 2px rgba(0,0,0,0.06)' } as React.CSSProperties;
+        }
+        return {} as React.CSSProperties;
+    };
+
     return (
         <div className="max-w-7xl mx-auto space-y-8 py-24 px-4 sm:px-6 lg:px-8">
             <header className="mb-12 text-center">
@@ -36,32 +51,22 @@ export default function UsefulLinksPage() {
                 <div className="bg-zinc-100 p-1.5 rounded-xl inline-flex shadow-inner">
                     <button
                         onClick={() => setActiveTab('policies')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                            activeTab === 'policies'
-                                ? 'bg-white text-blue-600 shadow-sm ring-1 ring-black/5'
-                                : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'
-                        }`}
-                    >
+                        style={getButtonStyle('policies')}
+                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'policies' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
                         Continental Policies
                     </button>
+
                     <button
                         onClick={() => setActiveTab('agendas')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                            activeTab === 'agendas'
-                                ? 'bg-white text-green-600 shadow-sm ring-1 ring-black/5'
-                                : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'
-                        }`}
-                    >
+                        style={getButtonStyle('agendas')}
+                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'agendas' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
                         Global Agendas
                     </button>
+
                     <button
                         onClick={() => setActiveTab('consortia')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                            activeTab === 'consortia'
-                                ? 'bg-white text-purple-600 shadow-sm ring-1 ring-black/5'
-                                : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'
-                        }`}
-                    >
+                        style={getButtonStyle('consortia')}
+                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'consortia' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
                         Consortia Resources
                     </button>
                 </div>
@@ -77,7 +82,7 @@ export default function UsefulLinksPage() {
                                     key={item.id} 
                                     title={item.title} 
                                     links={item.links} 
-                                    colorTheme="blue" 
+                                    colorTheme="green"
                                 />
                             ))}
                         </div>
@@ -92,7 +97,7 @@ export default function UsefulLinksPage() {
                                     key={item.id} 
                                     title={item.title} 
                                     links={item.links} 
-                                    colorTheme="green" 
+                                    colorTheme="gold"
                                 />
                             ))}
                         </div>
@@ -101,11 +106,10 @@ export default function UsefulLinksPage() {
 
                 {activeTab === 'consortia' && (
                     <section>
-                        <ConsortiaTabs />
+                        <ConsortiaTabs colorTheme="burgundy" />
                     </section>
                 )}
             </div>
         </div>
     );
 }
-
