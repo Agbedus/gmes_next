@@ -64,8 +64,8 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {/* Increase the visual weight of values by passing a larger font size via className prop on OverviewCard */}
-              <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#0ea5a4" iconBg="#ecfeff" valueClassName="text-2xl font-semibold" />
-              <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#a21caf" iconBg="#f5e6f8" valueClassName="text-2xl font-semibold" />
+              <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#fff" iconBg="#038a36" valueClassName="text-2xl font-semibold" />
+              <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#fff" iconBg="#e0c063" valueClassName="text-2xl font-semibold" />
 
               {/* Replace the small left thematic box with the thematic block that previously lived under the logos on the aside (i.e. show the concise themed list here with colored icons) */}
               <div className="rounded-xl border border-zinc-200 bg-white p-4">
@@ -73,8 +73,8 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 <div className="mt-2 text-sm text-zinc-700">
                   {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
                     <div key={i} className="py-1 flex items-center gap-2">
-                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{background: '#eef2ff'}} aria-hidden>
-                        <span className="material-symbols-outlined text-indigo-600 text-base">{iconForTheme(t)}</span>
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{backgroundColor: '#038a3610'}} aria-hidden>
+                        <span className="material-symbols-outlined text-base" style={{color: '#038a36'}}>{iconForTheme(t)}</span>
                       </span>
                       <div className="text-sm">{t}</div>
                     </div>
@@ -82,7 +82,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 </div>
               </div>
 
-              <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#f59e0b" iconBg="#fff7ed" valueClassName="text-2xl font-semibold" />
+              <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#009639" valueClassName="text-2xl font-semibold" />
             </div>
 
           </div>
@@ -133,7 +133,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                       <details key={p.id ?? idx} className="rounded-md border border-zinc-100 p-3 bg-accent-50">
                         <summary className="cursor-pointer list-none text-sm font-medium text-zinc-900">
                           <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-50 text-indigo-600" aria-hidden>
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{backgroundColor: '#038a3610', color: '#038a36'}} aria-hidden>
                               <span className="material-symbols-outlined text-base">layers</span>
                             </span>
                             <span>{p.name ?? '-'}</span>
@@ -168,7 +168,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                   {continentalPoliciesArr.length > 0 ? (
                     continentalPoliciesArr.map((c, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <span className="material-symbols-outlined text-teal-600 text-sm mt-0.5" aria-hidden>check_circle</span>
+                        <span className="material-symbols-outlined text-sm mt-0.5" style={{color: '#038a36'}} aria-hidden>check_circle</span>
                         <div className="text-sm text-zinc-700">{c}</div>
                       </div>
                     ))
@@ -185,7 +185,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                     <div className="text-xs uppercase font-medium text-zinc-800 mb-4">SDGs</div>
                     <div className="mt-2 flex flex-wrap gap-4">
                       {sdgs.length > 0 ? sdgs.map((s, idx) => (
-                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full bg-blue-100 text-zinc-800">{sdgChipLabel(s)}</span>
+                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full text-zinc-800" style={{backgroundColor: '#038a3620'}}>{sdgChipLabel(s)}</span>
                       )) : <span className="text-sm text-zinc-500">—</span>}
                     </div>
                   </div>
@@ -194,7 +194,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                     <div className="text-xs uppercase font-medium text-zinc-800 mb-4">Agenda2063</div>
                     <div className="mt-2 flex flex-wrap gap-4">
                       {agenda2063.length > 0 ? agenda2063.map((g, idx) => (
-                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full bg-blue-100 text-zinc-800">{agendaChipLabel(g)}</span>
+                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full text-zinc-800" style={{backgroundColor: '#e0c06320'}}>{agendaChipLabel(g)}</span>
                       )) : <span className="text-sm text-zinc-500">—</span>}
                     </div>
                   </div>

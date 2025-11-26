@@ -27,9 +27,10 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`min-h-screen border-r border-gray-100 bg-white/50 backdrop-blur-xl transition-all duration-300 ease-in-out ${
+      className={`min-h-screen border-r bg-white/50 backdrop-blur-xl transition-all duration-300 ease-in-out ${
         collapsed ? "w-20" : "w-72"
       }`}
+      style={{ borderColor: '#038a3620' }}
     >
       <SideNav
         items={items}

@@ -7,11 +7,25 @@ type Metrics = Record<string, any>;
 const TabButton = ({ title, active, onClick, icon }: { title: string; active: boolean; onClick: () => void; icon?: string }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
-      active
-        ? "bg-zinc-100 text-zinc-900 border border-zinc-200"
-        : "text-zinc-600 border border-transparent hover:border-zinc-200 hover:bg-white"
-    }`}
+    className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap`}
+    style={{
+      backgroundColor: active ? '#038a36' : 'transparent',
+      color: active ? '#fff' : '#71717a',
+      borderColor: active ? '#038a36' : 'transparent',
+      border: '1px solid'
+    }}
+    onMouseEnter={(e) => {
+      if (!active) {
+        e.currentTarget.style.borderColor = '#e5e7eb';
+        e.currentTarget.style.backgroundColor = '#fff';
+      }
+    }}
+    onMouseLeave={(e) => {
+      if (!active) {
+        e.currentTarget.style.borderColor = 'transparent';
+        e.currentTarget.style.backgroundColor = 'transparent';
+      }
+    }}
   >
     {icon ? <span className="material-symbols-outlined text-[18px]">{icon}</span> : null}
     <span className="ml-1">{title}</span>
@@ -80,10 +94,10 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
     switch (activeTab) {
       case 'General': {
         const general = [
-          { metric: 'Countries involved', value: reach?.countriesInvolved ?? '—', icon: 'public', colorClass: 'bg-amber-50 text-amber-600' },
-          { metric: 'Institutions', value: reach?.institutionsInvolved ?? '—', icon: 'school', colorClass: 'bg-emerald-50 text-emerald-600' },
-          { metric: 'Snapshot date', value: metrics?.snapshotDate ?? '—', icon: 'schedule', colorClass: 'bg-sky-50 text-sky-600' },
-          { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'layers', colorClass: 'bg-violet-50 text-violet-600' },
+          { metric: 'Countries involved', value: reach?.countriesInvolved ?? '—', icon: 'public', colorClass: 'text-white', style: { backgroundColor: '#e0c063' } },
+          { metric: 'Institutions', value: reach?.institutionsInvolved ?? '—', icon: 'school', colorClass: 'text-white', style: { backgroundColor: '#009639' } },
+          { metric: 'Snapshot date', value: metrics?.snapshotDate ?? '—', icon: 'schedule', colorClass: 'text-white', style: { backgroundColor: '#038a36' } },
+          { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'layers', colorClass: 'text-white', style: { backgroundColor: '#009639' } },
         ];
         return cardGrid(general);
       }
@@ -95,17 +109,17 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
           'Marine services': 'waves',
           'Private sector engagement': 'business_center',
         };
-        return cardGrid(servicesItems.map(s => ({ metric: s.metric, value: s.value, icon: serviceIcons[s.metric] || 'room_service', colorClass: 'bg-sky-50 text-sky-600' })));
+        return cardGrid(servicesItems.map(s => ({ metric: s.metric, value: s.value, icon: serviceIcons[s.metric] || 'room_service', colorClass: 'text-white', style: { backgroundColor: '#038a36' } })));
       }
 
       case 'Infrastructure':
-        return cardGrid(infraItems.map(s => ({ metric: s.metric, value: s.value, icon: 'sensors', colorClass: 'bg-amber-50 text-amber-600' })));
+        return cardGrid(infraItems.map(s => ({ metric: s.metric, value: s.value, icon: 'sensors', colorClass: 'text-white', style: { backgroundColor: '#e0c063' } })));
 
       case 'Capacity Building':
-        return cardGrid(capacityItems.map(s => ({ metric: s.metric, value: s.value, icon: 'school', colorClass: 'bg-emerald-50 text-emerald-600' })));
+        return cardGrid(capacityItems.map(s => ({ metric: s.metric, value: s.value, icon: 'school', colorClass: 'text-white', style: { backgroundColor: '#009639' } })));
 
       case 'Engagement & Outreach':
-        return cardGrid(engagementItems.map(s => ({ metric: s.metric, value: s.value, icon: 'campaign', colorClass: 'bg-rose-50 text-rose-600' })));
+        return cardGrid(engagementItems.map(s => ({ metric: s.metric, value: s.value, icon: 'campaign', colorClass: 'text-white', style: { backgroundColor: '#dc2626' } })));
 
 
       default:

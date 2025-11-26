@@ -65,7 +65,23 @@ export default function Tabs({ tabs, activeId, onChange, className }: TabsProps)
               ref={(el) => { refs.current[i] = el; }}
               onClick={() => onChange(t.id)}
               onKeyDown={(e) => onKeyDown(e, i)}
-              className={`py-2 px-3 text-sm uppercase font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-300 ${selected ? 'bg-slate-50 text-slate-700 border-[1px] border-slate-300 shadow-sm' : 'border border-slate-100 bg-white text-slate-700 hover:bg-slate-50'}`}
+              className={`py-2 px-3 text-sm uppercase font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${selected ? 'text-white border-[1px] shadow-sm' : 'border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50'}`}
+              style={{
+                backgroundColor: selected ? '#038a36' : undefined,
+                borderColor: selected ? '#038a36' : undefined,
+                boxShadow: selected ? '0 1px 3px 0 rgba(3, 138, 54, 0.2)' : undefined,
+                outline: 'none'
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.boxShadow = '0 0 0 2px rgba(3, 138, 54, 0.2)';
+              }}
+              onBlur={(e) => {
+                if (selected) {
+                  e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.2)';
+                } else {
+                  e.currentTarget.style.boxShadow = '';
+                }
+              }}
             >
               {t.label}
             </button>

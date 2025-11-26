@@ -29,9 +29,13 @@ export default function DashboardToolbar({
             }}
             placeholder="Search reports, metrics... (press / to focus)"
             aria-label="Search reports and metrics"
-            className="w-full sm:w-80 rounded-xl border border-zinc-200/60 bg-white/50 px-4 py-2.5 pl-10 text-sm placeholder:text-zinc-400 focus:border-indigo-300 focus:ring-4 focus:ring-indigo-100/50 outline-none transition-all"
+            className="w-full sm:w-80 rounded-xl border border-zinc-200/60 bg-white/50 px-4 py-2.5 pl-10 text-sm placeholder:text-zinc-400 outline-none transition-all"
+            style={{
+              borderColor: q ? '#038a36' : undefined,
+              boxShadow: q ? '0 0 0 4px rgba(3, 138, 54, 0.05)' : undefined
+            }}
           />
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-indigo-500 transition-colors text-[20px]">
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 transition-colors text-[20px]" style={{color: q ? '#038a36' : undefined}}>
             search
           </span>
         </label>
@@ -61,7 +65,10 @@ export default function DashboardToolbar({
         <button
           type="button"
           aria-label="Create new report"
-          className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 text-white px-4 py-2.5 text-sm font-medium hover:bg-indigo-700 transition-all shadow-md shadow-indigo-200"
+          className="inline-flex items-center gap-2 rounded-xl text-white px-4 py-2.5 text-sm font-medium transition-all shadow-md"
+          style={{ backgroundColor: '#038a36', boxShadow: '0 4px 6px -1px rgba(3, 138, 54, 0.2), 0 2px 4px -2px rgba(3, 138, 54, 0.2)' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#027a2e'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#038a36'}
         >
           <span className="material-symbols-outlined text-[20px]">add</span>
           New Report

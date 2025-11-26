@@ -161,7 +161,7 @@ export default function DashboardContainer(): React.ReactElement {
   }
 
   // Build impact array from data.kpis
-  const impact: { label: string; number: string; icon?: React.ReactNode; colorClass?: string }[] = [];
+  const impact: { label: string; number: string; icon?: React.ReactNode; colorClass?: string; style?: React.CSSProperties }[] = [];
   // we'll extract programme agreement into a stat and not show it in impact
   let programmeAgreementStat: Stat | null = null;
   (data.kpis ?? []).forEach((k: KPI) => {
@@ -184,19 +184,19 @@ export default function DashboardContainer(): React.ReactElement {
     }
     if (k.amount_eur_millions !== undefined) {
       const num = Number(k.amount_eur_millions);
-      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: "bg-blue-50 text-blue-600" });
+      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
     }
-    if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "bg-emerald-50 text-emerald-600" });
-    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Globe size={24} />, colorClass: "bg-amber-50 text-amber-600" });
-    if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "bg-violet-50 text-violet-600" });
-    if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "bg-violet-50 text-violet-600" });
-    if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "bg-amber-50 text-amber-600" });
+    if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
+    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Globe size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
+    if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
+    if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
   });
 
   // Add Users and Active as impact cards (moved from stats)
   // Inserted at the front so they appear at the top of the impact grid
-  impact.unshift({ label: "Active", number: "89%", icon: <Zap size={24} />, colorClass: "bg-emerald-50 text-emerald-600" });
-  impact.unshift({ label: "Users", number: "12,450", icon: <Users size={24} />, colorClass: "bg-sky-50 text-sky-600" });
+  impact.unshift({ label: "Active", number: "89%", icon: <Zap size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+  impact.unshift({ label: "Users", number: "12,450", icon: <Users size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
 
   // Reorder impact so specific items appear at the bottom (keep rest at top)
   // programme agreement has been removed from impact and will be shown as a stat
@@ -235,8 +235,8 @@ export default function DashboardContainer(): React.ReactElement {
 
   return (
     <div className="pb-24 relative">
-        {/* Subtle background gradient for the dashboard area */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/30 via-white to-blue-50/30 pointer-events-none -z-10" />
+        {/* Subtle background gradient for the dashboard area - African Union colors */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-white to-green-50/30 pointer-events-none -z-10" />
 
       <ProgramHeader name={String(data.program?.name ?? "")} oneLiner={String(data.program?.one_liner ?? "")} />
 
@@ -250,12 +250,12 @@ export default function DashboardContainer(): React.ReactElement {
 
       <section className="mt-10">
         <h2 className="text-lg font-bold text-zinc-900 tracking-tight mb-6 flex items-center gap-2">
-            <span className="material-symbols-outlined text-indigo-500">insights</span>
+            <span className="material-symbols-outlined" style={{color: '#038a36'}}>insights</span>
             Impact Overview
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {reorderedImpact.map((i) => (
-            <ImpactCard key={i.label} label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} />
+            <ImpactCard key={i.label} label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} style={i.style} />
           ))}
           {Array.from({ length: placeholders }).map((_, idx) => (
             // placeholders to keep grid aligned
@@ -271,13 +271,17 @@ export default function DashboardContainer(): React.ReactElement {
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-zinc-900 tracking-tight flex items-center gap-2">
-                  <span className="material-symbols-outlined text-indigo-500">grid_view</span>
+                  <span className="material-symbols-outlined" style={{color: '#038a36'}}>grid_view</span>
                   Services
               </h3>
               <label className="text-sm text-zinc-500 group relative">
                 <input
                   aria-label="Search services"
-                  className="ml-2 rounded-lg border border-zinc-200/60 bg-white/50 px-3 py-1.5 pl-8 text-sm focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 outline-none transition-all"
+                  className="ml-2 rounded-lg border border-zinc-200/60 bg-white/50 px-3 py-1.5 pl-8 text-sm outline-none transition-all"
+                  style={{
+                    borderColor: serviceQuery ? '#038a36' : undefined,
+                    boxShadow: serviceQuery ? '0 0 0 2px rgba(3, 138, 54, 0.1)' : undefined
+                  }}
                   placeholder="Filter services"
                   value={serviceQuery}
                   onChange={(e) => setServiceQuery(e.target.value)}
@@ -310,9 +314,12 @@ export default function DashboardContainer(): React.ReactElement {
         ))}
       </div>
 
-      <div className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg shadow-indigo-100/20 z-50">
+      <div className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg z-50" style={{boxShadow: '0 20px 25px -5px rgba(3, 138, 54, 0.1), 0 8px 10px -6px rgba(3, 138, 54, 0.1)'}}>
         <button
-            className="w-12 h-12 rounded-[18px] bg-indigo-50 text-indigo-600 flex justify-center items-center hover:bg-indigo-100 hover:scale-105 transition-all shadow-sm"
+            className="w-12 h-12 rounded-[18px] flex justify-center items-center hover:scale-105 transition-all shadow-sm"
+            style={{ backgroundColor: '#038a3610', color: '#038a36' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#038a3620'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#038a3610'}
             id="mapButton"
             aria-label="Open program map"
             onClick={() => setMapOpen(true)}
@@ -321,7 +328,10 @@ export default function DashboardContainer(): React.ReactElement {
         </button>
 
         <button
-            className="w-12 h-12 rounded-[18px] bg-emerald-50 text-emerald-600 flex justify-center items-center ml-3 hover:bg-emerald-100 hover:scale-105 transition-all shadow-sm"
+            className="w-12 h-12 rounded-[18px] flex justify-center items-center ml-3 hover:scale-105 transition-all shadow-sm"
+            style={{ backgroundColor: '#e0c06310', color: '#e0c063' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e0c06320'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#e0c06310'}
             id="chartsButton"
             aria-label="Open charts summary"
             onClick={() => setChartsOpen(true)}
@@ -336,13 +346,13 @@ export default function DashboardContainer(): React.ReactElement {
         open={mapOpen}
         onCloseAction={() => setMapOpen(false)}
         points={samplePoints}
-        groupsColor={{ West: '#06b6d4', East: '#34d399', North: '#f59e0b', South: '#ef4444', Central: '#a78bfa' }}
+        groupsColor={{ West: '#038a36', East: '#009639', North: '#e0c063', South: '#038a36', Central: '#009639' }}
         legendItems={[
-          { label: 'West', color: '#06b6d4' },
-          { label: 'East', color: '#34d399' },
-          { label: 'North', color: '#f59e0b' },
-          { label: 'South', color: '#ef4444' },
-          { label: 'Central', color: '#a78bfa' },
+          { label: 'West', color: '#038a36' },
+          { label: 'East', color: '#009639' },
+          { label: 'North', color: '#e0c063' },
+          { label: 'South', color: '#038a36' },
+          { label: 'Central', color: '#009639' },
         ]}
       />
     </div>

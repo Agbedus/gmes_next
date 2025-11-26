@@ -283,15 +283,8 @@ export default function ConsortiumDetail({ consortium }: { consortium: Consortiu
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                 {/* Metrics cards with colorful accents */}
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
-                  <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br from-teal-500 to-teal-300 text-white shadow-md">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-                         strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 3v18h18"/>
-                      <path d="M9 17V9"/>
-                      <path d="M13 17V5"/>
-                      <path d="M17 17v-3"/>
-                    </svg>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
+                    <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>groups</span>
                   </div>
                   <div>
                     <div className="text-xs text-zinc-500">Partners</div>
@@ -300,45 +293,29 @@ export default function ConsortiumDetail({ consortium }: { consortium: Consortiu
                 </div>
 
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
-                  <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br from-indigo-500 to-indigo-300 text-white shadow-md">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-                         strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 1v22"/>
-                      <path d="M3 6h18"/>
-                    </svg>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
+                    <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>account_balance</span>
                   </div>
                   <div>
                     <div className="text-xs text-zinc-500">Budget (EUR)</div>
-                    <div
-                        className="text-lg font-semibold text-zinc-900">{totalBudget ? formatCurrencyEUR(totalBudget) : '—'}</div>
+                    <div className="text-lg font-semibold text-zinc-900">{totalBudget ? formatCurrencyEUR(totalBudget) : '—'}</div>
                   </div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
-                  <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br from-emerald-500 to-emerald-300 text-white shadow-md">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-                         strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
-                    </svg>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
+                    <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>schedule</span>
                   </div>
                   <div>
                     <div className="text-xs text-zinc-500">Period</div>
-                    <div
-                        className="text-lg font-semibold text-zinc-900">{periodMonths ? formatPeriod(periodMonths) : '—'}</div>
+                    <div className="text-lg font-semibold text-zinc-900">{periodMonths ? formatPeriod(periodMonths) : '—'}</div>
                   </div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex flex-col gap-3">
                   <div className="flex items-center gap-3">
-                    <div
-                        className="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br from-amber-500 to-amber-300 text-white shadow-md">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
-                           strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                      </svg>
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
+                      <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>location_on</span>
                     </div>
                     <div>
                       <div className="text-xs text-zinc-500">Locations</div>

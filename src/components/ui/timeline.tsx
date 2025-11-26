@@ -17,7 +17,7 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
   const [expanded, setExpanded] = React.useState<Record<number, boolean>>({});
 
   return (
-    <div className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 shadow-sm shadow-indigo-100/10">
+    <div className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 shadow-sm" style={{boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}}>
       <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-4">Timeline</h3>
       <ol className="space-y-4">
         {items.map((it, idx) => {
@@ -25,15 +25,15 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
           const contentId = `timeline-${idx}-content`;
           return (
             <li key={idx} className="flex gap-4 group">
-              <div className="flex-shrink-0 w-24 text-xs font-bold text-indigo-600 pt-1">{it.year ?? it.years}</div>
+              <div className="flex-shrink-0 w-24 text-xs font-bold pt-1" style={{color: '#038a36'}}>{it.year ?? it.years}</div>
 
               <div className="flex-1 relative pb-1">
                 {/* Connector line */}
                 {idx !== items.length - 1 && (
-                    <div className="absolute left-[-17px] top-2 bottom-[-14px] w-[2px] bg-indigo-100/50 group-hover:bg-indigo-200 transition-colors" />
+                    <div className="absolute left-[-17px] top-2 bottom-[-14px] w-[2px] transition-colors" style={{backgroundColor: '#038a3620'}} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#038a3640'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#038a3620'} />
                 )}
                 {/* Dot */}
-                <div className="absolute left-[-21px] top-1.5 w-2.5 h-2.5 rounded-full bg-white border-2 border-indigo-400 group-hover:scale-125 group-hover:border-indigo-600 transition-all" />
+                <div className="absolute left-[-21px] top-1.5 w-2.5 h-2.5 rounded-full bg-white border-2 transition-all" style={{borderColor: '#038a36'}} onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.25)'; e.currentTarget.style.borderColor = '#027a2e'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = '#038a36'; }} />
 
                 <button
                   type="button"
@@ -46,7 +46,10 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
                       setExpanded((s) => ({ ...s, [idx]: !s[idx] }));
                     }
                   }}
-                  className="w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-200 rounded-lg transition-colors hover:bg-white/50 p-1 -ml-1"
+                  className="w-full text-left focus:outline-none rounded-lg transition-colors hover:bg-white/50 p-1 -ml-1"
+                  style={{
+                    boxShadow: isExpanded ? '0 0 0 2px rgba(3, 138, 54, 0.2)' : undefined
+                  }}
                 >
                   <div id={contentId} className="text-sm text-zinc-600 leading-relaxed group-hover:text-zinc-900 transition-colors">
                     {isExpanded ? it.event : truncate(it.event, 140)}
