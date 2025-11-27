@@ -389,7 +389,7 @@ function normalizeConsortium(raw: any): Consortium {
   return { ...raw } as Consortium;
 }
 
-function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: string; name: string; logo?: string; active: boolean; onClick: () => void; onOpenMap?: (e: React.MouseEvent) => void }) {
+function ConsortiaTab({ id, name, logo, active, onClick }: { id: string; name: string; logo?: string; active: boolean; onClick: () => void }) {
   // simple tab: logo (or initials), name and a map button
   const rawLogo = logo ? String(logo).replace(/\s+/g, ' ').trim() : undefined;
   const preferredLogo = rawLogo && rawLogo.startsWith('http://') ? rawLogo.replace('http://', 'https://') : rawLogo;
@@ -436,18 +436,7 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
 
       <div className="flex-1 text-sm font-medium text-zinc-900 truncate">{name}</div>
 
-      <div>
-        <button
-          onClick={(e) => { e.stopPropagation(); if (onOpenMap) onOpenMap(e as React.MouseEvent); }}
-          title="View countries on map"
-          className="p-2 rounded-md hover:bg-zinc-100 text-zinc-500"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-        </button>
-      </div>
+
     </div>
   );
 }
@@ -459,7 +448,11 @@ function ConsortiaTab({ id, name, logo, active, onClick, onOpenMap }: { id: stri
 
 export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
   // normalize all consortia so the rest of the component can rely on a consistent shape
-  const normalized: Consortium[] = Array.isArray(consortia) ? consortia.map(normalizeConsortium) : [];
+  const normalized: Consortium[] = Array.isArray(consortia) ? consortia.map(normalizeConsortium).sort((a, b) => {
+    const nameA = (a.name ?? a.project_title ?? '').toLowerCase();
+    const nameB = (b.name ?? b.project_title ?? '').toLowerCase();
+    return nameA.localeCompare(nameB);
+  }) : [];
 
   // use a stable id for selection: acronym || project_title || name
   const firstId = normalized[0] ? (normalized[0].acronym ?? normalized[0].project_title ?? normalized[0].name) : undefined;
@@ -543,22 +536,27 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
                     setMapCountries([]);
                     setMapOpen(false);
                   }}
-                  onOpenMap={() => {
-                    // Prefer the explicit locations array from the normalized consortium (same as shown in the Details view).
-                    // Trim each entry to be safe. Fall back to getCountriesForConsortium if locations is not present.
-                    const countries = Array.isArray((c as any).locations) && (c as any).locations.length > 0
-                      ? (c as any).locations.map((s: any) => String(s).trim()).filter(Boolean)
-                      : getCountriesForConsortium(c);
-                    setMapCountries(countries);
-                    setMapOpen(true);
-                  }}
                 />
               );
             })}
            </div>
          </div>
 
-         <div className="md:col-span-9 lg:col-span-9">{selectedConsortium && <ConsortiumDetail consortium={selectedConsortium} />}</div>
+         <div className="md:col-span-9 lg:col-span-9">
+           {selectedConsortium && (
+             <ConsortiumDetail 
+               consortium={selectedConsortium} 
+               onOpenMap={() => {
+                 const c = selectedConsortium;
+                 const countries = Array.isArray((c as any).locations) && (c as any).locations.length > 0
+                   ? (c as any).locations.map((s: any) => String(s).trim()).filter(Boolean)
+                   : getCountriesForConsortium(c);
+                 setMapCountries(countries);
+                 setMapOpen(true);
+               }}
+             />
+           )}
+         </div>
        </div>
 
       <MapModal

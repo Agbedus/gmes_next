@@ -92,8 +92,8 @@
     "keyImpactMetrics": {
       "snapshotDate": "mid-2025",
       "reach": {
-        "countriesInvolved": "52",
-        "institutionsInvolved": "≈ 170",
+        "countriesInvolved": "51",
+        "institutionsInvolved": "≈ 117",
         "policyAgreements": "> 100 (MoUs, charters, policy briefs)"
       },
       "infrastructure": {
@@ -110,16 +110,17 @@
         "privateSectorEngagement_ServiceDev": "> 50 entities"
       },
       "capacityBuilding": {
-        "participantsTrained": "4,932",
-        "totalTrainingDays": "18,899",
-        "coursesDelivered": "100",
-        "scholarshipsAwarded": "~80 (18 PhD, 52 MSc)",
+        "participantsTrained": "6,815",
+        "totalTrainings": "106",
+        "coursesDelivered": "79",
+        "scholarshipsAwarded": "99 (18 PhD, 52 MSc)",
         "institutionsInvolved_GAAN": {
           "universities": "27",
           "colleges": "6",
           "basicSchools": "1"
         },
-        "hackathons": "5 continental hackathons + GAIAthon 2024 and 2025"
+        "hackathons": "5 continental hackathons + GAIAthon 2024 and 2025",
+        "continentalNetworks": "4"
       },
       "engagementAndOutreach": {
         "knowledgeProducts": "> 80 (policy briefs, case studies, reports, videos)",
@@ -744,7 +745,7 @@
                     {
                       "name": "University of Ghana (Regional Marine Centre) (Ghana)",
                       "description": "",
-                      "logo": "images/logos/University_of_Ghana_Logo.png"
+                      "logo": "images/ug_logo.jpg"
                     },
                     {
                       "name": "Ghana Meteorological Agency (Ghana)",

@@ -35,7 +35,7 @@ const TAB_STYLES: Record<string, { text: string; bg: string; ring: string }> = {
   Contacts: { text: 'text-rose-700', bg: 'bg-gradient-to-r from-rose-50 to-white', ring: 'ring-rose-200' },
 };
 
-export default function ConsortiumDetail({ consortium }: { consortium: Consortium }) {
+export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium: Consortium; onOpenMap?: () => void }) {
   const [active, setActive] = useState<TabKey>('Overview');
 
   // derive metrics
@@ -100,7 +100,18 @@ export default function ConsortiumDetail({ consortium }: { consortium: Consortiu
           <Image src={imgSrc} alt={`${consortium.name ?? 'consortium'} logo`} width={160} height={160} className="w-40 h-40 rounded-lg object-contain bg-white p-2 ring-1 ring-zinc-100" unoptimized />
         </div>
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-zinc-900">{consortium.project_title ?? consortium.name} {consortium.acronym ? `(${consortium.acronym})` : ''}</h3>
+          <div className="flex justify-between items-start">
+            <h3 className="text-lg font-semibold text-zinc-900">{consortium.project_title ?? consortium.name} {consortium.acronym ? `(${consortium.acronym})` : ''}</h3>
+            {onOpenMap && (
+              <button
+                onClick={onOpenMap}
+                title="View countries on map"
+                className="p-2 rounded-md hover:bg-zinc-100 text-zinc-500 flex items-center justify-center transition-colors"
+              >
+                <span className="material-symbols-outlined">map</span>
+              </button>
+            )}
+          </div>
           <p className="mt-1 text-sm text-zinc-600">{consortium.coordinator?.name ?? consortium.leadInstitution ?? ''} {consortium.coordinator?.city ? `, ${consortium.coordinator.city}` : ''} {consortium.coordinator?.country ? `— ${consortium.coordinator.country}` : consortium.leadCountry ? `— ${consortium.leadCountry}` : ''}</p>
 
           <div className="mt-3 flex items-center gap-3">

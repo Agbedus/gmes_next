@@ -64,10 +64,13 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
 
   const capacityItems = [
     { metric: 'Participants trained', value: capacity?.participantsTrained ?? '—', icon: 'school', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Total training days', value: capacity?.totalTrainingDays ?? '—', icon: 'calendar_today', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Total trainings', value: capacity?.totalTrainings ?? '—', icon: 'calendar_today', style: pastelBg, colorClass: pastelFg },
     { metric: 'Courses delivered', value: capacity?.coursesDelivered ?? '—', icon: 'menu_book', style: pastelBg, colorClass: pastelFg },
     { metric: 'Scholarships awarded', value: capacity?.scholarshipsAwarded ?? '—', icon: 'emoji_events', style: pastelBg, colorClass: pastelFg },
     { metric: 'Hackathons', value: capacity?.hackathons ?? '—', icon: 'bolt', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Continental Networks', value: capacity?.continentalNetworks ?? '—', icon: 'hub', style: pastelBg, colorClass: pastelFg },
+    { metric: 'GAAN Universities', value: capacity?.institutionsInvolved_GAAN?.universities ?? '—', icon: 'account_balance', style: pastelBg, colorClass: pastelFg },
+    { metric: 'GAAN Colleges', value: capacity?.institutionsInvolved_GAAN?.colleges ?? '—', icon: 'school', style: pastelBg, colorClass: pastelFg },
   ];
 
   const engagementItems = [

@@ -59,8 +59,8 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-2">
           <div className="rounded-xl border border-zinc-200 bg-white p-4">
-            <h3 className="text-sm font-semibold text-zinc-900">{name}</h3>
-            <p className="mt-2 text-sm text-zinc-700">{description}</p>
+            <h3 className="text-sm font-semibold text-zinc-900 hidden">{name}</h3>
+            <p className="mt-2 text-sm text-zinc-700 hidden">{description}</p>
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {/* Increase the visual weight of values by passing a larger font size via className prop on OverviewCard */}

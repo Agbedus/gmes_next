@@ -7,15 +7,17 @@
       "funders": [
         {
           "name": "African Union Commission",
-          "role": ""
+          "role": "",
+          "logo": "http://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Emblem_of_the_African_Union.svg/1200px-Emblem_of_the_African_Union.svg.png"
         },
         {
           "name": "European Union",
-          "role": ""
+          "role": "",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/250px-Flag_of_Europe.svg.png"
         }
       ],
       "budget": {
-        "total": "€ 21 M",
+        "total": "€ 30 M",
         "euContribution": "N/A"
       },
       "thematicFocus": [
