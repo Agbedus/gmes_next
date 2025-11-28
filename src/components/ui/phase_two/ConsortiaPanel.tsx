@@ -4,6 +4,7 @@ import Image from 'next/image';
 import DataTable from './DataTable';
 import MapModal from '../MapModal';
 import ConsortiumDetail from './ConsortiumDetail';
+import { motion, AnimatePresence } from "framer-motion";
 
 export type Member = { name?: string; country?: string; role?: string; logo?: string };
 
@@ -446,6 +447,8 @@ function ConsortiaTab({ id, name, logo, active, onClick }: { id: string; name: s
 
 
 
+
+
 export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] }) {
   // normalize all consortia so the rest of the component can rely on a consistent shape
   const normalized: Consortium[] = Array.isArray(consortia) ? consortia.map(normalizeConsortium).sort((a, b) => {
@@ -520,42 +523,66 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-12 gap-6">
         <div className="md:col-span-3 lg:col-span-3">
-          <div className="space-y-2">
+          <motion.div 
+            className="space-y-2"
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.05
+                }
+              }
+            }}
+          >
             {normalized.map((c) => {
               const id = c.acronym ?? c.project_title ?? c.name ?? '';
               return (
-                <ConsortiaTab
-                  key={id}
-                  id={id}
-                  name={c.name ?? c.project_title ?? ''}
-                  logo={c.logo}
-                  active={activeConsortium === id}
-                  onClick={() => {
-                    setActiveConsortium(id);
-                    // Reset map countries when changing consortium
-                    setMapCountries([]);
-                    setMapOpen(false);
-                  }}
-                />
+                <motion.div key={id} variants={{ hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0 } }}>
+                  <ConsortiaTab
+                    id={id}
+                    name={c.name ?? c.project_title ?? ''}
+                    logo={c.logo}
+                    active={activeConsortium === id}
+                    onClick={() => {
+                      setActiveConsortium(id);
+                      // Reset map countries when changing consortium
+                      setMapCountries([]);
+                      setMapOpen(false);
+                    }}
+                  />
+                </motion.div>
               );
             })}
-           </div>
+           </motion.div>
          </div>
 
          <div className="md:col-span-9 lg:col-span-9">
-           {selectedConsortium && (
-             <ConsortiumDetail 
-               consortium={selectedConsortium} 
-               onOpenMap={() => {
-                 const c = selectedConsortium;
-                 const countries = Array.isArray((c as any).locations) && (c as any).locations.length > 0
-                   ? (c as any).locations.map((s: any) => String(s).trim()).filter(Boolean)
-                   : getCountriesForConsortium(c);
-                 setMapCountries(countries);
-                 setMapOpen(true);
-               }}
-             />
-           )}
+           <AnimatePresence mode="wait">
+             {selectedConsortium && (
+               <motion.div
+                 key={activeConsortium}
+                 initial={{ opacity: 0, y: 10 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 exit={{ opacity: 0, y: -10 }}
+                 transition={{ duration: 0.2 }}
+               >
+                 <ConsortiumDetail 
+                   consortium={selectedConsortium} 
+                   onOpenMap={() => {
+                     const c = selectedConsortium;
+                     const countries = Array.isArray((c as any).locations) && (c as any).locations.length > 0
+                       ? (c as any).locations.map((s: any) => String(s).trim()).filter(Boolean)
+                       : getCountriesForConsortium(c);
+                     setMapCountries(countries);
+                     setMapOpen(true);
+                   }}
+                 />
+               </motion.div>
+             )}
+           </AnimatePresence>
          </div>
        </div>
 

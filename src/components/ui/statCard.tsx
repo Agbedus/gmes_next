@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 type StatCardProps = {
   title: string;
@@ -18,10 +19,16 @@ export default function StatCard({ title, value, delta, deltaType = "neutral", i
   };
 
   return (
-    <div className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl px-5 py-5 shadow-sm transition-all duration-300 group"
-         style={{boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}}
-         onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(3, 138, 54, 0.1), 0 4px 6px -4px rgba(3, 138, 54, 0.1)'}
-         onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      whileHover={{ scale: 1.02 }}
+      className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl px-5 py-5 shadow-sm transition-all duration-300 group"
+      style={{boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}}
+      onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(3, 138, 54, 0.1), 0 4px 6px -4px rgba(3, 138, 54, 0.1)'}
+      onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}
     >
       <div className="flex items-start justify-between">
         <div>
@@ -50,6 +57,6 @@ export default function StatCard({ title, value, delta, deltaType = "neutral", i
           </div>
         ) : null}
       </div>
-    </div>
+    </motion.div>
   );
 }

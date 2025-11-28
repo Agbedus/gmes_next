@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { motion } from "framer-motion";
+
 export default function PhaseSummary({
   focus,
   pillars,
@@ -12,7 +14,13 @@ export default function PhaseSummary({
   crossCutting?: string[];
 }) {
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-4">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="rounded-xl border border-zinc-200 bg-white p-4"
+    >
       <h3 className="text-sm font-semibold text-zinc-900">Phase 2 summary</h3>
       {focus ? <p className="mt-2 text-sm text-zinc-700">{focus}</p> : null}
 
@@ -41,7 +49,7 @@ export default function PhaseSummary({
           </ul>
         </div>
       ) : null}
-    </div>
+    </motion.div>
   );
 }
 

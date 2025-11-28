@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import PhaseTwoImpactCard from '../phase_two/PhaseTwoImpactCard';
 
 type InfraMetrics = {
@@ -126,12 +127,35 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
     { name: 'Cross Cutting', icon: 'cut' },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   const cardGrid = (items: { metric?: string; value?: React.ReactNode; icon?: string; colorClass?: string }[]) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <motion.div 
+      variants={container}
+      initial="hidden"
+      animate="show"
+      key={activeTab} // Force re-render animation on tab change
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+    >
       {items.map((it, idx) => (
-        <PhaseTwoImpactCard key={`${it.metric ?? 'it'}-${idx}`} label={it.metric} value={it.value} icon={it.icon} colorClass={it.colorClass} />
+        <motion.div key={`${it.metric ?? 'it'}-${idx}`} variants={item}>
+          <PhaseTwoImpactCard label={it.metric} value={it.value} icon={it.icon} colorClass={it.colorClass} />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 
   const renderContent = () => {

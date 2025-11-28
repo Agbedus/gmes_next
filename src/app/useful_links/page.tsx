@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 import usefulLinksData from '@/data/general_useful_links.json';
 import { LinkCard, LinkItem } from '@/components/ui/useful_links/LinkCard';
 import { ConsortiaTabs } from '@/components/ui/useful_links/ConsortiaTabs';
@@ -24,7 +25,7 @@ const data = usefulLinksData as UsefulLinksData;
 type Tab = 'policies' | 'agendas' | 'consortia' | 'pmu' | 'useCases' ;
 
 export default function UsefulLinksPage() {
-    const [activeTab, setActiveTab] = useState<Tab>('policies');
+    const [activeTab, setActiveTab] = useState<Tab>('pmu');
 
     // Theme color map for tabs (policy/agendas/consortia)
     const tabColors: Record<Tab, string> = {
@@ -52,110 +53,177 @@ export default function UsefulLinksPage() {
 
             {/* Main Tabs */}
             <div className="flex justify-center mb-12">
-                <div className="bg-zinc-100 p-1.5 rounded-xl inline-flex shadow-inner">
-                    <button
-                        onClick={() => setActiveTab('pmu')}
-                        style={getButtonStyle('pmu')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'pmu' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
-                        Program Mgt. Unit
-                    </button>
-                    <button
-                        onClick={() => setActiveTab('consortia')}
-                        style={getButtonStyle('consortia')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'consortia' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
-                        Consortia Resources
-                    </button>
-                    <button
-                        onClick={() => setActiveTab('useCases')}
-                        style={getButtonStyle('useCases')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'useCases' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
-                        Use Cases
-                    </button>
-                    <button
-                        onClick={() => setActiveTab('policies')}
-                        style={getButtonStyle('policies')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'policies' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
-                        Continental Policies
-                    </button>
-
-                    <button
-                        onClick={() => setActiveTab('agendas')}
-                        style={getButtonStyle('agendas')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'agendas' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
-                        Global Agendas
-                    </button>
-
-                </div>
+                <motion.div 
+                    className="bg-zinc-100 p-1.5 rounded-xl inline-flex shadow-inner"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    {['pmu', 'consortia', 'useCases', 'policies', 'agendas'].map((tab) => (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab as Tab)}
+                            style={getButtonStyle(tab as Tab)}
+                            className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === tab ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}
+                        >
+                            {tab === 'pmu' && 'Program Mgt. Unit'}
+                            {tab === 'consortia' && 'Consortia Resources'}
+                            {tab === 'useCases' && 'Use Cases'}
+                            {tab === 'policies' && 'Continental Policies'}
+                            {tab === 'agendas' && 'Global Agendas'}
+                        </button>
+                    ))}
+                </motion.div>
             </div>
 
             {/* Content Area */}
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 min-h-[400px]">
-                {activeTab === 'policies' && (
-                    <section>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {data.continental_policies.map((item) => (
-                                <LinkCard 
-                                    key={item.id} 
-                                    title={item.title} 
-                                    links={item.links} 
-                                    colorTheme="green"
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
+            <div className="min-h-[400px]">
+                <AnimatePresence mode="wait">
+                    {activeTab === 'pmu' && (
+                        <motion.section
+                            key="pmu"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            {/*JSON.stringify(data.PMU)}*/}
+                            <motion.div 
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    show: {
+                                        opacity: 1,
+                                        transition: { staggerChildren: 0.1 }
+                                    }
+                                }}
+                                initial="hidden"
+                                animate="show"
+                            >
+                                {data.PMU.map((item) => (
+                                    <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                                        <LinkCard
+                                            title={item.title}
+                                            links={item.links}
+                                            colorTheme="green"
+                                        />
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </motion.section>
+                    )}
 
-                {activeTab === 'pmu' && (
-                    <section>
-                        {/*JSON.stringify(data.PMU)}*/}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {data.PMU.map((item) => (
-                                <LinkCard
-                                    key={item.id}
-                                    title={item.title}
-                                    links={item.links}
-                                    colorTheme="green"
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
+                    {activeTab === 'consortia' && (
+                        <motion.section
+                            key="consortia"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <ConsortiaTabs colorTheme="burgundy" />
+                        </motion.section>
+                    )}
 
-                {activeTab === 'useCases' && (
-                    <section>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {data.use_cases.map((item) => (
-                                <LinkCard
-                                    key={item.id}
-                                    title={item.title}
-                                    links={item.links}
-                                    colorTheme="green"
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
+                    {activeTab === 'useCases' && (
+                        <motion.section
+                            key="useCases"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <motion.div 
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    show: {
+                                        opacity: 1,
+                                        transition: { staggerChildren: 0.1 }
+                                    }
+                                }}
+                                initial="hidden"
+                                animate="show"
+                            >
+                                {data.use_cases.map((item) => (
+                                    <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                                        <LinkCard
+                                            title={item.title}
+                                            links={item.links}
+                                            colorTheme="green"
+                                        />
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </motion.section>
+                    )}
 
-                {activeTab === 'agendas' && (
-                    <section>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {data.global_agendas.map((item) => (
-                                <LinkCard 
-                                    key={item.id} 
-                                    title={item.title} 
-                                    links={item.links} 
-                                    colorTheme="gold"
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
+                    {activeTab === 'policies' && (
+                        <motion.section
+                            key="policies"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <motion.div 
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    show: {
+                                        opacity: 1,
+                                        transition: { staggerChildren: 0.1 }
+                                    }
+                                }}
+                                initial="hidden"
+                                animate="show"
+                            >
+                                {data.continental_policies.map((item) => (
+                                    <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                                        <LinkCard 
+                                            title={item.title} 
+                                            links={item.links} 
+                                            colorTheme="green"
+                                        />
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </motion.section>
+                    )}
 
-                {activeTab === 'consortia' && (
-                    <section>
-                        <ConsortiaTabs colorTheme="burgundy" />
-                    </section>
-                )}
+                    {activeTab === 'agendas' && (
+                        <motion.section
+                            key="agendas"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <motion.div 
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    show: {
+                                        opacity: 1,
+                                        transition: { staggerChildren: 0.1 }
+                                    }
+                                }}
+                                initial="hidden"
+                                animate="show"
+                            >
+                                {data.global_agendas.map((item) => (
+                                    <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                                        <LinkCard 
+                                            title={item.title} 
+                                            links={item.links} 
+                                            colorTheme="gold"
+                                        />
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </motion.section>
+                    )}
+                </AnimatePresence>
             </div>
         </div>
     );

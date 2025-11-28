@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 import phaseTwoData from '@/data/phase_two_data.json';
 import { LinkCard, LinkItem } from './LinkCard';
 
@@ -91,7 +92,12 @@ export function ConsortiaTabs({ colorTheme = 'purple' }: { colorTheme?: string }
     return (
         <div className="space-y-6">
             {/* Scrollable Tabs */}
-            <div className="flex overflow-x-auto pb-2 gap-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+            <motion.div 
+                className="flex overflow-x-auto pb-2 gap-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+            >
                 {consortia.map((c) => (
                     <button
                         key={c.name}
@@ -109,18 +115,26 @@ export function ConsortiaTabs({ colorTheme = 'purple' }: { colorTheme?: string }
                         <span>{c.name}</span>
                     </button>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Content Area */}
-            {activeConsortium && (
-                <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                    <LinkCard 
-                        title={activeConsortium.fullTitle} 
-                        links={activeConsortium.links} 
-                        colorTheme={colorTheme}
-                    />
-                </div>
-            )}
+            <AnimatePresence mode="wait">
+                {activeConsortium && (
+                    <motion.div
+                        key={activeConsortium.name}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <LinkCard 
+                            title={activeConsortium.fullTitle} 
+                            links={activeConsortium.links} 
+                            colorTheme={colorTheme}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

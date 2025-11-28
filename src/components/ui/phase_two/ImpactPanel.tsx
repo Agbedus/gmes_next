@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import PhaseTwoImpactCard from './PhaseTwoImpactCard';
+import { motion, AnimatePresence } from "framer-motion";
 
 type Metrics = Record<string, any>;
 
@@ -91,11 +92,26 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
   ];
 
   const cardGrid = (items: { metric?: string; value?: any; icon?: string; colorClass?: string; style?: React.CSSProperties }[]) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <motion.div 
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.1
+          }
+        }
+      }}
+      initial="hidden"
+      animate="show"
+    >
       {items.map((it, idx) => (
-        <PhaseTwoImpactCard key={`${it.metric ?? 'it'}-${idx}`} label={it.metric} value={it.value} icon={it.icon} colorClass={it.colorClass} style={it.style} />
+        <motion.div key={`${it.metric ?? 'it'}-${idx}`} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+          <PhaseTwoImpactCard label={it.metric} value={it.value} icon={it.icon} colorClass={it.colorClass} style={it.style} />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 
   const renderContent = () => {
@@ -148,7 +164,19 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
         </nav>
       </div>
 
-      <div className="mt-4">{renderContent()}</div>
+      <div className="mt-4">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            {renderContent()}
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </section>
   );
 }

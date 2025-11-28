@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 type ImpactCardProps = {
   label?: string;
@@ -20,17 +21,23 @@ export default function ImpactCard({ label, number, unit, highlight = false, ico
   }
 
   return (
-    <div className={`rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl px-5 py-6 shadow-sm hover:shadow-md transition-all duration-300 group ${highlight ? "border-emerald-100" : ""}`} 
-         style={{
-           backgroundColor: highlight ? '#038a3608' : undefined,
-           boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'
-         }}
-         onMouseEnter={(e) => {
-           e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(3, 138, 54, 0.1), 0 4px 6px -4px rgba(3, 138, 54, 0.1)';
-         }}
-         onMouseLeave={(e) => {
-           e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)';
-         }}
+    <motion.div 
+      variants={{
+        hidden: { opacity: 0, scale: 0.9 },
+        show: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
+      }}
+      whileHover={{ scale: 1.02 }}
+      className={`rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl px-5 py-6 shadow-sm hover:shadow-md transition-all duration-300 group ${highlight ? "border-emerald-100" : ""}`} 
+      style={{
+        backgroundColor: highlight ? '#038a3608' : undefined,
+        boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(3, 138, 54, 0.1), 0 4px 6px -4px rgba(3, 138, 54, 0.1)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)';
+      }}
     >
       <div className="flex items-center justify-between gap-4">
         <div>
@@ -52,6 +59,6 @@ export default function ImpactCard({ label, number, unit, highlight = false, ico
           </div>
         ) : null}
       </div>
-    </div>
+    </motion.div>
   );
 }

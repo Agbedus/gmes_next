@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 type Service = {
   category: string;
@@ -48,16 +49,34 @@ export default function ServicesList({ services, query = "" }: { services: Servi
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <motion.div 
+      className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.1
+          }
+        }
+      }}
+    >
       {visible.map((s) => {
         const meta = categoryMeta[s.category] ?? { icon: "handyman", colorClass: "text-zinc-700 bg-white" };
         const id = `services-${s.category.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
         const isOpen = Boolean(expanded[s.category]);
 
         return (
-          <article
+          <motion.article
             key={s.category}
             className={`rounded-xl border border-zinc-200 bg-white p-4 focus-within:ring-2 focus-within:ring-offset-0 focus-within:ring-indigo-200`}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              show: { opacity: 1, y: 0 }
+            }}
           >
             <h4 className="flex items-center justify-between gap-2">
               <button
@@ -103,9 +122,9 @@ export default function ServicesList({ services, query = "" }: { services: Servi
                 <div className="text-sm text-zinc-500 italic">Collapsed</div>
               )}
             </div>
-          </article>
+          </motion.article>
         );
       })}
-    </div>
+    </motion.div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 type TimelineItem = {
   year?: number | string;
@@ -17,14 +18,42 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
   const [expanded, setExpanded] = React.useState<Record<number, boolean>>({});
 
   return (
-    <div className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 shadow-sm" style={{boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}}>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 shadow-sm" 
+      style={{boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}}
+    >
       <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-4">Timeline</h3>
-      <ol className="space-y-4">
+      <motion.ol 
+        className="space-y-4"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.08
+            }
+          }
+        }}
+      >
         {items.map((it, idx) => {
           const isExpanded = !!expanded[idx];
           const contentId = `timeline-${idx}-content`;
           return (
-            <li key={idx} className="flex gap-4 group">
+            <motion.li 
+              key={idx} 
+              className="flex gap-4 group"
+              variants={{
+                hidden: { opacity: 0, x: -20 },
+                show: { opacity: 1, x: 0 }
+              }}
+            >
               <div className="flex-shrink-0 w-24 text-xs font-bold pt-1" style={{color: '#038a36'}}>{it.year ?? it.years}</div>
 
               <div className="flex-1 relative pb-1">
@@ -56,10 +85,10 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
                   </div>
                 </button>
               </div>
-            </li>
+            </motion.li>
           );
         })}
-      </ol>
-    </div>
+      </motion.ol>
+    </motion.div>
   );
 }

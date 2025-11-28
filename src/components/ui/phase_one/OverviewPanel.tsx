@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import Image from 'next/image';
 import OverviewCard from '../phase_two/OverviewCard';
 import DataTable from '../phase_two/DataTable';
@@ -61,7 +62,13 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
       <h2 className="text-lg font-semibold text-zinc-900">Program overview</h2>
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="md:col-span-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="md:col-span-2"
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-4">
             <h3 className="text-sm font-semibold text-zinc-900">{name}</h3>
             {/*<p className="mt-2 text-sm text-zinc-700">{description}</p>*/}
@@ -75,10 +82,16 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
 
           </div>
 
-        </div>
+        </motion.div>
 
         <aside className="md:col-span-1 space-y-4">
-          <div className="rounded-xl border border-zinc-200 bg-white p-3">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="rounded-xl border border-zinc-200 bg-white p-3"
+          >
             <h4 className="text-sm font-semibold text-zinc-900">Funders</h4>
             <div className="mt-3 space-y-3">
               {funders.length === 0 ? (
@@ -102,9 +115,15 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 ))
               )}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="rounded-xl border border-zinc-200 bg-white p-3">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="rounded-xl border border-zinc-200 bg-white p-3"
+          >
             <h4 className="text-xs font-medium text-zinc-800">Thematic focus</h4>
             <div className="mt-2 text-sm text-zinc-700">
               {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
@@ -114,22 +133,34 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 </div>
               )) : String(thematic ?? '\u2014')}
             </div>
-          </div>
+          </motion.div>
 
          </aside>
        </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch mt-4">
-        <div className="h-full">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="h-full"
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Strategic pillars</h3>
             <div className="mt-2 flex-1">
               <DataTable columns={pillarColumns} rows={pillarRows} compact />
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="h-full">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="h-full"
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Alignment</h3>
             <div className="mt-2 flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto">
@@ -173,7 +204,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
      </section>

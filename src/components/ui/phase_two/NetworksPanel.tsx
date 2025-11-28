@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 type InternalNetwork = { name?: string; description?: string };
 type PrivateSector = { serviceDevelopment?: string; outreach?: string; examples?: string[] };
@@ -116,26 +117,66 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
       <h2 className="text-lg font-semibold text-zinc-900">Networks & Partnerships</h2>
 
       {/* metrics cards */}
-      <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <MetricCard title="Internal networks" value={metricInternal} />
-        <MetricCard title="Strategic partnerships" value={metricStrategic} />
-        <MetricCard title="Private sector examples" value={metricPrivate} />
-        <MetricCard title="Institution types" value={metricTypes} />
-      </div>
+      <motion.div 
+        className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.1
+            }
+          }
+        }}
+      >
+        <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}><MetricCard title="Internal networks" value={metricInternal} /></motion.div>
+        <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}><MetricCard title="Strategic partnerships" value={metricStrategic} /></motion.div>
+        <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}><MetricCard title="Private sector examples" value={metricPrivate} /></motion.div>
+        <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}><MetricCard title="Institution types" value={metricTypes} /></motion.div>
+      </motion.div>
 
-      <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+      <motion.div 
+        className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+      >
         {/* left: internal networks + private sector */}
-        <div className="lg:col-span-2 h-full flex flex-col gap-4">
+        <motion.div 
+          className="lg:col-span-2 h-full flex flex-col gap-4"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-none">
             <h3 className="text-sm font-semibold text-zinc-900">Internal networks</h3>
-            <ul className="mt-3 text-sm text-zinc-700 space-y-3">
+            <motion.ul 
+              className="mt-3 text-sm text-zinc-700 space-y-3"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.05
+                  }
+                }
+              }}
+            >
               {internal.map((n, i) => (
-                <li key={i} className="p-3 rounded-md bg-accent-50">
+                <motion.li key={i} className="p-3 rounded-md bg-accent-50" variants={{ hidden: { opacity: 0, x: -10 }, show: { opacity: 1, x: 0 } }}>
                   <div className="font-medium text-zinc-900">{n.name ?? '\u2014'}</div>
                   <div className="text-xs text-zinc-600 mt-1">{n.description ?? '\u2014'}</div>
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
 
           <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-1 flex flex-col">
@@ -223,37 +264,57 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
               </div>
             ) : null}
            </div>
-         </div>
+         </motion.div>
 
         {/* right: radial charts for institution types */}
-        <aside className="space-y-4 h-full flex flex-col">
+        <motion.aside 
+          className="space-y-4 h-full flex flex-col"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-1 flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Institution types</h3>
-            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 items-center flex-1 hide-scrollbar overflow-auto">
+            <motion.div 
+              className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 items-center flex-1 hide-scrollbar overflow-auto"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1
+                  }
+                }
+              }}
+            >
               {orderedTypes.length ? (
                 orderedTypes.map((pt, i) => {
                   const clr = colorForCategory(pt.label);
                   if (i === 0) {
                     // large top donut (spans entire right panel width on md)
                     return (
-                      <div key={i} className="col-span-1 sm:col-span-2 md:col-span-3 flex items-center justify-center p-2 bg-white">
+                      <motion.div key={i} className="col-span-1 sm:col-span-2 md:col-span-3 flex items-center justify-center p-2 bg-white" variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}>
                         <RadialDonut size={160} stroke={20} value={pt.pct} label={pt.label} color={clr.donut} />
-                      </div>
+                      </motion.div>
                     );
                   }
                   return (
-                    <div key={i} className="col-span-1 flex items-center justify-center p-2 bg-white">
+                    <motion.div key={i} className="col-span-1 flex items-center justify-center p-2 bg-white" variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}>
                       <RadialDonut size={96} stroke={12} value={pt.pct} label={pt.label} color={clr.donut} />
-                    </div>
+                    </motion.div>
                   );
                 })
               ) : (
                 <div className="text-sm text-zinc-500">No institution type data</div>
               )}
-            </div>
+            </motion.div>
           </div>
-        </aside>
-      </div>
+        </motion.aside>
+      </motion.div>
     </section>
   );
 }

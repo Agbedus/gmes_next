@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import ProgramHeader from "../programHeader";
 import DashboardToolbar from "../dashboardToolbar";
 import ImpactCard from "../impactCard";
@@ -264,7 +265,21 @@ export default function DashboardContainer(): React.ReactElement {
             <span className="material-symbols-outlined" style={{color: '#038a36'}}>insights</span>
             Impact Overview
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.08
+              }
+            }
+          }}
+        >
           {reorderedImpact.map((i) => (
             <ImpactCard key={i.label} label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} style={i.style} />
           ))}
@@ -272,7 +287,7 @@ export default function DashboardContainer(): React.ReactElement {
             // placeholders to keep grid aligned
             <ImpactCard key={`placeholder-${idx}`} number={""} label={undefined} placeholder />
           ))}
-        </div>
+        </motion.div>
       </section>
 
       <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -307,7 +322,13 @@ export default function DashboardContainer(): React.ReactElement {
         <div className="space-y-8">
           {/*JSON.stringify(data.technical_partners)}*/}
           {data.funders && data.funders.length > 0 && (
-              <div className="bg-white rounded-xl border border-zinc-200 p-6">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-xl border border-zinc-200 p-6"
+              >
                 <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Funded By</h3>
                 <div className="flex flex-col gap-4">
                   {data.funders.map((funder, idx) => (
@@ -325,10 +346,16 @@ export default function DashboardContainer(): React.ReactElement {
                       </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
           )}
           {data.technical_partners && data.technical_partners.length > 0 && (
-              <div className="bg-white rounded-xl border border-zinc-200 p-6">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="bg-white rounded-xl border border-zinc-200 p-6"
+              >
                 <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Technical Partners</h3>
                 <div className="flex flex-col gap-4">
                   {data.technical_partners.map((partner, idx) => (
@@ -346,7 +373,7 @@ export default function DashboardContainer(): React.ReactElement {
                       </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
           )}
           {/*<ImplementersList*/}
           {/*  coordinator={String(data.implementers_governance?.coordinator ?? "")}*/}
@@ -362,13 +389,34 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+      <motion.div 
+        className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.1
+            }
+          }
+        }}
+      >
         {stats.map((s) => (
           <StatCard key={s.title} title={s.title} value={s.value} delta={s.delta} deltaType={s.deltaType} icon={s.icon} />
         ))}
-      </div>
+      </motion.div>
 
-      <div className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg z-50" style={{boxShadow: '0 20px 25px -5px rgba(3, 138, 54, 0.1), 0 8px 10px -6px rgba(3, 138, 54, 0.1)'}}>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg z-50" 
+        style={{boxShadow: '0 20px 25px -5px rgba(3, 138, 54, 0.1), 0 8px 10px -6px rgba(3, 138, 54, 0.1)'}}
+      >
         <button
             className="w-12 h-12 rounded-[18px] flex justify-center items-center hover:scale-105 transition-all shadow-sm"
             style={{ backgroundColor: '#038a3610', color: '#038a36' }}
@@ -393,7 +441,7 @@ export default function DashboardContainer(): React.ReactElement {
           <BarChart size={24} />
         </button>
 
-      </div>
+      </motion.div>
       <SummaryChartsModal open={chartsOpen} onCloseAction={() => setChartsOpen(false)} />
 
       <MapModal

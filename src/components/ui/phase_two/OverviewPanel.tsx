@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from 'next/image';
+import { motion } from "framer-motion";
 import OverviewCard from './OverviewCard';
 
 type Funder = { name: string; role?: string; logo?: string };
@@ -57,18 +58,42 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
       <h2 className="text-lg font-semibold text-zinc-900">Program overview</h2>
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="md:col-span-2">
+        <motion.div 
+          className="md:col-span-2"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-4">
             <h3 className="text-sm font-semibold text-zinc-900 hidden">{name}</h3>
             <p className="mt-2 text-sm text-zinc-700 hidden">{description}</p>
 
-            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <motion.div 
+              className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1
+                  }
+                }
+              }}
+            >
               {/* Increase the visual weight of values by passing a larger font size via className prop on OverviewCard */}
-              <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#fff" iconBg="#038a36" valueClassName="text-2xl font-semibold" />
-              <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#fff" iconBg="#e0c063" valueClassName="text-2xl font-semibold" />
+              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#fff" iconBg="#038a36" valueClassName="text-2xl font-semibold" />
+              </motion.div>
+              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#fff" iconBg="#e0c063" valueClassName="text-2xl font-semibold" />
+              </motion.div>
 
               {/* Replace the small left thematic box with the thematic block that previously lived under the logos on the aside (i.e. show the concise themed list here with colored icons) */}
-              <div className="rounded-xl border border-zinc-200 bg-white p-4">
+              <motion.div className="rounded-xl border border-zinc-200 bg-white p-4" variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
                 <h4 className="text-xs font-semibold text-zinc-700">Thematic focus</h4>
                 <div className="mt-2 text-sm text-zinc-700">
                   {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
@@ -80,17 +105,25 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                     </div>
                   )) : String(thematic ?? '\u2014')}
                 </div>
-              </div>
+              </motion.div>
 
-              <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#009639" valueClassName="text-2xl font-semibold" />
-            </div>
+              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#009639" valueClassName="text-2xl font-semibold" />
+              </motion.div>
+            </motion.div>
 
           </div>
 
-        </div>
+        </motion.div>
 
         <aside className="md:col-span-1 space-y-4">
-          <div className="rounded-xl border border-zinc-200 bg-white p-3">
+          <motion.div 
+            className="rounded-xl border border-zinc-200 bg-white p-3"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h4 className="text-sm font-semibold text-zinc-900">Funders</h4>
             <div className="mt-3 space-y-3">
               {funders.length === 0 ? (
@@ -114,15 +147,27 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 ))
               )}
             </div>
-          </div>
+          </motion.div>
 
           {/* Remove the duplicate thematic block from the aside (we moved it into the left card). If required elsewhere, we can keep a short summary here. */}
 
          </aside>
        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch mt-4">
-        <div className="h-full">
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch mt-4"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div 
+          className="h-full"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Strategic pillars</h3>
             <div className="mt-2 flex-1">
@@ -156,9 +201,15 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="h-full">
+        <motion.div 
+          className="h-full"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Alignment</h3>
             <div className="mt-2 flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto">
@@ -202,8 +253,8 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
      </section>
    );
