@@ -305,7 +305,7 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
 
         <div className="space-y-8">
-          {JSON.stringify(data.technical_partners)}
+          {/*JSON.stringify(data.technical_partners)}*/}
           {data.funders && data.funders.length > 0 && (
               <div className="bg-white rounded-xl border border-zinc-200 p-6">
                 <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Funded By</h3>
