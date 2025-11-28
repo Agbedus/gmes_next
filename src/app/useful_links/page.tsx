@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import usefulLinksData from '@/data/general_useful_links.json';
-import { LinkCard, LinkItem } from '@/components/useful_links/LinkCard';
-import { ConsortiaTabs } from '@/components/useful_links/ConsortiaTabs';
+import { LinkCard, LinkItem } from '@/components/ui/useful_links/LinkCard';
+import { ConsortiaTabs } from '@/components/ui/useful_links/ConsortiaTabs';
 
 type PolicyItem = {
     id: number;
@@ -107,7 +107,7 @@ export default function UsefulLinksPage() {
 
                 {activeTab === 'pmu' && (
                     <section>
-                        {JSON.stringify(data.PMU)}
+                        {/*JSON.stringify(data.PMU)}*/}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {data.PMU.map((item) => (
                                 <LinkCard
