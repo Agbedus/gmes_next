@@ -61,8 +61,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
         <motion.div 
           className="md:col-span-2"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <div className="rounded-xl border border-zinc-200 bg-white p-4">
@@ -72,8 +71,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             <motion.div 
               className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3"
               initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
+              animate="show"
               variants={{
                 hidden: { opacity: 0 },
                 show: {
@@ -120,8 +118,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           <motion.div 
             className="rounded-xl border border-zinc-200 bg-white p-3"
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h4 className="text-sm font-semibold text-zinc-900">Funders</h4>
@@ -157,15 +154,13 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
       <motion.div 
         className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch mt-4"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
         <motion.div 
           className="h-full"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
@@ -206,8 +201,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
         <motion.div 
           className="h-full"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">

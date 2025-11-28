@@ -64,8 +64,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="md:col-span-2"
         >
@@ -87,8 +86,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
         <aside className="md:col-span-1 space-y-4">
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="rounded-xl border border-zinc-200 bg-white p-3"
           >
@@ -119,8 +117,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
 
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="rounded-xl border border-zinc-200 bg-white p-3"
           >
@@ -141,8 +138,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch mt-4">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           className="h-full"
         >
@@ -156,8 +152,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           className="h-full"
         >

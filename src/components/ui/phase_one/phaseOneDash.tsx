@@ -1,6 +1,7 @@
 // filepath: /Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_one/phaseOneDash.tsx
 'use client';
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProgramHeader from '@/components/ui/programHeader';
 import DashboardToolbar from '@/components/ui/dashboardToolbar';
 import phaseOneData from '@/data/phase_one_data.json';
@@ -50,25 +51,34 @@ export default function PhaseOneDash() {
             className="gap-2 w-full"
           />
 
-          <div className="mt-4">
-            {activeTab === 'overview' && (
-              <div id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
-                <OverviewPanel programDetails={programDetails} strategicFramework={strategicFramework} metrics={metrics} />
-              </div>
-            )}
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={activeTab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4"
+            >
+              {activeTab === 'overview' && (
+                <div id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+                  <OverviewPanel programDetails={programDetails} strategicFramework={strategicFramework} metrics={metrics} />
+                </div>
+              )}
 
-            {activeTab === 'consortia' && (
-              <div id="panel-consortia" role="tabpanel" aria-labelledby="tab-consortia">
-                <ConsortiaPanel consortia={consortia} />
-              </div>
-            )}
+              {activeTab === 'consortia' && (
+                <div id="panel-consortia" role="tabpanel" aria-labelledby="tab-consortia">
+                  <ConsortiaPanel consortia={consortia} />
+                </div>
+              )}
 
-            {activeTab === 'networks' && (
-              <div id="panel-networks" role="tabpanel" aria-labelledby="tab-networks">
-                <NetworksPanel networks={networks} />
-              </div>
-            )}
-          </div>
+              {activeTab === 'networks' && (
+                <div id="panel-networks" role="tabpanel" aria-labelledby="tab-networks">
+                  <NetworksPanel networks={networks} />
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </main>
     </div>

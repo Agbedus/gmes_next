@@ -120,8 +120,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
       <motion.div 
         className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4"
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
+        animate="show"
         variants={{
           hidden: { opacity: 0 },
           show: {
@@ -141,16 +140,14 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
       <motion.div 
         className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
         {/* left: internal networks + private sector */}
         <motion.div 
           className="lg:col-span-2 h-full flex flex-col gap-4"
           initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-none">
@@ -158,8 +155,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
             <motion.ul 
               className="mt-3 text-sm text-zinc-700 space-y-3"
               initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
+              animate="show"
               variants={{
                 hidden: { opacity: 0 },
                 show: {
@@ -270,8 +266,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
         <motion.aside 
           className="space-y-4 h-full flex flex-col"
           initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-1 flex flex-col">
@@ -279,8 +274,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
             <motion.div 
               className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 items-center flex-1 hide-scrollbar overflow-auto"
               initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
+              animate="show"
               variants={{
                 hidden: { opacity: 0 },
                 show: {
