@@ -24,6 +24,7 @@ import {
   AlertCircle, 
   BarChart 
 } from "lucide-react";
+import Image from "next/image";
 
 // Define precise types instead of `any`
 type KPI = {
@@ -72,8 +73,18 @@ type Program = {
   citation?: string;
 };
 
+type PartnerFunders = {
+  name: string;
+  role?: string;
+  logo: string;
+};
+
+type PartnerFundersList = PartnerFunders[];
+
 type DashboardData = {
   program: Program;
+  funders: PartnerFundersList;
+  technical_partners: PartnerFundersList;
   kpis?: KPI[];
   timeline?: TimelineItem[];
   services?: Service[];
@@ -171,12 +182,12 @@ export default function DashboardContainer(): React.ReactElement {
     if (normLabel.includes("programme agreement")) {
       if (k.amount_eur_millions !== undefined) {
         const num = Number(k.amount_eur_millions);
-        programmeAgreementStat = {
-          title: "Programme agreement",
-          // show only the number as requested (no citation), e.g. €30M
-          value: `€${num}${Number.isInteger(num) ? "M" : "M"}`,
-          icon: <Landmark size={20} />,
-        };
+        // programmeAgreementStat = {
+        //   title: "Programme agreement",
+        //   // show only the number as requested (no citation), e.g. €30M
+        //   value: `€${num}${Number.isInteger(num) ? "M" : "M"}`,
+        //   icon: <Landmark size={20} />,
+        // };
       } else {
         programmeAgreementStat = { title: "Programme agreement", value: "Signed Dec 2016", icon: <Landmark size={20} /> };
       }
@@ -195,8 +206,8 @@ export default function DashboardContainer(): React.ReactElement {
 
   // Add Users and Active as impact cards (moved from stats)
   // Inserted at the front so they appear at the top of the impact grid
-  impact.unshift({ label: "Active", number: "89%", icon: <Zap size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
-  impact.unshift({ label: "Users", number: "12,450", icon: <Users size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
+  // impact.unshift({ label: "Active", number: "89%", icon: <Zap size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+  // impact.unshift({ label: "Users", number: "12,450", icon: <Users size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
 
   // Reorder impact so specific items appear at the bottom (keep rest at top)
   // programme agreement has been removed from impact and will be shown as a stat
@@ -224,8 +235,8 @@ export default function DashboardContainer(): React.ReactElement {
 
   const stats: Stat[] = [
     // Users and Active have been moved to impact cards above
-    { title: "Revenue", value: "$32,400", delta: "+2.1%", deltaType: "positive", icon: <DollarSign size={20} /> },
-    { title: "Errors", value: 12, delta: "-1", deltaType: "negative", icon: <AlertCircle size={20} /> },
+    // { title: "Revenue", value: "$32,400", delta: "+2.1%", deltaType: "positive", icon: <DollarSign size={20} /> },
+    // { title: "Errors", value: 12, delta: "-1", deltaType: "negative", icon: <AlertCircle size={20} /> },
   ];
 
   // Append programme agreement stat at the bottom if we extracted it
@@ -294,17 +305,60 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
 
         <div className="space-y-8">
-          <ImplementersList
-            coordinator={String(data.implementers_governance?.coordinator ?? "")}
-            implementers={data.implementers_governance?.implementers_phase_2 ?? []}
-            monitoringPartners={data.implementers_governance?.monitoring_partners ?? []}
-          />
+          {JSON.stringify(data.technical_partners)}
+          {data.funders && data.funders.length > 0 && (
+              <div className="bg-white rounded-xl border border-zinc-200 p-6">
+                <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Funded By</h3>
+                <div className="flex flex-col gap-4">
+                  {data.funders.map((funder, idx) => (
+                      <div key={idx} className="flex items-center gap-3" title={funder.name}>
+                        <div className="relative h-12 w-12 flex-shrink-0">
+                          <Image
+                              src={funder.logo}
+                              alt={`${funder.name} logo`}
+                              fill
+                              className="object-contain"
+                              unoptimized
+                          />
+                        </div>
+                        <span className="text-sm font-medium text-zinc-900">{funder.name}</span>
+                      </div>
+                  ))}
+                </div>
+              </div>
+          )}
+          {data.technical_partners && data.technical_partners.length > 0 && (
+              <div className="bg-white rounded-xl border border-zinc-200 p-6">
+                <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Technical Partners</h3>
+                <div className="flex flex-col gap-4">
+                  {data.technical_partners.map((partner, idx) => (
+                      <div key={idx} className="flex items-center gap-3" title={partner.name}>
+                        <div className="relative h-12 w-12 flex-shrink-0">
+                          <Image
+                              src={partner.logo}
+                              alt={`${partner.name} logo`}
+                              fill
+                              className="object-contain"
+                              unoptimized
+                          />
+                        </div>
+                        <span className="text-sm font-medium text-zinc-900">{partner.name}</span>
+                      </div>
+                  ))}
+                </div>
+              </div>
+          )}
+          {/*<ImplementersList*/}
+          {/*  coordinator={String(data.implementers_governance?.coordinator ?? "")}*/}
+          {/*  implementers={data.implementers_governance?.implementers_phase_2 ?? []}*/}
+          {/*  monitoringPartners={data.implementers_governance?.monitoring_partners ?? []}*/}
+          {/*/>*/}
 
-          <PhaseSummary
-            focus={String(data.phase2?.focus ?? "")}
-            pillars={data.phase2?.pillars ?? []}
-            crossCutting={data.phase2?.cross_cutting ?? []}
-          />
+          {/*<PhaseSummary*/}
+          {/*  focus={String(data.phase2?.focus ?? "")}*/}
+          {/*  pillars={data.phase2?.pillars ?? []}*/}
+          {/*  crossCutting={data.phase2?.cross_cutting ?? []}*/}
+          {/*/>*/}
         </div>
       </div>
 

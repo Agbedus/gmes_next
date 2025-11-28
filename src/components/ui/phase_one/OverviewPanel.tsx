@@ -64,7 +64,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
         <div className="md:col-span-2">
           <div className="rounded-xl border border-zinc-200 bg-white p-4">
             <h3 className="text-sm font-semibold text-zinc-900">{name}</h3>
-            <p className="mt-2 text-sm text-zinc-700">{description}</p>
+            {/*<p className="mt-2 text-sm text-zinc-700">{description}</p>*/}
 
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <OverviewCard title="Timeline" value={timeline} icon="calendar_month" />

@@ -85,7 +85,7 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
   const tabs = [
     { name: 'General', icon: 'dashboard' },
     { name: 'Services', icon: 'layers' },
-    { name: 'Infrastructure', icon: 'dns' },
+    // { name: 'Infrastructure', icon: 'dns' }, // temporarily commentated for later validation of content
     { name: 'Capacity Building', icon: 'school' },
     { name: 'Engagement & Outreach', icon: 'campaign' },
   ];

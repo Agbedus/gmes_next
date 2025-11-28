@@ -12,6 +12,8 @@ type PolicyItem = {
 };
 
 type UsefulLinksData = {
+    PMU:PolicyItem[];
+    use_cases:PolicyItem[];
     continental_policies: PolicyItem[];
     global_agendas: PolicyItem[];
 };
@@ -19,13 +21,15 @@ type UsefulLinksData = {
 // Cast the imported JSON to the type
 const data = usefulLinksData as UsefulLinksData;
 
-type Tab = 'policies' | 'agendas' | 'consortia';
+type Tab = 'policies' | 'agendas' | 'consortia' | 'pmu' | 'useCases' ;
 
 export default function UsefulLinksPage() {
     const [activeTab, setActiveTab] = useState<Tab>('policies');
 
     // Theme color map for tabs (policy/agendas/consortia)
     const tabColors: Record<Tab, string> = {
+        pmu: '#a3bd44',
+        useCases: '#9948d2',
         policies: '#009639', // green
         agendas: '#c9b33a',  // gold
         consortia: '#952038' // deep red
@@ -50,6 +54,24 @@ export default function UsefulLinksPage() {
             <div className="flex justify-center mb-12">
                 <div className="bg-zinc-100 p-1.5 rounded-xl inline-flex shadow-inner">
                     <button
+                        onClick={() => setActiveTab('pmu')}
+                        style={getButtonStyle('pmu')}
+                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'pmu' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
+                        Program Mgt. Unit
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('consortia')}
+                        style={getButtonStyle('consortia')}
+                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'consortia' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
+                        Consortia Resources
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('useCases')}
+                        style={getButtonStyle('useCases')}
+                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'useCases' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
+                        Use Cases
+                    </button>
+                    <button
                         onClick={() => setActiveTab('policies')}
                         style={getButtonStyle('policies')}
                         className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'policies' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
@@ -63,12 +85,6 @@ export default function UsefulLinksPage() {
                         Global Agendas
                     </button>
 
-                    <button
-                        onClick={() => setActiveTab('consortia')}
-                        style={getButtonStyle('consortia')}
-                        className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'consortia' ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}>
-                        Consortia Resources
-                    </button>
                 </div>
             </div>
 
@@ -82,6 +98,37 @@ export default function UsefulLinksPage() {
                                     key={item.id} 
                                     title={item.title} 
                                     links={item.links} 
+                                    colorTheme="green"
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {activeTab === 'pmu' && (
+                    <section>
+                        {JSON.stringify(data.PMU)}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {data.PMU.map((item) => (
+                                <LinkCard
+                                    key={item.id}
+                                    title={item.title}
+                                    links={item.links}
+                                    colorTheme="green"
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {activeTab === 'useCases' && (
+                    <section>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {data.use_cases.map((item) => (
+                                <LinkCard
+                                    key={item.id}
+                                    title={item.title}
+                                    links={item.links}
                                     colorTheme="green"
                                 />
                             ))}

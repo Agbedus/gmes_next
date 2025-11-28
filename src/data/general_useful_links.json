@@ -1,4 +1,61 @@
-{
+{"PMU": [
+  {
+    "id": 1,
+    "title": "THE GMES BLOG",
+    "links": [
+      {
+        "type": "website",
+        "description": "BlogSite",
+        "url": "https://gmes4africa.blogspot.com/"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "GMES & AFRICA LINKEDIN",
+    "links": [
+      {
+        "type": "website",
+        "description": "LinkedIn",
+        "url": "https://www.linkedin.com/in/gmes-and-africa/"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "GMES & AFRICA FACEBOOK",
+    "links": [
+      {
+        "type": "website",
+        "description": "Facebook",
+        "url": "https://www.facebook.com/gmesafrica/"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "GMES & AFRICA X",
+    "links": [
+      {
+        "type": "website",
+        "description": "X (Twitter)",
+        "url": "https://x.com/GMESAfrica"
+      }
+    ]
+  }
+],
+  "use_cases": [
+  {
+    "id": 1,
+    "title": "KORA INTERACTIVE PORTAL",
+    "links": [
+      {
+        "type": "website",
+        "description": "Use Cases Platform",
+        "url": "https://korinteractive.com/SITES/GMES-AFRICA/"
+      }
+    ]
+  }],
   "continental_policies": [
     {
       "id": 1,
