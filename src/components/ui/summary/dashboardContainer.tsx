@@ -21,7 +21,16 @@ import {
   Zap, 
   Users, 
   DollarSign, 
-  AlertCircle, 
+  AlertCircle,
+    Award,
+    Network,
+    Share2,
+    Flag,
+    Antenna,
+    Building2,
+    Satellite,
+  LayoutGrid,
+  Sparkles,
   BarChart 
 } from "lucide-react";
 import Image from "next/image";
@@ -30,6 +39,21 @@ import Image from "next/image";
 type KPI = {
   label: string;
   value?: string;
+  eo_applications?: number | string;
+  users?: number | string;
+
+  geoportals?: number | string;
+  implementing_institutions?: number | string;
+  data_enabled_institutions?: number | string;
+  // countries?: number | string;
+  estations_installed?: number | string;
+  trained_operators?: number | string;
+  trainings?: number | string;
+  trainees_in_eo?: number | string;
+  studies_grant?: number | string;
+  continental_network?: number | string;
+  dissemination_platform?: number | string;
+
   amount_eur_millions?: number | string;
   institutions?: number | string;
   countries?: number | string;
@@ -197,11 +221,27 @@ export default function DashboardContainer(): React.ReactElement {
       const num = Number(k.amount_eur_millions);
       impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
     }
-    if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
-    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Globe size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
-    if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
-    if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
-    if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
+    // if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
+
+
+    if (k.eo_applications !== undefined) impact.push({ label: "EO Applications", number: `${k.eo_applications}`, icon: <Sparkles size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Users size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.geoportals !== undefined) impact.push({ label: "Geoportals", number: `${k.geoportals}`, icon: <LayoutGrid size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.implementing_institutions !== undefined) impact.push({ label: "Implementing", number: `${k.implementing_institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.data_enabled_institutions !== undefined) impact.push({ label: "Data Enabled Institutions", number: `${k.data_enabled_institutions}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.estations_installed !== undefined) impact.push({ label: "eStations Installed", number: `${k.estations_installed}`, icon: <Antenna size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.trained_operators !== undefined) impact.push({ label: "Trained Operators", number: `${k.trained_operators}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.trainings !== undefined) impact.push({ label: "Trainings", number: `${k.trainings}`, icon: <Building2 size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.trainees_in_eo !== undefined) impact.push({ label: "Trainees In EO", number: `${k.trainees_in_eo}`, icon: <Satellite size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.studies_grant !== undefined) impact.push({ label: "Study Grants", number: `${k.studies_grant}`, icon: <Award size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.continental_network !== undefined) impact.push({ label: "Continental Networks", number: `${k.continental_network}`, icon: <Network size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    if (k.dissemination_platform !== undefined) impact.push({ label: "Dissemination Platform", number: `${k.dissemination_platform}`, icon: <Share2 size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    // if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Globe size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
+
+    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Flag size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    // if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    // if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
+    // if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
   });
 
   // Add Users and Active as impact cards (moved from stats)
@@ -305,7 +345,7 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
 
         <div className="space-y-8">
-          {JSON.stringify(data.technical_partners)}
+          {/*{JSON.stringify(data.technical_partners)}*/}
           {data.funders && data.funders.length > 0 && (
               <div className="bg-white rounded-xl border border-zinc-200 p-6">
                 <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Funded By</h3>

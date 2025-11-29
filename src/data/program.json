@@ -48,10 +48,46 @@
       "amount_eur_millions": 30
     },
     {
+      "eo_applications": 31
+    },
+    {
+      "users": 22042
+    },
+    {
+      "geoportals": 10
+    },
+    {
+      "implementing_institutions": ">147"
+    },
+    {
+      "data_enabled_institutions": 713
+    },
+    {
+      "estations_installed": 12
+    },
+    {
+      "trained_operators": 48
+    },
+    {
+      "trainings": 206
+    },
+    {
+      "trainees_in_eo": "> 11815"
+    },
+    {
+      "studies_grant": 145
+    },
+    {
+      "continental_network": 4
+    },
+    {
+      "dissemination_platform": "> 61"
+    },
+    {
       "label": "Total Grants",
       "amount_eur_millions": 56.5,
       "institutions": 122,
-      "countries": 45
+      "countries": 51
     },
     {
       "label": "EO infrastructure",
