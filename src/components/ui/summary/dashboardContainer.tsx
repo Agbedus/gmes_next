@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ProgramHeader from "../programHeader";
 import DashboardToolbar from "../dashboardToolbar";
 import ImpactCard from "../impactCard";
@@ -12,7 +12,8 @@ import ImplementersList from "../implementersList";
 import PhaseSummary from "./phaseSummary";
 import MapModal from "../MapModal";
 import SummaryChartsModal from "../../charts/summaryChartsModal";
-import { 
+import Tabs from "../Tabs";
+import {
   Landmark, 
   School, 
   Globe, 
@@ -22,8 +23,17 @@ import {
   Zap, 
   Users, 
   DollarSign, 
-  AlertCircle, 
-  BarChart 
+  AlertCircle,
+    Award,
+    Network,
+    Share2,
+    Flag,
+    Antenna,
+    Building2,
+    Satellite,
+  LayoutGrid,
+  Sparkles,
+  BarChart
 } from "lucide-react";
 import Image from "next/image";
 
@@ -31,6 +41,21 @@ import Image from "next/image";
 type KPI = {
   label: string;
   value?: string;
+  eo_applications?: number | string;
+  users?: number | string;
+
+  geoportals?: number | string;
+  implementing_institutions?: number | string;
+  data_enabled_institutions?: number | string;
+  // countries?: number | string;
+  estations_installed?: number | string;
+  trained_operators?: number | string;
+  trainings?: number | string;
+  trainees_in_eo?: number | string;
+  studies_grant?: number | string;
+  continental_network?: number | string;
+  dissemination_platform?: number | string;
+
   amount_eur_millions?: number | string;
   institutions?: number | string;
   countries?: number | string;
@@ -113,6 +138,7 @@ export default function DashboardContainer(): React.ReactElement {
   const [query, setQuery] = React.useState("");
   const [serviceQuery, setServiceQuery] = React.useState("");
   const [loading, setLoading] = React.useState(true);
+  const [activeTab, setActiveTab] = React.useState("overview");
 
   // sample points to pass into the map modal
   const samplePoints = [
@@ -173,7 +199,7 @@ export default function DashboardContainer(): React.ReactElement {
   }
 
   // Build impact array from data.kpis
-  const impact: { label: string; number: string; icon?: React.ReactNode; colorClass?: string; style?: React.CSSProperties }[] = [];
+  const impact: { label: string; number: string; icon?: React.ReactNode; colorClass?: string; style?: React.CSSProperties; category: string }[] = [];
   // we'll extract programme agreement into a stat and not show it in impact
   let programmeAgreementStat: Stat | null = null;
   (data.kpis ?? []).forEach((k: KPI) => {
@@ -196,13 +222,29 @@ export default function DashboardContainer(): React.ReactElement {
     }
     if (k.amount_eur_millions !== undefined) {
       const num = Number(k.amount_eur_millions);
-      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
     }
-    if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
-    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Globe size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
-    if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
-    if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
-    if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
+    // if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
+
+
+    if (k.eo_applications !== undefined) impact.push({ label: "EO Applications", number: `${k.eo_applications}`, icon: <Sparkles size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'implementation' });
+    if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Users size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'implementation' });
+    if (k.geoportals !== undefined) impact.push({ label: "Geoportals", number: `${k.geoportals}`, icon: <LayoutGrid size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'infrastructure' });
+    if (k.implementing_institutions !== undefined) impact.push({ label: "Implementing", number: `${k.implementing_institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'implementation' });
+    if (k.data_enabled_institutions !== undefined) impact.push({ label: "Data Enabled Institutions", number: `${k.data_enabled_institutions}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'infrastructure' });
+    if (k.estations_installed !== undefined) impact.push({ label: "eStations Installed", number: `${k.estations_installed}`, icon: <Antenna size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'infrastructure' });
+    if (k.trained_operators !== undefined) impact.push({ label: "Trained Operators", number: `${k.trained_operators}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
+    if (k.trainings !== undefined) impact.push({ label: "Trainings", number: `${k.trainings}`, icon: <Building2 size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
+    if (k.trainees_in_eo !== undefined) impact.push({ label: "Trainees In EO", number: `${k.trainees_in_eo}`, icon: <Satellite size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
+    if (k.studies_grant !== undefined) impact.push({ label: "Study Grants", number: `${k.studies_grant}`, icon: <Award size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
+    if (k.continental_network !== undefined) impact.push({ label: "Continental Networks", number: `${k.continental_network}`, icon: <Network size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
+    if (k.dissemination_platform !== undefined) impact.push({ label: "Dissemination Platform", number: `${k.dissemination_platform}`, icon: <Share2 size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
+    // if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Globe size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
+
+    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Flag size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
+    // if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
+    // if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
+    // if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
   });
 
   // Add Users and Active as impact cards (moved from stats)
@@ -219,8 +261,17 @@ export default function DashboardContainer(): React.ReactElement {
   const bottomImpact = impact.filter(i => bottomKeywords.some(kw => normalize(i.label ?? "").includes(normalize(kw))));
   const reorderedImpact = [...topImpact, ...bottomImpact];
 
+  const tabs = [
+    { id: 'overview', label: 'Program Overview' },
+    { id: 'infrastructure', label: 'Infrastructure' },
+    { id: 'capacity', label: 'Capacity Building' },
+    { id: 'implementation', label: 'Implementation' },
+  ];
+
+  const filteredImpact = reorderedImpact.filter(i => i.category === activeTab);
+
   // Ensure even grid: pad to multiple of 4 using placeholder ImpactCards
-  const remainder = reorderedImpact.length % 4;
+  const remainder = filteredImpact.length % 4;
   const placeholders = remainder === 0 ? 0 : 4 - remainder;
 
   // Simple service filtering
@@ -261,33 +312,58 @@ export default function DashboardContainer(): React.ReactElement {
       </div>
 
       <section className="mt-10">
-        <h2 className="text-lg font-bold text-zinc-900 tracking-tight mb-6 flex items-center gap-2">
-            <span className="material-symbols-outlined" style={{color: '#038a36'}}>insights</span>
-            Impact Overview
-        </h2>
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.08
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-bold text-zinc-900 tracking-tight flex items-center gap-2">
+              <span className="material-symbols-outlined" style={{color: '#038a36'}}>insights</span>
+              Impact Overview
+          </h2>
+        </div>
+        
+        <div className="mb-6">
+          <Tabs 
+            tabs={tabs} 
+            activeId={activeTab} 
+            onChange={setActiveTab} 
+            className="max-w-3xl"
+            fullWidth
+          />
+        </div>
+
+
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={activeTab}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            variants={{
+              hidden: { opacity: 0 },
+              show: { 
+                opacity: 1,
+                transition: { 
+                  staggerChildren: 0.05 
+                } 
               }
-            }
-          }}
-        >
-          {reorderedImpact.map((i) => (
-            <ImpactCard key={i.label} label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} style={i.style} />
-          ))}
-          {Array.from({ length: placeholders }).map((_, idx) => (
-            // placeholders to keep grid aligned
-            <ImpactCard key={`placeholder-${idx}`} number={""} label={undefined} placeholder />
-          ))}
-        </motion.div>
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {filteredImpact.map((i) => (
+              <motion.div
+                key={i.label}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                }}
+              >
+                <ImpactCard label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} style={i.style} />
+              </motion.div>
+            ))}
+            {Array.from({ length: placeholders }).map((_, idx) => (
+              // placeholders to keep grid aligned
+              <ImpactCard key={`placeholder-${idx}`} number={""} label={undefined} placeholder />
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </section>
 
       <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -320,15 +396,9 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
 
         <div className="space-y-8">
-          {/*JSON.stringify(data.technical_partners)}*/}
+          {/*{JSON.stringify(data.technical_partners)}*/}
           {data.funders && data.funders.length > 0 && (
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-xl border border-zinc-200 p-6"
-              >
+              <div className="bg-white rounded-xl border border-zinc-200 p-6">
                 <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Funded By</h3>
                 <div className="flex flex-col gap-4">
                   {data.funders.map((funder, idx) => (
@@ -346,16 +416,10 @@ export default function DashboardContainer(): React.ReactElement {
                       </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
           )}
           {data.technical_partners && data.technical_partners.length > 0 && (
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-white rounded-xl border border-zinc-200 p-6"
-              >
+              <div className="bg-white rounded-xl border border-zinc-200 p-6">
                 <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Technical Partners</h3>
                 <div className="flex flex-col gap-4">
                   {data.technical_partners.map((partner, idx) => (
@@ -373,7 +437,7 @@ export default function DashboardContainer(): React.ReactElement {
                       </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
           )}
           {/*<ImplementersList*/}
           {/*  coordinator={String(data.implementers_governance?.coordinator ?? "")}*/}
@@ -389,34 +453,13 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
       </div>
 
-      <motion.div 
-        className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={{
-          hidden: { opacity: 0 },
-          show: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.1
-            }
-          }
-        }}
-      >
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {stats.map((s) => (
           <StatCard key={s.title} title={s.title} value={s.value} delta={s.delta} deltaType={s.deltaType} icon={s.icon} />
         ))}
-      </motion.div>
+      </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg z-50" 
-        style={{boxShadow: '0 20px 25px -5px rgba(3, 138, 54, 0.1), 0 8px 10px -6px rgba(3, 138, 54, 0.1)'}}
-      >
+      <div className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg z-50" style={{boxShadow: '0 20px 25px -5px rgba(3, 138, 54, 0.1), 0 8px 10px -6px rgba(3, 138, 54, 0.1)'}}>
         <button
             className="w-12 h-12 rounded-[18px] flex justify-center items-center hover:scale-105 transition-all shadow-sm"
             style={{ backgroundColor: '#038a3610', color: '#038a36' }}
@@ -441,7 +484,7 @@ export default function DashboardContainer(): React.ReactElement {
           <BarChart size={24} />
         </button>
 
-      </motion.div>
+      </div>
       <SummaryChartsModal open={chartsOpen} onCloseAction={() => setChartsOpen(false)} />
 
       <MapModal
