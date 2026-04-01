@@ -6,6 +6,7 @@ import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import * as am5radar from "@amcharts/amcharts5/radar";
 import { serviceDistribution, userActivity, regionalPerformance } from '@/data/dummy-chart-data';
+import IconlyIcon from "../ui/IconlyIcon";
 
 // --- Types & Palette ---
 type BaseChartProps = {
@@ -116,7 +117,7 @@ const BarChart: React.FC<BarChartProps> = ({ chartId, data, categoryField, value
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: "100%", height: "320px" }}></div>
     </div>
   );
@@ -161,7 +162,7 @@ const AreaChart: React.FC<LineChartProps> = ({ chartId, data, dateField, valueFi
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: "100%", height: "320px" }}></div>
     </div>
   );
@@ -202,7 +203,7 @@ const LineChart: React.FC<LineChartProps> = ({ chartId, data, dateField, valueFi
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: "100%", height: "260px" }}></div>
     </div>
   );
@@ -263,7 +264,7 @@ const PieChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: "100%", height: "320px" }}></div>
     </div>
   );
@@ -314,7 +315,7 @@ const DonutChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: 
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: "100%", height: "320px" }}></div>
     </div>
   );
@@ -353,7 +354,7 @@ const RadarChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: 
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: "100%", height: "320px" }}></div>
     </div>
   );
@@ -391,7 +392,7 @@ const GanttChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: 
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: "100%", height: "320px" }}></div>
     </div>
   );
@@ -434,7 +435,7 @@ const SolidGauge: React.FC<BaseChartProps & { value: number; max?: number }> = (
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: '100%', height: '320px' }}></div>
     </div>
   );
@@ -471,7 +472,7 @@ const StackedBarChart: React.FC<BaseChartProps & { data: ChartData[]; categoryFi
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: '100%', height: '320px' }}></div>
     </div>
   );
@@ -519,7 +520,7 @@ const MultiSeriesAreaChart: React.FC<BaseChartProps & { data: ChartData[]; dateF
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title"><span className="material-symbols-outlined">{icon}</span> {title}</h3>
+      <h3 className="chart-title"><IconlyIcon name={icon ?? "Document"} size={18} color="currentColor" /> {title}</h3>
       <div id={chartId} style={{ width: '100%', height: '320px' }}></div>
     </div>
   );
@@ -565,7 +566,7 @@ export default function SummaryChartsModal({ open, onCloseAction }: Props) {
 
         <header className="flex items-center justify-between p-4 border-b border-zinc-200">
           <h2 className="text-lg font-semibold text-zinc-800 flex items-center gap-2">
-            <span className="material-symbols-outlined text-blue-500">monitoring</span>
+            <IconlyIcon name="monitoring" size={20} color="#3b82f6" />
             Programme Analytics
           </h2>
           <button className="rounded-lg bg-zinc-100 px-3 py-2 text-sm text-zinc-800 hover:bg-zinc-200" onClick={onCloseAction} aria-label="Close charts">
@@ -645,20 +646,20 @@ export default function SummaryChartsModal({ open, onCloseAction }: Props) {
         <footer className="p-4 bg-white/80 backdrop-blur-md border-t border-zinc-200">
           <div className="flex items-center justify-center gap-4">
             <button className="filter-button active">
-              <span className="material-symbols-outlined">today</span>
+              <IconlyIcon name="today" size={16} color="#475569" />
               Today
             </button>
             <button className="filter-button">
-              <span className="material-symbols-outlined">calendar_month</span>
+              <IconlyIcon name="calendar_month" size={16} color="#475569" />
               Last 7 Days
             </button>
             <button className="filter-button">
-              <span className="material-symbols-outlined">date_range</span>
+              <IconlyIcon name="date_range" size={16} color="#475569" />
               Last 30 Days
             </button>
             <div className="w-px h-6 bg-zinc-300"></div>
             <button className="filter-button">
-              <span className="material-symbols-outlined">public</span>
+              <IconlyIcon name="public" size={16} color="#475569" />
               All Regions
             </button>
           </div>
@@ -686,7 +687,7 @@ export default function SummaryChartsModal({ open, onCloseAction }: Props) {
           gap: 0.5rem;
           margin-bottom: 1rem;
         }
-        .chart-title .material-symbols-outlined {
+        .chart-title [aria-hidden="true"] {
           font-size: 1.25rem;
           color: #64748b;
         }
@@ -711,7 +712,7 @@ export default function SummaryChartsModal({ open, onCloseAction }: Props) {
           color: #0284c7;
           border-color: #bae6fd;
         }
-        .filter-button .material-symbols-outlined {
+        .filter-button [aria-hidden="true"] {
           font-size: 1.125rem;
         }
       `}</style>

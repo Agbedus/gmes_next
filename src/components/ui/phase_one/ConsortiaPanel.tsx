@@ -16,7 +16,7 @@ export default function ConsortiaPanel({ consortia }: { consortia: any[] }) {
     <div className="space-y-8">
       {/* Funders Section */}
       {funders && funders.length > 0 && (
-        <div className="bg-white rounded-xl border border-zinc-200 p-6">
+        <div className="bg-white rounded-[24px] border border-zinc-200 p-6">
           <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Funded By</h3>
           <div className="flex flex-wrap items-center gap-8">
             {funders.map((funder, idx) => (

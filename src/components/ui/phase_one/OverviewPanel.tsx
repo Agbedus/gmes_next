@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from 'next/image';
 import OverviewCard from '../phase_two/OverviewCard';
 import DataTable from '../phase_two/DataTable';
+import IconlyIcon from "../IconlyIcon";
 
 type Funder = { name: string; role?: string; logo?: string };
 type Pillar = { id?: string; name?: string };
@@ -68,7 +69,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           transition={{ duration: 0.5 }}
           className="md:col-span-2"
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-4">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-4">
             <h3 className="text-sm font-semibold text-zinc-900">{name}</h3>
             {/*<p className="mt-2 text-sm text-zinc-700">{description}</p>*/}
 
@@ -88,7 +89,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="rounded-xl border border-zinc-200 bg-white p-3"
+            className="rounded-[24px] border border-zinc-200 bg-white p-3"
           >
             <h4 className="text-sm font-semibold text-zinc-900">Funders</h4>
             <div className="mt-3 space-y-3">
@@ -119,13 +120,13 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="rounded-xl border border-zinc-200 bg-white p-3"
+            className="rounded-[24px] border border-zinc-200 bg-white p-3"
           >
             <h4 className="text-xs font-medium text-zinc-800">Thematic focus</h4>
             <div className="mt-2 text-sm text-zinc-700">
               {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
                 <div key={i} className="py-1 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-zinc-500 text-sm" aria-hidden>{iconForTheme(t)}</span>
+                  <IconlyIcon name={iconForTheme(t)} size={16} color="#6b7280" />
                   <div className="text-sm">{t}</div>
                 </div>
               )) : String(thematic ?? '\u2014')}
@@ -142,7 +143,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           transition={{ duration: 0.5, delay: 0.4 }}
           className="h-full"
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Strategic pillars</h3>
             <div className="mt-2 flex-1">
               <DataTable columns={pillarColumns} rows={pillarRows} compact />
@@ -156,16 +157,16 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           transition={{ duration: 0.5, delay: 0.5 }}
           className="h-full"
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Alignment</h3>
             <div className="mt-2 flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto">
-              <div className="rounded-xl border border-zinc-200 bg-white p-3">
+              <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
                 <h4 className="text-xs font-medium text-zinc-800">Continental policies</h4>
                 <div className="mt-2 text-sm text-zinc-700 space-y-2">
                   {continentalPoliciesArr.length > 0 ? (
                     continentalPoliciesArr.map((c, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <span className="material-symbols-outlined text-teal-600 text-sm mt-0.5" aria-hidden>check_circle</span>
+                        <IconlyIcon name="check_circle" size={16} color="#0f766e" className="mt-0.5" />
                         <div className="text-sm text-zinc-700">{c}</div>
                       </div>
                     ))
@@ -175,7 +176,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 </div>
               </div>
 
-              <div className="rounded-xl border border-zinc-200 bg-white p-3">
+              <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
                 <h4 className="text-xs font-medium text-zinc-800">Global agendas</h4>
                 <div className="mt-2 text-sm text-zinc-700">
                   <div>
@@ -205,4 +206,3 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
      </section>
    );
  }
-

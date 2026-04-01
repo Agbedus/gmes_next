@@ -98,7 +98,7 @@ export default function ImpactReportsPanel() {
       <div className="mt-4">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {REPORTS.map((r) => (
-            <li key={r.id} className="bg-white border h-[480px] border-slate-200 rounded-lg p-4 flex flex-col justify-between relative">
+            <li key={r.id} className="bg-white border h-[480px] border-slate-200 rounded-[24px] p-4 flex flex-col justify-between relative">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 flex items-center justify-center rounded-md bg-zinc-50 border border-zinc-100 overflow-hidden">
                   {r.logo ? (

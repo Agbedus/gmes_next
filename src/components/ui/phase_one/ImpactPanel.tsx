@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import IconlyIcon from "../IconlyIcon";
 import PhaseTwoImpactCard from '../phase_two/PhaseTwoImpactCard';
 
 type InfraMetrics = {
@@ -67,11 +68,11 @@ const TabButton = ({ title, active, onClick, icon }: { title: string; active: bo
     onClick={onClick}
     className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
       active
-        ? "bg-zinc-100 text-zinc-900 border border-zinc-200"
-        : "text-zinc-600 border border-transparent hover:border-zinc-200 hover:bg-white"
+        ? "bg-[#1A5632] text-white border border-[#1A5632]"
+        : "text-slate-600 border border-transparent hover:border-slate-200 hover:bg-white"
     }`}
   >
-    {icon ? <span className="material-symbols-outlined text-[18px]">{icon}</span> : null}
+    {icon ? <IconlyIcon name={icon} size={18} color="currentColor" /> : null}
     <span className="ml-1">{title}</span>
   </button>
 );
@@ -192,14 +193,14 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
       case 'Cross Cutting':
         return (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-zinc-200 bg-white p-3">
+            <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
               <h4 className="text-xs font-medium text-zinc-800">Participation</h4>
               <div className="mt-2 text-sm text-zinc-700">
                 <div><strong>Female participation:</strong> {(cross?.femaleParticipation ?? '—') as React.ReactNode}</div>
                 <div className="mt-1"><strong>GAIA clubs (universities):</strong> {(cross?.youthInnovation_GAIAClubs?.universities ?? '—') as React.ReactNode}</div>
               </div>
             </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-3">
+            <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
               <h4 className="text-xs font-medium text-zinc-800">Youth</h4>
               <div className="mt-2 text-sm text-zinc-700">
                 <div><strong>Countries:</strong> {(cross?.youthInnovation_GAIAClubs?.countries ?? '—') as React.ReactNode}</div>
@@ -215,7 +216,7 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
 
   return (
     <section className="mt-6">
-      <h2 className="text-lg font-semibold text-zinc-900">Key Impact Metrics</h2>
+      <h2 className="text-lg font-semibold text-slate-900">Key Impact Metrics</h2>
 
       <div className="mt-4">
         <nav className="flex items-center justify-between flex-wrap gap-2" aria-label="Tabs">

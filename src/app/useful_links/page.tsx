@@ -45,16 +45,16 @@ export default function UsefulLinksPage() {
     };
 
     return (
-        <div className="max-w-7xl mx-auto space-y-8 py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl space-y-8 py-12 px-0 sm:px-0 lg:px-0">
             <header className="mb-12 text-center">
-                <h1 className="text-3xl font-bold text-zinc-900">Useful Links</h1>
-                <p className="text-zinc-500 mt-3 max-w-2xl mx-auto text-lg">Access key documents, strategies, and resources related to GMES & Africa.</p>
+                <h1 className="text-3xl font-bold text-slate-900">Useful Links</h1>
+                <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-500">Access key documents, strategies, and resources related to GMES & Africa.</p>
             </header>
 
             {/* Main Tabs */}
             <div className="flex justify-center mb-12">
                 <motion.div 
-                    className="bg-zinc-100 p-1.5 rounded-xl inline-flex shadow-inner"
+                    className="inline-flex rounded-xl border border-slate-200 bg-white p-1.5"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -64,7 +64,7 @@ export default function UsefulLinksPage() {
                             key={tab}
                             onClick={() => setActiveTab(tab as Tab)}
                             style={getButtonStyle(tab as Tab)}
-                            className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === tab ? '' : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'}`}
+                            className={`rounded-lg px-6 py-3 text-sm font-medium transition-colors duration-200 ${activeTab === tab ? '' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}`}
                         >
                             {tab === 'pmu' && 'Program Mgt. Unit'}
                             {tab === 'consortia' && 'Consortia Resources'}

@@ -1,33 +1,57 @@
 "use client";
 
 import React from "react";
+import IconlyIcon from "./IconlyIcon";
 
 export default function ProgramHeader({
   name,
   oneLiner,
+  onSearch,
 }: {
   name: string;
   oneLiner?: string;
-}) {
+  onSearch?: (q: string) => void;
+  }) {
+  const [q, setQ] = React.useState("");
+
   return (
-    <header className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 shadow-sm" style={{boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.1), 0 1px 2px -1px rgba(3, 138, 54, 0.1)'}}>
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-        <div className="max-w-3xl">
-          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">{name}</h1>
-          {oneLiner ? <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{oneLiner}</p> : null}
+    <header className="rounded-[28px] border border-[#153f25] bg-[linear-gradient(135deg,#1A5632,#153f25)] p-6 sm:p-7 text-white">
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/75">Overview</p>
+            <h1 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">{name}</h1>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            {onSearch ? (
+              <label className="relative block">
+                <input
+                  data-dashboard-search
+                  value={q}
+                  onChange={(e) => {
+                    setQ(e.target.value);
+                    onSearch?.(e.target.value);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") onSearch?.(q);
+                  }}
+                  placeholder="Search reports, metrics..."
+                  aria-label="Search reports and metrics"
+                  className="w-full rounded-xl border border-white/20 bg-white px-4 py-2.5 pl-10 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors sm:w-80"
+                />
+                <IconlyIcon name="search" size={20} color={q ? "#1A5632" : "#94a3b8"} className="absolute left-3 top-1/2 -translate-y-1/2" />
+              </label>
+            ) : null}
+
+            <button type="button" aria-label="Share program" className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm font-medium text-[#1A5632] transition-colors hover:bg-slate-50">
+              <IconlyIcon name="share" size={20} color="#1A5632" />
+              Share
+            </button>
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button type="button" aria-label="Share program" className="inline-flex items-center gap-2 rounded-xl border border-zinc-200/60 bg-white/50 px-4 py-2.5 text-sm font-medium text-zinc-700 hover:bg-white hover:border-zinc-300/60 transition-all shadow-sm">
-            <span className="material-symbols-outlined text-[20px]">share</span>
-            Share
-          </button>
-
-          <button type="button" aria-label="Export program" className="inline-flex items-center gap-2 rounded-xl text-white px-4 py-2.5 text-sm font-medium transition-all shadow-md" style={{ backgroundColor: '#038a36', boxShadow: '0 4px 6px -1px rgba(3, 138, 54, 0.2), 0 2px 4px -2px rgba(3, 138, 54, 0.2)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#027a2e'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#038a36'}>
-            <span className="material-symbols-outlined text-[20px]">download</span>
-            Export
-          </button>
-        </div>
+        {oneLiner ? <p className="w-full text-sm leading-relaxed text-white/80">{oneLiner}</p> : null}
       </div>
     </header>
   );

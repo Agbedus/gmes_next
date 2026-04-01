@@ -13,20 +13,20 @@ export function ConsortiaTabs({ colorTheme = 'purple' }: { colorTheme?: string }
     // Local mapping for button classes per theme - keep in sync with LinkCard theme names
     const buttonThemeClasses: Record<string, { active: string; inactive: string }> = {
         purple: {
-            active: 'bg-purple-600 text-white shadow-md pl-2',
-            inactive: 'bg-white text-purple-600 hover:bg-purple-50 hover:text-purple-700 border border-zinc-200 pl-2'
+            active: 'bg-[#1A5632] text-white pl-2',
+            inactive: 'bg-white text-slate-700 hover:bg-slate-50 hover:text-[#1A5632] border border-slate-200 pl-2'
         },
         burgundy: {
-            active: 'bg-rose-700 text-white shadow-md pl-2',
-            inactive: 'bg-white text-rose-700 hover:bg-rose-50 hover:text-rose-700 border border-zinc-200 pl-2'
+            active: 'bg-[#1A5632] text-white pl-2',
+            inactive: 'bg-white text-slate-700 hover:bg-slate-50 hover:text-[#1A5632] border border-slate-200 pl-2'
         },
         green: {
-            active: 'bg-green-600 text-white shadow-md pl-2',
-            inactive: 'bg-white text-green-600 hover:bg-green-50 hover:text-green-700 border border-zinc-200 pl-2'
+            active: 'bg-[#1A5632] text-white pl-2',
+            inactive: 'bg-white text-slate-700 hover:bg-slate-50 hover:text-[#1A5632] border border-slate-200 pl-2'
         },
         gold: {
-            active: 'bg-amber-600 text-white shadow-md pl-2',
-            inactive: 'bg-white text-amber-600 hover:bg-amber-50 hover:text-amber-700 border border-zinc-200 pl-2'
+            active: 'bg-[#1A5632] text-white pl-2',
+            inactive: 'bg-white text-slate-700 hover:bg-slate-50 hover:text-[#1A5632] border border-slate-200 pl-2'
         }
     };
 
@@ -108,7 +108,7 @@ export function ConsortiaTabs({ colorTheme = 'purple' }: { colorTheme?: string }
                         `}
                     >
                         {c.logo && (
-                            <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                            <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0 border border-slate-200">
                                 <img src={c.logo} alt="" className="w-full h-full object-contain p-0.5" />
                             </div>
                         )}

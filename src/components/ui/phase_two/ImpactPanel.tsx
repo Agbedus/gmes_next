@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import IconlyIcon from "../IconlyIcon";
 import PhaseTwoImpactCard from './PhaseTwoImpactCard';
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -28,7 +29,7 @@ const TabButton = ({ title, active, onClick, icon }: { title: string; active: bo
       }
     }}
   >
-    {icon ? <span className="material-symbols-outlined text-[18px]">{icon}</span> : null}
+    {icon ? <IconlyIcon name={icon} size={18} color="currentColor" /> : null}
     <span className="ml-1">{title}</span>
   </button>
 );

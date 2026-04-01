@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import IconlyIcon from "../IconlyIcon";
 
 type InternalNetwork = { name?: string; description?: string };
 type PrivateSector = { serviceDevelopment?: string; outreach?: string; examples?: string[] };
@@ -27,17 +28,14 @@ function colorForCategory(name?: string) {
 
 function MetricCard({ title, value, accent }: { title: string; value: string; accent?: string }) {
   return (
-    <div className="rounded-xl p-3 bg-white border border-zinc-100 shadow-sm">
+    <div className="rounded-[24px] p-3 bg-white border border-zinc-100 shadow-sm">
       <div className="flex items-center justify-between gap-3">
         <div>
           <div className="text-xs text-zinc-500">{title}</div>
           <div className="mt-1 text-lg font-semibold text-zinc-900">{value}</div>
         </div>
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${accent ?? 'bg-accent-50'}`}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <circle cx="12" cy="12" r="8" stroke="#0E766C" strokeWidth="1.5" opacity="0.12" />
-            <path d="M7 12h10" stroke="#0E766C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <IconlyIcon name="public" size={20} color="#0E766C" />
         </div>
       </div>
     </div>
@@ -150,7 +148,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-none">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-4 flex-none">
             <h3 className="text-sm font-semibold text-zinc-900">Internal networks</h3>
             <motion.ul 
               className="mt-3 text-sm text-zinc-700 space-y-3"
@@ -175,7 +173,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
             </motion.ul>
           </div>
 
-          <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-1 flex flex-col">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-4 flex-1 flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Strategic partnerships</h3>
             <div className="mt-3 flex flex-wrap gap-2">
               {strategic.length ? strategic.map((s, idx) => {
@@ -193,17 +191,17 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
               <div className="mt-4">
                 <h4 className="text-xs font-medium text-zinc-800">Private sector engagement</h4>
                 <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
+                  <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
                     <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-teal-600 text-sm">engineering</span>
+                      <IconlyIcon name="engineering" size={16} color="#0E766C" />
                       <div className="text-xs text-zinc-500">Service development</div>
                     </div>
                     <div className="mt-2 text-sm font-semibold text-zinc-900">{String(privateSector.serviceDevelopment ?? '—')}</div>
                   </div>
 
-                  <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
+                  <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
                     <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-teal-600 text-sm">campaign</span>
+                      <IconlyIcon name="campaign" size={16} color="#0E766C" />
                       <div className="text-xs text-zinc-500">Outreach</div>
                     </div>
                     <div className="mt-2 text-sm font-semibold text-zinc-900">{String(privateSector.outreach ?? '—')}</div>
@@ -218,9 +216,9 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
                 <h4 className="text-xs font-medium text-zinc-800">GAIA youth innovation clubs</h4>
                 <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {gaiaUniversities && (
-                    <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
+                    <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
                       <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-teal-600 text-sm">school</span>
+                        <IconlyIcon name="school" size={16} color="#0E766C" />
                         <div className="text-xs text-zinc-500">Universities</div>
                       </div>
                       <div className="mt-2 text-sm font-semibold text-zinc-900">
@@ -238,9 +236,9 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
                   )}
 
                   {gaiaCountries && (
-                    <div className="rounded-lg p-3 bg-accent-50 border border-zinc-100">
+                    <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
                       <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-teal-600 text-sm">public</span>
+                        <IconlyIcon name="public" size={16} color="#0E766C" />
                         <div className="text-xs text-zinc-500">Countries</div>
                       </div>
                       <div className="mt-2 text-sm font-semibold text-zinc-900">
@@ -269,7 +267,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-4 flex-1 flex flex-col">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-4 flex-1 flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Institution types</h3>
             <motion.div 
               className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 items-center flex-1 hide-scrollbar overflow-auto"

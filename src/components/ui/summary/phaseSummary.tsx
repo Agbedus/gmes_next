@@ -19,17 +19,20 @@ export default function PhaseSummary({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="rounded-xl border border-zinc-200 bg-white p-4"
+      className="rounded-[24px] border border-slate-200 bg-white p-4"
     >
-      <h3 className="text-sm font-semibold text-zinc-900">Phase 2 summary</h3>
-      {focus ? <p className="mt-2 text-sm text-zinc-700">{focus}</p> : null}
+      <div>
+        <h3 className="text-sm font-semibold text-slate-900">Phase 2 summary</h3>
+        <p className="mt-1 text-sm text-slate-600">Focus areas, pillars, and cross-cutting priorities.</p>
+      </div>
+      {focus ? <p className="mt-2 text-sm text-slate-600">{focus}</p> : null}
 
       {pillars && pillars.length ? (
         <div className="mt-3">
-          <div className="text-xs font-medium text-zinc-500">Pillars</div>
+          <div className="text-xs font-medium text-slate-500">Pillars</div>
           <ul className="mt-2 flex flex-wrap gap-2">
             {pillars.map((p) => (
-              <li key={p} className="rounded-full border border-zinc-200 px-3 py-1 text-sm text-zinc-700">
+              <li key={p} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700">
                 {p}
               </li>
             ))}
@@ -39,10 +42,10 @@ export default function PhaseSummary({
 
       {crossCutting && crossCutting.length ? (
         <div className="mt-3">
-          <div className="text-xs font-medium text-zinc-500">Cross-cutting</div>
+          <div className="text-xs font-medium text-slate-500">Cross-cutting</div>
           <ul className="mt-2 flex flex-wrap gap-2">
             {crossCutting.map((c) => (
-              <li key={c} className="rounded-full border border-zinc-200 px-3 py-1 text-sm text-zinc-700">
+              <li key={c} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700">
                 {c}
               </li>
             ))}
@@ -52,4 +55,3 @@ export default function PhaseSummary({
     </motion.div>
   );
 }
-

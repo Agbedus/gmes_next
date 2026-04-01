@@ -3,12 +3,11 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgramHeader from "../programHeader";
-import DashboardToolbar from "../dashboardToolbar";
 import ImpactCard from "../impactCard";
 import StatCard from "../statCard";
+import IconlyIcon from "../IconlyIcon";
 import Timeline from "../timeline";
 import ServicesList from "./servicesList";
-import ImplementersList from "../implementersList";
 import PhaseSummary from "./phaseSummary";
 import MapModal from "../MapModal";
 import SummaryChartsModal from "../../charts/summaryChartsModal";
@@ -195,7 +194,7 @@ export default function DashboardContainer(): React.ReactElement {
   }
 
   if (!data) {
-    return <div className="p-8 text-center text-rose-600 bg-rose-50 rounded-xl">Failed to load dashboard data.</div>;
+    return <div className="p-8 text-center text-rose-600 bg-rose-50 rounded-[24px]">Failed to load dashboard data.</div>;
   }
 
   // Build impact array from data.kpis
@@ -284,6 +283,8 @@ export default function DashboardContainer(): React.ReactElement {
   const filteredTimeline: TimelineItem[] = (data.timeline ?? []).filter((t) =>
     (t.event ?? "").toLowerCase().includes(query.toLowerCase()) || String(t.year ?? t.years ?? "").toLowerCase().includes(query.toLowerCase())
   );
+  const visibleServiceGroups = filteredServices.filter((s) => s.items.length > 0);
+  const partnerCount = (data.funders?.length ?? 0) + (data.technical_partners?.length ?? 0);
 
   const stats: Stat[] = [
     // Users and Active have been moved to impact cards above
@@ -297,109 +298,111 @@ export default function DashboardContainer(): React.ReactElement {
   }
 
   return (
-    <div className="pb-24 relative">
-        {/* Subtle background gradient for the dashboard area - African Union colors */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-white to-green-50/30 pointer-events-none -z-10" />
+    <div className="relative pb-24">
 
-      <ProgramHeader name={String(data.program?.name ?? "")} oneLiner={String(data.program?.one_liner ?? "")} />
+      <ProgramHeader
+        name={String(data.program?.name ?? "")}
+        oneLiner={String(data.program?.one_liner ?? "")}
+        onSearch={(q: string) => setQuery(q)}
+      />
 
-      <div className="mt-8">
-        <DashboardToolbar
-          onSearch={(q: string) => setQuery(q)}
-          onFilterClick={() => alert("Filter panel not implemented yet")}
-          onDateClick={() => alert("Date picker not implemented yet")}
-        />
-      </div>
-
-      <section className="mt-10">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-bold text-zinc-900 tracking-tight flex items-center gap-2">
-              <span className="material-symbols-outlined" style={{color: '#038a36'}}>insights</span>
-              Impact Overview
-          </h2>
-        </div>
-        
-        <div className="mb-6">
-          <Tabs 
-            tabs={tabs} 
-            activeId={activeTab} 
-            onChange={setActiveTab} 
-            className="max-w-3xl"
-            fullWidth
-          />
-        </div>
-
-
-        <AnimatePresence mode="wait">
-          <motion.div 
-            key={activeTab}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            variants={{
-              hidden: { opacity: 0 },
-              show: { 
-                opacity: 1,
-                transition: { 
-                  staggerChildren: 0.05 
-                } 
-              }
-            }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+      <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {[
+          { label: "Impact cards", value: filteredImpact.length, note: `in ${tabs.find((t) => t.id === activeTab)?.label ?? "overview"}`, icon: "insights", featured: true },
+          { label: "Milestones", value: filteredTimeline.length, note: "matched by your current search", icon: "calendar_month" },
+          { label: "Service groups", value: visibleServiceGroups.length, note: "available in the current filter", icon: "grid_view" },
+          { label: "Partners", value: partnerCount, note: "funders and technical partners", icon: "groups" },
+        ].map((metric) => (
+          <div
+            key={metric.label}
+            className={`rounded-[24px] border p-5 ${metric.featured ? "border-[#1A5632]/20 bg-[linear-gradient(135deg,rgba(26,86,50,0.96),rgba(20,61,36,0.92))] text-white" : "border-slate-200 bg-white"}`}
           >
-            {filteredImpact.map((i) => (
-              <motion.div
-                key={i.label}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.3 } }
-                }}
-              >
-                <ImpactCard label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} style={i.style} />
-              </motion.div>
-            ))}
-            {Array.from({ length: placeholders }).map((_, idx) => (
-              // placeholders to keep grid aligned
-              <ImpactCard key={`placeholder-${idx}`} number={""} label={undefined} placeholder />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className={`text-xs font-semibold uppercase tracking-wider ${metric.featured ? "text-white/75" : "text-slate-500"}`}>{metric.label}</p>
+                <div className={`mt-3 text-3xl font-bold tracking-tight ${metric.featured ? "text-white" : "text-slate-900"}`}>{metric.value}</div>
+                <p className={`mt-2 text-sm ${metric.featured ? "text-white/80" : "text-slate-600"}`}>{metric.note}</p>
+              </div>
+              <div className={`flex h-11 w-11 items-center justify-center rounded-[18px] border ${metric.featured ? "border-white/20 bg-white/12 text-[#FABC0C]" : "border-slate-200 bg-[#FABC0C12] text-[#FABC0C]"}`}>
+                <IconlyIcon name={metric.icon} size={20} color="#FABC0C" />
+              </div>
+            </div>
+          </div>
+        ))}
       </section>
 
-      <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
+      <section className="mt-10 rounded-[28px] border border-slate-200 bg-white p-6">
+        <Tabs 
+          tabs={tabs} 
+          activeId={activeTab} 
+          onChange={setActiveTab} 
+          className="max-w-4xl"
+          fullWidth
+        />
+
+        <div className="mt-6">
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={activeTab}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              variants={{
+                hidden: { opacity: 0 },
+                show: { 
+                  opacity: 1,
+                  transition: { 
+                    staggerChildren: 0.05 
+                  } 
+                }
+              }}
+              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+            >
+              {filteredImpact.map((i) => (
+                <motion.div
+                  key={i.label}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    show: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+                  }}
+                >
+                  <ImpactCard label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} style={i.style} />
+                </motion.div>
+              ))}
+              {Array.from({ length: placeholders }).map((_, idx) => (
+                <ImpactCard key={`placeholder-${idx}`} number={""} label={undefined} placeholder />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
+
+      <div className="mt-10 grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
+        <div className="space-y-8">
           <Timeline items={filteredTimeline} />
 
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-zinc-900 tracking-tight flex items-center gap-2">
-                  <span className="material-symbols-outlined" style={{color: '#038a36'}}>grid_view</span>
-                  Services
-              </h3>
-              <label className="text-sm text-zinc-500 group relative">
-                <input
-                  aria-label="Search services"
-                  className="ml-2 rounded-lg border border-zinc-200/60 bg-white/50 px-3 py-1.5 pl-8 text-sm outline-none transition-all"
-                  style={{
-                    borderColor: serviceQuery ? '#038a36' : undefined,
-                    boxShadow: serviceQuery ? '0 0 0 2px rgba(3, 138, 54, 0.1)' : undefined
-                  }}
-                  placeholder="Filter services"
-                  value={serviceQuery}
-                  onChange={(e) => setServiceQuery(e.target.value)}
-                />
-                <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 text-[16px]">search</span>
-              </label>
-            </div>
+            <label className="mb-4 group relative flex items-center justify-end text-sm text-slate-500">
+              <input
+                aria-label="Search services"
+                className="ml-2 rounded-[16px] border border-slate-200 bg-white px-3 py-2 pl-8 text-sm outline-none transition-colors"
+                style={{
+                  borderColor: serviceQuery ? '#1A5632' : undefined,
+                }}
+                placeholder="Filter services"
+                value={serviceQuery}
+                onChange={(e) => setServiceQuery(e.target.value)}
+              />
+              <IconlyIcon name="search" size={16} color="#94a3b8" className="absolute left-4 top-1/2 -translate-y-1/2" />
+            </label>
             <ServicesList services={filteredServices} query={serviceQuery} />
           </div>
         </div>
 
         <div className="space-y-8">
-          {/*{JSON.stringify(data.technical_partners)}*/}
           {data.funders && data.funders.length > 0 && (
-              <div className="bg-white rounded-xl border border-zinc-200 p-6">
-                <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Funded By</h3>
+              <div className="rounded-[24px] border border-slate-200 bg-white p-6">
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Funded By</h3>
                 <div className="flex flex-col gap-4">
                   {data.funders.map((funder, idx) => (
                       <div key={idx} className="flex items-center gap-3" title={funder.name}>
@@ -412,15 +415,15 @@ export default function DashboardContainer(): React.ReactElement {
                               unoptimized
                           />
                         </div>
-                        <span className="text-sm font-medium text-zinc-900">{funder.name}</span>
+                        <span className="text-sm font-medium text-slate-900">{funder.name}</span>
                       </div>
                   ))}
                 </div>
               </div>
           )}
           {data.technical_partners && data.technical_partners.length > 0 && (
-              <div className="bg-white rounded-xl border border-zinc-200 p-6">
-                <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4">Technical Partners</h3>
+              <div className="rounded-[24px] border border-slate-200 bg-white p-6">
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Technical Partners</h3>
                 <div className="flex flex-col gap-4">
                   {data.technical_partners.map((partner, idx) => (
                       <div key={idx} className="flex items-center gap-3" title={partner.name}>
@@ -433,38 +436,38 @@ export default function DashboardContainer(): React.ReactElement {
                               unoptimized
                           />
                         </div>
-                        <span className="text-sm font-medium text-zinc-900">{partner.name}</span>
+                        <span className="text-sm font-medium text-slate-900">{partner.name}</span>
                       </div>
                   ))}
                 </div>
               </div>
           )}
-          {/*<ImplementersList*/}
-          {/*  coordinator={String(data.implementers_governance?.coordinator ?? "")}*/}
-          {/*  implementers={data.implementers_governance?.implementers_phase_2 ?? []}*/}
-          {/*  monitoringPartners={data.implementers_governance?.monitoring_partners ?? []}*/}
-          {/*/>*/}
-
-          {/*<PhaseSummary*/}
-          {/*  focus={String(data.phase2?.focus ?? "")}*/}
-          {/*  pillars={data.phase2?.pillars ?? []}*/}
-          {/*  crossCutting={data.phase2?.cross_cutting ?? []}*/}
-          {/*/>*/}
+          {(data.phase2?.focus || (data.phase2?.pillars?.length ?? 0) > 0 || (data.phase2?.cross_cutting?.length ?? 0) > 0) && (
+            <PhaseSummary
+              focus={String(data.phase2?.focus ?? "")}
+              pillars={data.phase2?.pillars ?? []}
+              crossCutting={data.phase2?.cross_cutting ?? []}
+            />
+          )}
         </div>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-        {stats.map((s) => (
-          <StatCard key={s.title} title={s.title} value={s.value} delta={s.delta} deltaType={s.deltaType} icon={s.icon} />
-        ))}
-      </div>
+      {stats.length > 0 ? (
+        <div className="mt-10">
+          <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {stats.map((s) => (
+              <StatCard key={s.title} title={s.title} value={s.value} delta={s.delta} deltaType={s.deltaType} icon={s.icon} />
+            ))}
+          </div>
+        </div>
+      ) : null}
 
-      <div className="w-auto h-auto p-2 rounded-[24px] border border-white/60 fixed bottom-10 bg-white/80 backdrop-blur-xl right-12 flex justify-center items-center shadow-lg z-50" style={{boxShadow: '0 20px 25px -5px rgba(3, 138, 54, 0.1), 0 8px 10px -6px rgba(3, 138, 54, 0.1)'}}>
+      <div className="fixed bottom-10 right-12 z-50 flex h-auto w-auto items-center justify-center rounded-[24px] border border-slate-200 bg-white p-2">
         <button
-            className="w-12 h-12 rounded-[18px] flex justify-center items-center hover:scale-105 transition-all shadow-sm"
-            style={{ backgroundColor: '#038a3610', color: '#038a36' }}
+            className="flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors hover:bg-slate-50"
+            style={{ backgroundColor: '#1A56320d', color: '#1A5632' }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#038a3620'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#038a3610'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A56320d'}
             id="mapButton"
             aria-label="Open program map"
             onClick={() => setMapOpen(true)}
@@ -473,10 +476,10 @@ export default function DashboardContainer(): React.ReactElement {
         </button>
 
         <button
-            className="w-12 h-12 rounded-[18px] flex justify-center items-center ml-3 hover:scale-105 transition-all shadow-sm"
-            style={{ backgroundColor: '#e0c06310', color: '#e0c063' }}
+            className="ml-3 flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors hover:bg-slate-50"
+            style={{ backgroundColor: '#FABC0C10', color: '#1A5632' }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e0c06320'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#e0c06310'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FABC0C10'}
             id="chartsButton"
             aria-label="Open charts summary"
             onClick={() => setChartsOpen(true)}

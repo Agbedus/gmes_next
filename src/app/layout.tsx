@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 
-import Sidebar from '@/components/ui/Sidebar';
+import Sidebar from "@/components/ui/Sidebar";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -25,28 +25,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-        <head>
-            {/* Google Material Symbols */}
-            <link
-                rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-            />
-        </head>
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-        <div className="min-h-screen bg-zinc-50 font-sans">
+        <html lang="en" suppressHydrationWarning>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="min-h-screen bg-slate-50 font-sans">
             <div className="flex">
-                {/* Keep items serializable (strings) - `SideNav` maps these to Lucide icons client-side */}
-                <Sidebar items={[
-                    { label: 'Overview', href: '/summary', icon: 'overview' },
-                    { label: 'Phase 2', href: '/phase_two', icon: 'phase_two' },
-                    { label: 'Phase 1', href: '/phase_one', icon: 'phase_one' },
-                    { label: 'Useful Links', href: '/useful_links', icon: 'links' },
-                ]} />
-
-                <main className="flex-1 h-screen overflow-y-auto p-4">
+                <Sidebar />
+                <main className="flex-1 h-screen overflow-y-auto p-6">
                     {children}
                 </main>
             </div>

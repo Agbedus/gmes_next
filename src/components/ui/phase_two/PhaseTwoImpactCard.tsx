@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import IconlyIcon from "../IconlyIcon";
 
 type Props = {
   label?: string;
@@ -31,41 +32,32 @@ const ValueDisplay = ({ value }: { value?: React.ReactNode }) => {
 };
 
 
-export default function PhaseTwoImpactCard({ label, value, icon, colorClass = "bg-zinc-50 text-zinc-600", style, placeholder = false }: Props) {
-  if (placeholder) return <div className="rounded-xl border border-transparent bg-transparent px-4 py-6" aria-hidden />;
+export default function PhaseTwoImpactCard({ label, value, icon, colorClass = "bg-slate-50 text-slate-600", style, placeholder = false }: Props) {
+  if (placeholder) return <div className="rounded-[24px] border border-transparent bg-transparent px-4 py-6" aria-hidden />;
 
   return (
-    <div className="rounded-xl border bg-white p-4 transition-all duration-200"
+    <div className="rounded-[24px] border border-slate-200 bg-white p-4 transition-colors duration-200"
          style={{ 
-           borderColor: '#038a3620',
-           boxShadow: '0 1px 2px 0 rgba(3, 138, 54, 0.05)'
+           borderColor: '#E2E8F0',
          }}
          onMouseEnter={(e) => {
-           e.currentTarget.style.borderColor = '#038a3640';
-           e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(3, 138, 54, 0.1), 0 2px 4px -2px rgba(3, 138, 54, 0.1)';
+           e.currentTarget.style.borderColor = '#CBD5E1';
          }}
          onMouseLeave={(e) => {
-           e.currentTarget.style.borderColor = '#038a3620';
-           e.currentTarget.style.boxShadow = '0 1px 2px 0 rgba(3, 138, 54, 0.05)';
+           e.currentTarget.style.borderColor = '#E2E8F0';
          }}
     >
       {/* Leading icon (rounded square) with value to the right */}
       <div className="flex items-start gap-4">
         {icon ? (
-          <div className={`flex-shrink-0 rounded-md p-2 w-12 h-12 flex items-center justify-center ${colorClass}`} style={style}>
-            <span
-              className="material-symbols-outlined text-2xl"
-              aria-hidden={true}
-              style={{ fontFamily: "'Material Symbols Outlined', sans-serif", fontVariationSettings: `"FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24` }}
-            >
-              {icon}
-            </span>
+          <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-[24px] p-2 ${colorClass}`} style={style}>
+            <IconlyIcon name={icon} size={22} color="currentColor" />
           </div>
         ) : null}
 
         <div className="min-w-0 flex-1">
           <ValueDisplay value={value} />
-          {label ? <div className="mt-2 text-sm font-medium text-zinc-600 truncate">{label}</div> : null}
+          {label ? <div className="mt-2 truncate text-sm font-medium text-slate-600">{label}</div> : null}
         </div>
       </div>
     </div>

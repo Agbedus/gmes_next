@@ -51,9 +51,9 @@ export default function Tabs({ tabs, activeId, onChange, className, fullWidth = 
     <div
       role="tablist"
       aria-label="Program sections"
-      className={`flex items-center justify-between w-full ${className ?? ''}`}
+      className={`w-full ${className ?? ''}`}
     >
-      <div className={`flex items-center gap-2 ${fullWidth ? 'w-full' : ''}`}>
+      <div className={`rounded-[24px] border border-slate-200 bg-slate-50 p-1 ${fullWidth ? 'grid w-full grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4' : 'flex flex-wrap gap-2'}`}>
         {tabs.map((t, i) => {
           const selected = t.id === activeId;
           return (
@@ -66,19 +66,18 @@ export default function Tabs({ tabs, activeId, onChange, className, fullWidth = 
               ref={(el) => { refs.current[i] = el; }}
               onClick={() => onChange(t.id)}
               onKeyDown={(e) => onKeyDown(e, i)}
-              className={`py-2 px-3 text-sm uppercase font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${fullWidth ? 'flex-1 text-center justify-center' : ''} ${selected ? 'text-white border-[1px] shadow-sm' : 'border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50'}`}
+              className={`py-2.5 px-4 text-sm font-semibold rounded-[20px] transition-all focus:outline-none focus:ring-2 focus:ring-offset-1 ${fullWidth ? 'text-center justify-center' : ''} ${selected ? 'border border-[#1A5632] bg-[linear-gradient(135deg,#1A5632,#143d24)] text-white' : 'border border-transparent bg-white text-slate-700 hover:border-slate-200 hover:bg-slate-100'}`}
               style={{
-                backgroundColor: selected ? '#038a36' : undefined,
-                borderColor: selected ? '#038a36' : undefined,
-                boxShadow: selected ? '0 1px 3px 0 rgba(3, 138, 54, 0.2)' : undefined,
+                backgroundColor: selected ? '#1A5632' : undefined,
+                borderColor: selected ? '#1A5632' : undefined,
                 outline: 'none'
               }}
               onFocus={(e) => {
-                e.currentTarget.style.boxShadow = '0 0 0 2px rgba(3, 138, 54, 0.2)';
+                e.currentTarget.style.boxShadow = '0 0 0 2px rgba(26, 86, 50, 0.2)';
               }}
               onBlur={(e) => {
                 if (selected) {
-                  e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.2)';
+                  e.currentTarget.style.boxShadow = '';
                 } else {
                   e.currentTarget.style.boxShadow = '';
                 }
@@ -90,15 +89,6 @@ export default function Tabs({ tabs, activeId, onChange, className, fullWidth = 
         })}
       </div>
 
-      {/* Right-side hint (non-functional) */}
-      {!fullWidth && (
-        <div className="ml-4 flex items-center gap-2 text-sm text-slate-500 border-[1px] border-slate-100 rounded px-2 py-1">
-          <span className="hidden sm:inline">Use</span>
-          <span className="inline-flex items-center justify-center px-1 py-0.5 border rounded bg-white text-xs font-medium">←</span>
-          <span className="inline-flex items-center justify-center px-1 py-0.5 border rounded bg-white text-xs font-medium">→</span>
-          <span className="hidden sm:inline">Keys to change tabs</span>
-        </div>
-      )}
     </div>
   );
 }

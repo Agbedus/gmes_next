@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import IconlyIcon from "./IconlyIcon";
 
 type ImpactCardProps = {
   label?: string;
@@ -27,34 +28,25 @@ export default function ImpactCard({ label, number, unit, highlight = false, ico
         show: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
       }}
       whileHover={{ scale: 1.02 }}
-      className={`rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl px-5 py-6 shadow-sm hover:shadow-md transition-all duration-300 group ${highlight ? "border-emerald-100" : ""}`} 
+      className={`rounded-[24px] border border-slate-200 bg-white px-5 py-6 transition-colors duration-300 group ${highlight ? "ring-1 ring-[#1A563220]" : ""}`} 
       style={{
-        backgroundColor: highlight ? '#038a3608' : undefined,
-        boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(3, 138, 54, 0.1), 0 4px 6px -4px rgba(3, 138, 54, 0.1)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)';
+        backgroundColor: highlight ? '#1A56320a' : undefined,
       }}
     >
       <div className="flex items-center justify-between gap-4">
         <div>
-          {label ? <div className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2 transition-colors" style={{color: undefined}} onMouseEnter={(e) => e.currentTarget.style.color = '#038a36'} onMouseLeave={(e) => e.currentTarget.style.color = '#71717a'}>{label}</div> : null}
+          {label ? <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#1A5632'} onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}>{label}</div> : null}
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">{number}</span>
-            {unit ? <span className="text-sm font-medium text-zinc-500">{unit}</span> : null}
+            <span className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">{number}</span>
+            {unit ? <span className="text-sm font-medium text-slate-500">{unit}</span> : null}
           </div>
         </div>
 
         {icon ? (
-          <div className={`rounded-xl p-3 ${colorClass} flex items-center justify-center shadow-sm ring-1 ring-inset ring-black/5 group-hover:scale-110 transition-transform duration-300`} style={style}>
+          <div className={`rounded-xl p-3 ${colorClass} flex items-center justify-center ring-1 ring-inset ring-slate-200 transition-transform duration-300`} style={style}>
             {/* Handle both string (material symbol) and ReactNode icons */}
             {React.isValidElement(icon) ? icon : (
-                <span className="material-symbols-outlined" aria-hidden>
-                  {icon as string}
-                </span>
+                <IconlyIcon name={String(icon)} size={22} color="#FABC0C" />
             )}
           </div>
         ) : null}

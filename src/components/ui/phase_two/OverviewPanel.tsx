@@ -3,6 +3,7 @@ import React from "react";
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import OverviewCard from './OverviewCard';
+import IconlyIcon from "../IconlyIcon";
 
 type Funder = { name: string; role?: string; logo?: string };
 type Pillar = { id?: string; name?: string; description?: string };
@@ -64,7 +65,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-4">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-4">
             <h3 className="text-sm font-semibold text-zinc-900 hidden">{name}</h3>
             <p className="mt-2 text-sm text-zinc-700 hidden">{description}</p>
 
@@ -91,13 +92,13 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
               </motion.div>
 
               {/* Replace the small left thematic box with the thematic block that previously lived under the logos on the aside (i.e. show the concise themed list here with colored icons) */}
-              <motion.div className="rounded-xl border border-zinc-200 bg-white p-4" variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+              <motion.div className="rounded-[24px] border border-zinc-200 bg-white p-4" variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
                 <h4 className="text-xs font-semibold text-zinc-700">Thematic focus</h4>
                 <div className="mt-2 text-sm text-zinc-700">
                   {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
                     <div key={i} className="py-1 flex items-center gap-2">
                       <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{backgroundColor: '#038a3610'}} aria-hidden>
-                        <span className="material-symbols-outlined text-base" style={{color: '#038a36'}}>{iconForTheme(t)}</span>
+                        <IconlyIcon name={iconForTheme(t)} size={14} color="#038a36" />
                       </span>
                       <div className="text-sm">{t}</div>
                     </div>
@@ -116,7 +117,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
 
         <aside className="md:col-span-1 space-y-4">
           <motion.div 
-            className="rounded-xl border border-zinc-200 bg-white p-3"
+            className="rounded-[24px] border border-zinc-200 bg-white p-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -163,7 +164,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Strategic pillars</h3>
             <div className="mt-2 flex-1">
               {pillars.length > 0 ? (
@@ -174,11 +175,11 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                         <summary className="cursor-pointer list-none text-sm font-medium text-zinc-900">
                           <div className="flex items-center gap-2">
                             <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{backgroundColor: '#038a3610', color: '#038a36'}} aria-hidden>
-                              <span className="material-symbols-outlined text-base">layers</span>
+                              <IconlyIcon name="layers" size={16} color="#038a36" />
                             </span>
                             <span>{p.name ?? '-'}</span>
                           </div>
-                          <span className="chev material-symbols-outlined text-zinc-500 text-base" aria-hidden>chevron_right</span>
+                          <span className="chev" aria-hidden><IconlyIcon name="chevron_right" size={16} color="#6b7280" /></span>
                         </summary>
                         <div className="mt-2 text-sm text-zinc-700 whitespace-pre-line">{p.description ?? '—'}</div>
                       </details>
@@ -204,16 +205,16 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="rounded-xl border border-zinc-200 bg-white p-3 h-full flex flex-col">
+          <div className="rounded-[24px] border border-zinc-200 bg-white p-3 h-full flex flex-col">
             <h3 className="text-sm font-semibold text-zinc-900">Alignment</h3>
             <div className="mt-2 flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto">
-              <div className="rounded-xl border border-zinc-200 bg-white p-3">
+              <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
                 <h4 className="text-xs font-medium text-zinc-800">Continental policies</h4>
                 <div className="mt-2 text-sm text-zinc-700 space-y-2">
                   {continentalPoliciesArr.length > 0 ? (
                     continentalPoliciesArr.map((c, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <span className="material-symbols-outlined text-sm mt-0.5" style={{color: '#038a36'}} aria-hidden>check_circle</span>
+                        <IconlyIcon name="check_circle" size={16} color="#038a36" className="mt-0.5" />
                         <div className="text-sm text-zinc-700">{c}</div>
                       </div>
                     ))
@@ -223,7 +224,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 </div>
               </div>
 
-              <div className="rounded-xl border border-zinc-200 bg-white p-3">
+              <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
                 <h4 className="text-xs font-medium text-zinc-800">Global agendas</h4>
                 <div className="mt-2 text-sm text-zinc-700">
                   <div>

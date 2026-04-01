@@ -5,6 +5,7 @@ import Image from 'next/image';
 import type { Consortium, Member } from './ConsortiaPanel';
 import { formatCurrencyEUR, formatPeriod, sanitizeSrc } from './ConsortiaPanel';
 import { motion, AnimatePresence } from "framer-motion";
+import IconlyIcon from "../IconlyIcon";
 
 function initialsFrom(name?: string, acronym?: string) {
   if (acronym && acronym.trim()) return acronym.trim().split(/\s+/)[0].slice(0, 2).toUpperCase();
@@ -94,7 +95,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
   const imgSrc = preferredLogo ?? svgUrl;
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-zinc-200 h-full flex flex-col shadow-sm">
+    <div className="bg-white p-6 rounded-[24px] border border-zinc-200 h-full flex flex-col shadow-sm">
       <div className="flex items-start gap-4">
         <div>
           {/* Use same style as previous details view: 160x160 image with w-40 h-40 */}
@@ -109,7 +110,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                 title="View countries on map"
                 className="p-2 rounded-md hover:bg-zinc-100 text-zinc-500 flex items-center justify-center transition-colors"
               >
-                <span className="material-symbols-outlined">map</span>
+                <IconlyIcon name="map" size={18} color="#6b7280" />
               </button>
             )}
           </div>
@@ -147,21 +148,11 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                 className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium ${activeStyle} focus:outline-none focus:ring-2 ${active ? 'focus:ring-offset-1' : ''}`}
               >
                 {/* small icons per tab */}
-                {t === 'Overview' && (
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a7 7 0 0 0 0-6"/></svg>
-                )}
-                {t === 'Metrics' && (
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="M9 17V9" /><path d="M13 17V5" /><path d="M17 17v-3" /></svg>
-                )}
-                {t === 'Partners' && (
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
-                )}
-                {t === 'Documents' && (
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-                )}
-                {t === 'Contacts' && (
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4"/><path d="M7 20h10"/><circle cx="12" cy="7" r="4"/></svg>
-                )}
+                {t === 'Overview' && <IconlyIcon name="Discovery" size={16} color="currentColor" />}
+                {t === 'Metrics' && <IconlyIcon name="Chart" size={16} color="currentColor" />}
+                {t === 'Partners' && <IconlyIcon name="People" size={16} color="currentColor" />}
+                {t === 'Documents' && <IconlyIcon name="Document" size={16} color="currentColor" />}
+                {t === 'Contacts' && <IconlyIcon name="User" size={16} color="currentColor" />}
                 <span className={active === t ? '' : 'text-zinc-700'}>{t}</span>
               </button>
             );
@@ -179,7 +170,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
             >
               {active === 'Overview' && (
                 <div className="text-sm text-zinc-700 space-y-6">
-                  <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-50 to-white border border-indigo-100">
+                  <div className="p-4 rounded-[24px] bg-gradient-to-r from-indigo-50 to-white border border-indigo-100">
                     {consortium.description ? (
                       <div className="whitespace-pre-line">{consortium.description}</div>
                     ) : (
@@ -191,9 +182,9 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                   {(consortium.rationale?.length || consortium.focus?.length) ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {consortium.rationale && consortium.rationale.length > 0 && (
-                        <div className="p-4 rounded-lg bg-white border shadow-sm h-full">
+                        <div className="p-4 rounded-[24px] bg-white border shadow-sm h-full">
                           <h4 className="text-sm font-semibold text-indigo-900 mb-2 flex items-center gap-2">
-                            <svg className="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                            <IconlyIcon name="InfoCircle" size={16} color="#6366f1" />
                             Rationale
                           </h4>
                           <ul className="list-disc pl-4 space-y-1 text-zinc-600 text-sm">
@@ -202,9 +193,9 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                         </div>
                       )}
                       {consortium.focus && consortium.focus.length > 0 && (
-                        <div className="p-4 rounded-lg bg-white border shadow-sm h-full">
+                        <div className="p-4 rounded-[24px] bg-white border shadow-sm h-full">
                           <h4 className="text-sm font-semibold text-indigo-900 mb-2 flex items-center gap-2">
-                            <svg className="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+                            <IconlyIcon name="Category" size={16} color="#6366f1" />
                             Focus Areas
                           </h4>
                           <ul className="list-disc pl-4 space-y-1 text-zinc-600 text-sm">
@@ -217,9 +208,9 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
 
                   {/* Challenges */}
                   {consortium.challenges && consortium.challenges.length > 0 && (
-                    <div className="p-4 rounded-lg bg-amber-50 border border-amber-100">
+                    <div className="p-4 rounded-[24px] bg-amber-50 border border-amber-100">
                       <h4 className="text-sm font-semibold text-amber-900 mb-2 flex items-center gap-2">
-                        <svg className="w-4 h-4 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <IconlyIcon name="Danger" size={16} color="#d97706" />
                         Key Challenges
                       </h4>
                       <ul className="list-disc pl-4 space-y-1 text-amber-800 text-sm">
@@ -232,9 +223,9 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                   {(consortium.impacts?.length || consortium.outcomes?.length) ? (
                     <div className="space-y-4">
                       {consortium.impacts && consortium.impacts.length > 0 && (
-                        <div className="p-4 rounded-lg bg-teal-50 border border-teal-100">
+                        <div className="p-4 rounded-[24px] bg-teal-50 border border-teal-100">
                           <h4 className="text-sm font-semibold text-teal-900 mb-2 flex items-center gap-2">
-                            <svg className="w-4 h-4 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <IconlyIcon name="TickSquare" size={16} color="#0d9488" />
                             Expected Impacts
                           </h4>
                           <ul className="list-disc pl-4 space-y-1 text-teal-800 text-sm">
@@ -244,14 +235,14 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                       )}
 
                       {consortium.outcomes && consortium.outcomes.length > 0 && (
-                        <div className="p-4 rounded-lg bg-white border shadow-sm">
+                        <div className="p-4 rounded-[24px] bg-white border shadow-sm">
                           <h4 className="text-sm font-semibold text-zinc-900 mb-3 flex items-center gap-2">
-                            <svg className="w-4 h-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <IconlyIcon name="Document" size={16} color="#71717a" />
                             Outcomes & Services
                           </h4>
                           <div className="grid grid-cols-1 gap-3">
                             {consortium.outcomes.map((out, i) => (
-                              <div key={i} className="bg-zinc-50 p-3 rounded border border-zinc-100">
+                              <div key={i} className="bg-zinc-50 p-3 rounded-[24px] border border-zinc-100">
                                 <div className="text-sm text-zinc-800">{out.description}</div>
                                 {out.service && (
                                   <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 text-xs font-medium">
@@ -306,9 +297,9 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
               {active === 'Metrics' && (
                   <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                     {/* Metrics cards with colorful accents */}
-                    <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
+                    <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
                       <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                        <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>groups</span>
+                        <IconlyIcon name="groups" size={24} color="#e0c063" />
                       </div>
                       <div>
                         <div className="text-xs text-zinc-500">Partners</div>
@@ -316,9 +307,9 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
+                    <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
                       <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                        <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>account_balance</span>
+                        <IconlyIcon name="account_balance" size={24} color="#e0c063" />
                       </div>
                       <div>
                         <div className="text-xs text-zinc-500">Budget (EUR)</div>
@@ -326,9 +317,9 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
+                    <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
                       <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                        <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>schedule</span>
+                        <IconlyIcon name="schedule" size={24} color="#e0c063" />
                       </div>
                       <div>
                         <div className="text-xs text-zinc-500">Period</div>
@@ -336,10 +327,10 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-white shadow-sm border border-zinc-100 flex flex-col gap-3">
+                    <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                          <span className="material-symbols-outlined" style={{color: '#e0c063', fontSize: '24px'}}>location_on</span>
+                        <IconlyIcon name="location_on" size={24} color="#e0c063" />
                         </div>
                         <div>
                           <div className="text-xs text-zinc-500">Locations</div>
@@ -382,7 +373,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                       const initials = m.name ? m.name.slice(0, 2).toUpperCase() : 'PT';
                       
                       return (
-                        <div key={i} className="group flex flex-col items-center text-center p-4 rounded-xl bg-white border border-zinc-100 shadow-sm hover:shadow-md transition-all hover:border-indigo-100">
+                        <div key={i} className="group flex flex-col items-center text-center p-4 rounded-[24px] bg-white border border-zinc-100 shadow-sm hover:shadow-md transition-all hover:border-indigo-100">
                           <div className="w-16 h-16 mb-3 rounded-full bg-zinc-50 flex items-center justify-center overflow-hidden border border-zinc-100 group-hover:scale-105 transition-transform">
                             {safeLogo ? (
                               <Image 
@@ -418,7 +409,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                 <div className="space-y-3">
                   {documents.length > 0 ? (
                     documents.map((d, i) => (
-                      <div key={i} className="p-3 rounded-lg bg-white border shadow-sm flex items-start gap-3">
+                      <div key={i} className="p-3 rounded-[24px] bg-white border shadow-sm flex items-start gap-3">
                         <div className="w-9 h-9 rounded-md bg-amber-100 flex items-center justify-center text-amber-700">
                           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
                         </div>
@@ -435,7 +426,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                 <div className="space-y-3">
                   {contacts.length > 0 ? (
                     contacts.map((c: any, i: number) => (
-                      <div key={i} className="p-3 rounded-lg bg-white border shadow-sm flex items-start gap-3">
+                      <div key={i} className="p-3 rounded-[24px] bg-white border shadow-sm flex items-start gap-3">
                         <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-xs font-semibold text-zinc-700">{String(c.name ?? '').split(/\s+/).map((p:any)=>p[0]).slice(0,2).join('').toUpperCase() || 'CP'}</div>
                         <div className="flex-1">
                           <div className="text-sm font-medium text-zinc-900">{c.name ?? '\u2014'} {c.role ? <span className="text-zinc-500">— {c.role}</span> : null}</div>
@@ -501,7 +492,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                           }
 
                           return (
-                            <div key={idx} className="p-3 rounded-lg bg-white border shadow-sm flex items-center justify-between gap-3">
+                            <div key={idx} className="p-3 rounded-[24px] bg-white border shadow-sm flex items-center justify-between gap-3">
                               <div className="flex items-start gap-3">
                                 <div className="w-10 h-10 rounded-md bg-zinc-50 flex items-center justify-center">{icon}</div>
                                 <div className="flex-1 min-w-0">

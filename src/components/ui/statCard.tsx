@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import IconlyIcon from "./IconlyIcon";
 
 type StatCardProps = {
   title: string;
@@ -25,16 +26,13 @@ export default function StatCard({ title, value, delta, deltaType = "neutral", i
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
       whileHover={{ scale: 1.02 }}
-      className="rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl px-5 py-5 shadow-sm transition-all duration-300 group"
-      style={{boxShadow: '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}}
-      onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(3, 138, 54, 0.1), 0 4px 6px -4px rgba(3, 138, 54, 0.1)'}
-      onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 1px 3px 0 rgba(3, 138, 54, 0.05), 0 1px 2px -1px rgba(3, 138, 54, 0.05)'}
+      className="rounded-[24px] border border-slate-200 bg-white px-5 py-5 transition-colors duration-300 group"
     >
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#038a36'} onMouseLeave={(e) => e.currentTarget.style.color = '#71717a'}>{title}</h3>
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#1A5632'} onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}>{title}</h3>
           <div className="mt-3 flex items-baseline gap-3">
-            <span className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">{value}</span>
+            <span className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{value}</span>
             {delta !== undefined ? (
               <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={getDeltaStyle()}>{delta}</span>
             ) : null}
@@ -42,18 +40,18 @@ export default function StatCard({ title, value, delta, deltaType = "neutral", i
         </div>
 
         {icon ? (
-          <div className="rounded-xl p-2.5 bg-white/50 text-zinc-400 transition-all duration-300 shadow-sm border border-zinc-100/50" aria-hidden
+          <div className="rounded-xl border border-slate-200 bg-[#FABC0C12] p-2.5 text-[#FABC0C] transition-colors" aria-hidden
                onMouseEnter={(e) => {
-                 e.currentTarget.style.color = '#038a36';
-                 e.currentTarget.style.backgroundColor = '#038a3608';
+                 e.currentTarget.style.color = '#FABC0C';
+                 e.currentTarget.style.backgroundColor = '#FABC0C18';
                }}
                onMouseLeave={(e) => {
-                 e.currentTarget.style.color = '#a1a1aa';
-                 e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                 e.currentTarget.style.color = '#FABC0C';
+                 e.currentTarget.style.backgroundColor = '#FABC0C12';
                }}
           >
             {/* Ensure icon is treated as a node if passed as such, or string */}
-             {React.isValidElement(icon) ? icon : <span className="material-symbols-outlined">{icon as string}</span>}
+             {React.isValidElement(icon) ? icon : <IconlyIcon name={String(icon)} size={20} color="#FABC0C" />}
           </div>
         ) : null}
       </div>

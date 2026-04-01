@@ -33,7 +33,7 @@ export default function PhaseOneDash() {
       <ProgramHeader name={programDetails?.name ?? 'GMES & Africa Phase 1'} oneLiner={programDetails?.description ?? ''} />
 
       <div className="mt-4">
-        <DashboardToolbar onSearch={(q: string) => handleSearch(q)} onFilterClick={() => alert('Filter not implemented')} onDateClick={() => alert('Date not implemented')} />
+        <DashboardToolbar onSearch={(q: string) => handleSearch(q)} />
       </div>
 
       <main className="mt-6">
