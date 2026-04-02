@@ -1,15 +1,60 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
+@theme {
+  /* African Union Official Brand Palette */
+  --color-au-dark-green: #004526; /* Active Navigation / Branding */
+  --color-au-gold: #FDB813;       /* Primary Actions / Buttons */
+  --color-au-green: #00843D;      /* Success / Normal States */
+  --color-au-red: #E03E2D;        /* Danger / Alerts */
+  
+  /* Surface Palette */
+  --color-au-bg: #F8FAFC;         /* Main Canvas Background */
+  --color-au-surface: #FFFFFF;    /* Cards / Sidebars */
+  
+  /* Finova Aesthetics */
+  --radius-3xl: 1.5rem;           /* 24px Border Radius */
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Semantic Mappings */
+  --background: var(--color-au-bg);
+  --foreground: #1E293B;
+  
+  /* Borders over Shadows Rule (AU Dark Green @ 10%) */
+  --au-border-subtle: rgba(0, 69, 38, 0.1);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  @apply antialiased;
+}
+
+/* 10/100 Opacity Rule Helper Classes */
+@utility badge-au-gold {
+  background-color: rgba(253, 184, 19, 0.1);
+  color: #FDB813;
+}
+@utility badge-au-green {
+  background-color: rgba(0, 132, 61, 0.1);
+  color: #00843D;
+}
+@utility badge-au-red {
+  background-color: rgba(224, 62, 45, 0.1);
+  color: #E03E2D;
+}
+@utility badge-au-dark-green {
+  background-color: rgba(0, 69, 38, 0.1);
+  color: #004526;
+}
+
+/* Finova Card Styling */
+@utility au-card {
+  background-color: var(--color-au-surface);
+  border: 1px solid var(--au-border-subtle);
+  border-radius: var(--radius-3xl);
 }
 
 /* hide scrollbar (cross-browser) */
@@ -20,7 +65,3 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
-
-/* subtle utility for soft card background */
-.bg-accent-50 { background-color: rgba(6,95,70,0.04); }
-.text-accent-700 { color: rgba(6,95,70,1); }

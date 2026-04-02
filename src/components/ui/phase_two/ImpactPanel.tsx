@@ -9,25 +9,11 @@ type Metrics = Record<string, any>;
 const TabButton = ({ title, active, onClick, icon }: { title: string; active: boolean; onClick: () => void; icon?: string }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap`}
-    style={{
-      backgroundColor: active ? '#038a36' : 'transparent',
-      color: active ? '#fff' : '#71717a',
-      borderColor: active ? '#038a36' : 'transparent',
-      border: '1px solid'
-    }}
-    onMouseEnter={(e) => {
-      if (!active) {
-        e.currentTarget.style.borderColor = '#e5e7eb';
-        e.currentTarget.style.backgroundColor = '#fff';
-      }
-    }}
-    onMouseLeave={(e) => {
-      if (!active) {
-        e.currentTarget.style.borderColor = 'transparent';
-        e.currentTarget.style.backgroundColor = 'transparent';
-      }
-    }}
+    className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap border ${
+      active
+        ? "bg-[#038a36] text-white border-[#038a36]"
+        : "bg-transparent text-[#71717a] border-transparent hover:border-slate-200 hover:bg-white"
+    }`}
   >
     {icon ? <IconlyIcon name={icon} size={18} color="currentColor" /> : null}
     <span className="ml-1">{title}</span>

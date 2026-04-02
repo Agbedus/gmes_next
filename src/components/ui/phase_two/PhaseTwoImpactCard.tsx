@@ -13,7 +13,7 @@ type Props = {
 
 const ValueDisplay = ({ value }: { value?: React.ReactNode }) => {
   if (typeof value !== 'string') {
-    return <div className="text-4xl font-bold text-zinc-900 truncate">{value ?? '\u2014'}</div>;
+    return <div className="text-4xl font-extrabold text-au-dark-green truncate">{value ?? '\u2014'}</div>;
   }
 
   const match = value.match(/([≈>≥~]?\s*[\d,.]+)(.*)/);
@@ -22,30 +22,21 @@ const ValueDisplay = ({ value }: { value?: React.ReactNode }) => {
     const [, mainValue, additionalText] = match;
     return (
       <>
-        <div className="text-4xl font-bold text-zinc-900 truncate">{mainValue.trim()}</div>
-        {additionalText.trim() && <div className="mt-1 text-xs text-zinc-500">{additionalText.trim().replace(/^\((.*)\)$/, '')}</div>}
+        <div className="text-4xl font-extrabold text-au-dark-green truncate">{mainValue.trim()}</div>
+        {additionalText.trim() && <div className="mt-1 text-xs font-bold text-slate-400">{additionalText.trim().replace(/^\((.*)\)$/, '')}</div>}
       </>
     );
   }
 
-  return <div className="text-4xl font-bold text-zinc-900 truncate">{value}</div>;
+  return <div className="text-4xl font-extrabold text-au-dark-green truncate">{value}</div>;
 };
 
 
 export default function PhaseTwoImpactCard({ label, value, icon, colorClass = "bg-slate-50 text-slate-600", style, placeholder = false }: Props) {
-  if (placeholder) return <div className="rounded-[24px] border border-transparent bg-transparent px-4 py-6" aria-hidden />;
+  if (placeholder) return <div className="rounded-3xl border border-transparent bg-transparent px-4 py-6" aria-hidden />;
 
   return (
-    <div className="rounded-[24px] border border-slate-200 bg-white p-4 transition-colors duration-200"
-         style={{ 
-           borderColor: '#E2E8F0',
-         }}
-         onMouseEnter={(e) => {
-           e.currentTarget.style.borderColor = '#CBD5E1';
-         }}
-         onMouseLeave={(e) => {
-           e.currentTarget.style.borderColor = '#E2E8F0';
-         }}
+    <div className="rounded-3xl border border-au-dark-green/10 bg-white p-4 transition-all duration-300 hover:border-au-gold/30"
     >
       {/* Leading icon (rounded square) with value to the right */}
       <div className="flex items-start gap-4">

@@ -36,8 +36,8 @@ function NavIcon({
     <Icon
       set="light"
       size={20}
-      primaryColor={active ? "#FABC0C" : "#FFFFFF"}
-      secondaryColor={active ? "#FABC0C" : "#FFFFFF"}
+      primaryColor={active ? "#FDB813" : "#FFFFFF"}
+      secondaryColor={active ? "#FDB813" : "#FFFFFF"}
     />
   );
 }
@@ -65,7 +65,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`relative sticky top-0 flex h-screen shrink-0 flex-col overflow-visible border-r border-slate-200 bg-white transition-all duration-300 ${
+      className={`relative sticky top-0 flex h-screen shrink-0 flex-col overflow-visible border-r border-au-dark-green/10 bg-au-surface transition-all duration-300 ${
         collapsed ? "w-[88px]" : "w-[280px]"
       }`}
       aria-label="Main navigation"
@@ -93,28 +93,28 @@ export default function Sidebar() {
       <button
         type="button"
         onClick={() => setCollapsed((value) => !value)}
-        className="absolute right-0 top-1/2 z-20 flex h-9 w-9 -mr-[18px] -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white text-[#1A5632] transition-colors hover:bg-slate-100"
+        className="absolute right-0 top-1/2 z-20 flex h-9 w-9 -mr-[18px] -translate-y-1/2 items-center justify-center rounded-full border border-au-dark-green/10 bg-white text-au-dark-green transition-colors hover:bg-slate-100"
         aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
         {collapsed ? (
           <ChevronRight
             set="light"
             size={16}
-            primaryColor="#1A5632"
-            secondaryColor="#1A5632"
+            primaryColor="currentColor"
+            secondaryColor="currentColor"
           />
         ) : (
           <ChevronLeft
             set="light"
             size={16}
-            primaryColor="#1A5632"
-            secondaryColor="#1A5632"
+            primaryColor="currentColor"
+            secondaryColor="currentColor"
           />
         )}
       </button>
 
-      <div className={`mt-4 flex min-h-0 flex-1 flex-col rounded-t-[28px] bg-[#1A5632] ${
-        collapsed ? "px-2 pb-3 pt-5" : "px-4 pb-4 pt-5"
+      <div className={`mt-6 flex min-h-0 flex-1 flex-col ${
+        collapsed ? "px-2" : "px-4"
       }`}>
         <nav className="space-y-2" aria-label="Primary">
           {NAV_ITEMS.map((item) => {
@@ -125,27 +125,30 @@ export default function Sidebar() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`group flex items-center rounded-[18px] border border-transparent px-3 py-3 transition-colors ${
+                className={`group relative flex items-center rounded-2xl px-3 py-3 transition-all duration-200 ${
                   collapsed ? "justify-center" : "gap-3"
                 } ${
                   active
-                    ? "bg-white/10 text-[#FABC0C]"
-                    : "text-white hover:bg-white/10 hover:text-white"
+                    ? "bg-au-dark-green text-white"
+                    : "text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green"
                 }`}
                 title={collapsed ? item.label : undefined}
               >
+                {/* Active Indicator Bar (AU Gold) */}
+                {active && (
+                  <div className="absolute left-0 h-6 w-1 rounded-r-full bg-au-gold" />
+                )}
+
                 <span
-                  className={`flex h-10 w-10 items-center justify-center rounded-2xl transition-colors ${
-                    active ? "bg-[#FABC0C]/15 text-[#FABC0C]" : "bg-white/10 text-white"
+                  className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
+                    active ? "bg-white/10 text-white" : "bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green"
                   }`}
                 >
                   <NavIcon icon={item.icon} active={active} />
                 </span>
 
                 {!collapsed && (
-                  <span className={`min-w-0 flex-1 text-sm font-medium tracking-tight ${
-                    active ? "text-[#FABC0C]" : "text-white"
-                  }`}>
+                  <span className="min-w-0 flex-1 text-sm font-semibold tracking-tight">
                     {item.label}
                   </span>
                 )}
@@ -154,20 +157,20 @@ export default function Sidebar() {
           })}
         </nav>
 
-        <div className="mt-auto border-t border-white/15 pt-4">
+        <div className="mt-auto border-t border-slate-100 pt-4 pb-4">
           <div
-            className={`flex items-center rounded-[18px] border border-white/15 bg-white/10 px-3 py-3 ${
+            className={`flex items-center rounded-2xl border border-slate-100 bg-slate-50 px-3 py-3 ${
               collapsed ? "justify-center" : "gap-3"
             }`}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-xs font-semibold text-[#1A5632]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-au-dark-green text-xs font-semibold text-white">
               YD
             </div>
 
             {!collapsed && (
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-white">Yaw Donkor</p>
-                <p className="truncate text-xs text-white/80">Admin Workspace</p>
+                <p className="truncate text-sm font-bold text-slate-900">Yaw Donkor</p>
+                <p className="truncate text-xs text-slate-500">Admin Workspace</p>
               </div>
             )}
           </div>

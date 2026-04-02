@@ -464,10 +464,7 @@ export default function DashboardContainer(): React.ReactElement {
 
       <div className="fixed bottom-10 right-12 z-50 flex h-auto w-auto items-center justify-center rounded-[24px] border border-slate-200 bg-white p-2">
         <button
-            className="flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors hover:bg-slate-50"
-            style={{ backgroundColor: '#1A56320d', color: '#1A5632' }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#038a3620'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A56320d'}
+            className="flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-[#1A56320d] text-[#1A5632] hover:bg-[#038a3620]"
             id="mapButton"
             aria-label="Open program map"
             onClick={() => setMapOpen(true)}
@@ -476,10 +473,7 @@ export default function DashboardContainer(): React.ReactElement {
         </button>
 
         <button
-            className="ml-3 flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors hover:bg-slate-50"
-            style={{ backgroundColor: '#FABC0C10', color: '#1A5632' }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e0c06320'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FABC0C10'}
+            className="ml-3 flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-[#FABC0C10] text-[#1A5632] hover:bg-[#e0c06320]"
             id="chartsButton"
             aria-label="Open charts summary"
             onClick={() => setChartsOpen(true)}

@@ -85,29 +85,29 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             >
               {/* Increase the visual weight of values by passing a larger font size via className prop on OverviewCard */}
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#fff" iconBg="#038a36" valueClassName="text-2xl font-semibold" />
+                <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#fff" iconBg="#004526" valueClassName="text-2xl font-extrabold text-au-dark-green" />
               </motion.div>
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#fff" iconBg="#e0c063" valueClassName="text-2xl font-semibold" />
+                <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#fff" iconBg="#FDB813" valueClassName="text-2xl font-extrabold text-au-dark-green" />
               </motion.div>
 
               {/* Replace the small left thematic box with the thematic block that previously lived under the logos on the aside (i.e. show the concise themed list here with colored icons) */}
-              <motion.div className="rounded-[24px] border border-zinc-200 bg-white p-4" variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <h4 className="text-xs font-semibold text-zinc-700">Thematic focus</h4>
+              <motion.div className="rounded-3xl border border-au-dark-green/10 bg-white p-4" variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                <h4 className="text-xs font-bold text-slate-400">Thematic focus</h4>
                 <div className="mt-2 text-sm text-zinc-700">
                   {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
                     <div key={i} className="py-1 flex items-center gap-2">
-                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{backgroundColor: '#038a3610'}} aria-hidden>
-                        <IconlyIcon name={iconForTheme(t)} size={14} color="#038a36" />
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-au-green/10" aria-hidden>
+                        <IconlyIcon name={iconForTheme(t)} size={14} color="#00843D" />
                       </span>
-                      <div className="text-sm">{t}</div>
+                      <div className="text-sm font-semibold text-au-dark-green">{t}</div>
                     </div>
                   )) : String(thematic ?? '\u2014')}
                 </div>
               </motion.div>
 
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#009639" valueClassName="text-2xl font-semibold" />
+                <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#00843D" valueClassName="text-2xl font-extrabold text-au-dark-green" />
               </motion.div>
             </motion.div>
 
@@ -117,12 +117,12 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
 
         <aside className="md:col-span-1 space-y-4">
           <motion.div 
-            className="rounded-[24px] border border-zinc-200 bg-white p-3"
+            className="rounded-3xl border border-au-dark-green/10 bg-white p-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h4 className="text-sm font-semibold text-zinc-900">Funders</h4>
+            <h4 className="text-sm font-bold text-slate-900">Funders</h4>
             <div className="mt-3 space-y-3">
               {funders.length === 0 ? (
                 <div className="text-sm text-zinc-600">No funders listed</div>
@@ -130,16 +130,16 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 funders.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
                     {typeof f.logo === 'string' && f.logo ? (
-                      <Image src={f.logo} alt={`${f.name} logo`} width={64} height={64} className="w-16 h-16 rounded-md object-center object-cover bg-white p-1 border border-zinc-100" unoptimized />
+                      <Image src={f.logo} alt={`${f.name} logo`} width={64} height={64} className="w-16 h-16 rounded-2xl object-center object-cover bg-white p-1 border border-au-dark-green/10" unoptimized />
                     ) : (
-                      <div className="w-10 h-10 rounded-md bg-zinc-100 flex items-center justify-center text-sm font-semibold text-zinc-700">
+                      <div className="w-10 h-10 rounded-2xl bg-slate-50 flex items-center justify-center text-sm font-bold text-au-dark-green">
                         {String(f.name).split(/\s+/).map(s => s[0]).slice(0,2).join('').toUpperCase()}
                       </div>
                     )}
 
                     <div className="flex-1">
-                      <div className="text-lg font-semibold text-zinc-900">{f.name}</div>
-                      {f.role ? <div className="text-xs text-zinc-500">{f.role}</div> : null}
+                      <div className="text-lg font-bold text-au-dark-green">{f.name}</div>
+                      {f.role ? <div className="text-xs font-semibold text-slate-400">{f.role}</div> : null}
                     </div>
                   </div>
                 ))
@@ -164,24 +164,24 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="rounded-[24px] border border-zinc-200 bg-white p-3 h-full flex flex-col">
-            <h3 className="text-sm font-semibold text-zinc-900">Strategic pillars</h3>
+          <div className="rounded-3xl border border-au-dark-green/10 bg-white p-3 h-full flex flex-col">
+            <h3 className="text-sm font-bold text-slate-900">Strategic pillars</h3>
             <div className="mt-2 flex-1">
               {pillars.length > 0 ? (
                 <>
                   <div className="space-y-2">
                     {pillars.map((p, idx) => (
-                      <details key={p.id ?? idx} className="rounded-md border border-zinc-100 p-3 bg-accent-50">
-                        <summary className="cursor-pointer list-none text-sm font-medium text-zinc-900">
+                      <details key={p.id ?? idx} className="rounded-2xl border border-au-dark-green/10 p-3 bg-au-green/[0.04]">
+                        <summary className="cursor-pointer list-none text-sm font-bold text-au-dark-green">
                           <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full" style={{backgroundColor: '#038a3610', color: '#038a36'}} aria-hidden>
-                              <IconlyIcon name="layers" size={16} color="#038a36" />
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-au-green/10 text-au-green" aria-hidden>
+                              <IconlyIcon name="layers" size={16} color="#00843D" />
                             </span>
                             <span>{p.name ?? '-'}</span>
                           </div>
-                          <span className="chev" aria-hidden><IconlyIcon name="chevron_right" size={16} color="#6b7280" /></span>
+                          <span className="chev" aria-hidden><IconlyIcon name="chevron_right" size={16} color="#004526" /></span>
                         </summary>
-                        <div className="mt-2 text-sm text-zinc-700 whitespace-pre-line">{p.description ?? '—'}</div>
+                        <div className="mt-2 text-sm text-slate-600 whitespace-pre-line leading-relaxed">{p.description ?? '—'}</div>
                       </details>
                     ))}
                   </div>
@@ -205,17 +205,17 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="rounded-[24px] border border-zinc-200 bg-white p-3 h-full flex flex-col">
-            <h3 className="text-sm font-semibold text-zinc-900">Alignment</h3>
+          <div className="rounded-3xl border border-au-dark-green/10 bg-white p-3 h-full flex flex-col">
+            <h3 className="text-sm font-bold text-slate-900">Alignment</h3>
             <div className="mt-2 flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto">
-              <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
-                <h4 className="text-xs font-medium text-zinc-800">Continental policies</h4>
+              <div className="rounded-2xl border border-au-dark-green/10 bg-white p-3">
+                <h4 className="text-xs font-bold text-slate-400">Continental policies</h4>
                 <div className="mt-2 text-sm text-zinc-700 space-y-2">
                   {continentalPoliciesArr.length > 0 ? (
                     continentalPoliciesArr.map((c, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <IconlyIcon name="check_circle" size={16} color="#038a36" className="mt-0.5" />
-                        <div className="text-sm text-zinc-700">{c}</div>
+                        <IconlyIcon name="check_circle" size={16} color="#00843D" className="mt-0.5" />
+                        <div className="text-sm font-medium text-au-dark-green">{c}</div>
                       </div>
                     ))
                   ) : (
@@ -224,23 +224,23 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                 </div>
               </div>
 
-              <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
-                <h4 className="text-xs font-medium text-zinc-800">Global agendas</h4>
+              <div className="rounded-2xl border border-au-dark-green/10 bg-white p-3">
+                <h4 className="text-xs font-bold text-slate-400">Global agendas</h4>
                 <div className="mt-2 text-sm text-zinc-700">
                   <div>
-                    <div className="text-xs uppercase font-medium text-zinc-800 mb-4">SDGs</div>
+                    <div className="text-xs uppercase font-bold text-slate-400 mb-4">SDGs</div>
                     <div className="mt-2 flex flex-wrap gap-4">
                       {sdgs.length > 0 ? sdgs.map((s, idx) => (
-                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full text-zinc-800" style={{backgroundColor: '#038a3620'}}>{sdgChipLabel(s)}</span>
+                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full font-bold bg-au-green/10 text-au-green">{sdgChipLabel(s)}</span>
                       )) : <span className="text-sm text-zinc-500">—</span>}
                     </div>
                   </div>
 
                   <div className="mt-12">
-                    <div className="text-xs uppercase font-medium text-zinc-800 mb-4">Agenda2063</div>
+                    <div className="text-xs uppercase font-bold text-slate-400 mb-4">Agenda2063</div>
                     <div className="mt-2 flex flex-wrap gap-4">
                       {agenda2063.length > 0 ? agenda2063.map((g, idx) => (
-                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full text-zinc-800" style={{backgroundColor: '#e0c06320'}}>{agendaChipLabel(g)}</span>
+                        <span key={idx} className="inline-flex items-center px-4 py-1.5 text-lg rounded-full font-bold bg-au-gold/10 text-au-gold">{agendaChipLabel(g)}</span>
                       )) : <span className="text-sm text-zinc-500">—</span>}
                     </div>
                   </div>

@@ -82,6 +82,13 @@ const ICONLY_NAME_MAP: Record<string, string> = {
   hub: "Category",
   description: "Document",
   devices: "Video",
+  link: "Paper",
+  donut_large: "Chart",
+  pie_chart: "Chart",
+  attach_money: "Wallet",
+  satellite_alt: "Graph",
+  cloud_download: "Download",
+  settings_suggest: "Setting",
 };
 
 function resolveIconlyName(name: string) {

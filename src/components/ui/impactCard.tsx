@@ -28,17 +28,14 @@ export default function ImpactCard({ label, number, unit, highlight = false, ico
         show: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
       }}
       whileHover={{ scale: 1.02 }}
-      className={`rounded-[24px] border border-slate-200 bg-white px-5 py-6 transition-colors duration-300 group ${highlight ? "ring-1 ring-[#1A563220]" : ""}`} 
-      style={{
-        backgroundColor: highlight ? '#1A56320a' : undefined,
-      }}
+      className={`rounded-3xl border border-au-dark-green/10 bg-white px-5 py-6 transition-all duration-300 hover:border-au-gold/30 group ${highlight ? "ring-1 ring-au-dark-green/10 bg-au-dark-green/[0.04]" : ""}`} 
     >
       <div className="flex items-center justify-between gap-4">
         <div>
-          {label ? <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500 transition-colors" onMouseEnter={(e) => e.currentTarget.style.color = '#1A5632'} onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}>{label}</div> : null}
+          {label ? <div className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400 transition-colors group-hover:text-au-dark-green">{label}</div> : null}
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">{number}</span>
-            {unit ? <span className="text-sm font-medium text-slate-500">{unit}</span> : null}
+            <span className="text-3xl sm:text-4xl font-extrabold text-au-dark-green tracking-tight">{number}</span>
+            {unit ? <span className="text-sm font-semibold text-slate-400">{unit}</span> : null}
           </div>
         </div>
 

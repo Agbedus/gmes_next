@@ -61,10 +61,10 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
               <div className="flex-1 relative pb-1">
                 {/* Connector line */}
                 {idx !== items.length - 1 && (
-                    <div className="absolute left-[-17px] top-2 bottom-[-14px] w-[2px] bg-[#1A563220] transition-colors" onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A563240'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A563220'} />
+                    <div className="absolute left-[-17px] top-2 bottom-[-14px] w-[2px] bg-[#1A563220] transition-colors group-hover:bg-[#1A563240]" />
                 )}
                 {/* Dot */}
-                <div className="absolute left-[-21px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-[#1A5632] bg-white transition-all" onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.25)'; e.currentTarget.style.borderColor = '#153f25'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = '#1A5632'; }} />
+                <div className="absolute left-[-21px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-[#1A5632] bg-white transition-all group-hover:scale-125 group-hover:border-[#153f25]" />
 
                 <button
                   type="button"

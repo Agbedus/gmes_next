@@ -66,10 +66,10 @@ type Metrics = {
 const TabButton = ({ title, active, onClick, icon }: { title: string; active: boolean; onClick: () => void; icon?: string }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
+    className={`flex items-center gap-2 px-3 py-2 text-sm font-bold rounded-2xl transition-all whitespace-nowrap border ${
       active
-        ? "bg-[#1A5632] text-white border border-[#1A5632]"
-        : "text-slate-600 border border-transparent hover:border-slate-200 hover:bg-white"
+        ? "bg-au-dark-green text-white border-au-dark-green shadow-sm"
+        : "bg-white text-slate-600 border-transparent hover:bg-au-green/5 hover:text-au-dark-green"
     }`}
   >
     {icon ? <IconlyIcon name={icon} size={18} color="currentColor" /> : null}
@@ -86,6 +86,11 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
   const capacity = (metrics?.capacityBuilding ?? {}) as CapacityMetrics;
   const outreach = (metrics?.engagementAndOutreach ?? {}) as OutreachMetrics;
   const cross = (metrics?.crossCutting ?? {}) as CrossMetrics;
+
+  const pastelAuGreen = 'bg-au-green/10 text-au-green';
+  const pastelAuGold = 'bg-au-gold/10 text-au-gold';
+  const pastelAuDarkGreen = 'bg-au-dark-green/10 text-au-dark-green';
+  const pastelAuRed = 'bg-au-red/10 text-au-red';
 
   const infraItems = [
     { metric: 'eStations operational', value: (infra?.eStationsOperational ?? '—') as React.ReactNode },
@@ -163,10 +168,10 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
     switch (activeTab) {
       case 'General': {
         const general = [
-          { metric: 'Countries involved', value: (reach?.countriesInvolved ?? '—') as React.ReactNode, icon: 'public', colorClass: 'bg-amber-50 text-amber-600' },
-          { metric: 'Institutions', value: (reach?.institutionsInvolved ?? '—') as React.ReactNode, icon: 'school', colorClass: 'bg-emerald-50 text-emerald-600' },
-          { metric: 'Snapshot date', value: (metrics?.snapshotDate ?? '—') as React.ReactNode, icon: 'schedule', colorClass: 'bg-sky-50 text-sky-600' },
-          { metric: 'Total operational services', value: (services?.totalOperationalServices ?? '—') as React.ReactNode, icon: 'layers', colorClass: 'bg-violet-50 text-violet-600' },
+          { metric: 'Countries involved', value: (reach?.countriesInvolved ?? '—') as React.ReactNode, icon: 'public', colorClass: pastelAuGold },
+          { metric: 'Institutions', value: (reach?.institutionsInvolved ?? '—') as React.ReactNode, icon: 'school', colorClass: pastelAuGreen },
+          { metric: 'Snapshot date', value: (metrics?.snapshotDate ?? '—') as React.ReactNode, icon: 'schedule', colorClass: pastelAuDarkGreen },
+          { metric: 'Total operational services', value: (services?.totalOperationalServices ?? '—') as React.ReactNode, icon: 'layers', colorClass: pastelAuDarkGreen },
         ];
         return cardGrid(general);
       }
@@ -178,31 +183,31 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
           'Marine services': 'waves',
           'Private sector engagement': 'business_center',
         };
-        return cardGrid(servicesItems.map(s => ({ metric: s.metric, value: s.value, icon: serviceIcons[s.metric] || 'room_service', colorClass: 'bg-sky-50 text-sky-600' })));
+        return cardGrid(servicesItems.map(s => ({ metric: s.metric, value: s.value, icon: serviceIcons[s.metric] || 'room_service', colorClass: pastelAuDarkGreen })));
       }
 
       case 'Infrastructure':
-        return cardGrid(infraItems.map(s => ({ metric: s.metric, value: s.value, icon: 'sensors', colorClass: 'bg-amber-50 text-amber-600' })));
+        return cardGrid(infraItems.map(s => ({ metric: s.metric, value: s.value, icon: 'sensors', colorClass: pastelAuGold })));
 
       case 'Capacity Building':
-        return cardGrid(capacityItems.map(s => ({ metric: s.metric, value: s.value, icon: 'school', colorClass: 'bg-emerald-50 text-emerald-600' })));
+        return cardGrid(capacityItems.map(s => ({ metric: s.metric, value: s.value, icon: 'school', colorClass: pastelAuGreen })));
 
       case 'Engagement & Outreach':
-        return cardGrid(engagementItems.map(s => ({ metric: s.metric, value: s.value, icon: 'campaign', colorClass: 'bg-rose-50 text-rose-600' })));
+        return cardGrid(engagementItems.map(s => ({ metric: s.metric, value: s.value, icon: 'campaign', colorClass: pastelAuRed })));
 
       case 'Cross Cutting':
         return (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
-              <h4 className="text-xs font-medium text-zinc-800">Participation</h4>
-              <div className="mt-2 text-sm text-zinc-700">
+            <div className="rounded-3xl border border-au-dark-green/10 bg-white p-3">
+              <h4 className="text-xs font-bold text-slate-400">Participation</h4>
+              <div className="mt-2 text-sm text-au-dark-green">
                 <div><strong>Female participation:</strong> {(cross?.femaleParticipation ?? '—') as React.ReactNode}</div>
                 <div className="mt-1"><strong>GAIA clubs (universities):</strong> {(cross?.youthInnovation_GAIAClubs?.universities ?? '—') as React.ReactNode}</div>
               </div>
             </div>
-            <div className="rounded-[24px] border border-zinc-200 bg-white p-3">
-              <h4 className="text-xs font-medium text-zinc-800">Youth</h4>
-              <div className="mt-2 text-sm text-zinc-700">
+            <div className="rounded-3xl border border-au-dark-green/10 bg-white p-3">
+              <h4 className="text-xs font-bold text-slate-400">Youth</h4>
+              <div className="mt-2 text-sm text-au-dark-green">
                 <div><strong>Countries:</strong> {(cross?.youthInnovation_GAIAClubs?.countries ?? '—') as React.ReactNode}</div>
               </div>
             </div>
@@ -216,7 +221,7 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
 
   return (
     <section className="mt-6">
-      <h2 className="text-lg font-semibold text-slate-900">Key Impact Metrics</h2>
+      <h2 className="text-lg font-bold text-au-dark-green">Key Impact Metrics</h2>
 
       <div className="mt-4">
         <nav className="flex items-center justify-between flex-wrap gap-2" aria-label="Tabs">
