@@ -36,8 +36,8 @@ function NavIcon({
     <Icon
       set="light"
       size={20}
-      primaryColor={active ? "#FDB813" : "#FFFFFF"}
-      secondaryColor={active ? "#FDB813" : "#FFFFFF"}
+      primaryColor={active ? "#FDB813" : "currentColor"}
+      secondaryColor={active ? "#FDB813" : "currentColor"}
     />
   );
 }
