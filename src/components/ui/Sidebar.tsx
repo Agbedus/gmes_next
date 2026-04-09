@@ -208,7 +208,7 @@ export default function Sidebar() {
                   <div className="ml-5 space-y-1 border-l border-au-dark-green/10 pl-4">
                     {item.children?.map((child) => {
                       const childSection = child.href.split("section=")[1] ?? "";
-                      const childActive = pathname === "/useful_links" && searchParams.get("section") === childSection;
+                      const childActive = pathname === "/useful_links" && searchParams?.get("section") === childSection;
                       return (
                         <Link
                           key={child.href}

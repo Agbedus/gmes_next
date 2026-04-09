@@ -34,9 +34,9 @@ const SECTION_LABELS: Record<Tab, string> = {
 
 const VALID_SECTIONS = new Set<Tab>(['pmu', 'consortia', 'useCases', 'policies', 'agendas']);
 
-export default function UsefulLinksPage() {
+function UsefulLinksContent() {
     const searchParams = useSearchParams();
-    const requestedSection = searchParams.get('section');
+    const requestedSection = searchParams?.get('section');
     const activeTab: Tab = requestedSection && VALID_SECTIONS.has(requestedSection as Tab)
         ? (requestedSection as Tab)
         : 'pmu';
@@ -96,5 +96,13 @@ export default function UsefulLinksPage() {
                 </AnimatePresence>
             </div>
         </div>
+    );
+}
+
+export default function UsefulLinksPage() {
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <UsefulLinksContent />
+        </React.Suspense>
     );
 }
