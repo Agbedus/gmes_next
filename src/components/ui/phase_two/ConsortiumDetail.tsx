@@ -26,14 +26,13 @@ function svgInitialsDataUrl(initials: string, bgColor: string) {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-const TABS = ['Overview', 'Metrics', 'Partners', 'Documents', 'Contacts'] as const;
+const TABS = ['Overview', 'Metrics', 'Partners', 'Contacts'] as const;
 type TabKey = typeof TABS[number];
 
 const TAB_STYLES: Record<string, { text: string; bg: string; ring: string }> = {
   Overview: { text: 'text-indigo-700', bg: 'bg-gradient-to-r from-indigo-50 to-white', ring: 'ring-indigo-200' },
   Metrics: { text: 'text-teal-700', bg: 'bg-gradient-to-r from-teal-50 to-white', ring: 'ring-teal-200' },
   Partners: { text: 'text-emerald-700', bg: 'bg-gradient-to-r from-emerald-50 to-white', ring: 'ring-emerald-200' },
-  Documents: { text: 'text-amber-700', bg: 'bg-gradient-to-r from-amber-50 to-white', ring: 'ring-amber-200' },
   Contacts: { text: 'text-rose-700', bg: 'bg-gradient-to-r from-rose-50 to-white', ring: 'ring-rose-200' },
 };
 
@@ -49,9 +48,6 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
 
   // Partners table rows
   // These variables were related to a DataTable component that is no longer used.
-
-  // Documents / outputs
-  const documents = Array.isArray(consortium.outputs) ? consortium.outputs : [];
 
   // Contacts
   const contacts = Array.isArray((consortium as any).contact_persons) ? (consortium as any).contact_persons : [];
@@ -151,7 +147,6 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                 {t === 'Overview' && <IconlyIcon name="Discovery" size={16} color="currentColor" />}
                 {t === 'Metrics' && <IconlyIcon name="Chart" size={16} color="currentColor" />}
                 {t === 'Partners' && <IconlyIcon name="People" size={16} color="currentColor" />}
-                {t === 'Documents' && <IconlyIcon name="Document" size={16} color="currentColor" />}
                 {t === 'Contacts' && <IconlyIcon name="User" size={16} color="currentColor" />}
                 <span className={active === t ? '' : 'text-zinc-700'}>{t}</span>
               </button>
@@ -298,8 +293,8 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                   <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                     {/* Metrics cards with colorful accents */}
                     <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                        <IconlyIcon name="groups" size={24} color="#e0c063" />
+                      <div className="w-12 h-12 rounded-lg flex items-center justify-center shadow-md bg-au-dark-green text-au-gold">
+                        <IconlyIcon name="groups" size={24} color="currentColor" />
                       </div>
                       <div>
                         <div className="text-xs text-zinc-500">Partners</div>
@@ -308,8 +303,8 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                     </div>
 
                     <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                        <IconlyIcon name="account_balance" size={24} color="#e0c063" />
+                      <div className="w-12 h-12 rounded-lg flex items-center justify-center shadow-md bg-au-dark-green text-au-gold">
+                        <IconlyIcon name="account_balance" size={24} color="currentColor" />
                       </div>
                       <div>
                         <div className="text-xs text-zinc-500">Budget (EUR)</div>
@@ -318,8 +313,8 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                     </div>
 
                     <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                        <IconlyIcon name="schedule" size={24} color="#e0c063" />
+                      <div className="w-12 h-12 rounded-lg flex items-center justify-center shadow-md bg-au-dark-green text-au-gold">
+                        <IconlyIcon name="schedule" size={24} color="currentColor" />
                       </div>
                       <div>
                         <div className="text-xs text-zinc-500">Period</div>
@@ -329,8 +324,8 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
 
                     <div className="p-4 rounded-[24px] bg-white shadow-sm border border-zinc-100 flex flex-col gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-md" style={{backgroundColor: '#009639'}}>
-                        <IconlyIcon name="location_on" size={24} color="#e0c063" />
+                        <div className="w-12 h-12 rounded-lg flex items-center justify-center shadow-md bg-au-dark-green text-au-gold">
+                        <IconlyIcon name="location_on" size={24} color="currentColor" />
                         </div>
                         <div>
                           <div className="text-xs text-zinc-500">Locations</div>
@@ -342,7 +337,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                       <div className="flex flex-wrap w-full gap-2 mt-12">
                         {locations.length > 0 ? locations.map((loc, idx) => (
                             <span key={idx}
-                                  className="inline-flex items-center gap-2 px-3 py-1 text-sm rounded-full bg-accent-50 text-accent-700 shadow-sm">
+                                  className="inline-flex items-center gap-2 px-3 py-1 text-sm rounded-full badge-au-dark-green shadow-sm">
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
                                aria-hidden className="text-zinc-600">
@@ -402,23 +397,6 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
                       );
                     })}
                   </div>
-                </div>
-              )}
-
-              {active === 'Documents' && (
-                <div className="space-y-3">
-                  {documents.length > 0 ? (
-                    documents.map((d, i) => (
-                      <div key={i} className="p-3 rounded-[24px] bg-white border shadow-sm flex items-start gap-3">
-                        <div className="w-9 h-9 rounded-md bg-amber-100 flex items-center justify-center text-amber-700">
-                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-                        </div>
-                        <div className="text-sm text-zinc-700">{d}</div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-sm text-zinc-500">—</div>
-                  )}
                 </div>
               )}
 

@@ -17,6 +17,11 @@ function truncate(text: string, n = 120) {
 export default function Timeline({ items }: { items: TimelineItem[] }) {
   const [expanded, setExpanded] = React.useState<Record<number, boolean>>({});
 
+  // Reset expanded state when items change (e.g. search cleared)
+  React.useEffect(() => {
+    setExpanded({});
+  }, [items]);
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -56,15 +61,15 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
                 show: { opacity: 1, x: 0 }
               }}
             >
-              <div className="w-24 flex-shrink-0 pt-1 text-xs font-bold text-[#1A5632]">{it.year ?? it.years}</div>
+              <div className="w-24 flex-shrink-0 pt-1 text-xs font-bold text-blue-dark">{it.year ?? it.years}</div>
 
               <div className="flex-1 relative pb-1">
                 {/* Connector line */}
                 {idx !== items.length - 1 && (
-                    <div className="absolute left-[-17px] top-2 bottom-[-14px] w-[2px] bg-[#1A563220] transition-colors group-hover:bg-[#1A563240]" />
+                    <div className="absolute left-[-17px] top-2 bottom-[-14px] w-[2px] bg-blue-dark/10 transition-colors group-hover:bg-blue-dark/20" />
                 )}
                 {/* Dot */}
-                <div className="absolute left-[-21px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-[#1A5632] bg-white transition-all group-hover:scale-125 group-hover:border-[#153f25]" />
+                <div className="absolute left-[-21px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-blue-dark bg-white transition-all group-hover:scale-125 group-hover:border-blue-primary" />
 
                 <button
                   type="button"
@@ -77,7 +82,7 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
                       setExpanded((s) => ({ ...s, [idx]: !s[idx] }));
                     }
                   }}
-                  className="w-full rounded-lg p-1 -ml-1 text-left transition-colors hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1A5632]/20"
+                  className="w-full rounded-lg p-1 -ml-1 text-left transition-colors hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-dark/20"
                 >
                   <div id={contentId} className="text-sm leading-relaxed text-slate-600 transition-colors group-hover:text-slate-900">
                     {isExpanded ? it.event : truncate(it.event, 140)}

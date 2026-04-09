@@ -85,10 +85,10 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
             >
               {/* Increase the visual weight of values by passing a larger font size via className prop on OverviewCard */}
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#fff" iconBg="#004526" valueClassName="text-2xl font-extrabold text-au-dark-green" />
+                <OverviewCard title="Timeline" value={timeline} icon="calendar_month" iconColor="#fff" iconBg="#1E3A8A" valueClassName="text-2xl font-extrabold text-au-dark-green" />
               </motion.div>
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#fff" iconBg="#FDB813" valueClassName="text-2xl font-extrabold text-au-dark-green" />
+                <OverviewCard title="Budget (total)" value={budgetTotal} icon="account_balance" iconColor="#fff" iconBg="#F59E0B" valueClassName="text-2xl font-extrabold text-au-dark-green" />
               </motion.div>
 
               {/* Replace the small left thematic box with the thematic block that previously lived under the logos on the aside (i.e. show the concise themed list here with colored icons) */}
@@ -98,7 +98,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                   {Array.isArray(thematic) ? (thematic as unknown as string[]).map((t, i) => (
                     <div key={i} className="py-1 flex items-center gap-2">
                       <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-au-green/10" aria-hidden>
-                        <IconlyIcon name={iconForTheme(t)} size={14} color="#00843D" />
+                        <IconlyIcon name={iconForTheme(t)} size={14} color="#10B981" />
                       </span>
                       <div className="text-sm font-semibold text-au-dark-green">{t}</div>
                     </div>
@@ -107,7 +107,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
               </motion.div>
 
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#00843D" valueClassName="text-2xl font-extrabold text-au-dark-green" />
+                <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#10B981" valueClassName="text-2xl font-extrabold text-au-dark-green" />
               </motion.div>
             </motion.div>
 
@@ -175,7 +175,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                         <summary className="cursor-pointer list-none text-sm font-bold text-au-dark-green">
                           <div className="flex items-center gap-2">
                             <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-au-green/10 text-au-green" aria-hidden>
-                              <IconlyIcon name="layers" size={16} color="#00843D" />
+                              <IconlyIcon name="layers" size={16} color="#10B981" />
                             </span>
                             <span>{p.name ?? '-'}</span>
                           </div>
@@ -214,7 +214,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
                   {continentalPoliciesArr.length > 0 ? (
                     continentalPoliciesArr.map((c, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <IconlyIcon name="check_circle" size={16} color="#00843D" className="mt-0.5" />
+                        <IconlyIcon name="check_circle" size={16} color="#10B981" className="mt-0.5" />
                         <div className="text-sm font-medium text-au-dark-green">{c}</div>
                       </div>
                     ))

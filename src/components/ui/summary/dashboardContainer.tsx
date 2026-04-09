@@ -15,14 +15,8 @@ import Tabs from "../Tabs";
 import {
   Landmark, 
   School, 
-  Globe, 
-  Settings, 
   Cable, 
-  Trophy, 
-  Zap, 
   Users, 
-  DollarSign, 
-  AlertCircle,
     Award,
     Network,
     Share2,
@@ -32,7 +26,9 @@ import {
     Satellite,
   LayoutGrid,
   Sparkles,
-  BarChart
+  BarChart,
+  Globe,
+  Settings
 } from "lucide-react";
 import Image from "next/image";
 
@@ -189,6 +185,14 @@ export default function DashboardContainer(): React.ReactElement {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // Reset dashboard state when query is cleared
+  React.useEffect(() => {
+    if (query === "") {
+      setActiveTab("overview");
+      setServiceQuery("");
+    }
+  }, [query]);
+
   if (loading) {
     return <div className="p-8 text-center text-zinc-500 animate-pulse">Loading dashboard…</div>;
   }
@@ -199,6 +203,7 @@ export default function DashboardContainer(): React.ReactElement {
 
   // Build impact array from data.kpis
   const impact: { label: string; number: string; icon?: React.ReactNode; colorClass?: string; style?: React.CSSProperties; category: string }[] = [];
+  const overviewImpactTheme = "bg-au-dark-green text-white";
   // we'll extract programme agreement into a stat and not show it in impact
   let programmeAgreementStat: Stat | null = null;
   (data.kpis ?? []).forEach((k: KPI) => {
@@ -206,55 +211,32 @@ export default function DashboardContainer(): React.ReactElement {
     const normLabel = label.toLowerCase();
     // If this KPI is the 'Programme agreement', convert it to a stat and don't add to impact
     if (normLabel.includes("programme agreement")) {
-      if (k.amount_eur_millions !== undefined) {
-        const num = Number(k.amount_eur_millions);
-        // programmeAgreementStat = {
-        //   title: "Programme agreement",
-        //   // show only the number as requested (no citation), e.g. €30M
-        //   value: `€${num}${Number.isInteger(num) ? "M" : "M"}`,
-        //   icon: <Landmark size={20} />,
-        // };
-      } else {
-        programmeAgreementStat = { title: "Programme agreement", value: "Signed Dec 2016", icon: <Landmark size={20} /> };
-      }
+      programmeAgreementStat = { title: "Programme agreement", value: "Signed Dec 2016", icon: <Landmark size={20} /> };
       return; // skip adding to impact
     }
     if (k.amount_eur_millions !== undefined) {
       const num = Number(k.amount_eur_millions);
-      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
+      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
     }
-    // if (k.institutions !== undefined) impact.push({ label: "Institutions", number: `${k.institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
 
+    if (k.eo_applications !== undefined) impact.push({ label: "EO Applications", number: `${k.eo_applications}`, icon: <Sparkles size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
+    if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Users size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
+    if (k.geoportals !== undefined) impact.push({ label: "Geoportals", number: `${k.geoportals}`, icon: <LayoutGrid size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
+    if (k.implementing_institutions !== undefined) impact.push({ label: "Implementing", number: `${k.implementing_institutions}`, icon: <School size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
+    if (k.data_enabled_institutions !== undefined) impact.push({ label: "Data Enabled Institutions", number: `${k.data_enabled_institutions}`, icon: <Cable size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
+    if (k.estations_installed !== undefined) impact.push({ label: "eStations Installed", number: `${k.estations_installed}`, icon: <Antenna size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
+    if (k.trained_operators !== undefined) impact.push({ label: "Trained Operators", number: `${k.trained_operators}`, icon: <Settings size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+    if (k.trainings !== undefined) impact.push({ label: "Trainings", number: `${k.trainings}`, icon: <Building2 size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+    if (k.trainees_in_eo !== undefined) impact.push({ label: "Trainees In EO", number: `${k.trainees_in_eo}`, icon: <Satellite size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+    if (k.studies_grant !== undefined) impact.push({ label: "Study Grants", number: `${k.studies_grant}`, icon: <Award size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+    if (k.continental_network !== undefined) impact.push({ label: "Continental Networks", number: `${k.continental_network}`, icon: <Network size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
+    if (k.dissemination_platform !== undefined) impact.push({ label: "Dissemination Platform", number: `${k.dissemination_platform}`, icon: <Share2 size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
 
-    if (k.eo_applications !== undefined) impact.push({ label: "EO Applications", number: `${k.eo_applications}`, icon: <Sparkles size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'implementation' });
-    if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Users size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'implementation' });
-    if (k.geoportals !== undefined) impact.push({ label: "Geoportals", number: `${k.geoportals}`, icon: <LayoutGrid size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'infrastructure' });
-    if (k.implementing_institutions !== undefined) impact.push({ label: "Implementing", number: `${k.implementing_institutions}`, icon: <School size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'implementation' });
-    if (k.data_enabled_institutions !== undefined) impact.push({ label: "Data Enabled Institutions", number: `${k.data_enabled_institutions}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'infrastructure' });
-    if (k.estations_installed !== undefined) impact.push({ label: "eStations Installed", number: `${k.estations_installed}`, icon: <Antenna size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'infrastructure' });
-    if (k.trained_operators !== undefined) impact.push({ label: "Trained Operators", number: `${k.trained_operators}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
-    if (k.trainings !== undefined) impact.push({ label: "Trainings", number: `${k.trainings}`, icon: <Building2 size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
-    if (k.trainees_in_eo !== undefined) impact.push({ label: "Trainees In EO", number: `${k.trainees_in_eo}`, icon: <Satellite size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
-    if (k.studies_grant !== undefined) impact.push({ label: "Study Grants", number: `${k.studies_grant}`, icon: <Award size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'capacity' });
-    if (k.continental_network !== undefined) impact.push({ label: "Continental Networks", number: `${k.continental_network}`, icon: <Network size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
-    if (k.dissemination_platform !== undefined) impact.push({ label: "Dissemination Platform", number: `${k.dissemination_platform}`, icon: <Share2 size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
-    // if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Globe size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
-
-    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Flag size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' }, category: 'overview' });
-    // if (k.institutions_equipped !== undefined) impact.push({ label: "eStations equipped", number: `${k.institutions_equipped}`, icon: <Settings size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
-    // if (k.estations_identified !== undefined) impact.push({ label: "eStations (identified)", number: `${k.estations_identified}`, icon: <Cable size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
-    // if (k.trained !== undefined) impact.push({ label: "Trained people", number: `${Number(k.trained).toLocaleString()}`, icon: <Trophy size={24} />, colorClass: "text-white", style: { backgroundColor: '#e0c063' } });
+    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Flag size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
   });
 
-  // Add Users and Active as impact cards (moved from stats)
-  // Inserted at the front so they appear at the top of the impact grid
-  // impact.unshift({ label: "Active", number: "89%", icon: <Zap size={24} />, colorClass: "text-white", style: { backgroundColor: '#038a36' } });
-  // impact.unshift({ label: "Users", number: "12,450", icon: <Users size={24} />, colorClass: "text-white", style: { backgroundColor: '#009639' } });
-
   // Reorder impact so specific items appear at the bottom (keep rest at top)
-  // programme agreement has been removed from impact and will be shown as a stat
   const bottomKeywords = ["phase 1 grant", "phase 1"];
-  // normalize function: lowercase and replace '&' with 'and' to match labels like 'Phase 1 grant & coverage'
   const normalize = (s: string) => s.toLowerCase().replace(/&/g, "and");
   const topImpact = impact.filter(i => !bottomKeywords.some(kw => normalize(i.label ?? "").includes(normalize(kw))));
   const bottomImpact = impact.filter(i => bottomKeywords.some(kw => normalize(i.label ?? "").includes(normalize(kw))));
@@ -283,14 +265,11 @@ export default function DashboardContainer(): React.ReactElement {
   const filteredTimeline: TimelineItem[] = (data.timeline ?? []).filter((t) =>
     (t.event ?? "").toLowerCase().includes(query.toLowerCase()) || String(t.year ?? t.years ?? "").toLowerCase().includes(query.toLowerCase())
   );
+
   const visibleServiceGroups = filteredServices.filter((s) => s.items.length > 0);
   const partnerCount = (data.funders?.length ?? 0) + (data.technical_partners?.length ?? 0);
 
-  const stats: Stat[] = [
-    // Users and Active have been moved to impact cards above
-    // { title: "Revenue", value: "$32,400", delta: "+2.1%", deltaType: "positive", icon: <DollarSign size={20} /> },
-    // { title: "Errors", value: 12, delta: "-1", deltaType: "negative", icon: <AlertCircle size={20} /> },
-  ];
+  const stats: Stat[] = [];
 
   // Append programme agreement stat at the bottom if we extracted it
   if (programmeAgreementStat) {
@@ -304,6 +283,7 @@ export default function DashboardContainer(): React.ReactElement {
         name={String(data.program?.name ?? "")}
         oneLiner={String(data.program?.one_liner ?? "")}
         onSearch={(q: string) => setQuery(q)}
+        searchValue={query}
       />
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -315,23 +295,23 @@ export default function DashboardContainer(): React.ReactElement {
         ].map((metric) => (
           <div
             key={metric.label}
-            className={`rounded-[24px] border p-5 ${metric.featured ? "border-[#1A5632]/20 bg-[linear-gradient(135deg,rgba(26,86,50,0.96),rgba(20,61,36,0.92))] text-white" : "border-slate-200 bg-white"}`}
+            className={`rounded-[24px] border p-5 ${metric.featured ? "border-blue-dark/20 bg-blue-dark text-white shadow-lg" : "border-slate-200 bg-white"}`}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className={`text-xs font-semibold uppercase tracking-wider ${metric.featured ? "text-white/75" : "text-slate-500"}`}>{metric.label}</p>
-                <div className={`mt-3 text-3xl font-bold tracking-tight ${metric.featured ? "text-white" : "text-slate-900"}`}>{metric.value}</div>
+                <div className={`mt-3 text-3xl font-bold tracking-tight ${metric.featured ? "text-white" : "text-blue-dark"}`}>{metric.value}</div>
                 <p className={`mt-2 text-sm ${metric.featured ? "text-white/80" : "text-slate-600"}`}>{metric.note}</p>
               </div>
-              <div className={`flex h-11 w-11 items-center justify-center rounded-[18px] border ${metric.featured ? "border-white/20 bg-white/12 text-[#FABC0C]" : "border-slate-200 bg-[#FABC0C12] text-[#FABC0C]"}`}>
-                <IconlyIcon name={metric.icon} size={20} color="#FABC0C" />
+              <div className={`flex h-11 w-11 items-center justify-center rounded-[18px] border ${metric.featured ? "border-white/20 bg-white/12 text-au-gold" : "border-slate-200 bg-au-gold/10 text-au-gold"}`}>
+                <IconlyIcon name={metric.icon} size={20} color="var(--color-au-gold)" />
               </div>
             </div>
           </div>
         ))}
       </section>
 
-      <section className="mt-10 rounded-[28px] border border-slate-200 bg-white p-6">
+      <section className="mt-10 rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
         <Tabs 
           tabs={tabs} 
           activeId={activeTab} 
@@ -341,10 +321,10 @@ export default function DashboardContainer(): React.ReactElement {
         />
 
         <div className="mt-6">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div 
               key={activeTab}
-              initial="hidden"
+              initial={false}
               animate="show"
               exit="hidden"
               variants={{
@@ -385,15 +365,24 @@ export default function DashboardContainer(): React.ReactElement {
             <label className="mb-4 group relative flex items-center justify-end text-sm text-slate-500">
               <input
                 aria-label="Search services"
-                className="ml-2 rounded-[16px] border border-slate-200 bg-white px-3 py-2 pl-8 text-sm outline-none transition-colors"
+                className="ml-2 rounded-[16px] border border-slate-200 bg-white px-3 py-2 pl-8 pr-8 text-sm outline-none transition-all focus:ring-2 focus:ring-au-gold"
                 style={{
-                  borderColor: serviceQuery ? '#1A5632' : undefined,
+                  borderColor: serviceQuery ? 'var(--color-au-gold)' : undefined,
                 }}
                 placeholder="Filter services"
                 value={serviceQuery}
                 onChange={(e) => setServiceQuery(e.target.value)}
               />
               <IconlyIcon name="search" size={16} color="#94a3b8" className="absolute left-4 top-1/2 -translate-y-1/2" />
+              {serviceQuery && (
+                <button
+                  type="button"
+                  onClick={() => setServiceQuery("")}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                >
+                  <IconlyIcon name="close" size={14} color="currentColor" />
+                </button>
+              )}
             </label>
             <ServicesList services={filteredServices} query={serviceQuery} />
           </div>
@@ -401,7 +390,7 @@ export default function DashboardContainer(): React.ReactElement {
 
         <div className="space-y-8">
           {data.funders && data.funders.length > 0 && (
-              <div className="rounded-[24px] border border-slate-200 bg-white p-6">
+              <div className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Funded By</h3>
                 <div className="flex flex-col gap-4">
                   {data.funders.map((funder, idx) => (
@@ -422,7 +411,7 @@ export default function DashboardContainer(): React.ReactElement {
               </div>
           )}
           {data.technical_partners && data.technical_partners.length > 0 && (
-              <div className="rounded-[24px] border border-slate-200 bg-white p-6">
+              <div className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Technical Partners</h3>
                 <div className="flex flex-col gap-4">
                   {data.technical_partners.map((partner, idx) => (
@@ -462,9 +451,9 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
       ) : null}
 
-      <div className="fixed bottom-10 right-12 z-50 flex h-auto w-auto items-center justify-center rounded-[24px] border border-slate-200 bg-white p-2">
+      <div className="fixed bottom-10 right-12 z-50 flex h-auto w-auto items-center justify-center rounded-[24px] border border-slate-200 bg-white p-2 shadow-xl">
         <button
-            className="flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-[#1A56320d] text-[#1A5632] hover:bg-[#038a3620]"
+            className="flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-blue-dark/5 text-blue-dark hover:bg-blue-dark/10"
             id="mapButton"
             aria-label="Open program map"
             onClick={() => setMapOpen(true)}
@@ -473,7 +462,7 @@ export default function DashboardContainer(): React.ReactElement {
         </button>
 
         <button
-            className="ml-3 flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-[#FABC0C10] text-[#1A5632] hover:bg-[#e0c06320]"
+            className="ml-3 flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-au-gold/10 text-au-gold hover:bg-au-gold/20"
             id="chartsButton"
             aria-label="Open charts summary"
             onClick={() => setChartsOpen(true)}
@@ -488,13 +477,13 @@ export default function DashboardContainer(): React.ReactElement {
         open={mapOpen}
         onCloseAction={() => setMapOpen(false)}
         points={samplePoints}
-        groupsColor={{ West: '#038a36', East: '#009639', North: '#e0c063', South: '#038a36', Central: '#009639' }}
+        groupsColor={{ West: 'var(--color-au-dark-green)', East: 'var(--color-au-green)', North: 'var(--color-au-gold)', South: 'var(--color-au-dark-green)', Central: 'var(--color-au-green)' }}
         legendItems={[
-          { label: 'West', color: '#038a36' },
-          { label: 'East', color: '#009639' },
-          { label: 'North', color: '#e0c063' },
-          { label: 'South', color: '#038a36' },
-          { label: 'Central', color: '#009639' },
+          { label: 'West', color: '#1E3A8A' },
+          { label: 'East', color: '#10B981' },
+          { label: 'North', color: '#F59E0B' },
+          { label: 'South', color: '#1E3A8A' },
+          { label: 'Central', color: '#10B981' },
         ]}
       />
     </div>

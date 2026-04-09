@@ -460,6 +460,13 @@ export default function ConsortiaPanel({ consortia }: { consortia: Consortium[] 
   // use a stable id for selection: acronym || project_title || name
   const firstId = normalized[0] ? (normalized[0].acronym ?? normalized[0].project_title ?? normalized[0].name) : undefined;
   const [activeConsortium, setActiveConsortium] = useState<string | undefined>(firstId);
+
+  // Reset active consortium when the list changes (e.g. on search or clear)
+  useEffect(() => {
+    if (firstId) {
+      setActiveConsortium(firstId);
+    }
+  }, [firstId]);
    const [mapOpen, setMapOpen] = useState(false);
    const [mapCountries, setMapCountries] = useState<string[]>([]);
 

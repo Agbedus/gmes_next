@@ -11,19 +11,19 @@ type InstitutionType = { type?: string; percentage?: string | number };
 function colorForCategory(name?: string) {
   const s = String(name ?? '').toLowerCase();
   if (s.includes('public') || s.includes('commission') || s.includes('agency') || s.includes('union') || s.includes('authority')) {
-    return { badgeBg: '#DFF6F2', badgeText: '#0E766C', donut: '#0ea5a1' };
+    return { badgeBg: 'rgba(30, 58, 138, 0.1)', badgeText: '#1E3A8A', donut: '#1E3A8A' }; /* au-dark-green */
   }
   if (s.includes('private') || s.includes('company') || s.includes('enterprise') || s.includes('start') || s.includes('firm')) {
-    return { badgeBg: '#F3E8FF', badgeText: '#6B21A8', donut: '#7C3AED' };
+    return { badgeBg: 'rgba(245, 158, 11, 0.1)', badgeText: '#F59E0B', donut: '#F59E0B' }; /* au-gold */
   }
   if (s.includes('university') || s.includes('institute') || s.includes('college') || s.includes('research') || s.includes('school')) {
-    return { badgeBg: '#E8F0FF', badgeText: '#1E40AF', donut: '#2563EB' };
+    return { badgeBg: 'rgba(16, 185, 129, 0.1)', badgeText: '#10B981', donut: '#10B981' }; /* au-green */
   }
   if (s.includes('ngo') || s.includes('foundation') || s.includes('association') || s.includes('network')) {
-    return { badgeBg: '#FFF8E6', badgeText: '#92400E', donut: '#F59E0B' };
+    return { badgeBg: 'rgba(224, 62, 45, 0.1)', badgeText: '#E03E2D', donut: '#E03E2D' }; /* au-red */
   }
   // fallback pastel
-  return { badgeBg: '#EEF2FF', badgeText: '#0F172A', donut: '#60A5FA' };
+  return { badgeBg: 'rgba(30, 58, 138, 0.1)', badgeText: '#1E3A8A', donut: '#1E3A8A' };
 }
 
 function MetricCard({ title, value, accent }: { title: string; value: string; accent?: string }) {
@@ -34,8 +34,8 @@ function MetricCard({ title, value, accent }: { title: string; value: string; ac
           <div className="text-xs text-zinc-500">{title}</div>
           <div className="mt-1 text-lg font-semibold text-zinc-900">{value}</div>
         </div>
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${accent ?? 'bg-accent-50'}`}>
-          <IconlyIcon name="public" size={20} color="#0E766C" />
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${accent ?? 'badge-au-dark-green'}`}>
+          <IconlyIcon name="public" size={20} color="#1E3A8A" />
         </div>
       </div>
     </div>
@@ -165,7 +165,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
               }}
             >
               {internal.map((n, i) => (
-                <motion.li key={i} className="p-3 rounded-md bg-accent-50" variants={{ hidden: { opacity: 0, x: -10 }, show: { opacity: 1, x: 0 } }}>
+                <motion.li key={i} className="p-3 rounded-md bg-au-dark-green/5" variants={{ hidden: { opacity: 0, x: -10 }, show: { opacity: 1, x: 0 } }}>
                   <div className="font-medium text-zinc-900">{n.name ?? '\u2014'}</div>
                   <div className="text-xs text-zinc-600 mt-1">{n.description ?? '\u2014'}</div>
                 </motion.li>
@@ -191,17 +191,17 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
               <div className="mt-4">
                 <h4 className="text-xs font-medium text-zinc-800">Private sector engagement</h4>
                 <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
+                  <div className="rounded-[24px] p-3 bg-au-dark-green/5 border border-zinc-100">
                     <div className="flex items-center gap-2">
-                      <IconlyIcon name="engineering" size={16} color="#0E766C" />
+                      <IconlyIcon name="engineering" size={16} color="#1E3A8A" />
                       <div className="text-xs text-zinc-500">Service development</div>
                     </div>
                     <div className="mt-2 text-sm font-semibold text-zinc-900">{String(privateSector.serviceDevelopment ?? '—')}</div>
                   </div>
 
-                  <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
+                  <div className="rounded-[24px] p-3 bg-au-dark-green/5 border border-zinc-100">
                     <div className="flex items-center gap-2">
-                      <IconlyIcon name="campaign" size={16} color="#0E766C" />
+                      <IconlyIcon name="campaign" size={16} color="#1E3A8A" />
                       <div className="text-xs text-zinc-500">Outreach</div>
                     </div>
                     <div className="mt-2 text-sm font-semibold text-zinc-900">{String(privateSector.outreach ?? '—')}</div>
@@ -216,9 +216,9 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
                 <h4 className="text-xs font-medium text-zinc-800">GAIA youth innovation clubs</h4>
                 <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {gaiaUniversities && (
-                    <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
+                    <div className="rounded-[24px] p-3 bg-au-dark-green/5 border border-zinc-100">
                       <div className="flex items-center gap-2">
-                        <IconlyIcon name="school" size={16} color="#0E766C" />
+                        <IconlyIcon name="school" size={16} color="#1E3A8A" />
                         <div className="text-xs text-zinc-500">Universities</div>
                       </div>
                       <div className="mt-2 text-sm font-semibold text-zinc-900">
@@ -236,9 +236,9 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
                   )}
 
                   {gaiaCountries && (
-                    <div className="rounded-[24px] p-3 bg-accent-50 border border-zinc-100">
+                    <div className="rounded-[24px] p-3 bg-au-dark-green/5 border border-zinc-100">
                       <div className="flex items-center gap-2">
-                        <IconlyIcon name="public" size={16} color="#0E766C" />
+                        <IconlyIcon name="public" size={16} color="#1E3A8A" />
                         <div className="text-xs text-zinc-500">Countries</div>
                       </div>
                       <div className="mt-2 text-sm font-semibold text-zinc-900">

@@ -16,38 +16,50 @@ function highlight(text: string, q: string) {
   return (
     <>
       {text.slice(0, idx)}
-      <mark className="rounded-sm bg-[#FABC0C20] px-0.5 text-[#1A5632]">{text.slice(idx, idx + q.length)}</mark>
+      <mark className="rounded-sm bg-au-gold/20 px-0.5 text-blue-dark">{text.slice(idx, idx + q.length)}</mark>
       {text.slice(idx + q.length)}
     </>
   );
 }
 
 export default function ServicesList({ services, query = "" }: { services: Service[]; query?: string }) {
-  const visible = services.filter((s) => (s.items || []).length > 0);
-
-  if (!visible.length) {
-    return <div className="rounded-[24px] border border-slate-200 bg-white p-4 text-sm text-slate-700">No services match your filter.</div>;
-  }
+  // Use useMemo to stabilize visible filter
+  const visible = React.useMemo(() => services.filter((s) => (s.items || []).length > 0), [services]);
 
   // mapping category -> icon and color classes
   const categoryMeta: Record<string, { icon: string; colorClass: string }> = {
-    "Land & water": { icon: "agriculture", colorClass: "text-[#1A5632] bg-slate-50" },
-    "Marine & coastal": { icon: "water", colorClass: "text-[#1A5632] bg-slate-50" },
-    "Conservation & wetlands": { icon: "eco", colorClass: "text-[#1A5632] bg-slate-50" },
-    "Disaster risk & early warning": { icon: "warning_amber", colorClass: "text-[#1A5632] bg-slate-50" },
+    "Land & water": { icon: "agriculture", colorClass: "text-blue-dark bg-slate-50" },
+    "Marine & coastal": { icon: "water", colorClass: "text-blue-dark bg-slate-50" },
+    "Conservation & wetlands": { icon: "eco", colorClass: "text-blue-dark bg-slate-50" },
+    "Disaster risk & early warning": { icon: "warning_amber", colorClass: "text-blue-dark bg-slate-50" },
   };
 
   // track which categories are expanded
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [expanded, setExpanded] = React.useState<Record<string, boolean>>(() => {
+  const [expanded, setExpanded] = React.useState<Record<string, boolean>>({});
+
+  // Initialize expanded state
+  React.useEffect(() => {
     const init: Record<string, boolean> = {};
-    visible.forEach((s) => (init[s.category] = true)); // default expanded
-    return init;
-  });
+    visible.forEach((s) => (init[s.category] = true));
+    setExpanded(init);
+  }, [visible]);
 
   const toggle = (category: string) => {
     setExpanded((prev) => ({ ...prev, [category]: !prev[category] }));
   };
+
+  // Reset expanded state to default when query is cleared
+  React.useEffect(() => {
+    if (!query) {
+      const init: Record<string, boolean> = {};
+      visible.forEach((s) => (init[s.category] = true));
+      setExpanded(init);
+    }
+  }, [query, visible]);
+
+  if (!visible.length) {
+    return <div className="rounded-[24px] border border-slate-200 bg-white p-4 text-sm text-slate-700">No services match your filter.</div>;
+  }
 
   return (
     <motion.div 

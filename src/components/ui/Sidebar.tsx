@@ -18,10 +18,22 @@ type NavItem = {
   }>;
 };
 
+const PhaseOneIcon = ({ size, primaryColor }: { size?: number; primaryColor?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 16V8L10 9.5" stroke={primaryColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const PhaseTwoIcon = ({ size, primaryColor }: { size?: number; primaryColor?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 10C9 8.89543 9.89543 8 11 8H13C14.1046 8 15 8.89543 15 10C15 11.1046 14.1046 12 13 12H11C9.89543 12 9 13.1046 9 14.2105V16H15" stroke={primaryColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const NAV_ITEMS: NavItem[] = [
   { label: "Overview", href: "/summary", icon: Home },
-  { label: "Phase 2", href: "/phase_two", icon: Discovery },
-  { label: "Phase 1", href: "/phase_one", icon: Activity },
+  { label: "Phase 2", href: "/phase_two", icon: PhaseTwoIcon as any },
+  { label: "Phase 1", href: "/phase_one", icon: PhaseOneIcon as any },
   { label: "Useful Links", href: "/useful_links", icon: Paper },
 ];
 

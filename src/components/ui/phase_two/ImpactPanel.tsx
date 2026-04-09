@@ -11,7 +11,7 @@ const TabButton = ({ title, active, onClick, icon }: { title: string; active: bo
     onClick={onClick}
     className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap border ${
       active
-        ? "bg-[#038a36] text-white border-[#038a36]"
+        ? "bg-au-dark-green text-white border-au-dark-green"
         : "bg-transparent text-[#71717a] border-transparent hover:border-slate-200 hover:bg-white"
     }`}
   >
@@ -30,44 +30,44 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
   const outreach = metrics?.engagementAndOutreach ?? {};
   const cross = metrics?.crossCutting ?? {};
 
-  // icon background: full #952038; icon foreground (glyph) use full gold #FABC0C
-  const pastelBg = { backgroundColor: '#952038' };
-  const pastelFg = 'text-[#FABC0C]';
+  const primaryBadge = 'badge-au-dark-green';
+  const secondaryBadge = 'badge-au-gold';
+  const tertiaryBadge = 'badge-au-green';
 
   // Use validated Material Symbols icon names to ensure they render correctly
   const infraItems = [
-    { metric: 'eStations operational', value: infra?.eStationsOperational ?? '—', icon: 'sensors', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Legacy systems maintained', value: infra?.legacySystemsMaintained ?? '—', icon: 'history', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Operational geoportals', value: infra?.operationalGeoportals ?? '—', icon: 'public', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Data volume handled annually', value: infra?.dataVolumeHandledAnnually ?? '—', icon: 'storage', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Geoportal registered users', value: infra?.geoportalRegisteredUsers ?? '—', icon: 'groups', style: pastelBg, colorClass: pastelFg },
+    { metric: 'eStations operational', value: infra?.eStationsOperational ?? '—', icon: 'sensors', colorClass: primaryBadge },
+    { metric: 'Legacy systems maintained', value: infra?.legacySystemsMaintained ?? '—', icon: 'history', colorClass: secondaryBadge },
+    { metric: 'Operational geoportals', value: infra?.operationalGeoportals ?? '—', icon: 'public', colorClass: tertiaryBadge },
+    { metric: 'Data volume handled annually', value: infra?.dataVolumeHandledAnnually ?? '—', icon: 'storage', colorClass: primaryBadge },
+    { metric: 'Geoportal registered users', value: infra?.geoportalRegisteredUsers ?? '—', icon: 'groups', colorClass: secondaryBadge },
   ];
 
   const servicesItems = [
-    { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'inventory_2', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Terrestrial services', value: services?.terrestrialServices ?? '—', icon: 'park', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Marine services', value: services?.marineServices ?? '—', icon: 'water_drop', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Private sector engagement', value: services?.privateSectorEngagement_ServiceDev ?? '—', icon: 'business_center', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'inventory_2', colorClass: primaryBadge },
+    { metric: 'Terrestrial services', value: services?.terrestrialServices ?? '—', icon: 'park', colorClass: tertiaryBadge },
+    { metric: 'Marine services', value: services?.marineServices ?? '—', icon: 'water_drop', colorClass: primaryBadge },
+    { metric: 'Private sector engagement', value: services?.privateSectorEngagement_ServiceDev ?? '—', icon: 'business_center', colorClass: secondaryBadge },
   ];
 
   const capacityItems = [
-    { metric: 'Participants trained', value: capacity?.participantsTrained ?? '—', icon: 'school', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Total trainings', value: capacity?.totalTrainings ?? '—', icon: 'calendar_today', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Courses delivered', value: capacity?.coursesDelivered ?? '—', icon: 'menu_book', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Scholarships awarded', value: capacity?.scholarshipsAwarded ?? '—', icon: 'emoji_events', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Hackathons', value: capacity?.hackathons ?? '—', icon: 'bolt', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Continental Networks', value: capacity?.continentalNetworks ?? '—', icon: 'hub', style: pastelBg, colorClass: pastelFg },
-    { metric: 'GAAN Universities', value: capacity?.institutionsInvolved_GAAN?.universities ?? '—', icon: 'account_balance', style: pastelBg, colorClass: pastelFg },
-    { metric: 'GAAN Colleges', value: capacity?.institutionsInvolved_GAAN?.colleges ?? '—', icon: 'school', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Participants trained', value: capacity?.participantsTrained ?? '—', icon: 'school', colorClass: primaryBadge },
+    { metric: 'Total trainings', value: capacity?.totalTrainings ?? '—', icon: 'calendar_today', colorClass: secondaryBadge },
+    { metric: 'Courses delivered', value: capacity?.coursesDelivered ?? '—', icon: 'menu_book', colorClass: tertiaryBadge },
+    { metric: 'Scholarships awarded', value: capacity?.scholarshipsAwarded ?? '—', icon: 'emoji_events', colorClass: secondaryBadge },
+    { metric: 'Hackathons', value: capacity?.hackathons ?? '—', icon: 'bolt', colorClass: primaryBadge },
+    { metric: 'Continental Networks', value: capacity?.continentalNetworks ?? '—', icon: 'hub', colorClass: tertiaryBadge },
+    { metric: 'GAAN Universities', value: capacity?.institutionsInvolved_GAAN?.universities ?? '—', icon: 'account_balance', colorClass: primaryBadge },
+    { metric: 'GAAN Colleges', value: capacity?.institutionsInvolved_GAAN?.colleges ?? '—', icon: 'school', colorClass: secondaryBadge },
   ];
 
   const engagementItems = [
-    { metric: 'Knowledge products', value: outreach?.knowledgeProducts ?? '—', icon: 'description', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Digital platforms', value: outreach?.digitalPlatforms ?? '—', icon: 'devices', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Communication strategies', value: outreach?.communicationStrategies ?? '—', icon: 'campaign', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Visibility outputs', value: outreach?.visibilityOutputs ?? '—', icon: 'visibility', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Media coverage', value: outreach?.mediaCoverage ?? '—', icon: 'article', style: pastelBg, colorClass: pastelFg },
-    { metric: 'Public events', value: outreach?.publicEvents ?? '—', icon: 'event', style: pastelBg, colorClass: pastelFg },
+    { metric: 'Knowledge products', value: outreach?.knowledgeProducts ?? '—', icon: 'description', colorClass: primaryBadge },
+    { metric: 'Digital platforms', value: outreach?.digitalPlatforms ?? '—', icon: 'devices', colorClass: secondaryBadge },
+    { metric: 'Communication strategies', value: outreach?.communicationStrategies ?? '—', icon: 'campaign', colorClass: tertiaryBadge },
+    { metric: 'Visibility outputs', value: outreach?.visibilityOutputs ?? '—', icon: 'visibility', colorClass: secondaryBadge },
+    { metric: 'Media coverage', value: outreach?.mediaCoverage ?? '—', icon: 'article', colorClass: primaryBadge },
+    { metric: 'Public events', value: outreach?.publicEvents ?? '—', icon: 'event', colorClass: tertiaryBadge },
   ];
 
   const tabs = [
@@ -105,10 +105,10 @@ export default function ImpactPanel({ metrics }: { metrics?: Metrics }) {
     switch (activeTab) {
       case 'General': {
         const general = [
-          { metric: 'Countries involved', value: reach?.countriesInvolved ?? '—', icon: 'public', colorClass: pastelFg, style: pastelBg },
-          { metric: 'Institutions', value: reach?.institutionsInvolved ?? '—', icon: 'groups', colorClass: pastelFg, style: pastelBg },
-          { metric: 'Snapshot date', value: metrics?.snapshotDate ?? '—', icon: 'schedule', colorClass: pastelFg, style: pastelBg },
-          { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'layers', colorClass: pastelFg, style: pastelBg },
+          { metric: 'Countries involved', value: reach?.countriesInvolved ?? '—', icon: 'public', colorClass: 'badge-au-dark-green' },
+          { metric: 'Institutions', value: reach?.institutionsInvolved ?? '—', icon: 'groups', colorClass: 'badge-au-gold' },
+          { metric: 'Snapshot date', value: metrics?.snapshotDate ?? '—', icon: 'schedule', colorClass: 'badge-au-green' },
+          { metric: 'Total operational services', value: services?.totalOperationalServices ?? '—', icon: 'layers', colorClass: 'badge-au-dark-green' },
         ];
         return cardGrid(general);
       }
