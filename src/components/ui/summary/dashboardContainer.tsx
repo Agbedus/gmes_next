@@ -26,8 +26,6 @@ import {
     Satellite,
   LayoutGrid,
   Sparkles,
-  BarChart,
-  Globe,
   Settings
 } from "lucide-react";
 import Image from "next/image";
@@ -295,12 +293,12 @@ export default function DashboardContainer(): React.ReactElement {
         ].map((metric) => (
           <div
             key={metric.label}
-            className={`rounded-[24px] border p-5 ${metric.featured ? "border-blue-dark/20 bg-blue-dark text-white shadow-lg" : "border-slate-200 bg-white"}`}
+            className={`rounded-[24px] border p-5 ${metric.featured ? "border-au-dark-green/20 bg-au-dark-green text-white shadow-lg" : "border-slate-200 bg-white"}`}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className={`text-xs font-semibold uppercase tracking-wider ${metric.featured ? "text-white/75" : "text-slate-500"}`}>{metric.label}</p>
-                <div className={`mt-3 text-3xl font-bold tracking-tight ${metric.featured ? "text-white" : "text-blue-dark"}`}>{metric.value}</div>
+                <div className={`mt-3 text-3xl font-bold tracking-tight ${metric.featured ? "text-white" : "text-au-dark-green"}`}>{metric.value}</div>
                 <p className={`mt-2 text-sm ${metric.featured ? "text-white/80" : "text-slate-600"}`}>{metric.note}</p>
               </div>
               <div className={`flex h-11 w-11 items-center justify-center rounded-[18px] border ${metric.featured ? "border-white/20 bg-white/12 text-au-gold" : "border-slate-200 bg-au-gold/10 text-au-gold"}`}>
@@ -451,26 +449,6 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
       ) : null}
 
-      <div className="fixed bottom-10 right-12 z-50 flex h-auto w-auto items-center justify-center rounded-[24px] border border-slate-200 bg-white p-2 shadow-xl">
-        <button
-            className="flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-blue-dark/5 text-blue-dark hover:bg-blue-dark/10"
-            id="mapButton"
-            aria-label="Open program map"
-            onClick={() => setMapOpen(true)}
-        >
-          <Globe size={24} />
-        </button>
-
-        <button
-            className="ml-3 flex h-12 w-12 items-center justify-center rounded-[18px] transition-colors bg-au-gold/10 text-au-gold hover:bg-au-gold/20"
-            id="chartsButton"
-            aria-label="Open charts summary"
-            onClick={() => setChartsOpen(true)}
-        >
-          <BarChart size={24} />
-        </button>
-
-      </div>
       <SummaryChartsModal open={chartsOpen} onCloseAction={() => setChartsOpen(false)} />
 
       <MapModal

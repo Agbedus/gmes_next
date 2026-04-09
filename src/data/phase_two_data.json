@@ -90,7 +90,7 @@
       }
     },
     "keyImpactMetrics": {
-      "snapshotDate": "mid-2025",
+      "snapshotDate": "Dec 2025",
       "reach": {
         "countriesInvolved": "51",
         "institutionsInvolved": "≈ 145",
@@ -2339,18 +2339,6 @@
         {
           "name": "GAIA Innovation Clubs",
           "description": "Youth innovation ecosystem, active in 16 universities across 12 countries."
-        },
-        {
-          "name": "Technical Expert Groups (TEGs)",
-          "count": 6,
-          "topics": [
-            "DRR",
-            "Land Degradation",
-            "Marine Ecosystems",
-            "Agriculture",
-            "Water",
-            "Policy"
-          ]
         }
       ],
       "strategicPartnerships": [

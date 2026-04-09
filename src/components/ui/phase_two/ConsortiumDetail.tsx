@@ -40,7 +40,11 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
   const [active, setActive] = useState<TabKey>('Overview');
 
   // derive metrics
-  const partnerCount = Array.isArray(consortium.members) ? consortium.members.length : (Array.isArray(consortium.partners) ? consortium.partners.length : 0);
+  const hasRawPartners = Array.isArray(consortium.partners) && consortium.partners.length > 0;
+  const hasCoordinator = Boolean(consortium.coordinator?.name ?? consortium.leadInstitution);
+  const partnerCount = hasRawPartners
+    ? consortium.partners.length + (hasCoordinator ? 1 : 0)
+    : (Array.isArray(consortium.members) ? consortium.members.length : 0);
   // prefer explicit presence check for total_eur to avoid mixing `??` with logical operators
   const totalBudget = (consortium.budget && (consortium.budget.total_eur !== undefined && consortium.budget.total_eur !== null)) ? consortium.budget.total_eur : undefined;
   const periodMonths = consortium.period_months ?? undefined;

@@ -230,7 +230,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
                               </span>
                             ))}
                           </div>
-                        ) : '—'}
+                        ) : gaiaUniversities ? String(gaiaUniversities) : '—'}
                       </div>
                     </div>
                   )}
@@ -250,7 +250,7 @@ export default function NetworksPanel({ networks, crossCutting }: { networks: Re
                               </span>
                             ))}
                           </div>
-                        ) : '—'}
+                        ) : gaiaCountries ? String(gaiaCountries) : '—'}
                       </div>
                     </div>
                   )}

@@ -107,7 +107,7 @@ export default function OverviewPanel({ programDetails, strategicFramework, metr
               </motion.div>
 
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-                <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'mid-2025')} icon="schedule" iconColor="#fff" iconBg="#10B981" valueClassName="text-2xl font-extrabold text-au-dark-green" />
+                <OverviewCard title="Snapshot" value={(metrics?.['snapshotDate'] as string | undefined) ?? (pd['snapshotDate'] as string | undefined) ?? ((pd['snapshot_date'] as string | undefined) ?? 'Dec 2025')} icon="schedule" iconColor="#fff" iconBg="#10B981" valueClassName="text-2xl font-extrabold text-au-dark-green" />
               </motion.div>
             </motion.div>
 

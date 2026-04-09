@@ -15,7 +15,12 @@ export type LinkCardProps = {
 };
 
 export function LinkCard({ title, links, colorTheme }: LinkCardProps) {
-    const themeStyles = {
+    const themeStyles: Record<string, {
+        hoverBorder: string;
+        iconBg: string;
+        linkHover: string;
+        iconHover: string;
+    }> = {
         blue: {
             hoverBorder: 'group-hover:border-blue-200',
             iconBg: 'bg-slate-50 text-slate-600',
@@ -57,12 +62,12 @@ export function LinkCard({ title, links, colorTheme }: LinkCardProps) {
         iconHover: ''
     };
 
-    const theme = (colorTheme && (themeStyles as any)[colorTheme]) ? (themeStyles as any)[colorTheme] : defaultTheme;
+    const theme = colorTheme ? (themeStyles[colorTheme] ?? defaultTheme) : defaultTheme;
 
     return (
-        <div className={`flex h-full flex-col rounded-[24px] border border-slate-200 bg-white p-5 transition-colors duration-200 group ${theme.hoverBorder}`}>
-            <h3 className="mb-4 min-h-[3rem] line-clamp-2 font-semibold text-slate-800" title={title}>{title}</h3>
-            <div className="space-y-2 mt-auto">
+        <div className={`rounded-[24px] border border-slate-200 bg-white p-5 transition-colors duration-200 group ${theme.hoverBorder}`}>
+            <h3 className="mb-4 font-semibold text-slate-800" title={title}>{title}</h3>
+            <div className="space-y-2">
                 {links.map((link, idx) => (
                     <a
                         key={idx}

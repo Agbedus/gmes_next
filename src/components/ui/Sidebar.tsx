@@ -3,19 +3,22 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Activity, ChevronLeft, ChevronRight, Discovery, Home, Paper } from "react-iconly";
+import { usePathname, useSearchParams } from "next/navigation";
+import { ChevronLeft, ChevronRight, Home, Paper } from "react-iconly";
+
+type NavIconComponent = React.ComponentType<{
+  set?: "light" | "bold" | "bulk" | "broken" | "two-tone";
+  size?: number;
+  primaryColor?: string;
+  secondaryColor?: string;
+  className?: string;
+}>;
 
 type NavItem = {
   label: string;
   href: string;
-  icon: React.ComponentType<{
-    set?: "light" | "bold" | "bulk" | "broken" | "two-tone";
-    size?: number;
-    primaryColor?: string;
-    secondaryColor?: string;
-    className?: string;
-  }>;
+  icon: NavIconComponent;
+  children?: { label: string; href: string }[];
 };
 
 const PhaseOneIcon = ({ size, primaryColor }: { size?: number; primaryColor?: string }) => (
@@ -32,9 +35,20 @@ const PhaseTwoIcon = ({ size, primaryColor }: { size?: number; primaryColor?: st
 
 const NAV_ITEMS: NavItem[] = [
   { label: "Overview", href: "/summary", icon: Home },
-  { label: "Phase 2", href: "/phase_two", icon: PhaseTwoIcon as any },
-  { label: "Phase 1", href: "/phase_one", icon: PhaseOneIcon as any },
-  { label: "Useful Links", href: "/useful_links", icon: Paper },
+  { label: "Phase 2", href: "/phase_two", icon: PhaseTwoIcon },
+  { label: "Phase 1", href: "/phase_one", icon: PhaseOneIcon },
+  {
+    label: "Useful Links",
+    href: "/useful_links",
+    icon: Paper,
+    children: [
+      { label: "Program Mgt. Unit", href: "/useful_links?section=pmu" },
+      { label: "Consortia Resources", href: "/useful_links?section=consortia" },
+      { label: "Use Cases", href: "/useful_links?section=useCases" },
+      { label: "Continental Policies", href: "/useful_links?section=policies" },
+      { label: "Global Agendas", href: "/useful_links?section=agendas" },
+    ],
+  },
 ];
 
 function NavIcon({
@@ -56,7 +70,9 @@ function NavIcon({
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [collapsed, setCollapsed] = React.useState(false);
+  const [usefulLinksOpen, setUsefulLinksOpen] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -74,6 +90,12 @@ export default function Sidebar() {
       // Ignore storage errors in restricted environments.
     }
   }, [collapsed]);
+
+  React.useEffect(() => {
+    if (pathname === "/useful_links") {
+      setUsefulLinksOpen(true);
+    }
+  }, [pathname]);
 
   return (
     <aside
@@ -131,40 +153,79 @@ export default function Sidebar() {
         <nav className="space-y-2" aria-label="Primary">
           {NAV_ITEMS.map((item) => {
             const active = pathname === item.href;
+            const hasChildren = Boolean(item.children?.length);
+            const showChildren = !collapsed && hasChildren && usefulLinksOpen;
 
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={`group relative flex items-center rounded-2xl px-3 py-3 transition-all duration-200 ${
-                  collapsed ? "justify-center" : "gap-3"
-                } ${
-                  active
-                    ? "bg-au-dark-green text-white"
-                    : "text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green"
-                }`}
-                title={collapsed ? item.label : undefined}
-              >
-                {/* Active Indicator Bar (AU Gold) */}
-                {active && (
-                  <div className="absolute left-0 h-6 w-1 rounded-r-full bg-au-gold" />
-                )}
+              <div key={item.href} className="space-y-1">
+                <div className="relative">
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`group relative flex items-center rounded-2xl px-3 py-3 transition-all duration-200 ${
+                      collapsed ? "justify-center" : "gap-3"
+                    } ${
+                      active
+                        ? "bg-au-dark-green text-white"
+                        : "text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green"
+                    }`}
+                    title={collapsed ? item.label : undefined}
+                  >
+                    {active && (
+                      <div className="absolute left-0 h-6 w-1 rounded-r-full bg-au-gold" />
+                    )}
 
-                <span
-                  className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
-                    active ? "bg-white/10 text-white" : "bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green"
-                  }`}
-                >
-                  <NavIcon icon={item.icon} active={active} />
-                </span>
+                    <span
+                      className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
+                        active ? "bg-white/10 text-white" : "bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green"
+                      }`}
+                    >
+                      <NavIcon icon={item.icon} active={active} />
+                    </span>
 
-                {!collapsed && (
-                  <span className="min-w-0 flex-1 text-sm font-semibold tracking-tight">
-                    {item.label}
-                  </span>
+                    {!collapsed && (
+                      <span className="min-w-0 flex-1 text-sm font-semibold tracking-tight">
+                        {item.label}
+                      </span>
+                    )}
+                  </Link>
+
+                  {hasChildren && !collapsed && (
+                    <button
+                      type="button"
+                      onClick={() => setUsefulLinksOpen((open) => !open)}
+                      aria-label={usefulLinksOpen ? "Collapse useful links sections" : "Expand useful links sections"}
+                      className={`absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 transition-colors ${
+                        active ? "text-white/85 hover:bg-white/10" : "text-slate-400 hover:bg-slate-100 hover:text-au-dark-green"
+                      }`}
+                    >
+                      <span className={`block transition-transform duration-200 ${usefulLinksOpen ? "rotate-90" : ""}`}>›</span>
+                    </button>
+                  )}
+                </div>
+
+                {showChildren && (
+                  <div className="ml-5 space-y-1 border-l border-au-dark-green/10 pl-4">
+                    {item.children?.map((child) => {
+                      const childSection = child.href.split("section=")[1] ?? "";
+                      const childActive = pathname === "/useful_links" && searchParams.get("section") === childSection;
+                      return (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={`block rounded-xl px-3 py-2 text-sm transition-colors ${
+                            childActive
+                              ? "bg-au-green/10 font-semibold text-au-dark-green"
+                              : "text-slate-500 hover:bg-slate-50 hover:text-au-dark-green"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 )}
-              </Link>
+              </div>
             );
           })}
         </nav>
