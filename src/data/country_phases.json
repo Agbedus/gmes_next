@@ -1,0 +1,206 @@
+{
+  "TCD": {
+    "phase1": true,
+    "phase2": true
+  },
+  "CMR": {
+    "phase1": true,
+    "phase2": true
+  },
+  "COD": {
+    "phase1": true,
+    "phase2": true
+  },
+  "KEN": {
+    "phase1": true,
+    "phase2": true
+  },
+  "UGA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "SDN": {
+    "phase1": true,
+    "phase2": true
+  },
+  "TZA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "ETH": {
+    "phase1": true,
+    "phase2": true
+  },
+  "RWA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "SSD": {
+    "phase1": true,
+    "phase2": true
+  },
+  "ERI": {
+    "phase1": true,
+    "phase2": true
+  },
+  "ZWE": {
+    "phase1": true,
+    "phase2": true
+  },
+  "ZMB": {
+    "phase1": true,
+    "phase2": true
+  },
+  "ZAF": {
+    "phase1": true,
+    "phase2": true
+  },
+  "BWA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "NAM": {
+    "phase1": true,
+    "phase2": true
+  },
+  "DZA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "EGY": {
+    "phase1": true,
+    "phase2": true
+  },
+  "TUN": {
+    "phase1": true,
+    "phase2": true
+  },
+  "MAR": {
+    "phase1": true,
+    "phase2": true
+  },
+  "LBY": {
+    "phase1": true,
+    "phase2": true
+  },
+  "CIV": {
+    "phase1": true,
+    "phase2": true
+  },
+  "BFA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "BEN": {
+    "phase1": true,
+    "phase2": true
+  },
+  "GHA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "MLI": {
+    "phase1": true,
+    "phase2": true
+  },
+  "GMB": {
+    "phase1": true,
+    "phase2": true
+  },
+  "SEN": {
+    "phase1": true,
+    "phase2": true
+  },
+  "MOZ": {
+    "phase1": true,
+    "phase2": true
+  },
+  "MDG": {
+    "phase1": true,
+    "phase2": true
+  },
+  "SYC": {
+    "phase1": true,
+    "phase2": false
+  },
+  "MUS": {
+    "phase1": true,
+    "phase2": true
+  },
+  "MRT": {
+    "phase1": true,
+    "phase2": true
+  },
+  "NGA": {
+    "phase1": true,
+    "phase2": true
+  },
+  "CPV": {
+    "phase1": true,
+    "phase2": true
+  },
+  "BDI": {
+    "phase1": true,
+    "phase2": true
+  },
+  "GAB": {
+    "phase1": true,
+    "phase2": true
+  },
+  "ESH": {
+    "phase1": false,
+    "phase2": true
+  },
+  "GIN": {
+    "phase1": false,
+    "phase2": true
+  },
+  "GNB": {
+    "phase1": false,
+    "phase2": true
+  },
+  "LBR": {
+    "phase1": false,
+    "phase2": true
+  },
+  "SLE": {
+    "phase1": false,
+    "phase2": true
+  },
+  "TGO": {
+    "phase1": false,
+    "phase2": true
+  },
+  "NER": {
+    "phase1": false,
+    "phase2": true
+  },
+  "COG": {
+    "phase1": false,
+    "phase2": true
+  },
+  "GNQ": {
+    "phase1": false,
+    "phase2": true
+  },
+  "CAF": {
+    "phase1": false,
+    "phase2": true
+  },
+  "STP": {
+    "phase1": false,
+    "phase2": true
+  },
+  "COM": {
+    "phase1": false,
+    "phase2": true
+  },
+  "DJI": {
+    "phase1": false,
+    "phase2": true
+  },
+  "SOM": {
+    "phase1": false,
+    "phase2": true
+  }
+}
