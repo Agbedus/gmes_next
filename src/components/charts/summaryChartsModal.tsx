@@ -89,7 +89,7 @@ const BarChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
                     { color: color, opacity: 1 },
                     { color: color, opacity: 0.85 }
                 ]
-            });
+            }) as any;
         });
 
         (yAxis.data as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
