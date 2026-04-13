@@ -8,6 +8,7 @@ import africanCountriesData from "@/data/africa_boundaries.geo.json";
 const basePath = "/leaflet_assets/";
 
 import { GeoJsonObject, Feature, GeoJsonProperties } from "geojson";
+import { Plus, Minus, Compass, X, Sun, Moon, Layers } from "lucide-react";
 
 const africanCountriesObject = africanCountriesData as any;
 const countryPhases: Record<string, { phase1: boolean; phase2: boolean }> = countryPhasesJson as any;
@@ -82,13 +83,106 @@ const center: [number, number] = [1.5, 20]; // [lat, lon]
 // Zoom level for a continental view
 const zoom = 3;
 
+const MapButton = ({ onClick, children, active, className = "", title }: any) => (
+  <button
+    onClick={onClick}
+    title={title}
+    className={`flex h-10 w-10 items-center justify-center rounded-xl transition-all shadow-md border ${
+      active 
+        ? "bg-au-dark-green text-white border-au-dark-green" 
+        : "bg-white text-au-dark-green border-au-dark-green/10 hover:bg-slate-50"
+    } ${className}`}
+  >
+    {children}
+  </button>
+);
+
+function CustomCompass() {
+    return (
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-au-dark-green/10 flex items-center justify-center relative w-[100px] h-[100px]">
+            {/* Cardinal points */}
+            <span className="absolute top-1 text-[10px] font-bold text-au-dark-green">N</span>
+            <span className="absolute bottom-1 text-[10px] font-bold text-slate-400">S</span>
+            <span className="absolute right-2 text-[10px] font-bold text-slate-400">E</span>
+            <span className="absolute left-2 text-[10px] font-bold text-slate-400">W</span>
+            
+            {/* Compass needle */}
+            <div className="relative w-8 h-8 flex items-center justify-center">
+                <div className="absolute w-1 h-4 bg-au-gold rounded-full -top-1 shadow-sm" />
+                <div className="absolute w-1 h-4 bg-slate-200 rounded-full -bottom-1" />
+                <div className="w-1.5 h-1.5 bg-au-dark-green rounded-full z-10 border border-white" />
+            </div>
+            
+            {/* Decorative ring */}
+            <div className="absolute inset-2 border border-slate-100 rounded-full" />
+        </div>
+    );
+}
+
+function CustomMapControls({ MapLib, baseLayer, setBaseLayer, center, zoom, onCloseAction }: any) {
+    const map = MapLib.useMap();
+    const { Control } = MapLib;
+    
+    return (
+        <>
+            <Control position="topright">
+                <div className="flex flex-col gap-2 mt-4 mr-4">
+                    <MapButton onClick={onCloseAction} title="Close map">
+                        <X size={20} />
+                    </MapButton>
+                </div>
+            </Control>
+
+            <Control position="topright">
+                <div className="flex flex-col gap-2 mr-4">
+                    <MapButton 
+                        onClick={() => setBaseLayer('satellite')} 
+                        active={baseLayer === 'satellite'}
+                        title="Satellite view"
+                    >
+                        <Layers size={20} />
+                    </MapButton>
+                    <MapButton 
+                        onClick={() => setBaseLayer('light')} 
+                        active={baseLayer === 'light'}
+                        title="Light view"
+                    >
+                        <Sun size={20} />
+                    </MapButton>
+                    <MapButton 
+                        onClick={() => setBaseLayer('dark')} 
+                        active={baseLayer === 'dark'}
+                        title="Dark view"
+                    >
+                        <Moon size={20} />
+                    </MapButton>
+                </div>
+            </Control>
+
+            <Control position="bottomright">
+                <div className="flex flex-col gap-2 mb-4 mr-4">
+                    <MapButton onClick={() => map.zoomIn()} title="Zoom in">
+                        <Plus size={20} />
+                    </MapButton>
+                    <MapButton onClick={() => map.zoomOut()} title="Zoom out">
+                        <Minus size={20} />
+                    </MapButton>
+                    <MapButton onClick={() => map.setView(center, zoom)} title="Reset view">
+                        <Compass size={20} />
+                    </MapButton>
+                </div>
+            </Control>
+        </>
+    );
+}
+
 // Leaflet map options (kept simple and serializable)
 const mapOptions = {
     center,
     zoom,
     minZoom: 2,
     maxZoom: 8,
-    zoomControl: true,
+    zoomControl: false,
     dragging: true,
     scrollWheelZoom: true,
     doubleClickZoom: true,
@@ -166,18 +260,18 @@ export default function MapModal({
                     fill = PHASE_COLORS.phase1;
                     fillOpacity = 0.7;
                 } else {
-                    fill = PHASE_COLORS.none;
-                    fillOpacity = 0.1;
-                    color = "#ccc";
+                    fill = "transparent";
+                    fillOpacity = 0;
+                    weight = 0;
                 }
             } else if (phaseFilter === 'Phase 2') {
                 if (inP2) {
                     fill = PHASE_COLORS.phase2;
                     fillOpacity = 0.7;
                 } else {
-                    fill = PHASE_COLORS.none;
-                    fillOpacity = 0.1;
-                    color = "#ccc";
+                    fill = "transparent";
+                    fillOpacity = 0;
+                    weight = 0;
                 }
             }
         } else {
@@ -301,78 +395,72 @@ export default function MapModal({
                     </Marker>
                 ))}
 
-                <Control position='topright' >
-                    <button className="rounded-lg bg-white/90 px-3 py-2 text-sm text-zinc-800 hover:bg-white" onClick={onCloseAction} aria-label="Close map">Close</button>
-                </Control>
-
-                <Control position='topright' >
-                    <div className="bg-white/90 rounded-md px-2 py-2 flex gap-2">
-                        <button
-                            onClick={() => setBaseLayer('light')}
-                            className={`px-2 py-1 text-xs rounded ${baseLayer === 'light' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-800'}`}>
-                            Light
-                        </button>
-                        <button
-                            onClick={() => setBaseLayer('dark')}
-                            className={`px-2 py-1 text-xs rounded ${baseLayer === 'dark' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-800'}`}>
-                            Dark
-                        </button>
-                        <button
-                            onClick={() => setBaseLayer('satellite')}
-                            className={`px-2 py-1 text-xs rounded ${baseLayer === 'satellite' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-800'}`}>
-                            Satellite
-                        </button>
-                    </div>
-                </Control>
+                <CustomMapControls 
+                    MapLib={MapLib} 
+                    baseLayer={baseLayer} 
+                    setBaseLayer={setBaseLayer} 
+                    center={center} 
+                    zoom={zoom} 
+                    onCloseAction={onCloseAction} 
+                />
 
                 <Control position='topleft' >
-                    <div className="bg-white/90 backdrop-blur rounded-xl shadow-lg p-3 text-zinc-800 border border-zinc-100/50 flex flex-col gap-2">
-                        <strong className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 px-1">Program Phase Filter</strong>
-                        <div className="flex gap-1.5">
-                            <button
-                                onClick={() => setPhaseFilter('All')}
-                                className={`px-2.5 py-1.5 text-xs font-medium rounded-lg transition-all ${phaseFilter === 'All' ? 'bg-zinc-800 text-white shadow-sm' : 'bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50'}`}>
-                                All Phases
-                            </button>
-                            <button
-                                onClick={() => setPhaseFilter('Phase 1')}
-                                className={`px-2.5 py-1.5 text-xs font-medium rounded-lg transition-all ${phaseFilter === 'Phase 1' ? 'bg-[#10B981] text-white shadow-sm' : 'bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50'}`}>
-                                Phase 1
-                            </button>
-                            <button
-                                onClick={() => setPhaseFilter('Phase 2')}
-                                className={`px-2.5 py-1.5 text-xs font-medium rounded-lg transition-all ${phaseFilter === 'Phase 2' ? 'bg-[#F59E0B] text-white shadow-sm' : 'bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50'}`}>
-                                Phase 2
-                            </button>
-                        </div>
-                    </div>
+                    <img src={"/GMES.png"} width={140} className="ml-4 mt-4 drop-shadow-lg" />
                 </Control>
 
                 <Control position='bottomleft' >
-                    <img src={"/GMES.png"} width={160} className="ml-2 mb-2" />
+                    <div className="flex items-end gap-3 ml-4 mb-4">
+                        <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-4 text-zinc-800 border border-au-dark-green/10 flex flex-col gap-3 min-w-[280px]">
+                            <div className="flex items-center gap-2 px-1">
+                                <div className="w-1.5 h-4 bg-au-gold rounded-full" />
+                                <strong className="text-xs font-bold uppercase tracking-wider text-au-dark-green">Phase Filter</strong>
+                            </div>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setPhaseFilter('All')}
+                                    className={`flex-1 px-3 py-2 text-xs font-bold rounded-xl transition-all duration-200 border ${phaseFilter === 'All' ? 'bg-au-dark-green text-white border-au-dark-green shadow-md' : 'bg-white text-slate-600 border-au-dark-green/10 hover:bg-au-green/5 hover:text-au-dark-green'}`}>
+                                    All
+                                </button>
+                                <button
+                                    onClick={() => setPhaseFilter('Phase 1')}
+                                    className={`flex-1 px-3 py-2 text-xs font-bold rounded-xl transition-all duration-200 border ${phaseFilter === 'Phase 1' ? 'bg-[#10B981] text-white border-[#10B981] shadow-md' : 'bg-white text-slate-600 border-au-dark-green/10 hover:bg-au-green/5 hover:text-au-dark-green'}`}>
+                                    Phase 1
+                                </button>
+                                <button
+                                    onClick={() => setPhaseFilter('Phase 2')}
+                                    className={`flex-1 px-3 py-2 text-xs font-bold rounded-xl transition-all duration-200 border ${phaseFilter === 'Phase 2' ? 'bg-[#F59E0B] text-white border-[#F59E0B] shadow-md' : 'bg-white text-slate-600 border-au-dark-green/10 hover:bg-au-green/5 hover:text-au-dark-green'}`}>
+                                    Phase 2
+                                </button>
+                            </div>
+                        </div>
+                        <CustomCompass />
+                    </div>
                 </Control>
 
                 {!consortiumName && (
                     <Control position='bottomright'>
-                         <div className="bg-white/90 backdrop-blur rounded-xl shadow-lg p-4 text-zinc-800 min-w-[180px] border border-zinc-100/50 mr-4 mb-4">
-                            <h3 className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-3">Map Legend</h3>
-                            <div className="space-y-2.5">
-                                <div className="flex items-center gap-2.5">
-                                    <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: PHASE_COLORS.phase1 }} />
-                                    <span className="text-xs font-medium text-zinc-700">Phase 1 only</span>
+                         <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-5 text-zinc-800 min-w-[200px] border border-au-dark-green/10 mr-4 mb-4">
+                            <div className="flex items-center gap-2 mb-4 px-1">
+                                <div className="w-1.5 h-4 bg-au-green rounded-full" />
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-au-dark-green">Map Legend</h3>
+                            </div>
+                            <div className="space-y-3">
+                                <div className="flex items-center gap-3">
+                                    <span className="w-3.5 h-3.5 rounded-full shrink-0 border-2 border-white shadow-sm" style={{ backgroundColor: PHASE_COLORS.phase1 }} />
+                                    <span className="text-xs font-semibold text-slate-700">Phase 1 only</span>
                                 </div>
-                                <div className="flex items-center gap-2.5">
-                                    <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: PHASE_COLORS.phase2 }} />
-                                    <span className="text-xs font-medium text-zinc-700">Phase 2 only</span>
+                                <div className="flex items-center gap-3">
+                                    <span className="w-3.5 h-3.5 rounded-full shrink-0 border-2 border-white shadow-sm" style={{ backgroundColor: PHASE_COLORS.phase2 }} />
+                                    <span className="text-xs font-semibold text-slate-700">Phase 2 only</span>
                                 </div>
-                                <div className="flex items-center gap-2.5">
-                                    <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: PHASE_COLORS.both }} />
-                                    <span className="text-xs font-medium text-zinc-700">Involved in Both</span>
+                                <div className="flex items-center gap-3">
+                                    <span className="w-3.5 h-3.5 rounded-full shrink-0 border-2 border-white shadow-sm" style={{ backgroundColor: PHASE_COLORS.both }} />
+                                    <span className="text-xs font-semibold text-slate-700">Involved in Both</span>
                                 </div>
-                                <div className="pt-2 mt-2 border-t border-zinc-200/60">
-                                     <div className="flex items-center gap-2.5 opacity-60">
-                                        <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: PHASE_COLORS.none }} />
-                                        <span className="text-[10px] font-medium text-zinc-500 italic">Not in selection</span>
+                                <div className="pt-3 mt-1 border-t border-slate-100">
+                                     <div className="flex items-center gap-3 opacity-50">
+                                        <span className="w-3.5 h-3.5 rounded-full shrink-0 border-2 border-white shadow-sm" style={{ backgroundColor: PHASE_COLORS.none }} />
+                                        <span className="text-[10px] font-medium text-slate-500 italic">Not in selection</span>
                                     </div>
                                 </div>
                             </div>
@@ -380,12 +468,12 @@ export default function MapModal({
                     </Control>
                 )}
 
-                {consortiumName ? (
+                {consortiumName && (
                     <Control position='topleft'>
-                        <div className="bg-white/95 backdrop-blur rounded-xl shadow-lg p-5 text-zinc-800 max-w-sm border border-zinc-100/50">
-                            <div className="flex items-start gap-4">
+                        <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-6 text-zinc-800 max-w-sm border border-au-dark-green/10 mt-4 ml-4">
+                            <div className="flex items-start gap-5">
                                 {consortiumLogo && (
-                                    <div className="shrink-0 bg-white rounded-lg p-1 border border-zinc-100 shadow-sm">
+                                    <div className="shrink-0 bg-white rounded-xl p-2 border border-slate-100 shadow-md">
                                         <img 
                                             src={consortiumLogo} 
                                             alt={`${consortiumName} logo`} 
@@ -394,45 +482,32 @@ export default function MapModal({
                                     </div>
                                 )}
                                 <div>
-                                    <h3 className="text-lg font-bold leading-tight text-zinc-900">{consortiumName}</h3>
+                                    <h3 className="text-lg font-bold leading-tight text-au-dark-green tracking-tight">{consortiumName}</h3>
                                     {consortiumKeywords && consortiumKeywords.length > 0 && (
-                                        <div className="mt-2 flex flex-wrap gap-1.5">
+                                        <div className="mt-3 flex flex-wrap gap-1.5">
                                             {consortiumKeywords.map((keyword, idx) => (
-                                                <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 text-zinc-600 border border-zinc-200">
+                                                <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-au-dark-green/5 text-au-dark-green border border-au-dark-green/10">
                                                     {keyword}
                                                 </span>
                                             ))}
                                         </div>
                                     )}
-                                    {consortiumDescription && (
-                                        <p className="mt-2 text-sm text-zinc-600 line-clamp-4 leading-relaxed">
-                                            {consortiumDescription}
-                                        </p>
-                                    )}
                                 </div>
                             </div>
-                            <div className="mt-4 flex items-center gap-2 text-xs font-medium text-zinc-500 bg-zinc-50 px-3 py-2 rounded-lg">
-                                <span style={{ width: 10, height: 10, background: consortiumDefaultColor, borderRadius: '50%', display: "inline-block" }} />
+                            {consortiumDescription && (
+                                <p className="mt-4 text-sm text-slate-600 line-clamp-4 leading-relaxed font-medium">
+                                    {consortiumDescription}
+                                </p>
+                            )}
+                            <div className="mt-5 flex items-center gap-3 text-xs font-bold text-au-dark-green bg-au-dark-green/5 px-4 py-2.5 rounded-xl border border-au-dark-green/10">
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: consortiumDefaultColor }}></span>
+                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ background: consortiumDefaultColor }}></span>
+                                </span>
                                 <span>Member Countries Highlighted</span>
                             </div>
                         </div>
                     </Control>
-                ) : (
-                    Array.isArray(legendItems) && legendItems.length > 0 ? (
-                        <Control position='topleft' >
-                            <div className="bg-white/90 rounded-md px-3 py-2 text-sm text-zinc-800" style={{ maxWidth:'400px' }}>
-                                <strong>Legend</strong>
-                                <div className="mt-2 flex flex-col gap-1">
-                                    {legendItems.map((li:any) => (
-                                        <div key={li.label} className="flex items-center gap-2 text-xs">
-                                            <span style={{ width: 12, height: 12, background: li.color, borderRadius: 6, display: "inline-block" }} />
-                                            <span>{li.label}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </Control>
-                    ) : null
                 )}
 
                 <GeoJSON
