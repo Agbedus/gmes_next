@@ -8,6 +8,9 @@
   --color-au-green: #10B981;      /* Primary Green for Success / Success States */
   --color-au-red: #E03E2D;        /* Danger / Alerts */
   
+  --color-blue-dark: #1E3A8A;
+  --color-blue-primary: #3B82F6;
+  
   /* Surface Palette */
   --color-au-bg: #F8FAFC;         /* Main Canvas Background */
   --color-au-surface: #FFFFFF;    /* Cards / Sidebars */
