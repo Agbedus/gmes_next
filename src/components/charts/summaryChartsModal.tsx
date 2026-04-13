@@ -23,7 +23,7 @@ type AxisRendererLike = {
     ticks: { template: { setAll: (arg: Record<string, unknown>) => void } };
 };
 
-// Theme Palette (Blue, Gold, Green)
+// --- Theme & Palette ---
 const THEME_COLORS = [
     0x1E3A8A, // au-dark-green (Blue)
     0xF59E0B, // au-gold
@@ -34,6 +34,33 @@ const THEME_COLORS = [
 
 function getThemeColor(index: number) {
     return am5.color(THEME_COLORS[index % THEME_COLORS.length]);
+}
+
+// Custom amCharts 5 Theme for AU branding
+class AUTheme extends am5.Theme {
+    setupDefaultRules() {
+        this.rule("Label").setAll({
+            fill: am5.color(0x1E3A8A),
+            fontSize: 10,
+            fontWeight: "500"
+        });
+
+        this.rule("Grid").setAll({
+            stroke: am5.color(0x1E3A8A),
+            strokeOpacity: 0.08
+        });
+
+        this.rule("AxisRendererY").setAll({
+            minGridDistance: 30
+        });
+
+        this.rule("AxisRendererX").setAll({
+            minGridDistance: 50
+        });
+
+        // Color palette
+        this.rule("ColorSet").set("colors", THEME_COLORS.map(c => am5.color(c)));
+    }
 }
 
 // Service color mapping for consistency
@@ -49,34 +76,40 @@ const SERVICE_COLOR_INDEX: Record<string, number> = {
 const BarChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: string; valueField: string }> = ({ chartId, data, categoryField, valueField, title, icon }) => {
     useLayoutEffect(() => {
         const root = am5.Root.new(chartId);
-        root.setThemes([am5themes_Animated.new(root)]);
+        root.setThemes([
+            am5themes_Animated.new(root),
+            AUTheme.new(root)
+        ]);
 
         const chart = root.container.children.push(am5xy.XYChart.new(root, {
             panX: false, panY: false, wheelX: "none", wheelY: "none", paddingLeft: 0,
         }));
 
-        const yRenderer = am5xy.AxisRendererY.new(root, { minGridDistance: 30, minorGridEnabled: true });
-        yRenderer.grid.template.set("location", 1);
-        yRenderer.grid.template.setAll({ stroke: am5.color(0x1E3A8A), strokeOpacity: 0.08 });
-
         const yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
-            maxDeviation: 0, categoryField, renderer: yRenderer,
+            maxDeviation: 0, 
+            categoryField, 
+            renderer: am5xy.AxisRendererY.new(root, { 
+                minorGridEnabled: true,
+                location: 1
+            }),
         }));
-
-        ((yAxis.get('renderer') as unknown) as AxisRendererLike).labels.template.setAll({ fontSize: 10, fill: am5.color(0x1E3A8A), fontWeight: "600" });
 
         const xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
-            maxDeviation: 0, min: 0, renderer: am5xy.AxisRendererX.new(root, { strokeOpacity: 0.06 }),
+            maxDeviation: 0, 
+            min: 0, 
+            renderer: am5xy.AxisRendererX.new(root, {}),
         }));
-
-        ((xAxis.get('renderer') as unknown) as AxisRendererLike).labels.template.setAll({ fontSize: 10, fill: am5.color(0x1E3A8A), fontWeight: "500" });
 
         const series = chart.series.push(am5xy.ColumnSeries.new(root, {
             name: title, xAxis, yAxis, valueXField: valueField, sequencedInterpolation: true, categoryYField: categoryField,
         }));
 
         series.columns.template.setAll({
-            tooltipText: "{valueX}", cornerRadiusBR: 12, cornerRadiusTR: 12, height: am5.percent(70), strokeOpacity: 0
+            tooltipText: "{valueX}", 
+            cornerRadiusBR: 12, 
+            cornerRadiusTR: 12, 
+            height: am5.percent(70), 
+            strokeOpacity: 0
         });
 
         series.columns.template.adapters.add("fill", (fill, target) => {
@@ -115,7 +148,10 @@ const BarChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
 const PieChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: string; valueField: string }> = ({ chartId, data, categoryField, valueField, title, icon }) => {
     useLayoutEffect(() => {
         const root = am5.Root.new(chartId);
-        root.setThemes([am5themes_Animated.new(root)]);
+        root.setThemes([
+            am5themes_Animated.new(root),
+            AUTheme.new(root)
+        ]);
 
         const chart = root.container.children.push(am5percent.PieChart.new(root, {
             layout: root.verticalLayout,
@@ -126,16 +162,25 @@ const PieChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
             valueField, categoryField,
         }));
 
-        series.labels.template.setAll({ fontSize: 11, fill: am5.color(0x1E3A8A), fontWeight: "600" });
-        series.ticks.template.setAll({ stroke: am5.color(0x1E3A8A), strokeOpacity: 0.2 });
-        series.slices.template.setAll({ cornerRadius: 10, stroke: am5.color(0xffffff), strokeWidth: 3 });
+        series.slices.template.setAll({ 
+            cornerRadius: 10, 
+            stroke: am5.color(0xffffff), 
+            strokeWidth: 3 
+        });
 
         series.slices.template.adapters.add("fill", (fill, target) => {
             const dataCtx = (target.dataItem?.dataContext as ChartData) ?? {};
             const cat = dataCtx[categoryField] as string | undefined;
             const mapped = cat && typeof SERVICE_COLOR_INDEX[cat] === 'number' ? SERVICE_COLOR_INDEX[cat] : undefined;
             const idx = typeof mapped === 'number' ? mapped : Math.max(0, series.dataItems.findIndex(di => ((di.dataContext as ChartData)[categoryField]) === cat));
-            return getThemeColor(idx as number);
+            const color = getThemeColor(idx as number);
+
+            return am5.LinearGradient.new(root, {
+                stops: [
+                    { color: color, opacity: 1 },
+                    { color: color, opacity: 0.85 }
+                ]
+            }) as any;
         });
 
         ((series.data) as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
@@ -143,7 +188,6 @@ const PieChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
         const legend = chart.children.push(am5.Legend.new(root, {
             centerX: am5.percent(50), x: am5.percent(50), layout: root.gridLayout,
         }));
-        legend.labels.template.setAll({ fontSize: 10, fill: am5.color(0x1E3A8A), fontWeight: "700" });
         legend.markers.template.setAll({ width: 14, height: 14 });
         legend.data.setAll(series.dataItems);
 
@@ -166,28 +210,39 @@ const PieChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
 const DonutChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: string; valueField: string }> = ({ chartId, data, categoryField, valueField, title, icon }) => {
     useLayoutEffect(() => {
         const root = am5.Root.new(chartId);
-        root.setThemes([am5themes_Animated.new(root)]);
+        root.setThemes([
+            am5themes_Animated.new(root),
+            AUTheme.new(root)
+        ]);
 
         const chart = root.container.children.push(am5percent.PieChart.new(root, { layout: root.verticalLayout }));
         const series = chart.series.push(am5percent.PieSeries.new(root, { valueField, categoryField }));
 
         series.set("innerRadius", am5.percent(65));
-        series.labels.template.setAll({ fontSize: 11, fill: am5.color(0x1E3A8A), fontWeight: "600" });
-        series.ticks.template.setAll({ stroke: am5.color(0x1E3A8A), strokeOpacity: 0.2 });
-        series.slices.template.setAll({ cornerRadius: 12, stroke: am5.color(0xffffff), strokeWidth: 3 });
+        series.slices.template.setAll({ 
+            cornerRadius: 12, 
+            stroke: am5.color(0xffffff), 
+            strokeWidth: 3 
+        });
 
         series.slices.template.adapters.add("fill", (fill, target) => {
             const dataCtx = (target.dataItem?.dataContext as ChartData) ?? {};
             const cat = dataCtx[categoryField] as string | undefined;
             const mapped = cat && typeof SERVICE_COLOR_INDEX[cat] === 'number' ? SERVICE_COLOR_INDEX[cat] : undefined;
             const idx = typeof mapped === 'number' ? mapped : Math.max(0, series.dataItems.findIndex(di => ((di.dataContext as ChartData)[categoryField]) === cat));
-            return getThemeColor((idx as number));
+            const color = getThemeColor(idx as number);
+
+            return am5.LinearGradient.new(root, {
+                stops: [
+                    { color: color, opacity: 1 },
+                    { color: color, opacity: 0.85 }
+                ]
+            }) as any;
         });
 
         ((series.data) as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
 
         const legend = chart.children.push(am5.Legend.new(root, { centerX: am5.percent(50), x: am5.percent(50) }));
-        legend.labels.template.setAll({ fontSize: 10, fill: am5.color(0x1E3A8A), fontWeight: "700" });
         legend.data.setAll(series.dataItems);
 
         series.appear(800, 100);
@@ -209,32 +264,46 @@ const DonutChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: 
 const GanttChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: string; startField: string; endField: string }> = ({ chartId, data, categoryField, startField, endField, title, icon }) => {
     useLayoutEffect(() => {
         const root = am5.Root.new(chartId);
-        root.setThemes([am5themes_Animated.new(root)]);
+        root.setThemes([
+            am5themes_Animated.new(root),
+            AUTheme.new(root)
+        ]);
 
         const chart = root.container.children.push(am5xy.XYChart.new(root, { layout: root.verticalLayout }));
 
         const xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, { 
             baseInterval: { timeUnit: "day", count: 1 }, 
-            renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 50, stroke: am5.color(0x1E3A8A), strokeOpacity: 0.1 }) 
+            renderer: am5xy.AxisRendererX.new(root, { strokeOpacity: 0.1 }) 
         }));
         const yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, { 
             categoryField, 
-            renderer: am5xy.AxisRendererY.new(root, { minGridDistance: 20, stroke: am5.color(0x1E3A8A), strokeOpacity: 0.1 }) 
+            renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 }) 
         }));
-
-        ((yAxis.get('renderer') as unknown) as AxisRendererLike).labels.template.setAll({ 
-            fontSize: 10, fill: am5.color(0x1E3A8A), fontWeight: "600", maxWidth: 150, oversizedBehavior: "wrap"
-        });
 
         const series = chart.series.push(am5xy.ColumnSeries.new(root, {
             xAxis, yAxis, valueXField: endField, openValueXField: startField, categoryYField: categoryField, clustered: false,
         }));
 
-        series.columns.template.setAll({ height: am5.percent(50), cornerRadiusTR: 10, cornerRadiusBR: 10, cornerRadiusTL: 10, cornerRadiusBL: 10, strokeOpacity: 0 });
+        series.columns.template.setAll({ 
+            height: am5.percent(50), 
+            cornerRadiusTR: 10, 
+            cornerRadiusBR: 10, 
+            cornerRadiusTL: 10, 
+            cornerRadiusBL: 10, 
+            strokeOpacity: 0 
+        });
+        
         series.columns.template.adapters.add("fill", (fill, target) => {
             const di = (target.dataItem as unknown) as { index?: number } | undefined;
             const index = di && typeof di.index === 'number' ? di.index : 0;
-            return getThemeColor(index);
+            const color = getThemeColor(index);
+            
+            return am5.LinearGradient.new(root, {
+                stops: [
+                    { color: color, opacity: 1 },
+                    { color: color, opacity: 0.85 }
+                ]
+            }) as any;
         });
 
         ((series.data) as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
