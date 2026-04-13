@@ -121,7 +121,11 @@ export default function Sidebar() {
             width={collapsed ? 44 : 148}
             height={collapsed ? 44 : 46}
             unoptimized
-            className={collapsed ? "h-11 w-11 object-contain" : "h-auto w-[148px] object-contain"}
+            className="object-contain"
+            style={{
+              width: collapsed ? "44px" : "148px",
+              height: "auto",
+            }}
           />
         </Link>
 
