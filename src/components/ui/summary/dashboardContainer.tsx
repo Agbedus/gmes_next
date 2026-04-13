@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgramHeader from "../programHeader";
 import ImpactCard from "../impactCard";
@@ -12,6 +12,7 @@ import PhaseSummary from "./phaseSummary";
 import MapModal from "../MapModal";
 import SummaryChartsModal from "../../charts/summaryChartsModal";
 import Tabs from "../Tabs";
+import { SearchResult } from "../GlobalSearch";
 import {
   Landmark, 
   School, 
@@ -30,17 +31,15 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
-// Define precise types instead of `any`
+// Define precise types
 type KPI = {
   label: string;
   value?: string;
   eo_applications?: number | string;
   users?: number | string;
-
   geoportals?: number | string;
   implementing_institutions?: number | string;
   data_enabled_institutions?: number | string;
-  // countries?: number | string;
   estations_installed?: number | string;
   trained_operators?: number | string;
   trainings?: number | string;
@@ -48,7 +47,6 @@ type KPI = {
   studies_grant?: number | string;
   continental_network?: number | string;
   dissemination_platform?: number | string;
-
   amount_eur_millions?: number | string;
   institutions?: number | string;
   countries?: number | string;
@@ -109,7 +107,6 @@ type DashboardData = {
   services?: Service[];
   phase2?: Phase2;
   implementers_governance?: ImplementersGovernance;
-  // allow other fields but keep typed ones above as primary
   [key: string]: unknown;
 };
 
@@ -121,7 +118,6 @@ type Stat = {
   icon?: React.ReactNode;
 };
 
-// Helper type for modules that may export default
 type ModuleWithDefault<T> = { default: T } | T;
 
 export default function DashboardContainer(): React.ReactElement {
@@ -133,7 +129,6 @@ export default function DashboardContainer(): React.ReactElement {
   const [loading, setLoading] = React.useState(true);
   const [activeTab, setActiveTab] = React.useState("overview");
 
-  // sample points to pass into the map modal
   const samplePoints = [
     { id: "ng", name: "Lagos, Nigeria", lat: 6.5244, lon: 3.3792, group: "West" },
     { id: "gh", name: "Accra, Ghana", lat: 5.6037, lon: -0.1870, group: "West" },
@@ -148,12 +143,10 @@ export default function DashboardContainer(): React.ReactElement {
   ];
 
   React.useEffect(() => {
-    // Load local JSON data via dynamic import so this stays a client component
     setLoading(true);
     import("@/data/program.json")
       .then((m: unknown) => {
         const mod = m as ModuleWithDefault<DashboardData>;
-        // narrow without `any`: if module has a `default` key, use it
         if (mod && typeof mod === "object" && "default" in mod) {
           setData((mod as { default: DashboardData }).default);
         } else {
@@ -169,7 +162,6 @@ export default function DashboardContainer(): React.ReactElement {
 
   React.useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      // Focus search when user presses '/'
       if (e.key === "/") {
         const active = document.activeElement as HTMLElement | null;
         if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA")) return;
@@ -178,18 +170,110 @@ export default function DashboardContainer(): React.ReactElement {
         el?.focus();
       }
     }
-
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // Reset dashboard state when query is cleared
   React.useEffect(() => {
     if (query === "") {
       setActiveTab("overview");
       setServiceQuery("");
     }
   }, [query]);
+
+  // DERIVED DATA MUST BE AFTER ALL React Hooks to avoid Rules of Hooks violation
+  // but we can compute them inside useMemos or just before return if hooks are already called.
+  // Actually, we need them for some useMemos.
+
+  const { impact, reorderedImpact, programmeAgreementStat } = useMemo(() => {
+    const impactArr: { label: string; number: string; icon?: React.ReactNode; colorClass?: string; style?: React.CSSProperties; category: string }[] = [];
+    const overviewImpactTheme = "bg-au-dark-green text-white";
+    let agreementStat: Stat | null = null;
+
+    if (data?.kpis) {
+      data.kpis.forEach((k: KPI) => {
+        const label = String(k.label ?? "").trim();
+        const normLabel = label.toLowerCase();
+        if (normLabel.includes("programme agreement")) {
+          agreementStat = { title: "Programme agreement", value: "Signed Dec 2016", icon: <Landmark size={20} /> };
+          return;
+        }
+        if (k.amount_eur_millions !== undefined) {
+          const num = Number(k.amount_eur_millions);
+          impactArr.push({ label: k.label, number: `€${num}M`, icon: <Landmark size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
+        }
+        if (k.eo_applications !== undefined) impactArr.push({ label: "EO Applications", number: `${k.eo_applications}`, icon: <Sparkles size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
+        if (k.users !== undefined) impactArr.push({ label: "Users", number: `${k.users}`, icon: <Users size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
+        if (k.geoportals !== undefined) impactArr.push({ label: "Geoportals", number: `${k.geoportals}`, icon: <LayoutGrid size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
+        if (k.implementing_institutions !== undefined) impactArr.push({ label: "Implementing", number: `${k.implementing_institutions}`, icon: <School size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
+        if (k.data_enabled_institutions !== undefined) impactArr.push({ label: "Data Enabled Institutions", number: `${k.data_enabled_institutions}`, icon: <Cable size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
+        if (k.estations_installed !== undefined) impactArr.push({ label: "eStations Installed", number: `${k.estations_installed}`, icon: <Antenna size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
+        if (k.trained_operators !== undefined) impactArr.push({ label: "Trained Operators", number: `${k.trained_operators}`, icon: <Settings size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+        if (k.trainings !== undefined) impactArr.push({ label: "Trainings", number: `${k.trainings}`, icon: <Building2 size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+        if (k.trainees_in_eo !== undefined) impactArr.push({ label: "Trainees In EO", number: `${k.trainees_in_eo}`, icon: <Satellite size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+        if (k.studies_grant !== undefined) impactArr.push({ label: "Study Grants", number: `${k.studies_grant}`, icon: <Award size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
+        if (k.continental_network !== undefined) impactArr.push({ label: "Continental Networks", number: `${k.continental_network}`, icon: <Network size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
+        if (k.dissemination_platform !== undefined) impactArr.push({ label: "Dissemination Platform", number: `${k.dissemination_platform}`, icon: <Share2 size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
+        if (k.countries !== undefined) impactArr.push({ label: "Countries", number: `${k.countries}`, icon: <Flag size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
+      });
+    }
+
+    const bottomKeywords = ["phase 1 grant", "phase 1"];
+    const norm = (s: string) => s.toLowerCase().replace(/&/g, "and");
+    const top = impactArr.filter(i => !bottomKeywords.some(kw => norm(i.label ?? "").includes(norm(kw))));
+    const bottom = impactArr.filter(i => bottomKeywords.some(kw => norm(i.label ?? "").includes(norm(kw))));
+    
+    return { impact: impactArr, reorderedImpact: [...top, ...bottom], programmeAgreementStat: agreementStat };
+  }, [data]);
+
+  const searchResults = useMemo(() => {
+    if (query.length < 2 || !data) return [];
+    const q = query.toLowerCase();
+    const results: SearchResult[] = [];
+
+    reorderedImpact.forEach((i) => {
+      if (i.label?.toLowerCase().includes(q) || i.number?.toLowerCase().includes(q)) {
+        results.push({
+          id: `impact-${i.label}`,
+          title: i.label,
+          subtitle: i.number,
+          category: "Impact",
+          icon: "insights",
+          action: () => setActiveTab(i.category)
+        });
+      }
+    });
+
+    (data.timeline ?? []).forEach((t, idx) => {
+      if (t.event?.toLowerCase().includes(q) || String(t.year ?? t.years ?? "").toLowerCase().includes(q)) {
+        results.push({
+          id: `timeline-${idx}`,
+          title: t.event,
+          subtitle: String(t.year ?? t.years ?? ""),
+          category: "Pillars",
+          icon: "calendar_month",
+          action: () => document.querySelector('.timeline-container')?.scrollIntoView({ behavior: 'smooth' })
+        });
+      }
+    });
+
+    (data.services ?? []).forEach((s, sIdx) => {
+      s.items.forEach((item, iIdx) => {
+        if (item.toLowerCase().includes(q)) {
+          results.push({
+            id: `service-${sIdx}-${iIdx}`,
+            title: item,
+            subtitle: s.category,
+            category: "Other",
+            icon: "grid_view",
+            action: () => setServiceQuery(item)
+          });
+        }
+      });
+    });
+
+    return results;
+  }, [query, reorderedImpact, data]);
 
   if (loading) {
     return <div className="p-8 text-center text-zinc-500 animate-pulse">Loading dashboard…</div>;
@@ -199,47 +283,6 @@ export default function DashboardContainer(): React.ReactElement {
     return <div className="p-8 text-center text-rose-600 bg-rose-50 rounded-[24px]">Failed to load dashboard data.</div>;
   }
 
-  // Build impact array from data.kpis
-  const impact: { label: string; number: string; icon?: React.ReactNode; colorClass?: string; style?: React.CSSProperties; category: string }[] = [];
-  const overviewImpactTheme = "bg-au-dark-green text-white";
-  // we'll extract programme agreement into a stat and not show it in impact
-  let programmeAgreementStat: Stat | null = null;
-  (data.kpis ?? []).forEach((k: KPI) => {
-    const label = String(k.label ?? "").trim();
-    const normLabel = label.toLowerCase();
-    // If this KPI is the 'Programme agreement', convert it to a stat and don't add to impact
-    if (normLabel.includes("programme agreement")) {
-      programmeAgreementStat = { title: "Programme agreement", value: "Signed Dec 2016", icon: <Landmark size={20} /> };
-      return; // skip adding to impact
-    }
-    if (k.amount_eur_millions !== undefined) {
-      const num = Number(k.amount_eur_millions);
-      impact.push({ label: k.label, number: `€${num}${Number.isInteger(num) ? "M" : "M"}`, icon: <Landmark size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
-    }
-
-    if (k.eo_applications !== undefined) impact.push({ label: "EO Applications", number: `${k.eo_applications}`, icon: <Sparkles size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
-    if (k.users !== undefined) impact.push({ label: "Users", number: `${k.users}`, icon: <Users size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
-    if (k.geoportals !== undefined) impact.push({ label: "Geoportals", number: `${k.geoportals}`, icon: <LayoutGrid size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
-    if (k.implementing_institutions !== undefined) impact.push({ label: "Implementing", number: `${k.implementing_institutions}`, icon: <School size={24} />, colorClass: overviewImpactTheme, category: 'implementation' });
-    if (k.data_enabled_institutions !== undefined) impact.push({ label: "Data Enabled Institutions", number: `${k.data_enabled_institutions}`, icon: <Cable size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
-    if (k.estations_installed !== undefined) impact.push({ label: "eStations Installed", number: `${k.estations_installed}`, icon: <Antenna size={24} />, colorClass: overviewImpactTheme, category: 'infrastructure' });
-    if (k.trained_operators !== undefined) impact.push({ label: "Trained Operators", number: `${k.trained_operators}`, icon: <Settings size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
-    if (k.trainings !== undefined) impact.push({ label: "Trainings", number: `${k.trainings}`, icon: <Building2 size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
-    if (k.trainees_in_eo !== undefined) impact.push({ label: "Trainees In EO", number: `${k.trainees_in_eo}`, icon: <Satellite size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
-    if (k.studies_grant !== undefined) impact.push({ label: "Study Grants", number: `${k.studies_grant}`, icon: <Award size={24} />, colorClass: overviewImpactTheme, category: 'capacity' });
-    if (k.continental_network !== undefined) impact.push({ label: "Continental Networks", number: `${k.continental_network}`, icon: <Network size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
-    if (k.dissemination_platform !== undefined) impact.push({ label: "Dissemination Platform", number: `${k.dissemination_platform}`, icon: <Share2 size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
-
-    if (k.countries !== undefined) impact.push({ label: "Countries", number: `${k.countries}`, icon: <Flag size={24} />, colorClass: overviewImpactTheme, category: 'overview' });
-  });
-
-  // Reorder impact so specific items appear at the bottom (keep rest at top)
-  const bottomKeywords = ["phase 1 grant", "phase 1"];
-  const normalize = (s: string) => s.toLowerCase().replace(/&/g, "and");
-  const topImpact = impact.filter(i => !bottomKeywords.some(kw => normalize(i.label ?? "").includes(normalize(kw))));
-  const bottomImpact = impact.filter(i => bottomKeywords.some(kw => normalize(i.label ?? "").includes(normalize(kw))));
-  const reorderedImpact = [...topImpact, ...bottomImpact];
-
   const tabs = [
     { id: 'overview', label: 'Program Overview' },
     { id: 'infrastructure', label: 'Infrastructure' },
@@ -248,40 +291,30 @@ export default function DashboardContainer(): React.ReactElement {
   ];
 
   const filteredImpact = reorderedImpact.filter(i => i.category === activeTab);
-
-  // Ensure even grid: pad to multiple of 4 using placeholder ImpactCards
   const remainder = filteredImpact.length % 4;
   const placeholders = remainder === 0 ? 0 : 4 - remainder;
 
-  // Simple service filtering
   const filteredServices = (data.services ?? []).map((s: Service) => ({
     ...s,
     items: (s.items ?? []).filter((it: string) => it.toLowerCase().includes(serviceQuery.toLowerCase())),
   }));
 
-  // timeline filtering using toolbar query
   const filteredTimeline: TimelineItem[] = (data.timeline ?? []).filter((t) =>
     (t.event ?? "").toLowerCase().includes(query.toLowerCase()) || String(t.year ?? t.years ?? "").toLowerCase().includes(query.toLowerCase())
   );
 
   const visibleServiceGroups = filteredServices.filter((s) => s.items.length > 0);
   const partnerCount = (data.funders?.length ?? 0) + (data.technical_partners?.length ?? 0);
-
-  const stats: Stat[] = [];
-
-  // Append programme agreement stat at the bottom if we extracted it
-  if (programmeAgreementStat) {
-    stats.push(programmeAgreementStat);
-  }
+  const stats: Stat[] = programmeAgreementStat ? [programmeAgreementStat] : [];
 
   return (
     <div className="relative pb-24">
-
       <ProgramHeader
         name={String(data.program?.name ?? "")}
         oneLiner={String(data.program?.one_liner ?? "")}
         onSearch={(q: string) => setQuery(q)}
         searchValue={query}
+        searchResults={searchResults}
       />
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -310,14 +343,7 @@ export default function DashboardContainer(): React.ReactElement {
       </section>
 
       <section className="mt-10 rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-        <Tabs 
-          tabs={tabs} 
-          activeId={activeTab} 
-          onChange={setActiveTab} 
-          className="max-w-4xl"
-          fullWidth
-        />
-
+        <Tabs tabs={tabs} activeId={activeTab} onChange={setActiveTab} className="max-w-4xl" fullWidth />
         <div className="mt-6">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div 
@@ -325,25 +351,11 @@ export default function DashboardContainer(): React.ReactElement {
               initial={false}
               animate="show"
               exit="hidden"
-              variants={{
-                hidden: { opacity: 0 },
-                show: { 
-                  opacity: 1,
-                  transition: { 
-                    staggerChildren: 0.05 
-                  } 
-                }
-              }}
+              variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } }}
               className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
             >
               {filteredImpact.map((i) => (
-                <motion.div
-                  key={i.label}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    show: { opacity: 1, y: 0, transition: { duration: 0.3 } }
-                  }}
-                >
+                <motion.div key={i.label} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.3 } } }}>
                   <ImpactCard label={i.label} number={i.number} icon={i.icon} colorClass={i.colorClass} style={i.style} />
                 </motion.div>
               ))}
@@ -357,27 +369,22 @@ export default function DashboardContainer(): React.ReactElement {
 
       <div className="mt-10 grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
         <div className="space-y-8">
-          <Timeline items={filteredTimeline} />
-
+          <div className="timeline-container">
+            <Timeline items={filteredTimeline} />
+          </div>
           <div>
             <label className="mb-4 group relative flex items-center justify-end text-sm text-slate-500">
               <input
                 aria-label="Search services"
                 className="ml-2 rounded-[16px] border border-slate-200 bg-white px-3 py-2 pl-8 pr-8 text-sm outline-none transition-all focus:ring-2 focus:ring-au-gold"
-                style={{
-                  borderColor: serviceQuery ? 'var(--color-au-gold)' : undefined,
-                }}
+                style={{ borderColor: serviceQuery ? 'var(--color-au-gold)' : undefined }}
                 placeholder="Filter services"
                 value={serviceQuery}
                 onChange={(e) => setServiceQuery(e.target.value)}
               />
               <IconlyIcon name="search" size={16} color="#94a3b8" className="absolute left-4 top-1/2 -translate-y-1/2" />
               {serviceQuery && (
-                <button
-                  type="button"
-                  onClick={() => setServiceQuery("")}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                >
+                <button type="button" onClick={() => setServiceQuery("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                   <IconlyIcon name="close" size={14} color="currentColor" />
                 </button>
               )}
@@ -388,58 +395,42 @@ export default function DashboardContainer(): React.ReactElement {
 
         <div className="space-y-8">
           {data.funders && data.funders.length > 0 && (
-              <div className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Funded By</h3>
-                <div className="flex flex-col gap-4">
-                  {data.funders.map((funder, idx) => (
-                      <div key={idx} className="flex items-center gap-3" title={funder.name}>
-                        <div className="relative h-12 w-12 flex-shrink-0">
-                          <Image
-                              src={funder.logo}
-                              alt={`${funder.name} logo`}
-                              fill
-                              className="object-contain"
-                              unoptimized
-                          />
-                        </div>
-                        <span className="text-sm font-medium text-slate-900">{funder.name}</span>
-                      </div>
-                  ))}
-                </div>
+            <div className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Funded By</h3>
+              <div className="flex flex-col gap-4">
+                {data.funders.map((funder, idx) => (
+                  <div key={idx} className="flex items-center gap-3" title={funder.name}>
+                    <div className="relative h-12 w-12 flex-shrink-0">
+                      <Image src={funder.logo} alt={`${funder.name} logo`} fill className="object-contain" unoptimized />
+                    </div>
+                    <span className="text-sm font-medium text-slate-900">{funder.name}</span>
+                  </div>
+                ))}
               </div>
+            </div>
           )}
           {data.technical_partners && data.technical_partners.length > 0 && (
-              <div className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Technical Partners</h3>
-                <div className="flex flex-col gap-4">
-                  {data.technical_partners.map((partner, idx) => (
-                      <div key={idx} className="flex items-center gap-3" title={partner.name}>
-                        <div className="relative h-12 w-12 flex-shrink-0">
-                          <Image
-                              src={partner.logo}
-                              alt={`${partner.name} logo`}
-                              fill
-                              className="object-contain"
-                              unoptimized
-                          />
-                        </div>
-                        <span className="text-sm font-medium text-slate-900">{partner.name}</span>
-                      </div>
-                  ))}
-                </div>
+            <div className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">Technical Partners</h3>
+              <div className="flex flex-col gap-4">
+                {data.technical_partners.map((partner, idx) => (
+                  <div key={idx} className="flex items-center gap-3" title={partner.name}>
+                    <div className="relative h-12 w-12 flex-shrink-0">
+                      <Image src={partner.logo} alt={`${partner.name} logo`} fill className="object-contain" unoptimized />
+                    </div>
+                    <span className="text-sm font-medium text-slate-900">{partner.name}</span>
+                  </div>
+                ))}
               </div>
+            </div>
           )}
           {(data.phase2?.focus || (data.phase2?.pillars?.length ?? 0) > 0 || (data.phase2?.cross_cutting?.length ?? 0) > 0) && (
-            <PhaseSummary
-              focus={String(data.phase2?.focus ?? "")}
-              pillars={data.phase2?.pillars ?? []}
-              crossCutting={data.phase2?.cross_cutting ?? []}
-            />
+            <PhaseSummary focus={String(data.phase2?.focus ?? "")} pillars={data.phase2?.pillars ?? []} crossCutting={data.phase2?.cross_cutting ?? []} />
           )}
         </div>
       </div>
 
-      {stats.length > 0 ? (
+      {stats.length > 0 && (
         <div className="mt-10">
           <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {stats.map((s) => (
@@ -447,10 +438,9 @@ export default function DashboardContainer(): React.ReactElement {
             ))}
           </div>
         </div>
-      ) : null}
+      )}
 
       <SummaryChartsModal open={chartsOpen} onCloseAction={() => setChartsOpen(false)} />
-
       <MapModal
         open={mapOpen}
         onCloseAction={() => setMapOpen(false)}

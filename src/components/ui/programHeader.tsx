@@ -2,20 +2,25 @@
 
 import React from "react";
 import IconlyIcon from "./IconlyIcon";
+import GlobalSearch, { SearchResult } from "./GlobalSearch";
 
 export default function ProgramHeader({
   name,
   oneLiner,
   onSearch,
   searchValue,
+  searchResults = [],
 }: {
   name: string;
   oneLiner?: string;
   onSearch?: (q: string) => void;
   searchValue?: string;
+  searchResults?: SearchResult[];
   }) {
   const [q, setQ] = React.useState("");
   const [copied, setCopied] = React.useState(false);
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+  const searchRef = React.useRef<HTMLDivElement>(null);
 
   // Sync internal state with prop if provided
   React.useEffect(() => {
@@ -23,6 +28,17 @@ export default function ProgramHeader({
       setQ(searchValue);
     }
   }, [searchValue]);
+
+  // Handle click outside to close search
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleShare = async () => {
     const shareData = {
@@ -53,7 +69,7 @@ export default function ProgramHeader({
   };
 
   return (
-    <header className="rounded-[28px] border border-blue-dark/10 bg-[linear-gradient(135deg,var(--color-au-dark-green),#172554)] p-6 sm:p-7 text-white shadow-lg">
+    <header className="rounded-[28px] border border-blue-dark/10 bg-[linear-gradient(135deg,var(--color-au-dark-green),#172554)] p-6 sm:p-7 text-white shadow-lg relative z-[60]">
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div className="min-w-0 flex-1">
@@ -63,16 +79,21 @@ export default function ProgramHeader({
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             {onSearch ? (
-              <label className="relative block">
+              <div ref={searchRef} className="relative block">
                 <input
                   data-dashboard-search
                   value={q}
                   onChange={(e) => {
-                    setQ(e.target.value);
-                    onSearch?.(e.target.value);
+                    const val = e.target.value;
+                    setQ(val);
+                    onSearch?.(val);
+                    setIsSearchOpen(val.length >= 2);
+                  }}
+                  onFocus={() => {
+                    if (q.length >= 2) setIsSearchOpen(true);
                   }}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") onSearch?.(q);
+                    if (e.key === "Enter" && !isSearchOpen) onSearch?.(q);
                   }}
                   placeholder="Search reports, metrics..."
                   aria-label="Search reports and metrics"
@@ -85,13 +106,21 @@ export default function ProgramHeader({
                     onClick={() => {
                       setQ("");
                       onSearch?.("");
+                      setIsSearchOpen(false);
                     }}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-dark"
                   >
                     <IconlyIcon name="close" size={16} color="currentColor" />
                   </button>
                 )}
-              </label>
+
+                <GlobalSearch 
+                  query={q} 
+                  results={searchResults} 
+                  isOpen={isSearchOpen} 
+                  onClose={() => setIsSearchOpen(false)} 
+                />
+              </div>
             ) : null}
 
             <button 

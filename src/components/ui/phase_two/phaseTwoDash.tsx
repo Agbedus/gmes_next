@@ -1,8 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProgramHeader from "@/components/ui/programHeader";
 import phaseTwoData from '@/data/phase_two_data.json';
+import { SearchResult } from "@/components/ui/GlobalSearch";
 
 import OverviewPanel from './OverviewPanel';
 import ImpactPanel from './ImpactPanel';
@@ -22,6 +23,103 @@ export default function PhaseTwoDash() {
     const consortia = program?.consortia ?? [];
     const networks = program?.networksAndPartnerships ?? {};
     const strategicFramework = program?.strategicFramework ?? {};
+
+    const searchResults = useMemo(() => {
+        if (searchQuery.length < 2) return [];
+        const q = searchQuery.toLowerCase();
+        const results: SearchResult[] = [];
+
+        // 1. Search Consortia
+        consortia.forEach((c: any) => {
+            const title = c.project_title || c.name || "";
+            const acronym = c.acronym || "";
+            const coordinator = c.consortium?.coordinator?.name || c.coordinator?.name || "";
+            const keywords = c.keywords || [];
+            const description = c.description || "";
+
+            if (
+                title.toLowerCase().includes(q) ||
+                acronym.toLowerCase().includes(q) ||
+                coordinator.toLowerCase().includes(q) ||
+                keywords.some((k: string) => k.toLowerCase().includes(q)) ||
+                description.toLowerCase().includes(q)
+            ) {
+                results.push({
+                    id: `consortium-${acronym || title}`,
+                    title: acronym ? `${title} (${acronym})` : title,
+                    subtitle: coordinator,
+                    category: "Consortia",
+                    icon: "groups",
+                    action: () => {
+                        setActiveTab("consortia");
+                        // We might need a way to tell ConsortiaPanel to select this one.
+                        // For now, switching to the tab is a good start.
+                        setTimeout(() => {
+                            const el = document.getElementById('panel-consortia');
+                            el?.scrollIntoView({ behavior: 'smooth' });
+                        }, 100);
+                    }
+                });
+            }
+        });
+
+        // 2. Search Networks
+        (networks.regional_networks ?? []).forEach((n: any) => {
+            if (n.name?.toLowerCase().includes(q) || n.description?.toLowerCase().includes(q)) {
+                results.push({
+                    id: `network-${n.name}`,
+                    title: n.name,
+                    subtitle: n.description,
+                    category: "Networks",
+                    icon: "hub",
+                    action: () => {
+                        setActiveTab("networks");
+                        setTimeout(() => {
+                            const el = document.getElementById('panel-networks');
+                            el?.scrollIntoView({ behavior: 'smooth' });
+                        }, 100);
+                    }
+                });
+            }
+        });
+
+        // 3. Search Pillars
+        (strategicFramework.pillars_LogFrame ?? []).forEach((p: any) => {
+            if (p.name?.toLowerCase().includes(q) || p.description?.toLowerCase().includes(q)) {
+                results.push({
+                    id: `pillar-${p.id}`,
+                    title: p.name,
+                    subtitle: p.description,
+                    category: "Pillars",
+                    icon: "layers",
+                    action: () => {
+                        setActiveTab("overview");
+                        setTimeout(() => {
+                            const el = document.querySelector('details'); // Try to find the details element
+                            el?.scrollIntoView({ behavior: 'smooth' });
+                        }, 100);
+                    }
+                });
+            }
+        });
+
+        // 4. Search Alignment
+        (strategicFramework.alignment?.continentalPolicies ?? []).forEach((policy: string) => {
+            if (policy.toLowerCase().includes(q)) {
+                results.push({
+                    id: `policy-${policy}`,
+                    title: policy,
+                    category: "Alignment",
+                    icon: "check_circle",
+                    action: () => {
+                        setActiveTab("overview");
+                    }
+                });
+            }
+        });
+
+        return results;
+    }, [searchQuery, consortia, networks, strategicFramework]);
 
     const filteredConsortia = consortia.filter((c: any) => {
         const searchStr = searchQuery.toLowerCase();
@@ -63,6 +161,7 @@ export default function PhaseTwoDash() {
                 oneLiner={programDetails?.description ?? ''}
                 onSearch={handleSearch}
                 searchValue={searchQuery}
+                searchResults={searchResults}
             />
 
             <main className="mt-6">

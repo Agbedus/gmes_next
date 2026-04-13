@@ -1,9 +1,10 @@
 // filepath: /Users/yawdonkor/Desktop/git-repos/gmes_next/src/components/ui/phase_one/phaseOneDash.tsx
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProgramHeader from '@/components/ui/programHeader';
 import phaseOneData from '@/data/phase_one_data.json';
+import { SearchResult } from "@/components/ui/GlobalSearch";
 
 import OverviewPanel from './OverviewPanel';
 import ImpactPanel from './ImpactPanel';
@@ -24,6 +25,60 @@ export default function PhaseOneDash() {
   const metrics = program?.keyImpactMetrics ?? {};
   const consortia = program?.consortia ?? [];
   const strategicFramework = program?.strategicFramework ?? {};
+
+  const searchResults = useMemo(() => {
+    if (searchQuery.length < 2) return [];
+    const q = searchQuery.toLowerCase();
+    const results: SearchResult[] = [];
+
+    // 1. Search Consortia
+    consortia.forEach((c: any) => {
+        const name = c.name || "";
+        const acronym = c.acronym || "";
+        const lead = c.leadInstitution || "";
+        const description = c.description || "";
+
+        if (
+            name.toLowerCase().includes(q) ||
+            acronym.toLowerCase().includes(q) ||
+            lead.toLowerCase().includes(q) ||
+            description.toLowerCase().includes(q)
+        ) {
+            results.push({
+                id: `consortium-${acronym || name}`,
+                title: acronym ? `${name} (${acronym})` : name,
+                subtitle: lead,
+                category: "Consortia",
+                icon: "groups",
+                action: () => {
+                    setActiveTab("consortia");
+                    setTimeout(() => {
+                        const el = document.getElementById('panel-consortia');
+                        el?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            });
+        }
+    });
+
+    // 2. Search Pillars
+    (strategicFramework.pillars_LogFrame ?? []).forEach((p: any) => {
+        if (p.name?.toLowerCase().includes(q) || p.description?.toLowerCase().includes(q)) {
+            results.push({
+                id: `pillar-${p.id}`,
+                title: p.name,
+                subtitle: p.description,
+                category: "Pillars",
+                icon: "layers",
+                action: () => {
+                    setActiveTab("overview");
+                }
+            });
+        }
+    });
+
+    return results;
+  }, [searchQuery, consortia, strategicFramework]);
 
   const filteredConsortia = consortia.filter((c: PhaseOneConsortium) => {
     const searchStr = searchQuery.toLowerCase();
@@ -54,6 +109,7 @@ export default function PhaseOneDash() {
         oneLiner={programDetails?.description ?? ''}
         onSearch={handleSearch}
         searchValue={searchQuery}
+        searchResults={searchResults}
       />
 
       <main className="mt-6">
