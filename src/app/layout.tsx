@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Suspense } from "react";
 import Sidebar from "@/components/ui/Sidebar";
+import { UIProvider } from "@/context/UIContext";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -28,16 +29,18 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="min-h-screen bg-au-bg font-sans">
-            <div className="flex">
-                <Suspense fallback={<div className="w-[88px] shrink-0 border-r border-au-dark-green/10 bg-au-surface"></div>}>
-                    <Sidebar />
-                </Suspense>
-                <main className="flex-1 h-screen overflow-y-auto pt-[92px] px-6 pb-6">
-                    {children}
-                </main>
+        <UIProvider>
+            <div className="min-h-screen bg-au-bg font-sans">
+                <div className="flex">
+                    <Suspense fallback={<div className="w-[88px] shrink-0 border-r border-au-dark-green/10 bg-au-surface"></div>}>
+                        <Sidebar />
+                    </Suspense>
+                    <main className="flex-1 h-screen overflow-y-auto pt-[92px] px-6 pb-6">
+                        {children}
+                    </main>
+                </div>
             </div>
-        </div>
+        </UIProvider>
         </body>
         </html>
     );

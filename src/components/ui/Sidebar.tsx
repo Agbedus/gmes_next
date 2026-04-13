@@ -6,6 +6,8 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight, Home, Paper } from "react-iconly";
 
+import { useUI } from "@/context/UIContext";
+
 type NavIconComponent = React.ComponentType<{
   set?: "light" | "bold" | "bulk" | "broken" | "two-tone";
   size?: number;
@@ -73,6 +75,7 @@ export default function Sidebar() {
   const searchParams = useSearchParams();
   const [collapsed, setCollapsed] = React.useState(false);
   const [usefulLinksOpen, setUsefulLinksOpen] = React.useState(false);
+  const { setIsMapOpen, setIsChartsOpen } = useUI();
 
   React.useEffect(() => {
     try {
@@ -229,6 +232,42 @@ export default function Sidebar() {
             );
           })}
         </nav>
+
+        <div className="mt-8 space-y-2">
+          {!collapsed && (
+            <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400">Tools</p>
+          )}
+          
+          <button
+            onClick={() => setIsChartsOpen(true)}
+            className={`group flex w-full items-center rounded-2xl px-3 py-3 transition-all duration-200 ${
+              collapsed ? "justify-center" : "gap-3"
+            } text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green`}
+            title={collapsed ? "Analytics" : undefined}
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+            </span>
+            {!collapsed && (
+              <span className="min-w-0 flex-1 text-left text-sm font-semibold tracking-tight">Analytics</span>
+            )}
+          </button>
+
+          <button
+            onClick={() => setIsMapOpen(true)}
+            className={`group flex w-full items-center rounded-2xl px-3 py-3 transition-all duration-200 ${
+              collapsed ? "justify-center" : "gap-3"
+            } text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green`}
+            title={collapsed ? "Regional Map" : undefined}
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            {!collapsed && (
+              <span className="min-w-0 flex-1 text-left text-sm font-semibold tracking-tight">Regional Map</span>
+            )}
+          </button>
+        </div>
 
         <div className="mt-auto border-t border-slate-100 pt-4 pb-4">
           <div

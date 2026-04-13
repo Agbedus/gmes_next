@@ -10,12 +10,16 @@ export default function ProgramHeader({
   onSearch,
   searchValue,
   searchResults = [],
+  onOpenMap,
+  onOpenCharts,
 }: {
   name: string;
   oneLiner?: string;
   onSearch?: (q: string) => void;
   searchValue?: string;
   searchResults?: SearchResult[];
+  onOpenMap?: () => void;
+  onOpenCharts?: () => void;
   }) {
   const [q, setQ] = React.useState("");
   const [copied, setCopied] = React.useState(false);

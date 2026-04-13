@@ -13,6 +13,7 @@ import MapModal from "../MapModal";
 import SummaryChartsModal from "../../charts/summaryChartsModal";
 import Tabs from "../Tabs";
 import { SearchResult } from "../GlobalSearch";
+import { useUI } from "@/context/UIContext";
 import {
   Landmark, 
   School, 
@@ -121,8 +122,7 @@ type Stat = {
 type ModuleWithDefault<T> = { default: T } | T;
 
 export default function DashboardContainer(): React.ReactElement {
-  const [mapOpen, setMapOpen] = React.useState(false);
-  const [chartsOpen, setChartsOpen] = React.useState(false);
+  const { isMapOpen, setIsMapOpen, isChartsOpen, setIsChartsOpen } = useUI();
   const [data, setData] = React.useState<DashboardData | null>(null);
   const [query, setQuery] = React.useState("");
   const [serviceQuery, setServiceQuery] = React.useState("");
@@ -180,10 +180,6 @@ export default function DashboardContainer(): React.ReactElement {
       setServiceQuery("");
     }
   }, [query]);
-
-  // DERIVED DATA MUST BE AFTER ALL React Hooks to avoid Rules of Hooks violation
-  // but we can compute them inside useMemos or just before return if hooks are already called.
-  // Actually, we need them for some useMemos.
 
   const { impact, reorderedImpact, programmeAgreementStat } = useMemo(() => {
     const impactArr: { label: string; number: string; icon?: React.ReactNode; colorClass?: string; style?: React.CSSProperties; category: string }[] = [];
@@ -440,10 +436,10 @@ export default function DashboardContainer(): React.ReactElement {
         </div>
       )}
 
-      <SummaryChartsModal open={chartsOpen} onCloseAction={() => setChartsOpen(false)} />
+      <SummaryChartsModal open={isChartsOpen} onCloseAction={() => setIsChartsOpen(false)} />
       <MapModal
-        open={mapOpen}
-        onCloseAction={() => setMapOpen(false)}
+        open={isMapOpen}
+        onCloseAction={() => setIsMapOpen(false)}
         points={samplePoints}
         groupsColor={{ West: 'var(--color-au-dark-green)', East: 'var(--color-au-green)', North: 'var(--color-au-gold)', South: 'var(--color-au-dark-green)', Central: 'var(--color-au-green)' }}
         legendItems={[

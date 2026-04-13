@@ -10,8 +10,12 @@ import ImpactPanel from './ImpactPanel';
 import ConsortiaPanel from './ConsortiaPanel';
 import NetworksPanel from './NetworksPanel';
 import Tabs from '@/components/ui/Tabs';
+import { useUI } from "@/context/UIContext";
+import MapModal from '../MapModal';
+import SummaryChartsModal from '../../charts/summaryChartsModal';
 
 export default function PhaseTwoDash() {
+    const { isMapOpen, setIsMapOpen, isChartsOpen, setIsChartsOpen } = useUI();
     const [searchQuery, setSearchQuery] = useState('');
     const [activeTab, setActiveTab] = useState<'overview' | 'consortia' | 'networks'>('overview');
 
@@ -211,6 +215,21 @@ export default function PhaseTwoDash() {
                 </div>
 
             </main>
+
+            <SummaryChartsModal open={isChartsOpen} onCloseAction={() => setIsChartsOpen(false)} />
+            <MapModal
+                open={isMapOpen}
+                onCloseAction={() => setIsMapOpen(false)}
+                points={[]}
+                groupsColor={{ West: 'var(--color-au-dark-green)', East: 'var(--color-au-green)', North: 'var(--color-au-gold)', South: 'var(--color-au-dark-green)', Central: 'var(--color-au-green)' }}
+                legendItems={[
+                    { label: 'West', color: '#1E3A8A' },
+                    { label: 'East', color: '#10B981' },
+                    { label: 'North', color: '#F59E0B' },
+                    { label: 'South', color: '#1E3A8A' },
+                    { label: 'Central', color: '#10B981' },
+                ]}
+            />
         </div>
     );
 }
