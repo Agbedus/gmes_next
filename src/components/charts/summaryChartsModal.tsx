@@ -67,7 +67,7 @@ class AUTheme extends am5.Theme {
             autoTextColor: false
         });
 
-        this.rule("Tooltip", ["background"]).setAll({
+        this.rule("PointedRectangle", ["tooltip", "background"]).setAll({
             fill: am5.color(0xFFFFFF),
             fillOpacity: 1,
             stroke: am5.color(0x1E3A8A),
@@ -80,7 +80,7 @@ class AUTheme extends am5.Theme {
             shadowOffsetY: 5
         });
 
-        this.rule("Tooltip", ["label"]).setAll({
+        this.rule("Label", ["tooltip"]).setAll({
             fill: am5.color(0x1E3A8A),
             fontSize: 12,
             fontWeight: "800"
@@ -115,7 +115,6 @@ const BarChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
             categoryField, 
             renderer: am5xy.AxisRendererY.new(root, { 
                 minorGridEnabled: true,
-                location: 1,
                 strokeOpacity: 0
             }),
         }));
@@ -222,7 +221,7 @@ const PieChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
             centerX: am5.percent(50), x: am5.percent(50), layout: root.gridLayout,
         }));
         legend.markers.template.setAll({ width: 14, height: 14 });
-        legend.markerRectangles.template.setAll({ cornerRadiusL: 4, cornerRadiusR: 4, cornerRadiusT: 4, cornerRadiusB: 4 });
+        legend.markerRectangles.template.setAll({ cornerRadiusTL: 4, cornerRadiusTR: 4, cornerRadiusBL: 4, cornerRadiusBR: 4 });
         legend.data.setAll(series.dataItems);
 
         series.appear(800, 100);
@@ -287,7 +286,7 @@ const DonutChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: 
             layout: root.gridLayout
         }));
         legend.markers.template.setAll({ width: 14, height: 14 });
-        legend.markerRectangles.template.setAll({ cornerRadiusL: 4, cornerRadiusR: 4, cornerRadiusT: 4, cornerRadiusB: 4 });
+        legend.markerRectangles.template.setAll({ cornerRadiusTL: 4, cornerRadiusTR: 4, cornerRadiusBL: 4, cornerRadiusBR: 4 });
         legend.data.setAll(series.dataItems);
 
         series.appear(800, 100);
