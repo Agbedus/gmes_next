@@ -28,8 +28,9 @@ const THEME_COLORS = [
     0x1E3A8A, // au-dark-green (Primary Blue)
     0xF59E0B, // au-gold
     0x10B981, // au-green
-    0x3B82F6, // blue-primary
-    0xE03E2D, // au-red
+    0x004526, // Official AU Dark Green
+    0xFDB813, // Official AU Gold
+    0x00843D, // Official AU Green
 ];
 
 function getThemeColor(index: number) {
@@ -90,10 +91,10 @@ class AUTheme extends am5.Theme {
 
 // Service color mapping for consistency
 const SERVICE_COLOR_INDEX: Record<string, number> = {
-    "Land & water": 0,
-    "Marine & coastal": 3,
-    "Conservation & wetlands": 2,
-    "Disaster risk & early warning": 1,
+    "Land & water": 2, // Green
+    "Marine & coastal": 0, // Blue
+    "Conservation & wetlands": 3, // Dark Green
+    "Disaster risk & early warning": 1, // Gold
 };
 
 // --- Chart Components ---
@@ -143,13 +144,9 @@ const BarChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
             const di = (target.dataItem as unknown) as { index?: number } | undefined;
             const index = di && typeof di.index === 'number' ? di.index : 0;
             const color = getThemeColor(index);
-            
-            return am5.LinearGradient.new(root, {
-                stops: [
-                    { color: color, opacity: 1 },
-                    { color: color, opacity: 0.8 }
-                ]
-            }) as any;
+
+            // Use solid color for better visibility
+            return color;
         });
 
         (yAxis.data as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
@@ -207,12 +204,8 @@ const PieChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: st
             const idx = typeof mapped === 'number' ? mapped : Math.max(0, series.dataItems.findIndex(di => ((di.dataContext as ChartData)[categoryField]) === cat));
             const color = getThemeColor(idx as number);
 
-            return am5.LinearGradient.new(root, {
-                stops: [
-                    { color: color, opacity: 1 },
-                    { color: color, opacity: 0.8 }
-                ]
-            }) as any;
+            // Use solid color for better visibility
+            return color;
         });
 
         ((series.data) as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
@@ -270,12 +263,8 @@ const DonutChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: 
             const idx = typeof mapped === 'number' ? mapped : Math.max(0, series.dataItems.findIndex(di => ((di.dataContext as ChartData)[categoryField]) === cat));
             const color = getThemeColor(idx as number);
 
-            return am5.LinearGradient.new(root, {
-                stops: [
-                    { color: color, opacity: 1 },
-                    { color: color, opacity: 0.8 }
-                ]
-            }) as any;
+            // Use solid color for better visibility
+            return color;
         });
 
         ((series.data) as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
@@ -356,13 +345,9 @@ const GanttChart: React.FC<BaseChartProps & { data: ChartData[]; categoryField: 
             const di = (target.dataItem as unknown) as { index?: number } | undefined;
             const index = di && typeof di.index === 'number' ? di.index : 0;
             const color = getThemeColor(index);
-            
-            return am5.LinearGradient.new(root, {
-                stops: [
-                    { color: color, opacity: 1 },
-                    { color: color, opacity: 0.8 }
-                ]
-            }) as any;
+
+            // Use solid color for better visibility
+            return color;
         });
 
         ((series.data) as unknown as { setAll: (arg: ChartData[]) => void }).setAll(data);
