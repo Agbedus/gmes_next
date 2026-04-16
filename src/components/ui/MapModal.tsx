@@ -183,6 +183,7 @@ const mapOptions = {
     minZoom: 2,
     maxZoom: 8,
     zoomControl: false,
+    attributionControl: false,
     dragging: true,
     scrollWheelZoom: true,
     doubleClickZoom: true,

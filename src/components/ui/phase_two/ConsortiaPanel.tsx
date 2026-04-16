@@ -424,7 +424,7 @@ function ConsortiaTab({ id, name, logo, active, onClick }: { id: string; name: s
       aria-pressed={active}
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-md ${active ? 'bg-teal-50' : 'hover:bg-zinc-50'} cursor-pointer`}
+      className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-md transition-colors ${active ? 'bg-teal-50' : 'hover:bg-au-green/5 hover:text-au-dark-green'} cursor-pointer`}
     >
       <div className="flex-shrink-0">
         <Image src={safeImgSrc} alt={`${name} logo`} width={40} height={40} className="w-10 h-10 rounded-md object-contain bg-white p-1" unoptimized onError={(e)=>{

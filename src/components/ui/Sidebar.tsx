@@ -75,7 +75,8 @@ export default function Sidebar() {
   const searchParams = useSearchParams();
   const [collapsed, setCollapsed] = React.useState(false);
   const [usefulLinksOpen, setUsefulLinksOpen] = React.useState(false);
-  const { setIsMapOpen, setIsChartsOpen } = useUI();
+  const [usefulLinksFlyoutOpen, setUsefulLinksFlyoutOpen] = React.useState(false);
+  const { setIsMapOpen } = useUI();
 
   React.useEffect(() => {
     try {
@@ -162,21 +163,39 @@ export default function Sidebar() {
             const active = pathname === item.href;
             const hasChildren = Boolean(item.children?.length);
             const showChildren = !collapsed && hasChildren && usefulLinksOpen;
+            const showFlyout = collapsed && hasChildren && usefulLinksFlyoutOpen;
+            const isPhaseNav = item.href === "/phase_two" || item.href === "/phase_one";
+            const isUsefulLinks = item.href === "/useful_links";
 
             return (
-              <div key={item.href} className="space-y-1">
+              <div
+                key={item.href}
+                className="space-y-1"
+                onMouseEnter={() => {
+                  if (collapsed && isUsefulLinks) setUsefulLinksFlyoutOpen(true);
+                }}
+                onMouseLeave={() => {
+                  if (collapsed && isUsefulLinks) setUsefulLinksFlyoutOpen(false);
+                }}
+              >
                 <div className="relative">
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
+                    aria-expanded={collapsed && hasChildren ? showFlyout : undefined}
                     className={`group relative flex items-center rounded-2xl px-3 py-3 transition-all duration-200 ${
                       collapsed ? "justify-center" : "gap-3"
                     } ${
                       active
                         ? "bg-au-dark-green text-white"
-                        : "text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green"
+                        : isPhaseNav
+                          ? "text-slate-600 hover:bg-au-dark-green/12 hover:text-au-dark-green"
+                          : "text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green"
                     }`}
                     title={collapsed ? item.label : undefined}
+                    onFocus={() => {
+                      if (collapsed && isUsefulLinks) setUsefulLinksFlyoutOpen(true);
+                    }}
                   >
                     {active && (
                       <div className="absolute left-0 h-6 w-1 rounded-r-full bg-au-gold" />
@@ -184,7 +203,11 @@ export default function Sidebar() {
 
                     <span
                       className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
-                        active ? "bg-white/10 text-white" : "bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green"
+                        active
+                          ? "bg-white/10 text-white"
+                          : isPhaseNav
+                            ? "bg-slate-50 text-slate-500 group-hover:bg-au-dark-green/18 group-hover:text-au-dark-green"
+                            : "bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green"
                       }`}
                     >
                       <NavIcon icon={item.icon} active={active} />
@@ -208,6 +231,41 @@ export default function Sidebar() {
                     >
                       <span className={`block transition-transform duration-200 ${usefulLinksOpen ? "rotate-90" : ""}`}>›</span>
                     </button>
+                  )}
+
+                  {showFlyout && (
+                    <div className="absolute left-full top-0 z-30 ml-3 w-64 rounded-[24px] border border-au-dark-green/10 bg-white p-3 shadow-xl before:absolute before:-left-3 before:top-0 before:h-full before:w-3 before:content-['']">
+                      <div className="mb-2 px-3 text-xs font-bold uppercase tracking-wider text-slate-400">
+                        Useful Links
+                      </div>
+                      <div className="space-y-1">
+                        {item.children?.map((child) => {
+                          const childSection = child.href.split("section=")[1] ?? "";
+                          const childActive = pathname === "/useful_links" && searchParams?.get("section") === childSection;
+
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setUsefulLinksFlyoutOpen(false)}
+                              onBlur={(event) => {
+                                const nextFocused = event.relatedTarget as Node | null;
+                                if (!event.currentTarget.parentElement?.contains(nextFocused)) {
+                                  setUsefulLinksFlyoutOpen(false);
+                                }
+                              }}
+                              className={`block rounded-2xl px-3 py-2 text-sm transition-colors ${
+                                childActive
+                                  ? "bg-au-green/10 font-semibold text-au-dark-green"
+                                  : "text-slate-500 hover:bg-au-green/5 hover:text-au-dark-green"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
                   )}
                 </div>
 
@@ -242,21 +300,6 @@ export default function Sidebar() {
             <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400">Tools</p>
           )}
           
-          <button
-            onClick={() => setIsChartsOpen(true)}
-            className={`group flex w-full items-center rounded-2xl px-3 py-3 transition-all duration-200 ${
-              collapsed ? "justify-center" : "gap-3"
-            } text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green`}
-            title={collapsed ? "Analytics" : undefined}
-          >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-500 group-hover:bg-au-green/10 group-hover:text-au-dark-green">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-            </span>
-            {!collapsed && (
-              <span className="min-w-0 flex-1 text-left text-sm font-semibold tracking-tight">Analytics</span>
-            )}
-          </button>
-
           <button
             onClick={() => setIsMapOpen(true)}
             className={`group flex w-full items-center rounded-2xl px-3 py-3 transition-all duration-200 ${

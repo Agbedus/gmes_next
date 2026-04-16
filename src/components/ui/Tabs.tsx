@@ -66,7 +66,7 @@ export default function Tabs({ tabs, activeId, onChange, className, fullWidth = 
               ref={(el) => { refs.current[i] = el; }}
               onClick={() => onChange(t.id)}
               onKeyDown={(e) => onKeyDown(e, i)}
-              className={`py-2.5 px-4 text-sm font-bold rounded-2xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-1 ${fullWidth ? 'text-center justify-center' : ''} ${selected ? 'bg-au-dark-green text-white shadow-sm' : 'border border-transparent bg-white text-slate-600 hover:bg-au-green/5 hover:text-au-dark-green'}`}
+              className={`py-2.5 px-4 text-sm font-bold rounded-2xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-1 ${fullWidth ? 'text-center justify-center' : ''} ${selected ? 'bg-au-dark-green text-white shadow-sm' : 'border border-transparent bg-white text-slate-600 hover:border-au-green/20 hover:bg-au-green/5 hover:text-au-dark-green'}`}
               style={{
                 outline: 'none'
               }}

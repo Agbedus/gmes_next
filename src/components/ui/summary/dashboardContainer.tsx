@@ -319,23 +319,27 @@ export default function DashboardContainer(): React.ReactElement {
           { label: "Milestones", value: filteredTimeline.length, note: "matched by your current search", icon: "calendar_month" },
           { label: "Service groups", value: visibleServiceGroups.length, note: "available in the current filter", icon: "grid_view" },
           { label: "Partners", value: partnerCount, note: "funders and technical partners", icon: "groups" },
-        ].map((metric) => (
+        ].map((metric) => {
+          const blueCardLabels = new Set(["Milestones", "Service groups", "Partners"]);
+          const useBlueCard = metric.featured || blueCardLabels.has(metric.label);
+
+          return (
           <div
             key={metric.label}
-            className={`rounded-[24px] border p-5 ${metric.featured ? "border-au-dark-green/20 bg-au-dark-green text-white shadow-lg" : "border-slate-200 bg-white"}`}
+            className={`rounded-[24px] border p-5 ${useBlueCard ? "border-au-dark-green/20 bg-au-dark-green text-white shadow-lg" : "border-slate-200 bg-white"}`}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className={`text-xs font-semibold uppercase tracking-wider ${metric.featured ? "text-white/75" : "text-slate-500"}`}>{metric.label}</p>
-                <div className={`mt-3 text-3xl font-bold tracking-tight ${metric.featured ? "text-white" : "text-au-dark-green"}`}>{metric.value}</div>
-                <p className={`mt-2 text-sm ${metric.featured ? "text-white/80" : "text-slate-600"}`}>{metric.note}</p>
+                <p className={`text-xs font-semibold uppercase tracking-wider ${useBlueCard ? "text-white/75" : "text-slate-500"}`}>{metric.label}</p>
+                <div className={`mt-3 text-3xl font-bold tracking-tight ${useBlueCard ? "text-white" : "text-au-dark-green"}`}>{metric.value}</div>
+                <p className={`mt-2 text-sm ${useBlueCard ? "text-white/80" : "text-slate-600"}`}>{metric.note}</p>
               </div>
-              <div className={`flex h-11 w-11 items-center justify-center rounded-[18px] border ${metric.featured ? "border-white/20 bg-white/12 text-au-gold" : "border-slate-200 bg-au-gold/10 text-au-gold"}`}>
+              <div className={`flex h-11 w-11 items-center justify-center rounded-[18px] border ${useBlueCard ? "border-white/20 bg-white/12 text-au-gold" : "border-slate-200 bg-au-gold/10 text-au-gold"}`}>
                 <IconlyIcon name={metric.icon} size={20} color="var(--color-au-gold)" />
               </div>
             </div>
           </div>
-        ))}
+        )})}
       </section>
 
       <section className="mt-10 rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">

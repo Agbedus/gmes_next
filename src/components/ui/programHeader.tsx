@@ -112,7 +112,7 @@ export default function ProgramHeader({
                       onSearch?.("");
                       setIsSearchOpen(false);
                     }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-dark"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-au-green"
                   >
                     <IconlyIcon name="close" size={16} color="currentColor" />
                   </button>
@@ -131,7 +131,7 @@ export default function ProgramHeader({
               type="button" 
               onClick={handleShare}
               aria-label="Share program" 
-              className="relative inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm font-medium text-blue-dark transition-all hover:bg-slate-50 focus:ring-2 focus:ring-au-gold shadow-sm"
+              className="relative inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white px-4 py-2.5 text-sm font-medium text-blue-dark transition-all hover:border-au-green/20 hover:bg-au-green/10 hover:text-au-dark-green focus:ring-2 focus:ring-au-gold shadow-sm"
             >
               <IconlyIcon name="share" size={20} color="var(--color-au-dark-green)" />
               {copied ? "Copied!" : "Share"}

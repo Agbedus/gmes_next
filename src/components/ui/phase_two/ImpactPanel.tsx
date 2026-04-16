@@ -12,7 +12,7 @@ const TabButton = ({ title, active, onClick, icon }: { title: string; active: bo
     className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all whitespace-nowrap border ${
       active
         ? "bg-au-dark-green text-white border-au-dark-green"
-        : "bg-transparent text-[#71717a] border-transparent hover:border-slate-200 hover:bg-white"
+        : "bg-white text-[#71717a] border-transparent hover:border-au-green/20 hover:bg-au-green/5 hover:text-au-dark-green"
     }`}
   >
     {icon ? <IconlyIcon name={icon} size={18} color="currentColor" /> : null}

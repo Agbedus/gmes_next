@@ -138,7 +138,7 @@ export default function ConsortiumDetail({ consortium, onOpenMap }: { consortium
       <div className="mt-6">
         <div role="tablist" aria-label="Consortium sections" className="flex items-center gap-2">
           {TABS.map(t => {
-            const activeStyle = active === t ? TAB_STYLES[t].text + ' ' + TAB_STYLES[t].bg + ' shadow-sm' : 'text-zinc-600 bg-white hover:bg-zinc-50';
+            const activeStyle = active === t ? TAB_STYLES[t].text + ' ' + TAB_STYLES[t].bg + ' shadow-sm' : 'text-zinc-600 bg-white hover:bg-au-green/5 hover:text-au-dark-green';
             return (
               <button
                 role="tab"

@@ -35,6 +35,16 @@ body {
   @apply antialiased;
 }
 
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 /* 10/100 Opacity Rule Helper Classes */
 @utility badge-au-gold {
   background-color: rgba(245, 158, 11, 0.1);
