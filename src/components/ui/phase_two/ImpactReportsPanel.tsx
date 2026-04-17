@@ -114,7 +114,7 @@ export default function ImpactReportsPanel() {
               </div>
 
               <Image
-                src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Emblem_of_the_African_Union.svg/230px-Emblem_of_the_African_Union.svg.png"
+                src="/images/African_Union_Logo.svg"
                 alt=""
                 fill
                 className="absolute inset-0 w-full h-2/6 object-center object-cover filter opacity-5"
