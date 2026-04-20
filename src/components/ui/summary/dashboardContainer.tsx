@@ -125,7 +125,6 @@ export default function DashboardContainer(): React.ReactElement {
   const { isMapOpen, setIsMapOpen, isChartsOpen, setIsChartsOpen } = useUI();
   const [data, setData] = React.useState<DashboardData | null>(null);
   const [query, setQuery] = React.useState("");
-  const [serviceQuery, setServiceQuery] = React.useState("");
   const [loading, setLoading] = React.useState(true);
   const [activeTab, setActiveTab] = React.useState("overview");
 
@@ -166,7 +165,7 @@ export default function DashboardContainer(): React.ReactElement {
         const active = document.activeElement as HTMLElement | null;
         if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA")) return;
         e.preventDefault();
-        const el = document.querySelector<HTMLInputElement>("input[data-summary-search]");
+        const el = document.querySelector<HTMLInputElement>("input[data-dashboard-search]");
         el?.focus();
       }
     }
@@ -175,9 +174,13 @@ export default function DashboardContainer(): React.ReactElement {
   }, []);
 
   React.useEffect(() => {
-    if (query === "") {
-      setActiveTab("overview");
-      setServiceQuery("");
+    // When the user clears the search box, the filters evaluate true for all items, 
+    // causing massive lists to reappear. We MUST scroll up so the user doesn't lose their place 
+    // when the layout expands and pushes bottom content completely off-screen.
+    if (query.trim() === "" && typeof window !== "undefined") {
+      if (window.scrollY > 100) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   }, [query]);
 
@@ -223,8 +226,8 @@ export default function DashboardContainer(): React.ReactElement {
   }, [data]);
 
   const searchResults = useMemo(() => {
-    if (query.length < 2 || !data) return [];
-    const q = query.toLowerCase();
+    const q = query.trim().toLowerCase();
+    if (q.length < 2 || !data) return [];
     const results: SearchResult[] = [];
 
     reorderedImpact.forEach((i) => {
@@ -235,7 +238,9 @@ export default function DashboardContainer(): React.ReactElement {
           subtitle: i.number,
           category: "Impact",
           icon: "insights",
-          action: () => setActiveTab(i.category)
+          action: () => {
+            setActiveTab(i.category);
+          }
         });
       }
     });
@@ -262,7 +267,11 @@ export default function DashboardContainer(): React.ReactElement {
             subtitle: s.category,
             category: "Other",
             icon: "grid_view",
-            action: () => setServiceQuery(item)
+            action: () => {
+              setTimeout(() => {
+                document.getElementById(`services-${s.category.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }
           });
         }
       });
@@ -286,20 +295,21 @@ export default function DashboardContainer(): React.ReactElement {
     { id: 'implementation', label: 'Implementation' },
   ];
 
-  const filteredImpact = reorderedImpact.filter(i => i.category === activeTab);
+  const filteredImpact = reorderedImpact.filter(i => {
+    const q = query.trim().toLowerCase();
+    const matchesTab = i.category === activeTab;
+    const matchesQuery = q === "" || i.label?.toLowerCase().includes(q) || i.number?.toLowerCase().includes(q);
+    return matchesTab && matchesQuery;
+  });
   const remainder = filteredImpact.length % 4;
   const placeholders = remainder === 0 ? 0 : 4 - remainder;
 
-  const filteredServices = (data.services ?? []).map((s: Service) => ({
-    ...s,
-    items: (s.items ?? []).filter((it: string) => it.toLowerCase().includes(serviceQuery.toLowerCase())),
-  }));
+  const filteredTimeline: TimelineItem[] = (data.timeline ?? []).filter((t) => {
+    const q = query.trim().toLowerCase();
+    return q === "" || (t.event ?? "").toLowerCase().includes(q) || String(t.year ?? t.years ?? "").toLowerCase().includes(q);
+  });
 
-  const filteredTimeline: TimelineItem[] = (data.timeline ?? []).filter((t) =>
-    (t.event ?? "").toLowerCase().includes(query.toLowerCase()) || String(t.year ?? t.years ?? "").toLowerCase().includes(query.toLowerCase())
-  );
-
-  const visibleServiceGroups = filteredServices.filter((s) => s.items.length > 0);
+  const visibleServiceGroups = (data.services ?? []).filter((s) => (s.items ?? []).length > 0);
   const partnerCount = (data.funders?.length ?? 0) + (data.technical_partners?.length ?? 0);
   const stats: Stat[] = programmeAgreementStat ? [programmeAgreementStat] : [];
 
@@ -315,9 +325,27 @@ export default function DashboardContainer(): React.ReactElement {
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[
-          { label: "Impact cards", value: filteredImpact.length, note: `in ${tabs.find((t) => t.id === activeTab)?.label ?? "overview"}`, icon: "insights", featured: true },
-          { label: "Milestones", value: filteredTimeline.length, note: "matched by your current search", icon: "calendar_month" },
-          { label: "Service groups", value: visibleServiceGroups.length, note: "available in the current filter", icon: "grid_view" },
+          { 
+            label: "Impact cards", 
+            value: filteredImpact.length, 
+            note: query.trim() === "" 
+              ? `in ${tabs.find((t) => t.id === activeTab)?.label ?? "overview"}` 
+              : `matched in ${tabs.find((t) => t.id === activeTab)?.label ?? "overview"}`, 
+            icon: "insights", 
+            featured: true 
+          },
+          { 
+            label: "Milestones", 
+            value: filteredTimeline.length, 
+            note: query.trim() === "" ? "total program milestones" : "matched by your current search", 
+            icon: "calendar_month" 
+          },
+          { 
+            label: "Service groups", 
+            value: visibleServiceGroups.length, 
+            note: "total available services", 
+            icon: "grid_view" 
+          },
           { label: "Partners", value: partnerCount, note: "funders and technical partners", icon: "groups" },
         ].map((metric) => {
           const blueCardLabels = new Set(["Milestones", "Service groups", "Partners"]);
@@ -373,23 +401,7 @@ export default function DashboardContainer(): React.ReactElement {
             <Timeline items={filteredTimeline} />
           </div>
           <div>
-            <label className="mb-4 group relative flex items-center justify-end text-sm text-slate-500">
-              <input
-                aria-label="Search services"
-                className="ml-2 rounded-[16px] border border-slate-200 bg-white px-3 py-2 pl-8 pr-8 text-sm outline-none transition-all focus:ring-2 focus:ring-au-gold"
-                style={{ borderColor: serviceQuery ? 'var(--color-au-gold)' : undefined }}
-                placeholder="Filter services"
-                value={serviceQuery}
-                onChange={(e) => setServiceQuery(e.target.value)}
-              />
-              <IconlyIcon name="search" size={16} color="#94a3b8" className="absolute left-4 top-1/2 -translate-y-1/2" />
-              {serviceQuery && (
-                <button type="button" onClick={() => setServiceQuery("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                  <IconlyIcon name="close" size={14} color="currentColor" />
-                </button>
-              )}
-            </label>
-            <ServicesList services={filteredServices} query={serviceQuery} />
+            <ServicesList services={data.services ?? []} />
           </div>
         </div>
 
